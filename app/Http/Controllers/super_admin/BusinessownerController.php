@@ -16,6 +16,8 @@ use Hyn\Tenancy\Contracts\Repositories\WebsiteRepository;
 use Hyn\Tenancy\Models\Hostname;
 use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
 
+use App\Model\Tenant\Admin;
+
 class BusinessownerController extends Controller
 {
     /**
@@ -78,6 +80,19 @@ class BusinessownerController extends Controller
         $hostname->fqdn = $site.".".request()->getHttpHost() ;
         $hostname = app(HostnameRepository::class)->create($hostname);
         app(HostnameRepository::class)->attach($hostname, $website);
+
+        config(['database.connections.tenant.database' => $site]);
+        config(['database.default' => 'tenant']);
+        DB::purge('mysql');
+
+        unset($request['businessname'] , $request['subdomain']);
+
+        Admin::create($request->all());
+
+        config(['database.connections.tenant.database' => 'tenancy']);
+        config(['database.default' => 'system']);
+        DB::purge('mysql');
+       
         return redirect()->route('businessownerList')->with('success','Add Successfully.');  
     }
 

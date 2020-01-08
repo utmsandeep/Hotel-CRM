@@ -100,7 +100,7 @@
                             </div>
                         </div-->
                     </form>
-                    <form class="form-horizontal" id="recoverform" method="POST" action="{{ route('password.update') }}">
+                    <form class="form-horizontal" id="recoverform" method="POST" action="">
 						@if (session('status'))
 							<div class="alert alert-success" role="alert">
 								{{ session('status') }}

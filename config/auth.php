@@ -41,6 +41,18 @@ return [
             'provider' => 'users',
         ],
 
+        'admin' => [
+
+        	'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
+        'consumer' => [
+
+        	'driver' => 'session',
+            'provider' => 'consumers',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,6 +82,16 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'admins'=> [
+        	'driver' => 'eloquent',
+            'model' => App\Model\Tenant\Admin::class,
+        ],
+
+        'consumers'=> [
+        	'driver' => 'eloquent',
+            'model' => App\Model\Tenant\Consumer::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

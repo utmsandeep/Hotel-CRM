@@ -49,7 +49,8 @@ body{
     flex-wrap: wrap;
     background-color: #fff;
     @media (min-width: 320px) and (max-width: 720px) {
-        margin-top: 120px;
+        margin-top: 30px;
+        padding-top: 20px;
     }
 
     .bannercontent{
@@ -183,6 +184,9 @@ body{
             margin: 10px 20px 40px;
             -webkit-transition: margin .5s; /* Safari prior 6.1 */
             transition: margin .5s;
+            @media (min-width: 320px) and (max-width: 720px){
+                margin: 10px 0px 40px;
+            }
             
             &:hover{
                 margin-top: 5px;
@@ -195,6 +199,7 @@ body{
 
                 @media (min-width: 320px) and (max-width: 720px){
                     height: 150px;
+                    flex-basis: 100%!important;
                 }
             }
 
@@ -908,3 +913,198 @@ body{
         margin-right: 0rem!important;
     }
 }
+
+/*******registerpage********/
+
+.signupimg{
+    width: 100%;
+    border-bottom-left-radius: 0% 0%;
+    border-bottom-right-radius: 100% 30%;
+    height: 270px;
+    object-fit: cover;
+}
+
+.subsignbtn{
+    width: 50%;
+    margin: 10px 25%;
+}
+
+@media (max-width: 1024px) and (min-width: 721px){
+    .registersection {
+        width: 70%;
+        margin: 100px 15% 150px;
+        -webkit-box-shadow: 2px 2px 10px 0.6px #565656;
+        box-shadow: 2px 2px 10px 0.6px #565656;
+        padding: 40px 0px 30px;
+        background-color: #fff;
+    }
+    }
+
+    @media (max-width: 720px) and (min-width: 320px){
+        .registersection {
+            width: 90%;
+            margin: 0px 5% 00px;
+            -webkit-box-shadow: 2px 2px 10px 0.6px #565656;
+            box-shadow: 2px 2px 10px 0.6px #565656;
+            padding: 40px 0px 30px;
+            background-color: #fff;
+        }
+        }
+    
+/**************platform******************/
+
+.platbanner {
+    margin: 65px auto 40px;
+    position: relative;
+    @media (min-width: 320px) and (max-width: 720px){
+        margin: 40px auto 40px;
+    }
+
+    h1{
+        font-family: 'Noto Sans', sans-serif;
+        width: 60%;
+        text-align: center;
+        margin: 50px 20%;
+        font-size: 26px;
+        color: #111;
+        font-weight: 400;
+
+        @media (min-width: 320px) and (max-width: 1024px){
+            width: 90%;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 40px 5%;
+        }
+        @media (min-width: 721px) and (max-width: 1024px){
+            font-size: 22px;
+        }
+  
+    }
+
+    .platbannerimg{
+        img{
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+
+            @media (min-width: 320px) and (max-width: 720px){
+                height: 200px;
+            }
+            @media (min-width: 721px) and (max-width: 1024px){
+                height: 300px;
+            }
+        }
+    }
+}    
+
+.alternatesection{
+    .flexsection{
+        display: flex;
+        margin: 100px auto;
+        flex-wrap: wrap;
+        @media (min-width: 320px) and (max-width: 1024px){
+            margin: 40px auto;
+        }
+
+        .imgpart{
+            flex: 1;
+            @media (min-width: 320px) and (max-width: 720px){
+                flex-basis: 100%;
+            }
+
+            img{
+                width: 100%;
+                height: 320px;
+                object-fit: cover;
+                @media (min-width: 320px) and (max-width: 1024px){
+                    height: 200px;
+                }
+                
+            }
+        }
+        .contentpart{
+            flex: 1;
+            padding: 40px 10px 40px 10px;
+            @media (min-width: 320px) and (max-width: 720px){
+                flex-basis: 100%;
+                padding: 20px 10px 0px 10px;
+            }
+            @media (min-width: 721px) and (max-width: 1024px){
+                padding: 0px 10px 10px 40px;
+            }
+
+            h3{
+                color: #073156;
+                font-size: 26px;
+                text-transform: uppercase;
+                margin-bottom: 15px;
+                font-weight: 300;
+                letter-spacing: 1.5px;
+                @media (min-width: 320px) and (max-width: 1024px){
+                    font-size: 22px;
+                }
+            }
+
+            p{
+                font-family: 'Noto Sans', sans-serif;
+            
+            }
+        }
+    }
+
+    .padleft{
+        margin-left: 50px;
+        @media (min-width: 320px) and (max-width: 720px){
+            margin-left: 0px;
+        }
+        @media (min-width: 721px) and (max-width: 1024px){
+            margin-left: 20px;
+        }
+    }
+    .padright{
+        margin-right: 50px;
+        @media (min-width: 320px) and (max-width: 720px){
+            margin-right: 0px;
+        }
+        @media (min-width: 721px) and (max-width: 1024px){
+            margin-right: 20px;
+        }
+    }
+}
+
+.colrev{
+    flex-direction: row;
+    @media (min-width: 320px) and (max-width: 720px){
+        flex-direction: column-reverse;
+    }
+}
+
+/******************solution*****************/
+
+
+
+.solutionsection{
+    margin: 150px auto 0px;
+    @media (min-width: 320px) and (max-width: 720px){
+        margin: 40px auto 0px;
+    }
+
+
+    .flexsection hr{
+    width: 100px;
+    border-top: 3px solid #073156;
+}
+
+.flexsection{
+    margin: 80px auto;
+    @media (min-width: 320px) and (max-width: 720px){
+        margin: 40px auto;
+    }
+}
+}
+.moblogo{
+    width: 170px; 
+    margin-top: 30px;
+    margin-left: 20px;
+}
+

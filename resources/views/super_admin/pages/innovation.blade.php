@@ -29,7 +29,7 @@
 						@foreach($data as $datab)
 							<tr>
 								<td>{{$datab['name']}}</td>
-								<td><img src="images/innovation/{{$datab['image']}}" style="width:50px;height:50px;"></td>
+								<td><img src="{{ asset('images/innovation') }}/{{$datab['image']}}" style="width:50px;height:50px;"></td>
 								<td>
 								@if($datab['is_active']==1)
 								<span class="label label-success">Active</span>
