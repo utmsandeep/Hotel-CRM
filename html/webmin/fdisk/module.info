@@ -1,0 +1,10 @@
+version=1.900
+longdesc=Create and edit partitions on local SCSI, IDE and SATA disks on Linux.
+name=Partition Manager
+os_support=*-linux
+desc=Partitions on Local Disks
+category=hardware
+noopenvz=1
+risk=high
+depends=mount proc raid 1.900
+novserver=1

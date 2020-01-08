@@ -1,0 +1,6 @@
+version=1.900
+longdesc=Setup the SSH server for remote secure logins.
+desc=SSH Server
+name=SSHD
+category=servers
+depends=1.900

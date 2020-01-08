@@ -1,0 +1,5 @@
+os_support=!windows
+version=1.900
+longdesc=Configure PHP settings for the whole system or individual Apache virtual servers.
+desc=PHP Configuration
+depends=time 1.900

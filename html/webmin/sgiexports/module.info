@@ -1,0 +1,7 @@
+os_support=irix
+version=1.900
+longdesc=Edit file shares as defined in the Irix /etc/exports file
+desc=NFS Exports
+name=SGIExports
+category=net
+depends=1.900

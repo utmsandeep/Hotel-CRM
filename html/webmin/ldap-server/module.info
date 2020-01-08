@@ -1,0 +1,6 @@
+perldepends=Net::LDAP
+version=1.900
+longdesc=Manage the OpenLDAP server and objects in its database
+desc=LDAP Server
+category=servers
+depends=ldap-client 1.900

@@ -1,0 +1,8 @@
+version=1.900
+longdesc=Edit file shares as defined in the HPUX /etc/exports file.
+name=Export Manager
+os_support=hpux
+desc=NFS Exports
+category=net
+risk=low medium high
+depends=1.900

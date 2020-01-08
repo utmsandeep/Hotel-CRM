@@ -1,0 +1,8 @@
+version=1.900
+longdesc=Edit file shares from the FreeBSD /etc/exports file.
+name=BSDexports
+os_support=freebsd openbsd macos netbsd openserver
+desc=NFS Exports
+category=net
+risk=low medium high
+depends=1.900
