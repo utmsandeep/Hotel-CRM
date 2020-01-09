@@ -27,7 +27,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse container" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#"><span class="logofirst">Hotel</span>CRM</a>
+		    <a class="navbar-brand" href="{{ route('tenant.index') }}"><img src="http://hoteleventcrm.buzz/images/main-system/logo.png" style="width: 170px;"></a>
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link" href="#">List Space <span class="sr-only">(current)</span></a>
@@ -62,6 +62,24 @@
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
         
         </div>
+        
+        <!-- @if(session()->get('success'))
+          <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{ session()->get('success') }}
+          </div>        
+        @endif
+      @if (session()->get('errors'))
+          <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Danger!</strong>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+        </div><br />
+      @endif  -->
 
         @yield('content')
 
@@ -70,7 +88,8 @@
         <section class="container">
           <div class="footer">
             <div class="part1">
-              <h1 class="logo"><span class="logofirst">Hotel</span>CRM</h1>
+        
+			   <a href="{{ route('tenant.index') }}" class="logofoot"><img src="http://hoteleventcrm.buzz/images/main-system/logo.png" style="width: 170px; margin-bottom: 20px;"></a>
               <p>Helping the world meet</p>
               <div class="logo">
                 <a href="#"><img src="{{ asset('images/main-system/fblogo.png') }}" class="fb" /></a>

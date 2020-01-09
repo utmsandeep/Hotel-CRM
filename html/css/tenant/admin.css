@@ -1,0 +1,106 @@
+.adminlogin {
+  width: 80%;
+  margin: 200px 10% 100px;
+  position: relative;
+}
+
+.adminlogin .adminloginimg {
+  width: 100%;
+}
+
+.adminlogin .adminloginimg img {
+  width: 100%;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.formsection {
+  position: absolute;
+  width: 50%;
+  height: 450px;
+  -webkit-box-shadow: 1px 2px 3px .6px #afafaf;
+          box-shadow: 1px 2px 3px .6px #afafaf;
+  background-color: #fff;
+  top: -50px;
+  padding: 20px 40px;
+  left: 10%;
+}
+
+.formsection .formpart h2 {
+  color: #073156;
+  letter-spacing: 1px;
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.formsection .formpart hr {
+  width: 14%;
+  margin: 0px 43%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 2px solid #073156;
+}
+
+.formsection .formpart .form-check {
+  margin-top: 40px;
+}
+
+.formsection .adminbtn {
+  margin: 50px auto 0px;
+}
+
+.formsection .adminbtn .adminsub {
+  background-color: #073156;
+  color: #fff;
+  padding: 5px 20px;
+  float: right;
+  border-radius: 0px;
+}
+
+.formsection .custom-file-control, .formsection .form-control, .formsection .is-focused .custom-file-control, .formsection .is-focused .form-control {
+  background-image: linear-gradient(0deg, #073156 2px, rgba(0, 150, 136, 0) 0), linear-gradient(0deg, rgba(0, 0, 0, 0.26) 1px, transparent 0) !important;
+}
+
+.formsection .form-control {
+  border: 0px solid #ced4da !important;
+  border-radius: 0rem !important;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 120px) and (max-width: 720px) {
+  .adminlogin {
+    width: 96%;
+    margin: 40px 2% 50px;
+  }
+  .adminlogin .adminloginimg img {
+    height: 550px;
+  }
+  .formsection {
+    position: absolute;
+    width: 90%;
+    height: 450px;
+    top: 50px;
+    padding: 20px 20px;
+    left: 5%;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1024px) {
+  .adminlogin {
+    width: 90%;
+    margin: 200px 5% 120px;
+  }
+  .formsection {
+    position: absolute;
+    width: 60%;
+    height: 450px;
+  }
+}
+/*# sourceMappingURL=admin.css.map */

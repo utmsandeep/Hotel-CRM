@@ -38,14 +38,12 @@
                 <a class="nav-link" href="{{ route('solutions') }}">Solutions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Resources</a>
+                <a class="nav-link" href="#">Blog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#">Contact us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
+              
             </ul>
           </div>
         </nav>
@@ -58,8 +56,9 @@
             <div class="overlay-content">
               <a href="#">List Space</a>
               <a href="{{ route('solutions') }}">Solutions</a>
-              <a href="#">Join</a>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</a>
+              <a href="#">Blog</a>
+			  <a href="#">Contact us</a>
+              
             </div>
           </div>
           
