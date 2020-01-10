@@ -2,7 +2,7 @@
 
 @section('content')
          
-<section class="registerpart">        
+<section class="registerpart" style="background-image:url({{ asset('images/main-system/bannerimage.jpg') }})">        
   <div class="container">
       <div class="registersection">
     

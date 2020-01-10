@@ -11,13 +11,13 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 
 	Route::group(['prefix'=>'consumer'] , function(){ 
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');
-	 	Route::post('/logout', [ConsumerController::class, 'LogOut'])->name('tenant.logout.submit');
+	 	Route::post('/logout', [HomeController::class, 'ConsumerLogOut'])->name('tenant.logout.submit');
 	 	Route::get('/register', [ConsumerController::class, 'RegisterForm'])->name('tenant.register');
 	 	Route::post('/register', [ConsumerController::class, 'Store'])->name('tenant.register.submit');
 	 	
 		Route::group(['middleware'=>['auth:consumer']] , function(){ 
 			Route::get('/' , function(){
-			  return auth()->guard('consumer')->user();
+			 return redirect()->route('tenant.index');
 	 		})->name('tenant.consumer.home');
 		});
 	});
@@ -25,12 +25,12 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 	Route::group(['prefix'=>'admin'] , function(){ 
 		Route::get('/login', [AdminController::class, 'LoginForm'])->name('tenant.admin.login');
 		Route::post('/login', [AdminController::class, 'Login'])->name('tenant.admin.login.submit');
+		
 
-		Route::get('/', function () { return redirect('dashboard/index'); });
+		 //Route::get('/', function () { return redirect('dashboard/index'); });
 
 /* Dashboard */
-Route::get('dashboard', function () { return redirect('dashboard/index'); });
-Route::get('dashboard/index', [HomeController::class, 'Index'])->name('dashboard.index');
+
 
 /* Profile */
 Route::get('profile', function () { return redirect('profile/my-profile'); });
@@ -158,9 +158,13 @@ Route::get('map/yandex', 'MapController@yandex')->name('map.yandex');
 Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 		
 		Route::group(['middleware'=>['auth:admin']] , function(){ 
+			Route::post('/logout', [HomeController::class, 'AdminLogOut'])->name('tenant.admin.logout.submit');
 			Route::get('/' , function(){
-				 return auth()->guard('admin')->user();
+				return redirect('admin/dashboard/index');
 	 		})->name('tenant.admin.home');
+
+	 		Route::get('dashboard', function () { return redirect('dashboard/index'); });
+			Route::get('dashboard/index', [HomeController::class, 'Index'])->name('dashboard.index');
 		});
 	});
  });

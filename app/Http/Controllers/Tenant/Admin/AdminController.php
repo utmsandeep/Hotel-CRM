@@ -4,38 +4,27 @@ namespace App\Http\Controllers\Tenant\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Model\Tenant\Admin;
 
 class AdminController extends Controller
 {
     public function __construct(){
-            //$this->middleware('guest')->except('logout');
-            // $this->middleware('guest:admin')->except('logout');
-            //$this->middleware('guest:consumer')->except('logout');
-            //print_r(Auth::user()->id);
-
-		// if(Auth::guard('consumer')->check())
-		// {
-		// 	return redirect()->route('tenant.consumer.home');
-		// }
-
-		//dd(auth()->guard('consumer')->user());
-
+            $this->middleware('guest')->except('logout');
+            $this->middleware('guest:admin')->except('logout');
     }
     
 	public function Login(Request $request){
 
-		return redirect()->route('dashboard.index');
-		// if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password] ,$request->filled('remember'))){
-		// 	return Auth::guard('consumer')->user()->firstname;
-  //   	}
-  //   	return 'failed';
+		if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password] ,$request->filled('remember'))){
+			return redirect()->route('dashboard.index');
+    	}
+    	return redirect()->route('tenant.admin.login')->withErrors(['email'=>'These credentials do not match our records']);
 	}
 
 	public function LoginForm(){
 
 		return view('tenant.admin.login');
-		//Auth::guard('consumer')->logout();
-		//dd(auth()->guard('consumer')->user());
-		//return view('tenant.register');
 	}
+
 }

@@ -10,7 +10,7 @@
                 <div class="user-info">
                     <div class="image"><a href="#"><img src="{{ asset('tenant-admin/images/profile_av.jpg') }}" alt="User"></a></div>
                     <div class="detail">
-                        <h4>Michael</h4>
+                        <h4>{{ auth('admin')->user()->firstname }} {{ auth('admin')->user()->lastname }}</h4>
                         <small>Super Admin</small>
                     </div>
                 </div>
@@ -164,6 +164,11 @@
                     <li class="{{ Request::segment(2) === 'jvector' ? 'active' : null }}"><a href="{{route('map.jvector')}}">jVectorMap</a></li>
                 </ul>
             </li> -->
+        <li class=""><a href="{{route('tenant.admin.logout.submit')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="zmdi zmdi-account"></i><span>LogOut</span></a></li>
+        <form id="logout-form" action="{{route('tenant.admin.logout.submit')}}" method="POST" style="display: none;">
+        @csrf
+        </form>
         </ul>
+
     </div>
 </aside>

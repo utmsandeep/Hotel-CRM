@@ -15,12 +15,47 @@
 
     <link href="https://fonts.googleapis.com/css?family=Questrial|Roboto&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+   <style>
+
+      .toggle.btn{
+        margin-left: 10px;
+      }
+      
+      #target {
+        margin-left: 10px;
+        background: #fff;
+        width: 180px;
+        display: none;
+        position: absolute;
+        box-shadow: 1px 2px 4px 0.6px #04030324;
+        margin-top: 10px;
+      }
+
+      .popoption{
+        list-style-type:none;
+        font-size: 14px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 10px 20px 0px 20px;
+      }
+      .popoption a{
+        color: #111;
+      }
+      .popoption a i{
+       padding-right: 10px;
+       
+      }
+
+    </style>
     @yield('head')
     <title>Hotel Management @yield('title')</title>
   </head>
   <body>
-  
+  <form id="logout-form" action="{{ route('tenant.logout.submit') }}" method="post" style="display: none;">
+            @csrf
+  </form>
     <header>
       <nav class="navbar navbar-expand-lg desktop">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,9 +74,27 @@
               <a class="nav-link" href="#">Join</a>
             </li>
           </ul>
+           @if(!auth('consumer')->user())
           <form class="form-inline my-2 my-lg-0">
             <button class="btn  my-2 my-sm-0 btn btn-raised btn-primary" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login <img src="{{ asset('images/main-system/downarrow.png') }}" class="downarrow" /></button>
           </form>
+          @endif
+
+          @if(auth('consumer')->user())
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button class="toggle btn my-2 my-sm-0 btn-raised btn-primary">Profile</button>
+              <div id="target" class="popoption">
+               
+                 <p><a href="#"><i class='fa fa-bell'></i>My Profile</a></p> 
+                 
+                  <hr>
+                  <p><a href="{{ route('tenant.logout.submit') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class='fa fa-sign-out'></i>Logout</a></p> 
+              
+              </div>
+            </li>
+          </ul>
+          @endif
         </div>
       </nav>
     </header>
@@ -54,7 +107,25 @@
             <a href="#">List Space</a>
             <a href="#">Solutions</a>
             <a href="#">Join</a>
+            @if(!auth('consumer')->user())
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</a>
+            @endif
+
+            @if(auth('consumer')->user())
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button class="toggle btn my-2 my-sm-0 btn-raised btn-primary">Profile</button>
+              <div id="target" class="popoption">
+               
+                 <p><a href="#"><i class='fa fa-bell'></i>My Profile</a></p> 
+                 
+                  <hr>
+                  <p><a href="{{ route('tenant.logout.submit') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class='fa fa-sign-out'></i>Logout</a></p> 
+              
+              </div>
+            </li>
+          </ul>
+          @endif
           </div>
         </div>
         
@@ -158,6 +229,9 @@
             <div class="form-group">
               <label for="email">Email address:</label>
               <input type="email" class="form-control" placeholder="Enter Email" id="email" name="email">
+              <span class="invalid-feedback" role="alert">
+                  <strong>These credentials do not match our records</strong>
+              </span>
             </div>
             <div class="form-group">
               <label for="pwd">Password:</label>
@@ -215,6 +289,11 @@
       function closeNav() {
         document.getElementById("mobmenu").style.width = "0%";
       }
+      </script>
+      <script>
+        $('.toggle').click(function() {
+        $('#target').toggle('slow');
+        });
       </script>
     @yield('script')
   </body>
