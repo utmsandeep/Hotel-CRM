@@ -46,7 +46,7 @@
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img class="zmdi-hc-spin" src="../assets/images/logo.svg" width="48" height="48" alt="Aero"></div>
+                <div class="m-t-30"><img class="zmdi-hc-spin" src="{{ asset('tenant-admin/images/logo.svg') }}" width="48" height="48" alt="Aero"></div>
                 <p>Please wait...</p>        
             </div>
         </div>
@@ -61,7 +61,7 @@
                     <div class="col-lg-7 col-md-6 col-sm-12">
                         <h2>@yield('title')</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i> Aero</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i> Hotel </a></li>
                             @if (trim($__env->yieldContent('parentPageTitle')))
                                 <li class="breadcrumb-item">@yield('parentPageTitle')</li>
                             @endif
@@ -73,8 +73,30 @@
                     </div>            
                     <div class="col-lg-5 col-md-6 col-sm-12">
                         <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+                        @yield('create-new')
                     </div>
+
                 </div>
+                @if(session()->get('success'))
+                    <div class="alert alert-success" role="alert">
+                        <strong>{{ session()->get('success') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
+                        </button>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        @foreach ($errors->all() as $error)
+                        <strong>{{ $error }}</strong><br>
+                        @endforeach
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
+                        </button>
+                    </div>
+                
+                @endif
             </div>
             <div class="container-fluid">                
                 @yield('content')

@@ -87,7 +87,7 @@ class BusinessownerController extends Controller
 
         unset($request['businessname'] , $request['subdomain']);
 
-        Admin::create($request->all());
+        Admin::create(array_merge($request->all() , ['role'=>1]));
 
         config(['database.connections.tenant.database' => 'tenancy']);
         config(['database.default' => 'system']);

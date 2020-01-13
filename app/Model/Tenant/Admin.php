@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
+use App\Model\Tenant\Admin\Role;
 
 class Admin extends Authenticatable
 {
@@ -15,4 +16,9 @@ class Admin extends Authenticatable
  
     use UsesTenantConnection;
 
+    public function adminRole(){
+
+    	return $this->hasOne(Role::class , 'id' , 'role');
+
+    }
 }

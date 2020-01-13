@@ -17,6 +17,15 @@
             </li>            
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('profile.my-profile')}}"><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
+
+            <li class="{{ Request::segment(2) === 'staff' || Request::segment(2) === 'roles' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Staff & Roles</span></a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::segment(3) === 'staff-list' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.index')}}">Staff</a></li>
+                    <li class="{{ Request::segment(3) === 'role-list' ? 'active' : null }}"><a href="{{route('tenant.admin.role.index')}}">Roles</a></li>
+                </ul>
+            </li>
+
             <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Messages</span></a>
                 <ul class="ml-menu">
@@ -26,6 +35,7 @@
                     <li class="{{ Request::segment(2) === 'contact-list' ? 'active' : null }}"><a href="{{route('app.contact-list')}}">Contact list</a></li> -->
                 </ul>
             </li>
+
             <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotels</span></a>
                 <ul class="ml-menu">

@@ -29,7 +29,7 @@ class CreateAdminsTable extends Migration
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
             $table->integer('country')->nullable();
-            $table->integer('role')->default(1);
+            $table->integer('role')->default(0)->nullable();
             $table->rememberToken();
             $table->boolean('isBlocked')->default(false);
             $table->boolean('isDeleted')->default(false);
