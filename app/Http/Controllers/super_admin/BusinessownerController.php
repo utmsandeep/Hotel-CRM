@@ -17,6 +17,7 @@ use Hyn\Tenancy\Models\Hostname;
 use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
 
 use App\Model\Tenant\Admin;
+use App\Events\NewBrandAddedEvent;
 
 class BusinessownerController extends Controller
 {
@@ -69,7 +70,8 @@ class BusinessownerController extends Controller
         unset($request['password_confirmation']);
         $request['password'] = Hash::make($request['password']);
         $request['subdomain'] = strtolower(($request['subdomain']));
-        BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
+        $owner = BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
+        event(new NewBrandAddedEvent($owner));
         $website = new Website;
         $site = $request['subdomain'];
         $website->uuid = $site;

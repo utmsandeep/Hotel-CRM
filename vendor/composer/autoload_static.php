@@ -70,6 +70,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Seeder\\' => 7,
         ),
         'R' => 
         array (
@@ -270,6 +271,10 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Seeder\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/database/seeds',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -423,6 +428,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Events\\NewBrandAddedEvent' => __DIR__ . '/../..' . '/app/Events/NewBrandAddedEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AppController' => __DIR__ . '/../..' . '/app/Http/Controllers/AppController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -450,6 +456,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Http\\Controllers\\Tenant\\Admin\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tenant/Admin/HomeController.php',
         'App\\Http\\Controllers\\Tenant\\Admin\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tenant/Admin/PermissionController.php',
         'App\\Http\\Controllers\\Tenant\\Admin\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tenant/Admin/RoleController.php',
+        'App\\Http\\Controllers\\Tenant\\Admin\\StaffController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tenant/Admin/StaffController.php',
         'App\\Http\\Controllers\\Tenant\\ConsumerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Tenant/ConsumerController.php',
         'App\\Http\\Controllers\\WidgetsController' => __DIR__ . '/../..' . '/app/Http/Controllers/WidgetsController.php',
         'App\\Http\\Controllers\\super_admin\\BusinessownerController' => __DIR__ . '/../..' . '/app/Http/Controllers/super_admin/BusinessownerController.php',
@@ -468,7 +475,11 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Listerners\\NewBrandAddedEventListener' => __DIR__ . '/../..' . '/app/Listerners/NewBrandAddedEventListener.php',
+        'App\\Mail\\SendCredentialsToOwner' => __DIR__ . '/../..' . '/app/Mail/SendCredentialsToOwner.php',
         'App\\Model\\Tenant\\Admin' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin.php',
+        'App\\Model\\Tenant\\Admin\\Permission' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Permission.php',
+        'App\\Model\\Tenant\\Admin\\Role' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Role.php',
         'App\\Model\\Tenant\\Consumer' => __DIR__ . '/../..' . '/app/Model/Tenant/Consumer.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -476,6 +487,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rules\\UniqueExceptSelf' => __DIR__ . '/../..' . '/app/Rules/UniqueExceptSelf.php',
+        'App\\Seeders\\ChainSeeder' => __DIR__ . '/../..' . '/app/Seeders/ChainSeeder.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\super_admin\\BusinessOwner' => __DIR__ . '/../..' . '/app/Model/super_admin/BusinessOwner.php',
         'App\\super_admin\\website\\Banner' => __DIR__ . '/../..' . '/app/Model/super_admin/website/Banner.php',
@@ -3784,6 +3796,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Seeder\\Tenant\\RoleSeederClass' => __DIR__ . '/../..' . '/database/seeds/tenants/RoleSeederClass.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
