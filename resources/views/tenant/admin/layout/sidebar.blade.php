@@ -22,7 +22,7 @@
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Staff & Roles</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(3) === 'staff-list' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.index')}}">Staff</a></li>
-                    <li class="{{ Request::segment(3) === 'role-list' ? 'active' : null }}"><a href="{{route('tenant.admin.role.index')}}">Roles</a></li>
+                    <!-- <li class="{{ Request::segment(3) === 'role-list' ? 'active' : null }}"><a href="{{route('tenant.admin.role.index')}}">Roles</a></li> -->
                 </ul>
             </li>
 

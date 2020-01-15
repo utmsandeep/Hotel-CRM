@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('super_admin.pages.index');
     }
+    public function superAdminRoles()
+    {
+        return view('super_admin.pages.super-admin-roles');
+    }
+     public function hotelAdminRoles()
+    {
+        return view('super_admin.pages.hotel-admin-roles');
+    }
 }
