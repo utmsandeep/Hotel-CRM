@@ -27,10 +27,10 @@ class CreateBusinessOwnersTable extends Migration
             $table->string('secondary_mobile')->nullable();
             $table->string('password');
             $table->text('street')->nullable();
-            $table->string('city');
-            $table->string('state');
-            $table->string('postal_code');
-            $table->integer('country');
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->integer('country')->nullable();
             $table->boolean('isBlocked')->default(false);
             $table->boolean('isDeleted')->default(false);
             $table->timestamps();

@@ -11,12 +11,18 @@ class SuperRoleController extends Controller
 
     public function hotelRoleListing(){
 
-    	$roles = Role::paginate(10);
+        $roles = Role::where('is_super' , 0)->paginate(10);
      	return view('super_admin.pages.hotel-admin-roles' , compact('roles'));
     }
 
-    public function create(){
 
+    public function SuperRoleListing(){
+
+        $roles = Role::where('is_super' , 1)->paginate(10);
+     	return view('super_admin.pages.super-admin-roles' , compact('roles'));
+    }
+
+    public function create(){
     	return view('super_admin.pages.create-role');
     }
 
@@ -31,4 +37,12 @@ class SuperRoleController extends Controller
         return redirect()->route('hotelAdminRoles')->withSuccess('Role Created Successfully.');
 
     }
+
+    // public function index()
+    // {
+	// 	$data = Role::where('isDeleted' , 0)->paginate(10);
+    //     // return view('super_admin.pages.',$data);
+    //     // echo "<pre>";var_dump($data->reult_array());die;
+    //     return view('super_admin.pages.hotel-admin-roles',$data);
+	// }
 }

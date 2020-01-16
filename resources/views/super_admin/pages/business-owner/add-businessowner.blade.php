@@ -132,9 +132,9 @@
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
-                                        <h4 class="card-title mt-5">Address</h4>
+                                        <!-- <h4 class="card-title mt-5">Address</h4> -->
                                     </div>
-                                    <hr>
+                                    <!-- <hr>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12 ">
@@ -151,16 +151,16 @@
                                                     <input type="text" class="form-control" name="city" value="{{ old('city') }}" required>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            </span>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>State</label>
                                                     <input type="text" class="form-control" name="state" value="{{ old('state') }}" required>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            /span
                                         </div>
-                                        <!--/row-->
+                                        </row
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -168,7 +168,7 @@
                                                     <input type="text" class="form-control" name="postal_code" value="{{ old('postal_code') }}" required>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            </span
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Country</label>
@@ -180,9 +180,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            </span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-actions">
                                         <div class="card-body">
                                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

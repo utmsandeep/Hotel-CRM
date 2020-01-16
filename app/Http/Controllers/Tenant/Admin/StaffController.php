@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Model\Tenant\Admin;
-use App\Model\Tenant\Admin\Role;
+use App\Model\super_admin\Role;
 class StaffController extends Controller
 {
     public function index(){
@@ -17,7 +17,7 @@ class StaffController extends Controller
     }
 
     public function create(){
-    	$roles = Role::get();
+    	$roles = Role::where('is_super' , 0)->get();
     	return view('tenant.admin.staff-role.create-staff' , compact('roles'));
     }
 

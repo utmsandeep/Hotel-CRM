@@ -35,7 +35,7 @@
 								<td>{{$datab['email']}}</td>
 								<td>{{$datab['primary_mobile']}}</td>
 								<td>{{$datab['secondary_mobile']}}</td>
-								<td>{{$datab['subdomain']}}.{{ request()->getHttpHost() }}</td>
+								<td><a target="blank" href="http://{{$datab['subdomain']}}.{{ request()->getHttpHost() }}">{{$datab['subdomain']}}.{{ request()->getHttpHost() }}</a></td>
 								<td>{{ $datab['isBlocked'] ? 'yes' : 'No' }}</td>
 								<td>
 									<a href="{{route('businessownerEdit',$datab['id'])}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>

@@ -131,7 +131,8 @@ Route::group(['middleware'=>['auth'] , 'prefix'=>'super'] , function(){
 	Route::post('/update-businessowner/{id}', 'super_admin\BusinessownerController@update')->name('businessownerUpdate');
 	Route::get('/update-status-businessowner/{id}', 'super_admin\BusinessownerController@destroy')->name('businessownerUpdateStatus');
 	Route::post('/businessowner-store','super_admin\BusinessownerController@store')->name('businessownerStore');
-	Route::get('/super-admin-roles', 'HomeController@superAdminRoles')->name('superAdminRoles');
+	//Route::get('/super-admin-roles', 'HomeController@superAdminRoles')->name('superAdminRoles');
+	Route::get('/super-admin-roles', [SuperRoleController::class , 'SuperRoleListing'])->name('superAdminRoles');
 	Route::get('/hotel-admin-roles', [SuperRoleController::class , 'hotelRoleListing'])->name('hotelAdminRoles');
 	Route::get('/create-roles', [SuperRoleController::class , 'create'])->name('createRoles');
 	Route::post('/create-roles', [SuperRoleController::class , 'store'])->name('createRolesStore');

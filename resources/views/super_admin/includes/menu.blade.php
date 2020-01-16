@@ -37,7 +37,7 @@
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{route('superAdminRoles')}}">Super admin roles</a></li>
-                                <li><a href="{{route('hotelAdminRoles')}}">Hote admin roles</a></li>
+                                <li><a href="{{route('hotelAdminRoles')}}">Hotel admin roles</a></li>
                             </ul>
                         </li>
                         <!--li class="nav-small-cap">--- PERSONAL</li>

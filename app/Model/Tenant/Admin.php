@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
-use App\Model\Tenant\Admin\Role;
+use App\Model\super_admin\Role;
 
 class Admin extends Authenticatable
 {

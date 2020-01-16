@@ -5,6 +5,7 @@ use App\Http\Controllers\Tenant\Admin\AdminController;
 use App\Http\Controllers\Tenant\Admin\HomeController;
 use App\Http\Controllers\Tenant\Admin\StaffController;
 use App\Http\Controllers\Tenant\Admin\RoleController;
+use App\Http\Controllers\Tenant\Admin\HotelController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
 	Route::get('/' , function(){
@@ -173,6 +174,12 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('roles/role-list', [RoleController::class, 'index'])->name('tenant.admin.role.index');
 			Route::get('roles/create-role', [RoleController::class, 'create'])->name('tenant.admin.role.create');
 			Route::post('roles/create-role', [RoleController::class, 'store'])->name('tenant.admin.role.store');
+
+			Route::get('hotels/hotel-list', [HotelController::class, 'index'])->name('tenant.admin.hotel.list');
+			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
+			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
+			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
+
 		});
 	});
  });

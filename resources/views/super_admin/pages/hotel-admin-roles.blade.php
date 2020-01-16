@@ -1,3 +1,4 @@
+
 @extends('super_admin.layouts.master')
 
 @section('content')
@@ -8,33 +9,47 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-8">
-						<h4 class="card-title">Hote admin roles </h4>
+					<h4 class="card-title">Hote admin roles </h4>
 						<h6 class="card-subtitle">Hotel admin roles list</h6>
 					</div>
 					<div class="col-md-4">
 						<a href="{{route('createRoles')}}" class="btn btn-info pull-right" style="float:right;"><i class="fa fa-plus"></i> Create New Role</a>
 					</div>
 				</div>
-
 				<div class="table-responsive m-t-40">
-					<h5>Corporate Based</h5>
-					<ul>
-						<li>Chain Admin</li>
-						<li>Cluster manager</li>
-						<li>Regional  Sales Manager</li>
-					</ul>
-					<h5>Hotel Based</h5>
-					<ul>
-						<li>General Manager</li>
-						<li>Director Of Sales </li>
-						<li>Finance Manager Hotel </li>
-						<li>Banquet Manager </li>
-						<li>Sales Coordinator</li>
+					<table id="config-table" class="table display table-bordered table-striped no-wrap" style="width:100%;">
+						<thead>
+							<tr>
+								<th>Base</th>
+								<th>Name</th>
+								<!-- <th>Action</th> -->
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($roles as $datab)
+							<tr>
+								<td>@if($datab->base == 2) 
+									Hotel
+								@else
+									Corporate
+								@endif
+							    </td>
+								<td>{{$datab->name}}</td>
+								<!-- <td>
+									<a href="{{route('businessownerEdit',$datab['id'])}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
+									<a href="{{route('businessownerUpdateStatus',$datab['id'])}}?isDeleted=1" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure want to delete')"><i class="fa fa-trush"></i> Delete</a>
+									<a href="{{route('businessownerUpdateStatus',$datab['id'])}}?isBlocked={{ $datab['isBlocked'] ? 0 : 1 }}" class="btn btn-info btn-xs" onclick="return confirm('Are you sure want to block')"><i class="fa fa-trush"></i>{{ $datab['isBlocked'] ? 'Unblock' : 'Block' }}</a>
+								</td> -->
+							</tr>
+						@endforeach
+						</tbody>
+					</table>
 
-					</ul>
+					{{$roles->links()}}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>				
 @endsection
+

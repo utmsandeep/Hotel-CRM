@@ -44,7 +44,38 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4>Permissions on Modules</h4>
+
+				
+				                   <div class="row clearfix">
+                                       <div class="col-sm-6">
+                                          <div class="form-group">
+                                             <label for="firstname">Role For:</label>
+                                            <div class="form-line">
+                                               <select class="form-control custom-select" name="is_super" id="is_super" required="">
+                                                   <option value="">--Select your Role--</option>
+                                                   <option value="1">Super Admin</option>
+                                                   <option value="0">Hotel Admin</option>
+                                               </select>
+                                            </div>
+                                          </div>
+                                       </div>
+
+                                       <div class="col-sm-6">
+                                          <div class="form-group dep" style="display:none">
+                                             <label for="firstname">Base:</label>
+                                            <div class="form-line">
+                                               <select class="form-control custom-select" name="base" id="base">
+                                                   <option value="1">Corporate</option>
+                                                   <option value="2">Hotel</option>
+                                               </select>
+                                            </div>
+                                          </div>
+                                       </div>
+                                    </div>
+
+
+
+                                    <!-- <h4>Permissions on Modules</h4>
                                     <div class="table-responsive m-t-40">
                                         <table id="config-table" class="table display table-bordered table-striped no-wrap" style="width:100%;">
                                             <thead>
@@ -128,7 +159,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div> 
+                                    </div>  -->
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
@@ -141,6 +172,23 @@
         </div>
     </div>
 </div>              
+@endsection
+
+@section('script')
+<script>
+    $(function(){
+       
+    $('#is_super').on('change', function(){
+        var val = $(this).val();
+        if(val == '0'){
+            $('.dep').show();
+        }
+        else{
+            $('.dep').hide(); 
+        }  
+    });
+    });
+</script>
 @endsection
 
 

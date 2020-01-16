@@ -126,56 +126,7 @@
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
-                                        <h4 class="card-title mt-5">Address</h4>
-                                    </div>
-                                    <hr>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12 ">
-                                                <div class="form-group">
-                                                    <label>Street</label>
-                                                    <input type="text" class="form-control" name="street" value="{{ $businessowner['street'] }}" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>City</label>
-                                                    <input type="text" class="form-control" name="city" value="{{ $businessowner['city'] }}" required>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>State</label>
-                                                    <input type="text" class="form-control" name="state" value="{{ $businessowner['state'] }}" required>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                        </div>
-                                        <!--/row-->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Post Code</label>
-                                                    <input type="text" class="form-control" name="postal_code" value="{{ $businessowner['postal_code'] }}" required>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Country</label>
-                                                    <select class="form-control custom-select" required="" name="country">{{}}
-                                                        <option>--Select your Country--</option>
-                                                        <option value=1 @if ($businessowner['country'] == 1) selected @endif >India</option>
-                                                        <option value=2 @if ($businessowner['country'] == 2) selected @endif>Sri Lanka</option>
-                                                        <option value=3 @if ($businessowner['country'] == 3) selected @endif>USA</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                        </div>
+                                       
                                     </div>
                                     <div class="form-actions">
                                         <div class="card-body">

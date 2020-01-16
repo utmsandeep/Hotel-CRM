@@ -5,6 +5,7 @@ namespace App\Seeders;
 use Illuminate\Database\Seeder;
 use App\Model\Tenant\Admin\Role;
 use Seeder\Tenant\RoleSeederClass;
+use Seeder\Tenant\StaffSeeder;
 
 class ChainSeeder extends Seeder
 {
@@ -17,7 +18,8 @@ class ChainSeeder extends Seeder
     {
        $this->call([
 
-        RoleSeederClass::class,
+        //RoleSeederClass::class,
+        StaffSeeder::class
 
     	]);
     }

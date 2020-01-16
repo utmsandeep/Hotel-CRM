@@ -1,0 +1,1 @@
+A new Hotel added to system.

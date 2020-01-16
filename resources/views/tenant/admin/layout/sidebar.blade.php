@@ -36,10 +36,10 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
+            <li class="{{ Request::segment(2) === 'hotels' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotels</span></a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'project-list' ? 'active' : null }}"><a href="#">Hotel List</a></li>
+                    <li class="{{ Request::segment(3) === 'hotel-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotel.list') }}">Hotel List</a></li>
                     <!-- <li class="{{ Request::segment(2) === 'taskboard' ? 'active' : null }}"><a href="{{route('project.taskboard')}}">Taskboard</a></li>
                     <li class="{{ Request::segment(2) === 'ticket-list' ? 'active' : null }}"><a href="{{route('project.ticket-list')}}">Ticket List</a></li>                                    
                     <li class="{{ Request::segment(2) === 'ticket-detail' ? 'active' : null }}"><a href="{{route('project.ticket-detail')}}">Ticket Detail</a></li> -->

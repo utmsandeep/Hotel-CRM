@@ -60,11 +60,11 @@ class BusinessownerController extends Controller
             'secondary_mobile'  => 'unique:business_owners|digits:10|nullable',
             'email'             => 'required|email|unique:business_owners',
             'password'          => 'required|confirmed|min:8',
-            'street'            => 'required',
-            'city'              => 'required',
-            'state'             => 'required',
-            'postal_code'       => 'required|digits:6',
-            'country'           => 'required|integer|min:1',
+            // 'street'            => 'required',
+            // 'city'              => 'required',
+            // 'state'             => 'required',
+            // 'postal_code'       => 'required|digits:6',
+            // 'country'           => 'required|integer|min:1',
         ]);
 		unset($request['_token']);
         unset($request['password_confirmation']);
@@ -89,7 +89,7 @@ class BusinessownerController extends Controller
 
         unset($request['businessname'] , $request['subdomain']);
 
-        Admin::create(array_merge($request->all() , ['role'=>1]));
+        Admin::create(array_merge($request->all() , ['role'=>4]));
 
         config(['database.connections.tenant.database' => 'tenancy']);
         config(['database.default' => 'system']);
@@ -143,11 +143,11 @@ class BusinessownerController extends Controller
             'secondary_mobile'  => ['digits:10','nullable' , new UniqueExceptSelf(BusinessOwner::class, 'secondary_mobile', $request->secondary_mobile, $id)],
             'email'             => ['required','email',new UniqueExceptSelf(BusinessOwner::class, 'email', $request->email, $id)],
             'password'          => 'confirmed|min:8|nullable',
-            'street'            => 'required',
-            'city'              => 'required',
-            'state'             => 'required',
-            'postal_code'       => 'required|digits:6',
-            'country'           => 'required|integer|min:1',
+            // 'street'            => 'required',
+            // 'city'              => 'required',
+            // 'state'             => 'required',
+            // 'postal_code'       => 'required|digits:6',
+            // 'country'           => 'required|integer|min:1',
         ]);
         $businessowner = BusinessOwner::find($id);
         if($businessowner){
