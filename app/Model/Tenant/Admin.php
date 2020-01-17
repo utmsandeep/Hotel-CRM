@@ -11,11 +11,11 @@ use App\Model\super_admin\Role;
 class Admin extends Authenticatable
 {
     protected $guarded = [];
-    use Notifiable;
     protected $guard = 'admin';
  
     use UsesTenantConnection;
-
+    use Notifiable;
+    
     public function adminRole(){
 
     	return $this->hasOne(Role::class , 'id' , 'role');

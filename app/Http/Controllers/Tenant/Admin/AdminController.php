@@ -17,7 +17,7 @@ class AdminController extends Controller
 	public function Login(Request $request){
 
 		if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password] ,$request->filled('remember'))){
-			return redirect()->route('dashboard.index');
+			return redirect()->intended('dashboard.index');
     	}
     	return redirect()->route('tenant.admin.login')->withErrors(['email'=>'These credentials do not match our records']);
 	}

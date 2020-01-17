@@ -8,6 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Mail\Tenant\Admin\NewHotelMail;
 use Mail;
+use Hyn\Tenancy\Environment;
 
 class NewHotelNotification extends Notification implements ShouldQueue
 {
@@ -18,10 +19,12 @@ class NewHotelNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    //public $hotel;
-    public function __construct()
+    public $hotel;
+    public $url;
+    public function __construct($hotel , $url)
     {
-        //$this->hotel = $hotel;
+        $this->hotel = $hotel;
+        $this->url = $url;
     }
 
     /**
@@ -43,10 +46,11 @@ class NewHotelNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        Mail::to($notifiable->email)->send(new NewHotelMail($notifiable));
-        // Mail::to($notifiable->generalManager->email)->send(new NewHotelMail($notifiable->name));
-        // Mail::to($notifiable->DirectorOfSales->email)->send(new NewHotelMail($notifiable->name));
-        // Mail::to($notifiable->Coordinator->email)->send(new NewHotelMail($notifiable->name));
+        $hotel = $this->hotel;
+        $url =  $this->url;
+         return (new MailMessage)
+                ->subject('New Hotel Added')
+                ->markdown('tenant.mails.admin.new-hotel-added-mail' , compact('hotel' , 'url'));
     }
 
     /**

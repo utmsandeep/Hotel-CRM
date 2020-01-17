@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\super_admin\SuperRoleController;
+use App\Model\HomeTemplate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,19 +19,12 @@ use App\Http\Controllers\super_admin\SuperRoleController;
 // use App\super_admin\website\Uniquevenue;
 // use App\super_admin\website\City;
 // use App\super_admin\website\Globalm;
-// Route::domain('{website}.hoteleventcrm.buzz')->group(function () {
-//     Route::get('/' , function(){
-// 		return view('tenant.index');
-//  	});
-//  	Route::get('tem' , function(){
-//  		return 'tem';
-//  	});
-//  });
-//['middleware'=>['lookfortenant'] , 
+
 
 Route::group(['domain'=>'hoteleventcrm.buzz'] , function(){  
 // Route::get('/', function () {return view('index');});
 Route::get('/', function () {
+	$template = HomeTemplate::first();
 	// $data['banner'] = Banner::paginate(1);
 	// $data['innovation'] = Innovation::paginate(3);
 	// $data['globalm'] = Globalm::paginate(1);
@@ -40,8 +34,9 @@ Route::get('/', function () {
 	// return view('index',compact('data'));
 	// return view('index')->with('data', $data);
 	// return view('index')->with(array('data'=> $data));
-	return view('main-system.index');
+	return view('main-system.index' , compact('template'));
 })->name('welcome');
+
 
 // Route::domain('{website}.hoteleventcrm.buzz')->group(function () {
 //     Route::get('/', function ($account, $id) {
@@ -136,6 +131,8 @@ Route::group(['middleware'=>['auth'] , 'prefix'=>'super'] , function(){
 	Route::get('/hotel-admin-roles', [SuperRoleController::class , 'hotelRoleListing'])->name('hotelAdminRoles');
 	Route::get('/create-roles', [SuperRoleController::class , 'create'])->name('createRoles');
 	Route::post('/create-roles', [SuperRoleController::class , 'store'])->name('createRolesStore');
+	Route::get('/update-template' , [SuperRoleController::class , 'editTemplate'])->name('update-template');
+	Route::post('/update-template' , [SuperRoleController::class , 'updateTemplate'])->name('update-template');
 
 	});
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\super_admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\super_admin\Role;
+use App\Model\HomeTemplate;
 
 class SuperRoleController extends Controller
 {
@@ -36,6 +37,16 @@ class SuperRoleController extends Controller
         $role = Role::create( array_merge($request->all() , ['created_by'=>auth()->user()->id , 'updated_by'=>auth()->user()->id]));
         return redirect()->route('hotelAdminRoles')->withSuccess('Role Created Successfully.');
 
+    }
+
+    public function editTemplate(){
+
+        $template = HomeTemplate::first();
+        return view('super_admin.pages.edit-home-page' , compact('template'));
+    }
+    public function updateTemplate(Request $request){
+        $template = HomeTemplate::find(1)->update($request->all());
+        return redirect()->back()->withSuccess('Template Updated');
     }
 
     // public function index()

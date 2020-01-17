@@ -24,6 +24,7 @@
                                 <li><a href="{{route('businessList')}}">Business</a></li>
                                 <li><a href="{{route('uniquevenueList')}}">Unique Venues</a></li>
                                 <li><a href="{{route('cityList')}}">Cities</a></li>
+                                <li><a href="{{route('update-template')}}">Edit Home Page</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Business Owner</span></a>

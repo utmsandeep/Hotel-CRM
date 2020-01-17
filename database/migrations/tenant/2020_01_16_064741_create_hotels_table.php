@@ -16,11 +16,13 @@ class CreateHotelsTable extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('region');
             $table->integer('cluster_manager')->nullable();
             $table->integer('general_manager')->nullable();
             $table->integer('director_of_sales')->nullable();
             $table->integer('coordinator')->nullable();
+            $table->integer('confirmation_stage')->default(0);
             $table->timestamps();
         });
     }

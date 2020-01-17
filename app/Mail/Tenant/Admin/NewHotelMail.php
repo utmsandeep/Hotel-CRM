@@ -16,10 +16,11 @@ class NewHotelMail extends Mailable
      *
      * @return void
      */
-    public $hotel;
-    public function __construct($hotel)
+    //public $hotel;
+    //$hotel
+    public function __construct()
     {
-        $this->hotel = $hotel;
+        //$this->hotel = $hotel;
     }
 
     /**

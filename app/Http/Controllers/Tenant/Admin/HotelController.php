@@ -35,9 +35,11 @@ class HotelController extends Controller
     	$hotel = Hotel::create($request->all());
     	$hotelData = $hotel;
     	$notifyHotel = $hotel->load('clusterManager' , 'generalManager' , 'DirectorOfSales' , 'Coordinator');
-    	$cluster = $notifyHotel->clusterManager;
-    	//return $cluster;
-    	$cluster->notify(new NewHotelNotification());
+        $url = route('tenant.admin.hotel.show-form');
+    	$notifyHotel->clusterManager->notify(new NewHotelNotification($hotelData , $url));
+        $notifyHotel->generalManager->notify(new NewHotelNotification($hotelData , $url));
+        $notifyHotel->DirectorOfSales->notify(new NewHotelNotification($hotelData , $url));
+        $notifyHotel->Coordinator->notify(new NewHotelNotification($hotelData , $url));
     	return redirect()->route('tenant.admin.hotel.list')->withSuccess('Invitation Sent.');
 
     }

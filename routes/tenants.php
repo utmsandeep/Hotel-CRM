@@ -162,12 +162,12 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 		
 		Route::group(['middleware'=>['auth:admin']] , function(){ 
 			Route::post('/logout', [HomeController::class, 'AdminLogOut'])->name('tenant.admin.logout.submit');
-			Route::get('/' , function(){
-				return redirect('admin/dashboard/index');
-	 		})->name('tenant.admin.home');
+			// Route::get('/' , function(){
+			// 	return redirect('admin/dashboard/index');
+	 	// 	})->name('tenant.admin.home');
 
 	 		Route::get('dashboard', function () { return redirect('dashboard/index'); });
-			Route::get('dashboard/index', [HomeController::class, 'Index'])->name('dashboard.index');
+			Route::get('/', [HomeController::class, 'Index'])->name('dashboard.index');
 			Route::get('staff/staff-list', [StaffController::class, 'index'])->name('tenant.admin.staff.index');
 			Route::get('staff/create-staff', [StaffController::class, 'create'])->name('tenant.admin.staff.create');
 			Route::post('staff/create-staff', [StaffController::class, 'store'])->name('tenant.admin.staff.store');
@@ -179,6 +179,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
 			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
+			Route::get('/hotels/show-form' , function(){
+			 return view('tenant.admin.hotels.show-form');
+	 		})->name('tenant.admin.hotel.show-form');
 
 		});
 	});
