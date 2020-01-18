@@ -75,7 +75,7 @@
 
 
 
-                                    <!-- <h4>Permissions on Modules</h4>
+                                    <h4>Permissions on Modules</h4>
                                     <div class="table-responsive m-t-40">
                                         <table id="config-table" class="table display table-bordered table-striped no-wrap" style="width:100%;">
                                             <thead>
@@ -159,7 +159,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>  -->
+                                    </div> 
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

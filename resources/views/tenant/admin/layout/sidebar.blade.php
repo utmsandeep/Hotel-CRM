@@ -45,6 +45,21 @@
                     <li class="{{ Request::segment(2) === 'ticket-detail' ? 'active' : null }}"><a href="{{route('project.ticket-detail')}}">Ticket Detail</a></li> -->
                 </ul>
             </li>
+
+            <li class="{{ Request::segment(2) === 'hotel-setting' ? 'active open' : null }}">
+                <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotel Settings</span></a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::segment(3) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload') }}">Upload Logo</a></li>
+                    <li class="{{ Request::segment(3) === 'type-room' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type') }}">Types of Rooms</a></li>
+                    <li class="{{ Request::segment(3) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture') }}">Hotel Profile Picture</a></li>
+                    <!-- <li class="{{ Request::segment(2) === 'taskboard' ? 'active' : null }}"><a href="{{route('project.taskboard')}}">Taskboard</a></li>
+                    <li class="{{ Request::segment(2) === 'ticket-list' ? 'active' : null }}"><a href="{{route('project.ticket-list')}}">Ticket List</a></li>                                    
+                    <li class="{{ Request::segment(2) === 'ticket-detail' ? 'active' : null }}"><a href="{{route('project.ticket-detail')}}">Ticket Detail</a></li> -->
+                </ul>
+            </li>
+
+            
+
             <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
                 <a href="#FileManager" class="menu-toggle"><i class="zmdi zmdi-folder"></i> <span>File Manager</span></a>
                 <ul class="ml-menu">

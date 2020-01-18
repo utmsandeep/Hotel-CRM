@@ -56,10 +56,12 @@ class BusinessownerController extends Controller
             'lastname'          => 'string|required',
             'gender'            => 'integer|required|min:1',
             'subdomain'         => 'required|regex:/(^[A-Za-z0-9-]+$)+/|unique:business_owners',
+            'chain_code'        => 'required|unique:business_owners',
+            'yearly_subscription'=>'required|integer|min:1',
             'primary_mobile'    => 'unique:business_owners|digits:10|nullable',
-            'secondary_mobile'  => 'unique:business_owners|digits:10|nullable',
+            //'secondary_mobile'  => 'unique:business_owners|digits:10|nullable',
             'email'             => 'required|email|unique:business_owners',
-            'password'          => 'required|confirmed|min:8',
+            //'password'          => 'required|confirmed|min:8',
             // 'street'            => 'required',
             // 'city'              => 'required',
             // 'state'             => 'required',
@@ -67,11 +69,12 @@ class BusinessownerController extends Controller
             // 'country'           => 'required|integer|min:1',
         ]);
 		unset($request['_token']);
-        unset($request['password_confirmation']);
-        $request['password'] = Hash::make($request['password']);
-        $request['subdomain'] = strtolower(($request['subdomain']));
+
+        // unset($request['password_confirmation']);
+        // $request['password'] = Hash::make($request['password']);
+        // $request['subdomain'] = strtolower(($request['subdomain']));
         $owner = BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
-        event(new NewBrandAddedEvent($owner));
+        event(new NewBrandAddedEvent($owner , rand(100000,999999)));
         $website = new Website;
         $site = $request['subdomain'];
         $website->uuid = $site;
@@ -87,7 +90,7 @@ class BusinessownerController extends Controller
         config(['database.default' => 'tenant']);
         DB::purge('mysql');
 
-        unset($request['businessname'] , $request['subdomain']);
+        unset($request['businessname'] , $request['subdomain'] , $request['chain_code'] , $request['yearly_subscription']);
 
         Admin::create(array_merge($request->all() , ['role'=>4]));
 

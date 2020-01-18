@@ -6,6 +6,7 @@ use App\Http\Controllers\Tenant\Admin\HomeController;
 use App\Http\Controllers\Tenant\Admin\StaffController;
 use App\Http\Controllers\Tenant\Admin\RoleController;
 use App\Http\Controllers\Tenant\Admin\HotelController;
+use App\Http\Controllers\Tenant\Admin\HotelSettingController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
 	Route::get('/' , function(){
@@ -181,8 +182,12 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
 			Route::get('/hotels/show-form' , function(){
 			 return view('tenant.admin.hotels.show-form');
-	 		})->name('tenant.admin.hotel.show-form');
-
+			 })->name('tenant.admin.hotel.show-form');
+			 
+			 /* Hotel Setting*/
+			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
+			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
+			 Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
 		});
 	});
  });

@@ -20,9 +20,11 @@ class NewBrandAddedEvent
      * @return void
      */
     public $owner;
-    public function __construct($owner)
+    public $otp;
+    public function __construct($owner , $otp=null)
     {
         $this->owner = $owner;
+        $this->otp = $otp;
     }
 
     /**

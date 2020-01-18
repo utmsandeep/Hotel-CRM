@@ -21,11 +21,13 @@ class CreateBusinessOwnersTable extends Migration
             $table->string('lastname');
             $table->tinyInteger('gender')->default(1);
             $table->string('subdomain');
+            $table->string('chain_code')->nullable();
+            $table->integer('yearly_subscription')->nullable();
             $table->string('email');
             $table->string('gst_no')->nullable();
             $table->string('primary_mobile')->nullable();
             $table->string('secondary_mobile')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->text('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

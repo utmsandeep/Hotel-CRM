@@ -23,13 +23,14 @@ class CreateAdminsTable extends Migration
             $table->string('gst_no')->nullable();
             $table->string('primary_mobile')->nullable();
             $table->string('secondary_mobile')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->text('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
             $table->integer('country')->nullable();
             $table->integer('role')->default(0)->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->boolean('isBlocked')->default(false);
             $table->boolean('isDeleted')->default(false);
