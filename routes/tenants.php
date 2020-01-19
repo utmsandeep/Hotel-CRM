@@ -29,6 +29,8 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 	Route::group(['prefix'=>'admin'] , function(){ 
 		Route::get('/login', [AdminController::class, 'LoginForm'])->name('tenant.admin.login');
 		Route::post('/login', [AdminController::class, 'Login'])->name('tenant.admin.login.submit');
+		Route::get('/password/reset/{token}', [AdminController::class, 'passwordResetForm'])->name('tenant.admin.password.reset');
+		Route::post('/password/reset/{token}', [AdminController::class, 'passwordResetStore'])->name('tenant.admin.password.reset.store');
 		
 
 		 //Route::get('/', function () { return redirect('dashboard/index'); });
@@ -188,6 +190,20 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 			 Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
-		});
+			 Route::get('hotel-setting/hotel-near', [HotelSettingController::class, 'nearby'])->name('tenant.admin.hotelSetting.nearby');
+			 Route::get('hotel-setting/booking-policy', [HotelSettingController::class, 'booking'])->name('tenant.admin.hotelSetting.booking');
+			 Route::get('hotel-setting/deposite-refund', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
+			 Route::get('hotel-setting/cancel-policy', [HotelSettingController::class, 'cancel'])->name('tenant.admin.hotelSetting.cancel');
+			 Route::get('hotel-setting/no-show-policy', [HotelSettingController::class, 'none'])->name('tenant.admin.hotelSetting.none');
+			 Route::get('hotel-setting/kids-policy', [HotelSettingController::class, 'kids'])->name('tenant.admin.hotelSetting.kids');
+			 Route::get('hotel-setting/resident-policy', [HotelSettingController::class, 'resident'])->name('tenant.admin.hotelSetting.resident');
+			 Route::get('hotel-setting/beverages-policy', [HotelSettingController::class, 'beverages'])->name('tenant.admin.hotelSetting.beverages');
+			 
+			 
+			 /* banquet */
+			 Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
+			 Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
+			 
+			});
 	});
  });

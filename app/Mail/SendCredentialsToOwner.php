@@ -18,9 +18,11 @@ class SendCredentialsToOwner extends Mailable
      * @return void
      */
     public $owner;
-    public function __construct($owner)
+    public $url;
+    public function __construct($owner , $url=null)
     {
         $this->owner = $owner;
+        $this->url = $url;
     }
 
     /**

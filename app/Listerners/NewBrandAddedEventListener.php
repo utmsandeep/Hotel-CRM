@@ -28,6 +28,6 @@ class NewBrandAddedEventListener //implements ShouldQueue
     public function handle(NewBrandAddedEvent $event)
     {
         $email = $event->owner->email;
-        Mail::to($email)->send(new SendCredentialsToOwner($event->owner));
+        Mail::to($email)->send(new SendCredentialsToOwner($event->owner , $event->url));
     }
 }

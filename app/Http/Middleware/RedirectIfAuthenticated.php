@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                     break;
 
                 case 'admin':
-                    return redirect(route('tenant.admin.home'));
+                    return redirect(route('dashboard.index'));
                     break;
                 default:
                     return redirect(route('home'));

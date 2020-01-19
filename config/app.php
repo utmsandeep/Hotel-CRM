@@ -27,6 +27,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'main_dmain'=>'hoteleventcrm.buzz',
 
     /*
     |--------------------------------------------------------------------------

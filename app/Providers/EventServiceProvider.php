@@ -21,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\NewBrandAddedEvent' => [
             'App\Listerners\NewBrandAddedEventListener',
         ],
+        'App\Events\Tenant\Admin\NewStaffAddedEvent'=>[
+            'App\Listerners\Tenant\Admin\NewStaffAddedEventListener',
+        ]
+
     ];
 
     /**

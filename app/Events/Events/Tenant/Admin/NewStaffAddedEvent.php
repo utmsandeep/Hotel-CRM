@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Events\Tenant\Admin;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewBrandAddedEvent
+class NewStaffAddedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,11 +19,11 @@ class NewBrandAddedEvent
      *
      * @return void
      */
-    public $owner;
+    public $user;
     public $url;
-    public function __construct($owner , $url=null , $subdomain=null)
+    public function __construct($user , $url=null)
     {
-        $this->owner = $owner;
+        $this->user = $user;
         $this->url = $url;
     }
 

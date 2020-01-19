@@ -31,6 +31,7 @@ class CreateAdminsTable extends Migration
             $table->integer('country')->nullable();
             $table->integer('role')->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('mobile_verified_at')->nullable();
             $table->rememberToken();
             $table->boolean('isBlocked')->default(false);
             $table->boolean('isDeleted')->default(false);

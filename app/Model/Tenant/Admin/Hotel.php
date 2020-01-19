@@ -11,7 +11,7 @@ class Hotel extends Model
 {
 	use Notifiable;
 	
-    protected $fillable = ['name' , 'region' , 'cluster_manager' , 'general_manager' , 'director_of_sales' , 'coordinator'];
+    protected $fillable = ['name' , 'region' , 'cluster_manager' , 'general_manager' , 'director_of_sales' , 'coordinator' , 'hotel_code'];
     
     use UsesTenantConnection;
 

@@ -18,6 +18,8 @@ use Hyn\Tenancy\Contracts\Repositories\HostnameRepository;
 
 use App\Model\Tenant\Admin;
 use App\Events\NewBrandAddedEvent;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class BusinessownerController extends Controller
 {
@@ -74,7 +76,11 @@ class BusinessownerController extends Controller
         // $request['password'] = Hash::make($request['password']);
         // $request['subdomain'] = strtolower(($request['subdomain']));
         $owner = BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
-        event(new NewBrandAddedEvent($owner , rand(100000,999999)));
+
+        
+        $token = Str::random(60);
+        $url = $request['subdomain'].".".request()->getHttpHost()."/admin/password/reset/$token";
+        event(new NewBrandAddedEvent($owner , $url , $request['subdomain']));
         $website = new Website;
         $site = $request['subdomain'];
         $website->uuid = $site;
@@ -93,6 +99,11 @@ class BusinessownerController extends Controller
         unset($request['businessname'] , $request['subdomain'] , $request['chain_code'] , $request['yearly_subscription']);
 
         Admin::create(array_merge($request->all() , ['role'=>4]));
+        DB::table('admin_password_reset')->insert([
+        'email' => $request->email,
+        'token' => $token,
+        'created_at' => Carbon::now()
+        ]);
 
         config(['database.connections.tenant.database' => 'tenancy']);
         config(['database.default' => 'system']);

@@ -23,46 +23,10 @@
                         </div>
                          <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label" for="region">Region</label>                             
-                                <select class="form-control custom-select" name="region" id="region">
-                                    <option value="">--Select Region---</option>
-                                    <option value="east">East</option>
-                                    <option value="west">West</option>
-                                    <option value="north">North</option>
-                                    <option value="south">South</option>
-                                </select>                                 
-                            </div>
-                        </div>
-                    </div>  
+                                <label class="control-label" for="region">Region</label>
 
-                     <div class="row clearfix">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                               <label class="control-label" for="cluster_manager">Cluster Manager</label>                           
-                                <select class="form-control custom-select" name="cluster_manager" id="cluster_manager">
-                                    <option value="">--Select Cluster Manager--</option>
-                                    @foreach($staff as $stuff)
-                                        @if($stuff->role != 5)
-                                            @continue
-                                        @endif
-                                    <option value="{{ $stuff->id }}">{{ $stuff->firstname }} {{ $stuff->lastname }}</option>
-                                    @endforeach
-                                </select>                                     
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                               <label class="control-label" for="general_manager">General Manager</label>                           
-                                <select class="form-control custom-select" name="general_manager" id="general_manager">
-                                    <option value="">--Select General Manager--</option>
-                                    @foreach($staff as $stuff)
-                                        @if($stuff->role != 7)
-                                            @continue
-                                        @endif
-                                    <option value="{{ $stuff->id }}">{{ $stuff->firstname }} {{ $stuff->lastname }}</option>
-                                    @endforeach
-                                </select>                                     
+                                  <input type="text" class="form-control" placeholder="" id="region" name="region" value="{{ old('region') }}" />                             
+                                                           
                             </div>
                         </div>
                     </div> 
@@ -70,36 +34,80 @@
                     <div class="row clearfix">
                         <div class="col-sm-6">
                             <div class="form-group">
-                               <label class="control-label" for="director_of_sales">Director Of Sales</label>                           
-                                <select class="form-control custom-select" name="director_of_sales" id="director_of_sales">
-                                    <option value="">--Select Director Of Sales--</option>
-                                   @foreach($staff as $stuff)
-                                        @if($stuff->role != 8)
-                                            @continue
-                                        @endif
-                                    <option value="{{ $stuff->id }}">{{ $stuff->firstname }} {{ $stuff->lastname }}</option>
-                                    @endforeach
-                                </select>                                     
+                                <label for="hotel_code">Hotel Code</label>                           
+                                <input type="text" class="form-control" placeholder="" id="hotel_code" name="hotel_code" value="{{ old('hotel_code') }}" />                                   
                             </div>
                         </div>
+                    </div>
+                    <hr>
+                    <h4> Finance Manager </h4> 
 
-                        <div class="col-sm-6">
+                    <div class="row clearfix">
+                         <div class="col-sm-6">
                             <div class="form-group">
-                               <label class="control-label" for="coordinator">Coordinator</label>                           
-                                <select class="form-control custom-select" name="coordinator" id="coordinator">
-                                    <option value="">--Select Coordinator--</option>
-                                   @foreach($staff as $stuff)
-                                        @if($stuff->role != 11)
-                                            @continue
-                                        @endif
-                                    <option value="{{ $stuff->id }}">{{ $stuff->firstname }} {{ $stuff->lastname }}</option>
-                                    @endforeach
-                                </select>                                     
+                                <label for="f_f_name">First Name</label>                             
+                                <input type="text" class="form-control" placeholder="" id="f_f_name" name="f_f_name" value="{{ old('f_f_name') }}" />                                   
                             </div>
                         </div>
-                    </div>   
-                                     
-                </div>
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="f_l_name">Last Name</label>
+
+                                  <input type="text" class="form-control" placeholder="" id="f_l_name" name="f_l_name" value="{{ old('f_l_name') }}" />                                                       
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row clearfix">
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="f_email">Email</label>                             
+                                <input type="text" class="form-control" placeholder="" id="f_email" name="f_email" value="{{ old('f_email') }}" />                                   
+                            </div>
+                        </div>
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="f_mobile">Mobile</label>
+
+                                  <input type="text" class="form-control" placeholder="" id="f_mobile" name="f_mobile" value="{{ old('f_mobile') }}" />                                                       
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <h4> General Manager </h4> 
+
+                    <div class="row clearfix">
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="g_f_name">First Name</label>                             
+                                <input type="text" class="form-control" placeholder="" id="g_f_name" name="g_f_name" value="{{ old('g_f_name') }}" />                                   
+                            </div>
+                        </div>
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="g_l_name">Last Name</label>
+
+                                  <input type="text" class="form-control" placeholder="" id="g_l_name" name="g_l_name" value="{{ old('g_l_name') }}" />                                                       
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row clearfix">
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="g_email">Email</label>                             
+                                <input type="text" class="form-control" placeholder="" id="g_email" name="g_email" value="{{ old('g_email') }}" />                                   
+                            </div>
+                        </div>
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" for="g_mobile">Mobile</label>
+
+                                  <input type="text" class="form-control" placeholder="" id="g_mobile" name="g_mobile" value="{{ old('g_mobile') }}" />                                                       
+                            </div>
+                        </div>
+                    </div>  
             </div>
             <div class="form-actions">
                 <div class="card-body">
