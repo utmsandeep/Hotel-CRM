@@ -19,9 +19,11 @@ class NewStaffAddedEvent
      *
      * @return void
      */
-    public function __construct()
+    public $user ;
+    public $url ;
+    public function __construct($user , $url=null)
     {
-        //
+        $this->user = $user;
     }
 
     /**

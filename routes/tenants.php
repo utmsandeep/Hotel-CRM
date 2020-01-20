@@ -181,6 +181,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotels/hotel-list', [HotelController::class, 'index'])->name('tenant.admin.hotel.list');
 			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
 			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
+			Route::get('hotels/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
 			Route::get('/hotels/show-form' , function(){
 			 return view('tenant.admin.hotels.show-form');
@@ -203,7 +204,6 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 /* banquet */
 			 Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
 			 Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
-			 
 			});
 	});
  });

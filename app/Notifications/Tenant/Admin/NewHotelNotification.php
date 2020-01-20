@@ -10,7 +10,7 @@ use App\Mail\Tenant\Admin\NewHotelMail;
 use Mail;
 use Hyn\Tenancy\Environment;
 
-class NewHotelNotification extends Notification implements ShouldQueue
+class NewHotelNotification extends Notification //implements ShouldQueue
 {
     use Queueable;
 

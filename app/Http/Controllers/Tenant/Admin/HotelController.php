@@ -49,7 +49,6 @@ class HotelController extends Controller
     	$hotel = Hotel::create($request->all());
 
         $finance_manager = Admin::where('email' , $request->f_email)
-                            ->orWhere('primary_mobile' , $request->f_mobile)
                             ->first();
 
         if(empty($finance_manager)){
@@ -61,13 +60,11 @@ class HotelController extends Controller
                 'primary_mobile'=>$request->f_mobile , 
                 'role'=>9
             ]);
-
-            //event(new NewStaffAddedEvent($finance_manager->load('adminRole')));
+            event(new NewStaffAddedEvent($finance_manager->load('adminRole')));
         }
 
 
         $general_manager = Admin::where('email' , $request->g_email)
-                            ->orWhere('primary_mobile' , $request->g_mobile)
                             ->first();
 
         if(empty($general_manager)){
@@ -80,19 +77,30 @@ class HotelController extends Controller
                 'role'=>7
             ]);
 
-             //event(new NewStaffAddedEvent($general_manager->load('adminRole')));
+             event(new NewStaffAddedEvent($general_manager->load('adminRole')));
         }
 
-        // HotelAdmin::create([
-        //     ['hotel_id'=>$hotel->id , 'admin_id'=>auth('admin')->user()->id],
-        //     ['hotel_id'=>$hotel->id , 'admin_id'=>$finance_manager->id],
-        //     ['hotel_id'=>$hotel->id , 'admin_id'=>$general_manager->id],
-        // ]);
+        HotelAdmin::create(
+            ['hotel_id'=>$hotel->id , 'admin_id'=>auth('admin')->user()->id]
+        );
 
-        // $url = route('tenant.admin.hotel.show-form');
-        // $finance_manager->notify(new NewHotelNotification($hotel , $url));
+         HotelAdmin::create(
+            ['hotel_id'=>$hotel->id , 'admin_id'=>$finance_manager->id]
+        );
+
+          HotelAdmin::create(
+            ['hotel_id'=>$hotel->id , 'admin_id'=>$general_manager->id]
+        );
+
+        $url = route('tenant.admin.hotel.contract');
+        $finance_manager->notify(new NewHotelNotification($hotel , $url));
 
     	return redirect()->route('tenant.admin.hotel.list')->withSuccess('Invitation Sent.');
 
+    }
+
+    public function showContract(){
+
+        return view('tenant.admin.hotels.hotel-contract');
     }
 }

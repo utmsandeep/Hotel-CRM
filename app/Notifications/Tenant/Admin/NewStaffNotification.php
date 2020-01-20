@@ -16,9 +16,12 @@ class NewStaffNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public $url;
+    public function __construct($user , $url)
     {
-        //
+        $this->user = $user;
+        $this->url = $url;
     }
 
     /**
@@ -40,10 +43,11 @@ class NewStaffNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $user = $this->user;
+        $url = $this->url;
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('welcome')
+                    ->markdown('tenant.mails.admin.new-staff-added-mail' , compact('user' , 'url'));
     }
 
     /**

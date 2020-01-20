@@ -9,6 +9,6 @@ use App\Model\Tenant\Admin\Hotel;
 class HotelAdmin extends Model
 {
     use UsesTenantConnection;
-    protected $table = 'admin_hotels';
     protected $guarded = [];
+    protected $table = 'admin_hotels';
 }

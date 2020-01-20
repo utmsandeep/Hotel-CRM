@@ -18,7 +18,7 @@
                     <div class="row clearfix">
                         <div class="col-sm-6"> 
                             <label for="logo">Logo</label> 
-                            <input type="file" class="dropify" data-allowed-file-extensions="pdf png">
+                            <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">
                         </div>
                     </div>  
                    

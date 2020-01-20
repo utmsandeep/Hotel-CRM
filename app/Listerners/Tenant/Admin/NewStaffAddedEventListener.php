@@ -32,5 +32,7 @@ class NewStaffAddedEventListener
             $token = Str::random(60);
             AdminPasswordReset::create(['email'=>$event->user->email , 'token'=>$token]);
             $url = route('tenant.admin.password.reset' , $token);
+            $event->user->notify(new NewStaffNotification($event->user , $url));
+
     }
 }
