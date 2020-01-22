@@ -100,7 +100,11 @@ class HotelController extends Controller
     }
 
     public function showContract(){
-
-        return view('tenant.admin.hotels.hotel-contract');
+        $hotel = Hotel::find(13);
+       
+        $admins = $hotel->hotelAdmins->filter(function ($admin) {
+            return $admin->admin->role == 7 || $admin->admin->role == 9; 
+        });
+        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins'));
     }
 }

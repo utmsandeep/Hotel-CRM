@@ -11,4 +11,9 @@ class HotelAdmin extends Model
     use UsesTenantConnection;
     protected $guarded = [];
     protected $table = 'admin_hotels';
+
+    public function admin(){
+
+    	return $this->hasOne(Admin::class , 'id' , 'admin_id');
+    }
 }

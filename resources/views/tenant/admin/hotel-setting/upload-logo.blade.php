@@ -14,8 +14,22 @@
         <form method="post" enctype="multipart/form-data">
             @csrf
             
-            
-            
+            <div class="col-lg-6 col-md-12">
+			    <div class="card">
+			        <div class="header">
+			            <h2><strong>Upload</strong> your logo</h2>
+			        </div>
+			        <div class="body">
+			            <p>try to upload file larger than 5000 KB</p>
+			            <input type="file" name="logo" class="dropify" data-allowed-file-extensions="pdf png jpg jpeg gif" data-max-file-size="5000K">
+			        </div>
+			        <div class="form-actions">
+		                <div class="card-body">
+		                    <button type="submit" class="btn btn-success">Save</button>
+		                </div>
+		            </div>
+			    </div>
+			</div>
         </form>
     </div>
 </div>

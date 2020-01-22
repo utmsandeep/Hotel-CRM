@@ -19,6 +19,9 @@ class CreateHotelsTable extends Migration
             $table->string('slug')->nullable();
             $table->string('region')->nullable();
             $table->string('hotel_code')->nullable();
+            $table->string('address')->nullable();
+            $table->string('gst_no')->nullable();
+            $table->string('pan_card')->nullable();
             $table->integer('cluster_manager')->nullable();
             $table->integer('general_manager')->nullable();
             $table->integer('director_of_sales')->nullable();

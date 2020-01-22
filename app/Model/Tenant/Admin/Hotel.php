@@ -5,6 +5,7 @@ namespace App\Model\Tenant\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use App\Model\Tenant\Admin;
+use App\Model\Tenant\Admin\HotelAdmin;
 use Illuminate\Notifications\Notifiable;
 
 class Hotel extends Model
@@ -33,5 +34,9 @@ class Hotel extends Model
     public function Coordinator(){
 
     	return $this->hasOne(Admin::class , 'id' , 'coordinator');
+    }
+
+    public function hotelAdmins(){
+        return $this->hasMany(HotelAdmin::class , 'hotel_id' , 'id');
     }
 }

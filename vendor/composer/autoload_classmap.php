@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
-    'App\\Events\\Events\\Tenant\\Admin\\NewStaffAddedEvent' => $baseDir . '/app/Events/Events/Tenant/Admin/NewStaffAddedEvent.php',
     'App\\Events\\NewBrandAddedEvent' => $baseDir . '/app/Events/NewBrandAddedEvent.php',
     'App\\Events\\Tenant\\Admin\\NewStaffAddedEvent' => $baseDir . '/app/Events/Tenant/Admin/NewStaffAddedEvent.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

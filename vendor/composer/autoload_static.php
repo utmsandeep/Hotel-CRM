@@ -428,7 +428,6 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Events\\Events\\Tenant\\Admin\\NewStaffAddedEvent' => __DIR__ . '/../..' . '/app/Events/Events/Tenant/Admin/NewStaffAddedEvent.php',
         'App\\Events\\NewBrandAddedEvent' => __DIR__ . '/../..' . '/app/Events/NewBrandAddedEvent.php',
         'App\\Events\\Tenant\\Admin\\NewStaffAddedEvent' => __DIR__ . '/../..' . '/app/Events/Tenant/Admin/NewStaffAddedEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
