@@ -182,6 +182,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
 			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
 			Route::get('hotels/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
+			Route::post('hotels/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
 			Route::get('/hotels/show-form' , function(){
 			 return view('tenant.admin.hotels.show-form');
@@ -189,6 +190,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 
 			 /* Hotel Setting*/
 			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
+			 Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 			 Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
 			 Route::get('hotel-setting/hotel-near', [HotelSettingController::class, 'nearby'])->name('tenant.admin.hotelSetting.nearby');

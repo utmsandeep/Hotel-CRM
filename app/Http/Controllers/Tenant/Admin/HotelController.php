@@ -100,11 +100,34 @@ class HotelController extends Controller
     }
 
     public function showContract(){
-        $hotel = Hotel::find(13);
+        $hotel = Hotel::find(1);
        
         $admins = $hotel->hotelAdmins->filter(function ($admin) {
             return $admin->admin->role == 7 || $admin->admin->role == 9; 
         });
         return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins'));
+    }
+
+    public function storeContract(Request $request){
+        $role = auth('admin')->user()->role;
+        if($role === 9){
+            $request->validate([
+                'signature'     => "bail|required",
+                'address'       => ['bail|required'] , 
+                'gst_no'        => 'bail|required',
+                'pan_card'      => 'bail|required'
+            ]);
+        }
+
+        else{
+
+             $request->validate([
+             'signature'     => "bail|required",
+         ]);
+
+        }
+
+        return $request;
+
     }
 }

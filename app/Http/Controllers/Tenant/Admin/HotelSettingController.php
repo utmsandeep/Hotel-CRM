@@ -11,6 +11,21 @@ class HotelSettingController extends Controller
         return view('tenant.admin.hotel-setting.upload-logo');
     }
 
+    public function storeupload(Request $request){
+        $this->validate($request, [
+            'logo' => 'required|image|mimes:jpeg,png,jpg,bmp,gif,svg|max:5000',
+        ]);
+        if($request->hasFile('logo')){
+            $image = $request->file('logo');
+            $logoname = time().'.'.$image->getClientOriginalExtension();
+            $route = explode('/',request()->root());
+            $subroute = explode('.',$route[2]);
+            $destinationPath = storage_path('app/'.$subroute[0].'/profile');
+            $image->move($destinationPath,$logoname);
+            return redirect()->route('tenant.admin.hotelSetting.upload')->withSuccess('Profile photo uploaded successfully');
+        }
+    }
+
     public function type(){
         return view('tenant.admin.hotel-setting.room-type');
     }
