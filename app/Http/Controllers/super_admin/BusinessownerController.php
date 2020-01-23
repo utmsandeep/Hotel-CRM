@@ -74,7 +74,7 @@ class BusinessownerController extends Controller
 
         // unset($request['password_confirmation']);
         // $request['password'] = Hash::make($request['password']);
-        // $request['subdomain'] = strtolower(($request['subdomain']));
+        $request['subdomain'] = strtolower(($request['subdomain']));
         $owner = BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
 
         

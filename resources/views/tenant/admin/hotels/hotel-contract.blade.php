@@ -59,7 +59,10 @@
 </style>
 </head>
 <body>
-	<form method="post" action="{{ route('tenant.admin.hotel.contract.store') }}">
+	@php
+	$cur_class = "current-user-sign";
+	@endphp
+	<form method="post" action="{{ route('tenant.admin.hotel.contract.store' , ['hotel_code'=>$hotel_code]) }}">
 		@csrf
 		<div class="container">
 			<div class="row">
@@ -71,20 +74,20 @@
 			    <div class="col-sm-6">
 			    	<p>Hotel Name : {{ $hotel->name }}</p>
 			    	<p>Hotel Code : {{ $hotel->hotel_code }}</p>
-			    	<p>Hotel Region : @if(auth('admin')->user()->role == 9) 
+			    	<p>Hotel Region : @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
 			    			<input type="text" name="region" value="{{ $hotel->region }}"> 
 			    		@else  
 			    			{{ $hotel->region }} 
 			    		@endif
 			    	</p>
-			    	<p>Adress : @if(auth('admin')->user()->role == 9) 
+			    	<p>Adress : @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
 				    		<input type="text" name="address" value="{{ $hotel->address }}" required=""> 
 				    	@else 
 				    	{{ $hotel->address }}
 				    	@endif
 			    	</p>
-			    	<p>GST Number :  @if(auth('admin')->user()->role == 9) <input type="text" name="gst_no" value="{{ $hotel->gst_no }}" required=""> @else {{ $hotel->gst_no }} @endif</p>
-			    	<p>Pan Card :  @if(auth('admin')->user()->role == 9) <input type="text" name="pan_card" value="{{ $hotel->pan_card }}" required=""> @else {{ $hotel->pan_card }} @endif</p>
+			    	<p>GST Number :  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="gst_no" value="{{ $hotel->gst_no }}" required=""> @else {{ $hotel->gst_no }} @endif</p>
+			    	<p>Pan Card :  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" value="{{ $hotel->pan_card }}" required=""> @else {{ $hotel->pan_card }} @endif</p>
 			    </div>
 			    <div class="col-sm-6">
 			    	<p>Yearly Subscribation  : 1 Year</p>
@@ -106,13 +109,13 @@
 		  			<p>Name : {{ $admin->admin->firstname }} {{ $admin->admin->lastname }}</p>
 		  			<p>Email : {{ $admin->admin->email }}</p>
 		  			<p>Mobile : {{ $admin->admin->primary_mobile }}</p>
-		  			<p>Signature:<img style="width: 300px;" id=@if(auth('admin')->user()->role == $admin->admin->role) current-user-sign @endif src="" /></p>
+		  			<p>Signature:<img style="width: 300px;" id="@if(auth('admin')->user()->role == $admin->admin->role){{ $cur_class }}@endif" src="@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->signature }}@endif" /></p>
 		  		</div>
 		  		@endforeach
 		  	</div>
 		</div>
 
-	@if(auth('admin')->user()->role != 4)
+	@if(auth('admin')->user()->role != 4 && !$signatures->contains('admin_id', auth('admin')->user()->id))
 		<div id="content">
 			<hr>
 			<h4 class="text-center">Signature Area ( {{ auth('admin')->user()->adminRole->name }} )</h4>
@@ -193,6 +196,15 @@
 				$('#current-user-sign').attr('src' , 'data:'+data.join(','));
 			});
 
+		})
+		</script>
+	
+	<div class="text-center">
+	<input type="submit" value="Submit Contract" class="btn btn-success">
+	</div>
+	@endif
+	<script type="text/javascript">
+		$(document).ready(function(){
 			$(document).on('click' , '#prnt-btn' , function(){
 				$(this).hide();
 				$('#content').hide();
@@ -201,15 +213,9 @@
 
 				 $(this).show();
 				 $('#content').show();
-			})	
-		})
-		</script>
-	@endif
-	@if(auth('admin')->user()->role == 9 || auth('admin')->user()->role == 7)
-	<div class="text-center">
-	<input type="submit" value="Submit Contract" class="btn btn-success">
-	</div>
-	@endif
+			});	
+		});
+	</script>
 	</form>
 </body>
 </html>

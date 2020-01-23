@@ -11,7 +11,7 @@
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12">
        
-        <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.hotelSetting.storeupload') }}">
+        <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.hotelSetting.storeupload' , ['hotel_code'=>$hotel_code]) }}">
             @csrf
             
             <div class="col-lg-6 col-md-12">

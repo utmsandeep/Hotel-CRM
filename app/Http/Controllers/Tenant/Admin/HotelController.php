@@ -12,6 +12,7 @@ use App\Model\Tenant\Admin\HotelAdmin;
 use App\Events\Tenant\Admin\NewStaffAddedEvent;
 use Illuminate\Support\Str;
 use App\Model\Tenant\Admin\AdminPasswordReset;
+use App\Model\Tenant\Admin\ContractSignature;
 
 class HotelController extends Controller
 {
@@ -92,31 +93,43 @@ class HotelController extends Controller
             ['hotel_id'=>$hotel->id , 'admin_id'=>$general_manager->id]
         );
 
-        $url = route('tenant.admin.hotel.contract');
+        $url = route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel->hotel_code]);
         $finance_manager->notify(new NewHotelNotification($hotel , $url));
 
     	return redirect()->route('tenant.admin.hotel.list')->withSuccess('Invitation Sent.');
 
     }
 
-    public function showContract(){
-        $hotel = Hotel::find(1);
-       
+    public function showContract($hotel_code){
+        $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
+        $hotel_admin = HotelAdmin::where('hotel_id' , $hotel->id)->where('admin_id' , auth('admin')->user()->id)->first();
+
+        if(!empty($hotel_admin)){
+        $signatures = ContractSignature::where('hotel_id' , $hotel->id)->get();
+        //if(count($signatures) && ($admin->admin->role == 4 || $admin->admin->role == 9))
         $admins = $hotel->hotelAdmins->filter(function ($admin) {
             return $admin->admin->role == 7 || $admin->admin->role == 9; 
         });
-        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins'));
+        //if (!$admins->contains('name', $service->name))
+        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins' , 'signatures' , 'hotel_code'));
+        }
+        return "Unauthorized Person";
     }
 
-    public function storeContract(Request $request){
+    public function storeContract(Request $request , $hotel_code){
         $role = auth('admin')->user()->role;
+        $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
         if($role === 9){
             $request->validate([
-                'signature'     => "bail|required",
-                'address'       => ['bail|required'] , 
+                'signature'     => 'bail|required',
+                'address'       => 'bail|required' , 
                 'gst_no'        => 'bail|required',
                 'pan_card'      => 'bail|required'
             ]);
+            if(!empty($hotel))
+            {
+                $hotel->update($request->all());
+            }
         }
 
         else{
@@ -127,7 +140,23 @@ class HotelController extends Controller
 
         }
 
-        return $request;
+        ContractSignature::create(['hotel_id'=>$hotel->id , 'admin_id'=>auth('admin')->user()->id , 'signature'=>$request->signature , 'role'=>$role]);
+        return redirect()->route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel_code]);   
 
+    }
+
+    public function hotelDashboard($hotel_code){
+        return view('tenant.admin.hotels.hotel-dashboard' , compact('hotel_code'));
+    }
+
+    public function test(){
+
+         $hotels = HotelAdmin::where('admin_id' , auth('admin')->user()->id)->get();
+         $hotels = $hotels->unique('hotel_id'); 
+         dd($hotels);
+         foreach ($hotels as $key =>$hotel) {
+            return $hotel->Hotel->name;
+         }
+        return $hotels->Hotel->name;
     }
 }

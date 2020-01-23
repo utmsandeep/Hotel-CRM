@@ -181,14 +181,17 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotels/hotel-list', [HotelController::class, 'index'])->name('tenant.admin.hotel.list');
 			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
 			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
-			Route::get('hotels/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
-			Route::post('hotels/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
+			
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
 			Route::get('/hotels/show-form' , function(){
 			 return view('tenant.admin.hotels.show-form');
 			 })->name('tenant.admin.hotel.show-form');
 			 
-			 /* Hotel Setting*/
+			 
+			 Route::group(["prefix"=>"/hotel/{hotel_code}"] , function(){
+			 	Route::get('/' , [HotelController::class , 'hotelDashboard'])->name('tenant.admin.hotel.dashboard');
+
+			 	/* Hotel Setting*/
 			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
 			 Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
@@ -206,6 +209,16 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 /* banquet */
 			 Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
 			 Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
+
+			 Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
+			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
+
+			 });
+
+			 Route::get('/test' , [HotelController::class , 'test']);
+
+
+
 			});
 	});
  });

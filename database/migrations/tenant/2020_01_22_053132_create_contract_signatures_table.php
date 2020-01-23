@@ -17,7 +17,8 @@ class CreateContractSignaturesTable extends Migration
             $table->bigIncrements('id');
             $table->longText('hotel_id')->nullable();
             $table->integer('admin_id')->nullable();
-            $table->string('role')->nullable();
+            $table->integer('role')->nullable();
+            $table->longText('signature')->nullable();
             $table->timestamps();
         });
     }

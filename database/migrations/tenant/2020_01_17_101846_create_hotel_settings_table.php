@@ -15,6 +15,10 @@ class CreateHotelSettingsTable extends Migration
     {
         Schema::create('hotel_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('logo')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->text('hotel_four_pictures')->nullable();
+            $table->longText('booking_policy')->nullable();
             $table->timestamps();
         });
     }

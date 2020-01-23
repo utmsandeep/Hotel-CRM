@@ -16,4 +16,9 @@ class HotelAdmin extends Model
 
     	return $this->hasOne(Admin::class , 'id' , 'admin_id');
     }
+
+    public function Hotel(){
+
+    	return $this->hasOne(Hotel::class , 'id' , 'hotel_id');
+    }
 }
