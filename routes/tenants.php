@@ -7,6 +7,7 @@ use App\Http\Controllers\Tenant\Admin\StaffController;
 use App\Http\Controllers\Tenant\Admin\RoleController;
 use App\Http\Controllers\Tenant\Admin\HotelController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingController;
+use App\Http\Controllers\Tenant\Admin\ContractController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
 	Route::get('/' , function(){
@@ -194,11 +195,12 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 	/* Hotel Setting*/
 			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
 			 Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
+			 Route::post('hotel-setting/save-policy', [HotelSettingController::class, 'savepolicy'])->name('tenant.admin.hotelSetting.savepolicy');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 			 Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
 			 Route::get('hotel-setting/hotel-near', [HotelSettingController::class, 'nearby'])->name('tenant.admin.hotelSetting.nearby');
-			 Route::get('hotel-setting/booking-policy', [HotelSettingController::class, 'booking'])->name('tenant.admin.hotelSetting.booking');
-			 Route::get('hotel-setting/deposite-refund', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
+			 Route::get('hotel-setting/policy', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
+			 //Route::get('hotel-setting/deposite-refund', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
 			 Route::get('hotel-setting/cancel-policy', [HotelSettingController::class, 'cancel'])->name('tenant.admin.hotelSetting.cancel');
 			 Route::get('hotel-setting/no-show-policy', [HotelSettingController::class, 'none'])->name('tenant.admin.hotelSetting.none');
 			 Route::get('hotel-setting/kids-policy', [HotelSettingController::class, 'kids'])->name('tenant.admin.hotelSetting.kids');
@@ -214,6 +216,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
 
 			 });
+
+			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
+			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
 
 			 Route::get('/test' , [HotelController::class , 'test']);
 

@@ -66,6 +66,7 @@ return array(
     'App\\Model\\Tenant\\Admin' => $baseDir . '/app/Model/Tenant/Admin.php',
     'App\\Model\\Tenant\\Admin\\AdminPasswordReset' => $baseDir . '/app/Model/Tenant/Admin/AdminPasswordReset.php',
     'App\\Model\\Tenant\\Admin\\BanquetPicture' => $baseDir . '/app/Model/Tenant/Admin/BanquetPicture.php',
+    'App\\Model\\Tenant\\Admin\\ContractSignature' => $baseDir . '/app/Model/Tenant/Admin/ContractSignature.php',
     'App\\Model\\Tenant\\Admin\\Hotel' => $baseDir . '/app/Model/Tenant/Admin/Hotel.php',
     'App\\Model\\Tenant\\Admin\\HotelAdmin' => $baseDir . '/app/Model/Tenant/Admin/HotelAdmin.php',
     'App\\Model\\Tenant\\Admin\\HotelBanquet' => $baseDir . '/app/Model/Tenant/Admin/HotelBanquet.php',

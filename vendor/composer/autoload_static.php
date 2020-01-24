@@ -487,6 +487,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Model\\Tenant\\Admin' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin.php',
         'App\\Model\\Tenant\\Admin\\AdminPasswordReset' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/AdminPasswordReset.php',
         'App\\Model\\Tenant\\Admin\\BanquetPicture' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/BanquetPicture.php',
+        'App\\Model\\Tenant\\Admin\\ContractSignature' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/ContractSignature.php',
         'App\\Model\\Tenant\\Admin\\Hotel' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Hotel.php',
         'App\\Model\\Tenant\\Admin\\HotelAdmin' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelAdmin.php',
         'App\\Model\\Tenant\\Admin\\HotelBanquet' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelBanquet.php',

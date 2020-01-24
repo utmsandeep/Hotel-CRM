@@ -8,11 +8,13 @@ use App\Model\super_admin\Role;
 use App\Model\Tenant\Admin;
 use App\Model\Tenant\Admin\Hotel;
 use App\Notifications\Tenant\Admin\NewHotelNotification;
+use App\Notifications\Tenant\Admin\ContractConfirmationNotification;
 use App\Model\Tenant\Admin\HotelAdmin;
 use App\Events\Tenant\Admin\NewStaffAddedEvent;
 use Illuminate\Support\Str;
 use App\Model\Tenant\Admin\AdminPasswordReset;
 use App\Model\Tenant\Admin\ContractSignature;
+use App\Model\Tenant\Admin\ContractContent;
 
 class HotelController extends Controller
 {
@@ -104,6 +106,12 @@ class HotelController extends Controller
         $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
         $hotel_admin = HotelAdmin::where('hotel_id' , $hotel->id)->where('admin_id' , auth('admin')->user()->id)->first();
 
+        // $hotelAdmins = HotelAdmin::where('hotel_id' , $hotel->id)->get();
+        // $hotelAdmins = $hotelAdmins->map(function ($admin) {
+        //     return collect($admin->admin);
+        // });
+        // return $hotelAdmins->where('role' , 4)->first()->get('firstname');
+
         if(!empty($hotel_admin)){
         $signatures = ContractSignature::where('hotel_id' , $hotel->id)->get();
         //if(count($signatures) && ($admin->admin->role == 4 || $admin->admin->role == 9))
@@ -111,7 +119,8 @@ class HotelController extends Controller
             return $admin->admin->role == 7 || $admin->admin->role == 9; 
         });
         //if (!$admins->contains('name', $service->name))
-        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins' , 'signatures' , 'hotel_code'));
+        $content = ContractContent::first();
+        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins' , 'signatures' , 'content', 'hotel_code'));
         }
         return "Unauthorized Person";
     }
@@ -119,6 +128,12 @@ class HotelController extends Controller
     public function storeContract(Request $request , $hotel_code){
         $role = auth('admin')->user()->role;
         $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
+        $hotelAdmins = HotelAdmin::where('hotel_id' , $hotel->id)->get();
+        $hotelAdmins = $hotelAdmins->map(function ($admin) {
+            return collect($admin->admin);
+        });
+        $url = route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel->hotel_code]);
+
         if($role === 9){
             $request->validate([
                 'signature'     => 'bail|required',
@@ -130,6 +145,9 @@ class HotelController extends Controller
             {
                 $hotel->update($request->all());
             }
+
+            $gm = Admin::find($hotelAdmins->where('role' , 7)->first()->get('id'));
+            $gm->notify(new NewHotelNotification($hotel , $url));
         }
 
         else{
@@ -138,6 +156,9 @@ class HotelController extends Controller
              'signature'     => "bail|required",
          ]);
 
+
+            $cm = Admin::find($hotelAdmins->where('role' , 4)->first()->get('id'));
+            $cm->notify(new ContractConfirmationNotification($hotel , $url));
         }
 
         ContractSignature::create(['hotel_id'=>$hotel->id , 'admin_id'=>auth('admin')->user()->id , 'signature'=>$request->signature , 'role'=>$role]);

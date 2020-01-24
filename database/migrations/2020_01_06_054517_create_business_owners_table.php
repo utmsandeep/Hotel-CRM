@@ -23,6 +23,10 @@ class CreateBusinessOwnersTable extends Migration
             $table->string('subdomain');
             $table->string('chain_code')->nullable();
             $table->integer('yearly_subscription')->nullable();
+            $table->decimal('price_per_year', 8, 2)->default(0.00)->nullable();
+            $table->decimal('installation_cost', 8, 2)->default(0.00)->nullable();
+            $table->decimal('customization_cost', 8, 2)->default(0.00)->nullable();
+            $table->decimal('trainig_fees', 8, 2)->default(0.00)->nullable();
             $table->string('email');
             $table->string('gst_no')->nullable();
             $table->string('primary_mobile')->nullable();

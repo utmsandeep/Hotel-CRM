@@ -59,8 +59,7 @@
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
                     <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li>
                     <li class="{{ Request::segment(5) === 'hotel-near' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.nearby' , ['hotel_code'=>$hotel_code]) }}">Hotel Near By</a></li>
-                    <li class="{{ Request::segment(5) === 'booking-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.booking' ,  ['hotel_code'=>$hotel_code]) }}">Booking Policy</a></li>
-                    <li class="{{ Request::segment(5) === 'deposite-refund' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Deposite-Refund Policy</a></li>
+                    <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policy</a></li>
                     <li class="{{ Request::segment(5) === 'cancel-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.cancel' , ['hotel_code'=>$hotel_code]) }}">Cancellation Policy</a></li>
                     <li class="{{ Request::segment(5) === 'no-show-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.none' , ['hotel_code'=>$hotel_code]) }}">No Show Policy</a></li>
                     <li class="{{ Request::segment(5) === 'kids-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.kids' , ['hotel_code'=>$hotel_code]) }}">Kids Policy</a></li>
@@ -71,6 +70,7 @@
             </li>
             @endif
            
+            <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}"><a href="{{route('tenant.admin.hotel.contract.content.store')}}"><i class="zmdi zmdi-account"></i><span>Contract</span></a></li>
 
             <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
                 <a href="#FileManager" class="menu-toggle"><i class="zmdi zmdi-folder"></i> <span>File Manager</span></a>

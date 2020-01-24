@@ -99,7 +99,7 @@
 		  	</div>
 		  	<div class="row">
 		  		<div class="col-sm-12">
-		  			General Delivery Terms Will go here......................
+		  			@if(!empty($content)) <?php echo $content->content; ?> @else General Delivery Terms Will go here...................... @endif
 		  		</div>
 		  	</div>
 		  	<div class="row">
