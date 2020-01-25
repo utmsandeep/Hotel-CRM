@@ -49,7 +49,7 @@
                             <h2> <strong>No show Policy</strong></h2>
                         </div>
                         <div class="body">
-                            <textarea id="editor3" name="no_show_policy ">@if(!empty($hotelsetting)){{$hotelsetting->no_show_policy}}@endif</textarea>
+                            <textarea id="editor3" name="no_show_policy">@if(!empty($hotelsetting)){{$hotelsetting->no_show_policy}}@endif</textarea>
                         </div>
                     </div>
                 </div>

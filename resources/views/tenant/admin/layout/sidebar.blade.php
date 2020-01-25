@@ -38,12 +38,12 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+            <!-- <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Messages</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('app.inbox')}}">Inbox</a></li>
                 </ul>
-            </li>
+            </li> -->
 
             <li class="{{ Request::segment(2) === 'hotels' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotels</span></a>
@@ -55,16 +55,16 @@
             <li class="{{ Request::segment(4) === 'hotel-setting' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotel Settings</span></a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::segment(5) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload' , ['hotel_code'=>$hotel_code]) }}">Upload Logo</a></li>
+                    <li class="{{ Request::segment(5) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload' , ['hotel_code'=>$hotel_code]) }}">Hotel Pictures</a></li>
+                    <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policies</a></li>
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
-                    <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li>
+                    <!-- <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li> -->
                     <li class="{{ Request::segment(5) === 'hotel-near' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.nearby' , ['hotel_code'=>$hotel_code]) }}">Hotel Near By</a></li>
-                    <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policy</a></li>
-                    <li class="{{ Request::segment(5) === 'cancel-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.cancel' , ['hotel_code'=>$hotel_code]) }}">Cancellation Policy</a></li>
+                    <!-- <li class="{{ Request::segment(5) === 'cancel-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.cancel' , ['hotel_code'=>$hotel_code]) }}">Cancellation Policy</a></li>
                     <li class="{{ Request::segment(5) === 'no-show-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.none' , ['hotel_code'=>$hotel_code]) }}">No Show Policy</a></li>
                     <li class="{{ Request::segment(5) === 'kids-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.kids' , ['hotel_code'=>$hotel_code]) }}">Kids Policy</a></li>
                     <li class="{{ Request::segment(5) === 'resident-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.resident' , ['hotel_code'=>$hotel_code]) }}">Non-Residential Policy</a></li>
-                    <li class="{{ Request::segment(5) === 'beverages-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.beverages' , ['hotel_code'=>$hotel_code]) }}">Beverages Policy</a></li>
+                    <li class="{{ Request::segment(5) === 'beverages-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.beverages' , ['hotel_code'=>$hotel_code]) }}">Beverages Policy</a></li> -->
                     <li class="{{ Request::segment(5) === 'banquet-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.listing' , ['hotel_code'=>$hotel_code]) }}">Banquet Listing</a></li>
                 </ul>
             </li>
@@ -72,7 +72,7 @@
            
             <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}"><a href="{{route('tenant.admin.hotel.contract.content.store')}}"><i class="zmdi zmdi-account"></i><span>Contract</span></a></li>
 
-            <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
+            <!-- <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
                 <a href="#FileManager" class="menu-toggle"><i class="zmdi zmdi-folder"></i> <span>File Manager</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(2) === 'all' ? 'active' : null }}"><a href="#">All</a></li>
@@ -84,7 +84,7 @@
                 <ul class="ml-menu">
                     
                 </ul>
-            </li>
+            </li> -->
 
             <li class="{{ Request::segment(1) === 'pages' ? 'active open open_top' : null }}">
                 <a href="#Pages" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Hotel Pages</span></a>

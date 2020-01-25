@@ -58,8 +58,19 @@ class HotelSettingController extends Controller
         return back()->withSuccess('Photos uploaded successfully');
     }
 
-    public function type($hotel_code){
-        return view('tenant.admin.hotel-setting.room-type' , compact('hotel_code'));
+    // public function type($hotel_code){
+    //     return view('tenant.admin.hotel-setting.room-type' , compact('hotel_code'));
+    // }
+
+    
+    public function type(Request $request){
+
+        // return $request;
+        $content = HotelSetting::first();
+        $content =  HotelSetting::create(['content'=>$request->content]);
+        $msg = "Created";
+        
+        return redirect()->route('tenant.admin.hotel-setting.room-type')->withSuccess("Content $msg.");
     }
 
     public function picture($hotel_code){
@@ -73,11 +84,14 @@ class HotelSettingController extends Controller
     public function policy($hotel_code){
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+
+        //return $hotelsetting;
  
         return view('tenant.admin.hotel-setting.policy' , compact('hotel_code','hotelsetting'));
     }
 
     public function savepolicy(Request $request, $hotel_code){
+ 
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
 
