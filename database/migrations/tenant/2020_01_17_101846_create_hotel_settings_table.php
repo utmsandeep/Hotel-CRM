@@ -28,6 +28,13 @@ class CreateHotelSettingsTable extends Migration
             $table->longText('kids_policy')->nullable();
             $table->longText('non_residiential_policy')->nullable();
             $table->longText('beverages_policy')->nullable();
+            $table->longText('applicable_taxes')->nullable();
+            $table->longText('lincense_permission')->nullable();
+            $table->longText('event_booker_type')->nullable();
+            $table->longText('event_type')->nullable();
+            $table->longText('menu_list')->nullable();
+            $table->longText('menu_type')->nullable();
+            $table->longText('menu_price_season')->nullable();
             $table->timestamps();
         });
     }

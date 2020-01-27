@@ -66,6 +66,7 @@
                     <li class="{{ Request::segment(5) === 'resident-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.resident' , ['hotel_code'=>$hotel_code]) }}">Non-Residential Policy</a></li>
                     <li class="{{ Request::segment(5) === 'beverages-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.beverages' , ['hotel_code'=>$hotel_code]) }}">Beverages Policy</a></li> -->
                     <li class="{{ Request::segment(5) === 'banquet-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.listing' , ['hotel_code'=>$hotel_code]) }}">Banquet Listing</a></li>
+                    <li class="{{ Request::segment(5) === 'import-hotel-settings' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.importHotelSettings' , ['hotel_code'=>$hotel_code]) }}">Import Settings</a></li>
                 </ul>
             </li>
             @endif

@@ -9,12 +9,16 @@ use App\Model\Tenant\Admin\HotelSetting;
 class HotelSettingController extends Controller
 {
     public function upload($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
         return view('tenant.admin.hotel-setting.upload-logo' , compact('hotel_code'));
     }
 
     public function storeupload(Request $request , $hotel_code){
         $this->validate($request, [
             'logo' => 'required|image|mimes:jpeg,png,jpg,bmp,gif,svg|max:5000',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,bmp,gif,svg|max:5000',
+            'hotel_four_pictures' => 'image|mimes:jpeg,png,jpg,bmp,gif,svg|max:5000',
         ]);
         $profilename='';$hotelpic='';
         $hotel = hotelIdByCode($hotel_code);
@@ -58,35 +62,49 @@ class HotelSettingController extends Controller
         return back()->withSuccess('Photos uploaded successfully');
     }
 
-    // public function type($hotel_code){
-    //     return view('tenant.admin.hotel-setting.room-type' , compact('hotel_code'));
-    // }
-
-    
-    public function type(Request $request){
-
-        // return $request;
-        $content = HotelSetting::first();
-        $content =  HotelSetting::create(['content'=>$request->content]);
-        $msg = "Created";
-        
-        return redirect()->route('tenant.admin.hotel-setting.room-type')->withSuccess("Content $msg.");
+     public function type($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.room-type' , compact('hotel_code','hotelsetting'));
     }
+
+     public function typeofroom(Request $request , $hotel_code){
+            $hotel = hotelIdByCode($hotel_code);
+            $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+    
+            $data = $request->all();
+            $temarr = [];
+                for($i = 0 ; $i<count($data['room_type']) ; $i++){
+                $temarr[] = [
+                        "room_type"=>$data['room_type'][$i],
+                        "numberroom"=>$data['numberroom'][$i]
+                        ];
+                }
+            $tem = json_encode($temarr);
+            if(!empty($hotelsetting)){
+                   $hotelsetting->update(['room_type'=>$tem]);
+                   return back()->withSuccess('Room type detail updated successfully');
+            }
+            else{
+                HotelSetting::create(['room_type'=>$tem]);
+                return back()->withSuccess('Room type detail added successfully');
+            }
+    }
+    
 
     public function picture($hotel_code){
         return view('tenant.admin.hotel-setting.profile-pic' ,compact('hotel_code'));
     }
 
     public function nearby($hotel_code){
-        return view('tenant.admin.hotel-setting.hotel-near' , compact('hotel_code'));
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.hotel-near' , compact('hotel_code','hotelsetting'));
     }
 
     public function policy($hotel_code){
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-
-        //return $hotelsetting;
- 
         return view('tenant.admin.hotel-setting.policy' , compact('hotel_code','hotelsetting'));
     }
 

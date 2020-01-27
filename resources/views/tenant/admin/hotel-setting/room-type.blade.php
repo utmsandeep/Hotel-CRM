@@ -11,7 +11,7 @@
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12">
        
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data"  action="{{ route('tenant.admin.hotelSetting.typeofroom' , ['hotel_code'=>$hotel_code]) }}">
             @csrf
             
 			<div class="row clearfix">
@@ -21,25 +21,53 @@
 			                <h2><strong>Types</strong> of rooms</h2>
 			            </div>
 			            <div class="body">
-					        <form role="form">
-							    <div class="multi-field-wrapper">
-							      <div class="multi-fields">
+							@if(!empty($hotelsetting) && !is_null($hotelsetting->room_type))
+			            	 <div class="multi-field-wrapper">
+							  <div class="multi-fields">
+			            	 	@foreach(json_decode($hotelsetting->room_type, true) as $item)
 							        <div class="row clearfix multi-field">
 							          <div class="col-lg-3 col-md-3 col-sm-3">
 					                    <div class="form-group">
-					                        <input type="text" name="room_type[]" class="form-control" placeholder="Room Type">
+					                        <input type="text" value="{{ $item['room_type'] }}" name="room_type[]" class="form-control" placeholder="Room Type">
 					                    </div>
 						                </div>
 						                <div class="col-lg-3 col-md-3 col-sm-3">
 						                    <div class="form-group">
-						                        <input type="number"  name="numberroom[]" min="0" class="form-control" placeholder="Number of room">
+						                        <input type="number" value="{{ $item['numberroom'] }}" name="numberroom[]" min="0" class="form-control" placeholder="Number Of Room">
 						                    </div>
 						                </div>
 							          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
 							        </div>
-							      </div>
+								  @endforeach
+								  </div>
 							    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
 							  </div>
+							  @else
+							  <div class="multi-field-wrapper">
+						      <div class="multi-fields">
+						        <div class="row clearfix multi-field">
+						          <div class="col-lg-3 col-md-3 col-sm-3">
+				                    <div class="form-group">
+				                        <input type="text" name="room_type[]" class="form-control" placeholder="Room Type">
+				                    </div>
+					                </div>
+					                <div class="col-lg-3 col-md-3 col-sm-3">
+					                    <div class="form-group">
+					                        <input type="number"  name="numberroom[]" min="0" class="form-control" placeholder="Number Of Room">
+					                    </div>
+					                </div>
+						          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
+						        </div>
+						      </div>
+						    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+						  </div>
+						  @endif
+						</div>
+						<div class="form-actions">
+			                <div class="card-body">
+			                    <button type="submit" class="btn btn-success">Save</button>
+			                </div>
+			            </div>
 							</form>
 					    </div>
 					</div>
