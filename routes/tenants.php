@@ -9,6 +9,7 @@ use App\Http\Controllers\Tenant\Admin\HotelController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingsTemController;
 use App\Http\Controllers\Tenant\Admin\ContractController;
+use App\Http\Controllers\Tenant\Admin\PerposalController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
 	Route::get('/' , function(){
@@ -205,6 +206,8 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 Route::post('hotel-setting/typeofroom', [HotelSettingController::class, 'typeofroom'])->name('tenant.admin.hotelSetting.typeofroom');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 			 
+			 Route::post('hotel-setting/taxes', [HotelSettingController::class, 'taxes'])->name('tenant.admin.hotelSetting.taxes');
+			 Route::get('hotel-setting/applicable-taxes', [HotelSettingController::class, 'showtaxes'])->name('tenant.admin.hotelSetting.showtaxes');
 			 
 			 Route::get('hotel-setting/cancel-policy', [HotelSettingController::class, 'cancel'])->name('tenant.admin.hotelSetting.cancel');
 			 Route::get('hotel-setting/no-show-policy', [HotelSettingController::class, 'none'])->name('tenant.admin.hotelSetting.none');
@@ -227,6 +230,8 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
 			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
+
+			 Route::get('/perposal-template' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
 
 			 Route::get('/test' , [HotelController::class , 'test']);
 

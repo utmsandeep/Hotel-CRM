@@ -62,7 +62,46 @@ class HotelSettingController extends Controller
         return back()->withSuccess('Photos uploaded successfully');
     }
 
-     public function type($hotel_code){
+     public function showtaxes($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.applicable-taxes' , compact('hotel_code','hotelsetting'));
+    }
+
+    public function taxes(Request $request , $hotel_code){
+        // $request->validate([
+    	// 	'tax_name'      =>	'bail|required',
+    	// 	'vat'			=>	'bail|required|numeric',
+        //     'cgst'          =>  'bail|required|numeric',
+        //     'sgst'          =>  'bail|required|numeric',
+        //     'total'         =>  'bail|required|numeric',
+    	// ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+        
+        $data = $request->all();
+        $temarr = [];
+            for($i = 0 ; $i<count($data['tax_name']) ; $i++){
+            $temarr[] = [
+                    "tax_name"=>$data['tax_name'][$i],
+                    "vat"=>$data['vat'][$i],
+                    "cgst"=>$data['cgst'][$i],
+                    "sgst"=>$data['sgst'][$i],
+                    "total"=>$data['total'][$i],
+                    ];
+            }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+               $hotelsetting->update(['applicable_taxes'=>$tem]);
+               return back()->withSuccess('Applicable Taxes updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['applicable_taxes'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Applicable Taxes added successfully');
+        }
+}
+
+    public function type($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
         return view('tenant.admin.hotel-setting.room-type' , compact('hotel_code','hotelsetting'));
@@ -86,7 +125,7 @@ class HotelSettingController extends Controller
                    return back()->withSuccess('Room type detail updated successfully');
             }
             else{
-                HotelSetting::create(['room_type'=>$tem]);
+                HotelSetting::create(array_merge(['room_type'=>$tem] , ['hotel_id'=>$hotel->id]));
                 return back()->withSuccess('Room type detail added successfully');
             }
     }
