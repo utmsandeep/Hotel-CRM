@@ -15,6 +15,9 @@ class PerposalController extends Controller
     }
 
     public function storePerposal(Request $request){
+    	
+    	return $request;
 
+    	return json_encode (array("day"=>$request->day , "date"=>$request->date));
     }
 }

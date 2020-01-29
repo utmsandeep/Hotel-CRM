@@ -58,6 +58,7 @@
                     <li class="{{ Request::segment(5) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload' , ['hotel_code'=>$hotel_code]) }}">Hotel Pictures</a></li>
                     <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policies</a></li>
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
+
                     <!-- <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li> -->
                     <li class="{{ Request::segment(5) === 'hotel-near' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.nearby' , ['hotel_code'=>$hotel_code]) }}">Hotel Near By</a></li>
                     <!-- <li class="{{ Request::segment(5) === 'cancel-policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.cancel' , ['hotel_code'=>$hotel_code]) }}">Cancellation Policy</a></li>
@@ -68,6 +69,9 @@
                     <li class="{{ Request::segment(5) === 'banquet-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.listing' , ['hotel_code'=>$hotel_code]) }}">Banquet Listing</a></li>
                     <li class="{{ Request::segment(5) === 'import-hotel-settings' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.importHotelSettings' , ['hotel_code'=>$hotel_code]) }}">Import Settings</a></li>
                     <li class="{{ Request::segment(5) === 'applicable-taxes' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showtaxes' ,  ['hotel_code'=>$hotel_code]) }}">Applicable Taxes</a></li>
+                    <li class="{{ Request::segment(5) === 'menu-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showlist' ,  ['hotel_code'=>$hotel_code]) }}">Menu List</a></li>
+                    <li class="{{ Request::segment(5) === 'menu-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showmenu' ,  ['hotel_code'=>$hotel_code]) }}">Menu Types</a></li>
+                    <li class="{{ Request::segment(5) === 'menu-price' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.pricemenu' ,  ['hotel_code'=>$hotel_code]) }}">Menu Price Season</a></li>
                 </ul>
             </li>
             @endif

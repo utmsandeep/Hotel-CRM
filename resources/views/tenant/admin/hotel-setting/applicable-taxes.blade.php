@@ -33,22 +33,22 @@
 						              </div>
 						              <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['vat']}}" name="vat[]" class="form-control" placeholder="VAT in %">
+						                        <input type="text" value="{{ $item['vat']}}" name="vat[]" class="form-control changeable" placeholder="VAT in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['cgst']}}" name="cgst[]" class="form-control" placeholder="CGST in %">
+						                        <input type="text" value="{{ $item['cgst']}}" name="cgst[]" class="form-control changeable" placeholder="CGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['sgst']}}" name="sgst[]" class="form-control" placeholder="SGST in %">
+						                        <input type="text" value="{{ $item['sgst']}}" name="sgst[]" class="form-control changeable" placeholder="SGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['total']}}" name="total[]"  required="required" class="form-control" placeholder="Total in %">
+						                        <input type="text" value="{{ $item['total']}}" name="total[]"  required="required" class="form-control total" placeholder="Total in %">
 						                    </div>
 						              </div>
 							          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
@@ -61,29 +61,29 @@
 							  <div class="multi-field-wrapper">
 						      <div class="multi-fields">
 						        <div class="row clearfix multi-field">
-						          <div class="col-lg-2 col-md-2 col-sm-2">
+						            <div class="col-lg-2 col-md-2 col-sm-2">
 				                    <div class="form-group">
 				                        <input type="text" name="tax_name[]" class="form-control" placeholder="Tax Name">
 				                    </div>
 					                </div>
 					                <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="vat[]"  class="form-control" placeholder="VAT in %">
+					                        <input type="text"  name="vat[]"  class="form-control changeable" placeholder="VAT in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="cgst[]" class="form-control" placeholder="CGST in %">
+					                        <input type="text"  name="cgst[]"  class="form-control changeable" placeholder="CGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="sgst[]" class="form-control" placeholder="SGST in %">
+					                        <input type="text"  name="sgst[]" class="form-control changeable" placeholder="SGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="total[]" class="form-control" placeholder="Total in %" >
+					                        <input type="text"  name="total[]"  class="form-control total" placeholder="Total in %" >
 					                    </div>
 					                </div>
 
@@ -114,13 +114,29 @@
 	$('.multi-field-wrapper').each(function() {
 		counter++;
 	    var $wrapper = $('.multi-fields', this);
+
+	    console.log($wrapper);
+		// var i=1;
 	    $(".add-field", $(this)).click(function(e) {
+			// i++;
 	        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
 	    });
 	    $('.multi-field .remove-field', $wrapper).click(function() {
 	        if ($('.multi-field', $wrapper).length > 1)
+				// i--;
 	            $(this).parent('.multi-field').remove();
 	    });
 	});
+
+	jQuery(document).on('keyup' , '.changeable' , function(){
+			console.log($(this).parent().next('div div .total'));
+	});
+
+	// document.getElementById("vat_['i']").onchange = function() {myFunction1()};
+
+	// function myFunction1() {
+	// var x = document.getElementById("vat_['i']");
+	// alert(x);
+	// }
 </script>
 @stop

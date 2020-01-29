@@ -62,6 +62,118 @@ class HotelSettingController extends Controller
         return back()->withSuccess('Photos uploaded successfully');
     }
 
+
+    public function showlist($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.menu-list' , compact('hotel_code','hotelsetting'));
+    }
+
+    public function showmenu($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.menu-type' , compact('hotel_code','hotelsetting'));
+    }
+
+
+    public function pricemenu($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.menu-price' , compact('hotel_code','hotelsetting'));
+    }
+
+
+    public function prices(Request $request , $hotel_code){
+//        $request->validate([
+//            'int_name'      =>	'bail|required'
+//        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['menu_name']) ; $i++){
+            $temarr[] = [
+                "menu_name"=>$data['menu_name'][$i],
+                "price"=>$data['price'][$i],
+                "res"=>$data['res'][$i],
+                "kids"=>$data['kids'][$i],
+                "start_date"=>$data['start_date'][$i],
+                "end_date"=>$data['end_date'][$i],
+                "tax"=>$data['tax'][$i],
+                "override"=>$data['override'][$i],
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['menu_price_season'=>$tem]);
+            return back()->withSuccess('Menu Price Season updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['menu_price_season'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Menu Price Season added successfully');
+        }
+    }
+
+    public function variety(Request $request , $hotel_code){
+        $request->validate([
+            'int_name'      =>	'bail|required'
+        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['int_name']) ; $i++){
+            $temarr[] = [
+                "int_name"=>$data['int_name'][$i],
+                "starter"=>$data['starter'][$i],
+                "salad"=>$data['salad'][$i],
+                "course"=>$data['course'][$i],
+                "desert"=>$data['desert'][$i],
+                "breads"=>$data['breads'][$i],
+                "acomp"=>$data['acomp'][$i],
+                "meal"=>$data['meal'][$i],
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['menu_type'=>$tem]);
+            return back()->withSuccess('Menu Types updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['menu_type'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Menu Types added successfully');
+        }
+    }
+
+    public function listed(Request $request , $hotel_code){
+         $request->validate([
+         	 'food_name'      =>	'bail|required',
+             'type'           =>	'bail|required'
+         ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['food_name']) ; $i++){
+            $temarr[] = [
+                "food_name"=>$data['food_name'][$i],
+                "type"=>$data['type'][$i],
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['menu_list'=>$tem]);
+            return back()->withSuccess('Menu List updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['menu_list'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Menu List added successfully');
+        }
+    }
+
      public function showtaxes($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();

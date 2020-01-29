@@ -228,10 +228,14 @@
 		<p>The Hotel agrees that it will provide below listed rooms per night and following group rates for listed nights to the <strong>Mr</strong><strong> Sanjay Shivalkar/ YRF xxxxx PVT LTD.</strong> to be utilized as follows:</p>
 
 		<p>&nbsp;</p>
+		<form action="{{ route('tenant.admin.showPerposalTemplate.store') }}" method="post">
+			@csrf
 		<table  cellspacing="0" style="">
 			<tbody id="rooms-table">
 			</tbody>
 		</table>
+		<input type="submit" value="submit">
+		</form>
 		<a class="btn btn-info"  id="genrate-header-row">Draw Table</a>
 		<a class="btn btn-info"  id="genrate-row" style="display: none">Insert Row</a>
 		<table cellspacing="0" style="border-collapse:collapse; width:105.62%">
@@ -1328,8 +1332,8 @@
 	  	 var head = "<tr><th rowspan='2'>Room Type</th>";
 	  	 var firstrow = "<tr>"
 	  	 for (var i = 1; i <= nights ; i++) {
-	  	 	head = head+"<th colspan='2'><input placeholder='Day' class='in-table' type='text'></th>";
-	  	 	firstrow = firstrow+"<td colspan='2'><input placeholder='Date' class='in-table' type='text'></td>";
+	  	 	head = head+"<th colspan='2'><input name='day[]' placeholder='Day' class='in-table' type='text'></th>";
+	  	 	firstrow = firstrow+"<td colspan='2'><input name='date[]' placeholder='Date' class='in-table' type='text'></td>";
 	  	 }
 	  	 head = head+"</tr>";
 	  	 firstrow = firstrow+"</tr>";
@@ -1340,10 +1344,10 @@
 	  });
 
 	  $(document).on('click' , '#genrate-row' , function(){
-	  	 var room_type = "<tr><td colspan="+ nights+1+"><input placeholder='Room Type' class='in-table' type='text'></td></tr>";
-	  	 var room = "<tr><td><input placeholder='Room' class='in-table' type='text'></td>"
+	  	 var room_type = "<tr><td colspan="+ nights+1+"><input name='room_type[]' placeholder='Room Type' class='in-table' type='text'></td></tr>";
+	  	 var room = "<tr><td><input name='room[]' placeholder='Room' class='in-table' type='text'></td>"
 	  	 for (var i = 1; i <= nights ; i++) {
-	  	 	room = room+"<td><input placeholder='Total Room' class='in-table' type='text'></td><td><input placeholder='Price' class='in-table' type='text'></td>";
+	  	 	room = room+"<td><input name='total_room[]' placeholder='Total Room' class='in-table' type='text'></td><td><input name='price[]' placeholder='Price' class='in-table' type='text'></td>";
 	  	 }
 	  	 room = room+"</tr>";
 	  	 $('#rooms-table').append(room_type);
