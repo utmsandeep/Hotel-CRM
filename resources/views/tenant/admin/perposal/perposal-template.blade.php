@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
   	<style type="text/css">
   		.in-table{
   			border: none;
@@ -22,6 +23,27 @@
 			height: 17px;
 			vertical-align: bottom;
   		}
+  		#signature {
+		/*border: 2px dotted black;*/
+		background-color:lightgrey;
+		color:darkblue;
+		padding:20px;
+		}
+
+		/* Drawing the 'gripper' for touch-enabled devices */ 
+		html.touch #content {
+			float:left;
+			width:92%;
+		}
+		html.touch #scrollgrabber {
+			float:right;
+			width:4%;
+			margin-right:2%;
+			background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAFCAAAAACh79lDAAAAAXNSR0IArs4c6QAAABJJREFUCB1jmMmQxjCT4T/DfwAPLgOXlrt3IwAAAABJRU5ErkJggg==)
+		}
+		html.borderradius #scrollgrabber {
+			border-radius: 1em;
+		}
   	</style>
 </head>
 <body>
@@ -1282,6 +1304,8 @@
 		<p>In the meanwhile, should you have any queries, please feel free contact <strong>YUVRAJ SINGH TANWAR</strong></p>
 
 		<p>&nbsp;</p>
+		<div class="row">
+		<div class="col-md-6">
 
 		<p><strong>SIGNATURES</strong></p>
 
@@ -1293,13 +1317,23 @@
 
 		<p>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Mr</strong><strong> XXXX Singh</strong></p>
 
-		<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________________</p>
+		<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img style="width: 300px;" id="current-user-sign" src=""></p>
 
 		<p>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; __________________________</p>
 
 		<p>&nbsp;</p>
 
 		<p>&nbsp;</p>
+		</div>
+		<div class="col-md-6"> 
+			<div id="content">
+			<hr>
+			<h4 class="text-center">Signature Area</h4>
+			<div id="signature"></div>
+			<div id="tools"></div>
+			</div>
+		</div>
+		</div>
 
 		<p>Approved and authorized by the following representative of the <strong>Jaisalmer Marriott Resort and Spa:</strong></p>
 
@@ -1321,6 +1355,7 @@
 
 		<p>&nbsp;</p>
 
+		
 
 	</div>
 	<script>
@@ -1357,5 +1392,94 @@
 
 	});
 </script>
+		
+		<script src="{{ asset('js/tenant/jSignature/libs/jquery.js') }}"></script>
+		<script>
+
+		(function($) {
+			var topics = {};
+			$.publish = function(topic, args) {
+			    if (topics[topic]) {
+			        var currentTopic = topics[topic],
+			        args = args || {};
+			
+			        for (var i = 0, j = currentTopic.length; i < j; i++) {
+			            currentTopic[i].call($, args);
+			        }
+			    }
+			};
+			$.subscribe = function(topic, callback) {
+			    if (!topics[topic]) {
+			        topics[topic] = [];
+			    }
+			    topics[topic].push(callback);
+			    return {
+			        "topic": topic,
+			        "callback": callback
+			    };
+			};
+			$.unsubscribe = function(handle) {
+			    var topic = handle.topic;
+			    if (topics[topic]) {
+			        var currentTopic = topics[topic];
+			
+			        for (var i = 0, j = currentTopic.length; i < j; i++) {
+			            if (currentTopic[i] === handle.callback) {
+			                currentTopic.splice(i, 1);
+			            }
+			        }
+			    }
+			};
+		})(jQuery);
+
+		</script>
+		<script src="{{ asset('js/tenant/jSignature/src/jSignature.js') }}"></script>
+		<script src="{{ asset('js/tenant/jSignature/src/plugins/jSignature.CompressorBase30.js') }}"></script>
+		<script src="{{ asset('js/tenant/jSignature/src/plugins/jSignature.CompressorSVG.js') }}"></script>
+		<script src="{{ asset('js/tenant/jSignature/src/plugins/signhere/jSignature.SignHere.js') }}"></script> 
+		<script>
+		$(document).ready(function() {
+
+			var $sigdiv = $("#signature").jSignature({'UndoButton':true})
+
+			, $tools = $('#tools')
+			, $extraarea = $('#displayarea')
+			, pubsubprefix = 'jSignature.demo.'
+			
+			
+			$('<input type="button" value="Reset" class="btn btn-info btn-xs">').bind('click', function(e){
+				$sigdiv.jSignature('reset')
+				$('#sign-val', $tools).val('')
+			}).appendTo($tools)
+			
+			$('<input type="hidden" name="signature" id="sign-val" value="">').appendTo($tools)
+			
+
+			if (Modernizr.touch){
+				$('#scrollgrabber').height($('#content').height())		
+			}
+
+			$(document).on('mouseup' , '.jSignature' , function(){
+				var data = $sigdiv.jSignature('getData', 'image')
+				$('#sign-val', $tools).val('data:'+data.join(','))
+				$('#current-user-sign').attr('src' , 'data:'+data.join(','));
+			});
+
+		})
+		</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(document).on('click' , '#prnt-btn' , function(){
+				$(this).hide();
+				$('#content').hide();
+
+				 window.print();
+
+				 $(this).show();
+				 $('#content').show();
+			});	
+		});
+	</script>
 </body>
 </html>

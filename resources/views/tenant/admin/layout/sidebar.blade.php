@@ -69,9 +69,12 @@
                     <li class="{{ Request::segment(5) === 'banquet-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.listing' , ['hotel_code'=>$hotel_code]) }}">Banquet Listing</a></li>
                     <li class="{{ Request::segment(5) === 'import-hotel-settings' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.importHotelSettings' , ['hotel_code'=>$hotel_code]) }}">Import Settings</a></li>
                     <li class="{{ Request::segment(5) === 'applicable-taxes' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showtaxes' ,  ['hotel_code'=>$hotel_code]) }}">Applicable Taxes</a></li>
+
                     <li class="{{ Request::segment(5) === 'menu-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showlist' ,  ['hotel_code'=>$hotel_code]) }}">Menu List</a></li>
                     <li class="{{ Request::segment(5) === 'menu-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showmenu' ,  ['hotel_code'=>$hotel_code]) }}">Menu Types</a></li>
                     <li class="{{ Request::segment(5) === 'menu-price' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.pricemenu' ,  ['hotel_code'=>$hotel_code]) }}">Menu Price Season</a></li>
+                    <li class="{{ Request::segment(5) === 'account-detail' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.showdetail' ,  ['hotel_code'=>$hotel_code]) }}">Bank Account Detail</a></li>
+
                 </ul>
             </li>
             @endif

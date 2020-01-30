@@ -8,6 +8,9 @@ use App\Model\Tenant\Admin\HotelSetting;
 
 class HotelSettingController extends Controller
 {
+
+    /*-----------------------Upload-logo-----------------------------*/
+
     public function upload($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
@@ -62,19 +65,23 @@ class HotelSettingController extends Controller
         return back()->withSuccess('Photos uploaded successfully');
     }
 
+/*---------------------------Import-Setting-------------------------*/
 
-    public function showlist($hotel_code){
+    public function importHotelSettings($hotel_code){
+
         $hotel = hotelIdByCode($hotel_code);
-        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-        return view('tenant.admin.hotel-setting.menu-list' , compact('hotel_code','hotelsetting'));
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.import-hotel-setting' , compact('hotel_code' , 'hotelsetting'));
+
     }
 
-    public function showmenu($hotel_code){
-        $hotel = hotelIdByCode($hotel_code);
-        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-        return view('tenant.admin.hotel-setting.menu-type' , compact('hotel_code','hotelsetting'));
+    public function importHotelSettingsStore(Request $request , $hotel_code){
+
+        return $request;
+
     }
 
+/*----------------------------Menu-Price--------------------------*/
 
     public function pricemenu($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
@@ -84,9 +91,10 @@ class HotelSettingController extends Controller
 
 
     public function prices(Request $request , $hotel_code){
-//        $request->validate([
-//            'int_name'      =>	'bail|required'
-//        ]);
+        $request->validate([
+    	 	   'menu_name'      =>	'required|array|min:1',
+               'menu_name.*'      =>	'required'
+    	 ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
 
@@ -115,9 +123,61 @@ class HotelSettingController extends Controller
         }
     }
 
+    /*---------------------------Bank-Account-Detail------------------*/
+
+    public function showdetail($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.account-detail' , compact('hotel_code','hotelsetting'));
+    }
+
+    public function detail(Request $request , $hotel_code){
+        $request->validate([
+            'account_name'      =>	'required|array|min:1',
+            'account_name.*'    =>	'required'
+        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['account_name']) ; $i++){
+            $temarr[] = [
+                "account_name"    =>$data['account_name'][$i],
+                "account_number" =>$data['account_number'][$i],
+                "bank_name"        =>$data['bank_name'][$i],
+                "account_type"      =>$data['account_type'][$i],
+                "ifsc_code"            =>$data['ifsc_code'][$i],
+                "micr_code"          =>$data['micr_code'][$i],
+                "bsr_code"            =>$data['bsr_code'][$i],
+                "address"              =>$data['address'][$i],
+                "branch_code"       =>$data['branch_code'][$i],
+                "branch_name"      =>$data['branch_name'][$i]
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['bank_account_detail'=>$tem]);
+            return back()->withSuccess('Bank Account Detail updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['bank_account_detail'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Bank Account Detail added successfully');
+        }
+    }
+
+    /*----------------------------Menu-Type-------------------------*/
+
+    public function showmenu($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.menu-type' , compact('hotel_code','hotelsetting'));
+    }
+
     public function variety(Request $request , $hotel_code){
         $request->validate([
-            'int_name'      =>	'bail|required'
+            'int_name'      =>	'required|array|min:1',
+            'int_name.*'    =>	'required'
         ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
@@ -147,11 +207,19 @@ class HotelSettingController extends Controller
         }
     }
 
+    /*------------------------------Menu-List-------------------------------*/
+
+    public function showlist($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.menu-list' , compact('hotel_code','hotelsetting'));
+    }
+
     public function listed(Request $request , $hotel_code){
-         $request->validate([
-         	 'food_name'      =>	'bail|required',
-             'type'           =>	'bail|required'
-         ]);
+        $request->validate([
+            'food_name'      =>	'required|array|min:1',
+            'food_name.*'    =>	'required'
+        ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
 
@@ -174,6 +242,8 @@ class HotelSettingController extends Controller
         }
     }
 
+    /*-------------------------------Applicable Taxes----------------------------*/
+
      public function showtaxes($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
@@ -181,13 +251,10 @@ class HotelSettingController extends Controller
     }
 
     public function taxes(Request $request , $hotel_code){
-        // $request->validate([
-    	// 	'tax_name'      =>	'bail|required',
-    	// 	'vat'			=>	'bail|required|numeric',
-        //     'cgst'          =>  'bail|required|numeric',
-        //     'sgst'          =>  'bail|required|numeric',
-        //     'total'         =>  'bail|required|numeric',
-    	// ]);
+         $request->validate([
+    	 	   'tax_name'      =>	'required|array|min:1',
+               'tax_name.*'      =>	'required'
+    	 ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
         
@@ -213,6 +280,8 @@ class HotelSettingController extends Controller
         }
 }
 
+/*------------------------Type of Room--------------------------*/
+
     public function type($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
@@ -220,6 +289,10 @@ class HotelSettingController extends Controller
     }
 
      public function typeofroom(Request $request , $hotel_code){
+             $request->validate([
+                 'room_type'      =>	'required|array|min:1',
+                 'room_type.*'      =>	'required'
+             ]);
             $hotel = hotelIdByCode($hotel_code);
             $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
     
@@ -241,17 +314,44 @@ class HotelSettingController extends Controller
                 return back()->withSuccess('Room type detail added successfully');
             }
     }
-    
 
-    public function picture($hotel_code){
-        return view('tenant.admin.hotel-setting.profile-pic' ,compact('hotel_code'));
-    }
+    /* ----------------------------Near By-------------------------------*/
 
     public function nearby($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
         return view('tenant.admin.hotel-setting.hotel-near' , compact('hotel_code','hotelsetting'));
     }
+
+    public function storenearby(Request $request , $hotel_code){
+        $request->validate([
+            'name'        =>	'required|array|min:1',
+            'name.*'      =>	'required'
+        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['name']) ; $i++){
+            $temarr[] = [
+                "name"=>$data['name'][$i],
+                "distance"=>$data['distance'][$i],
+                "time"=>$data['time'][$i]
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['near_by'=>$tem]);
+            return back()->withSuccess('Near By Places updated successfully');
+        }
+        else{
+            HotelSetting::create(['near_by'=>$tem]);
+            return back()->withSuccess('Near By Places added successfully');
+        }
+    }
+
+    /*----------------------------Policy------------------------------*/
 
     public function policy($hotel_code){
     	$hotel = hotelIdByCode($hotel_code);
@@ -270,6 +370,12 @@ class HotelSettingController extends Controller
         	HotelSetting::create(array_merge($request->all(),['hotel_id'=>$hotel->id]));
         }
         return back()->withSuccess('All Policies add successfully');
+    }
+
+    /*------------------------------------------------------------------*/
+
+    public function picture($hotel_code){
+        return view('tenant.admin.hotel-setting.profile-pic' ,compact('hotel_code'));
     }
 
     public function cancel($hotel_code){
