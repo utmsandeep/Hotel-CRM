@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
   	<style type="text/css">
   		.in-table{
@@ -44,392 +45,215 @@
 		html.borderradius #scrollgrabber {
 			border-radius: 1em;
 		}
+
+		.heading{
+
+		    background: #e0e0e0;
+		    padding-top: 10px;
+		    padding-bottom: 10px;
+		    padding-left: 20px;
+		    padding-right: 20px;
+		    border-radius: 10px;
+		}
+		.content-section{
+			display: none;
+		}
   	</style>
 </head>
 <body>
 	<div class="container" id="myP">
-		<p>&nbsp;</p>
+		<div class="row clearfix">
+    		<div class="col-lg-12 col-md-12 col-sm-12">
+       
+		        <form method="post" enctype="multipart/form-data" action="">
+		            @csrf
+		            <div class="header">
+		                <h3 class="heading"><strong><i class="fa fa-plus"></i>&nbsp;Greeting</strong></h3>
+		            </div>
+		            <div class="row clearfix content-section">
+		                <div class="col-lg-12 col-md-12 col-sm-12">
+		                    <div class="card">
+		                        <div class="body">
+		                            <textarea rows="25" id="editor1" name="booking_policy">{{ $template->greeting }}</textarea>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="header">
+                        <h3 class="heading"> <strong><i class="fa fa-plus"></i>&nbsp;GROUP & CATERING SALES AGREEMENT</strong></h3>
+                    </div>
+		            <div class="row clearfix content-section">
+		                <div class="col-lg-12 col-md-12 col-sm-12">
+		                    <div class="card">
+		                        <div class="body">
+		                            <textarea rows="25" id="editor2" name="booking_policy">
+		                            	{{ $template->g_c_sales_agreement }}
+	                            		<p>&nbsp;</p>
 
-		<p><strong>Mr XXXX Singh</strong></p>
+										<table cellspacing="0" style="border-collapse:collapse; width:616px">
+											<tbody>
+												<tr>
+													<td style="background-color:black; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:16px; vertical-align:bottom">
+													<p><strong>PARTICULARS</strong></p>
+													</td>
+													<td style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:16px; vertical-align:bottom">
+													<p><strong>DESCRIPTION</strong></p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>ORGANIZATION</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>YRF &nbsp;xxxxxxxxxx &nbsp;PVT LTD.</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>GROUP CONTACT</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>Mr. Xxxxx Singh</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:33px; vertical-align:top">
+													<p>ADDRESS</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:33px; vertical-align:bottom">
+													<p>G-1 A, AHINSA CIRCLE, ASHOK MARG,&nbsp;</p>
 
-		<p><strong>YRF xxxxxxxxxxxxxx. PVT LTD</strong></p>
+													<p>C-Scheme, Jaipur, Rajasthan, 302001.</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>PHONE NUMBER</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>91 xxxxxxxxx40</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>E-MAIL</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>sanjay@xxxxxxx.com</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>NAME OF THE EVENT</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>YRF xxxxxxxx PVT LTD.</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>DATE OF THE EVENT</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>&nbsp;02nd March to 06th March</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>MINIMUM ATTENDANCE</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>&nbsp;10</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>DATE OF ISSUE OF AGREEMENT</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>28 January 2020</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>REVISED AND REISSUED ON</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
+													<p>28-Jan-20</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>BOOKING ID</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>156037</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>PAN Number</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>AAACY3361K</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>GST IN Number</p>
+													</td>
+													<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
+													<p>08AAACY3361K1Z3</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+		                            </textarea>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="header">
+		                    <h3 class="heading"> <strong><i class="fa fa-plus"></i>&nbsp;GUEST ROOM COMMITMENT</strong></h3>
+		            </div>
+		            <div class="row clearfix content-section">
+		                <div class="col-lg-12 col-md-12 col-sm-12">
+		                    <div class="card">
+		                        <div class="body">
+		                            <textarea rows="25" id="editor3" name="booking_policy">
+		                            	<p>The Hotel agrees that it will provide below listed rooms per night and following group rates for listed nights to the <strong>Mr</strong><strong> Sanjay Shivalkar/ YRF xxxxx PVT LTD.</strong> to be utilized as follows:</p>
+		                            </textarea>
+		                        </div>
+		                    </div>
+		                    <br>
+		                    <table  cellspacing="0" style="">
+								<tbody id="rooms-table">
+								</tbody>
+							</table>
+							<a class="btn btn-info"  id="genrate-header-row">Draw Table</a>
+							<a class="btn btn-info"  id="genrate-row" style="display: none">Insert Row</a>
+		                </div>
+		            </div>
+		            <div class="header">
+		                <h3 class="heading"><strong><i class="fa fa-plus"></i>&nbsp;Packages and Other</strong></h3>
+		            </div>
+		            <div class="row clearfix content-section">
+		                <div class="col-lg-12 col-md-12 col-sm-12">
+		                    <div class="card">
+		                        <div class="body">
+		                            <textarea rows="25" id="editor4" name="booking_policy">{{ $template->payment_packages_other	 }}</textarea>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </form>
+    		</div>
+		</div>
 
-		<p><strong>G-1 A, AHINSA CIRCLE, ASHOK MARG,</strong></p>
-
-		<p><strong>C-Scheme,</strong></p>
-
-		<p><strong>Jaipur, Rajasthan India</strong></p>
-
-		<p><strong>91 xxxxxxxxxx</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p><strong>Dear Mr. Sngh,</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p><strong>Greetings from the Jaisalmer xxxxx Resort and Spa! (hotel name)</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p>We would like to thank you for your enquiry and for your interest in (Hotel Name)</p>
-
-		<p>Jaisalmer Marriott Resort and Spa is engrained with the cultural legacy of the Golden City complemented by inviting spaces that exemplify refined grace and private service. It is strategically located close to the heart of the city. Our hotel offers perfect accommodation for leisure as well as business travelers.</p>
-
-		<p>This Contemporary Palace hotel has 135 spacious rooms including 09 suites, catering to the MICE and leisure traveler. Our hotel is a perfect destination where work and pleasure blend seamlessly into each other.</p>
-
-		<p>We are pleased to enclose an offer tailored especially for you, one that will completely fulfill all your needs and requirements</p>
-
-		<p>Should you have any further clarifications on the same, we are happy to help you.</p>
-
-		<p>&nbsp;</p>
-
-		<p>We will keep this offer reserved for you untill <strong>11th Jan, 2020</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p>Thank you for trusting us to give us an opportunity to organize an event for<strong> </strong><strong>Mr Sanjay Shivalkar</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p><strong>Yours sincerely,</strong></p>
-
-		<p><img src="file:///C:/Users/DAYSHI~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" style="height:39px; width:77px" /></p>
-
-		<p><strong>YUVRAJ SINGH TANWAR</strong></p>
-
-		<p><strong>Sales Executive</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p>&nbsp;</p>
-
-		<p><strong>GROUP &amp; CATERING SALES AGREEMENT</strong></p>
-
-		<p>&nbsp;</p>
-
-		<p>The following agreement between the <strong>Jaisalmer Marriott Resort and Spa</strong> (&ldquo;The Hotel&rdquo;)<strong> and </strong><strong>YRF TELEVISION PVT LTD.</strong><strong> </strong>outlines specific conditions and services to be provided.</p>
-
-		<p>&nbsp;</p>
-
-		<table cellspacing="0" style="border-collapse:collapse; width:616px">
-			<tbody>
-				<tr>
-					<td style="background-color:black; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:16px; vertical-align:bottom">
-					<p><strong>PARTICULARS</strong></p>
-					</td>
-					<td style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:16px; vertical-align:bottom">
-					<p><strong>DESCRIPTION</strong></p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>ORGANIZATION</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>YRF &nbsp;xxxxxxxxxx &nbsp;PVT LTD.</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>GROUP CONTACT</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>Mr. Xxxxx Singh</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:33px; vertical-align:top">
-					<p>ADDRESS</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:33px; vertical-align:bottom">
-					<p>G-1 A, AHINSA CIRCLE, ASHOK MARG,&nbsp;</p>
-
-					<p>C-Scheme, Jaipur, Rajasthan, 302001.</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>PHONE NUMBER</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>91 xxxxxxxxx40</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>E-MAIL</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>sanjay@xxxxxxx.com</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>NAME OF THE EVENT</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>YRF xxxxxxxx PVT LTD.</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>DATE OF THE EVENT</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>&nbsp;02nd March to 06th March</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>MINIMUM ATTENDANCE</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>&nbsp;10</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>DATE OF ISSUE OF AGREEMENT</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>28 January 2020</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>REVISED AND REISSUED ON</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:16px; vertical-align:bottom">
-					<p>28-Jan-20</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>BOOKING ID</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>156037</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>PAN Number</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>AAACY3361K</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>GST IN Number</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom">
-					<p>08AAACY3361K1Z3</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3><strong>GUEST ROOM COMMITMENT</strong></h3>
-
-		<p>&nbsp;</p>
-
-		<p>The Hotel agrees that it will provide below listed rooms per night and following group rates for listed nights to the <strong>Mr</strong><strong> Sanjay Shivalkar/ YRF xxxxx PVT LTD.</strong> to be utilized as follows:</p>
-
-		<p>&nbsp;</p>
-		<form action="{{ route('tenant.admin.showPerposalTemplate.store') }}" method="post">
-			@csrf
-		<table  cellspacing="0" style="">
-			<tbody id="rooms-table">
-			</tbody>
-		</table>
-		<input type="submit" value="submit">
-		</form>
-		<a class="btn btn-info"  id="genrate-header-row">Draw Table</a>
-		<a class="btn btn-info"  id="genrate-row" style="display: none">Insert Row</a>
-		<table cellspacing="0" style="border-collapse:collapse; width:105.62%">
-			<tbody>
-				<tr>
-					<td style="background-color:black; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:15px">
-					<p><strong>Room Type</strong></p>
-					</td>
-					<td colspan="2" style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:15px">
-					<p><strong>Monday</strong></p>
-					</td>
-					<td colspan="2" style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:15px">
-					<p><strong>Tuesday</strong></p>
-					</td>
-					<td colspan="2" style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:15px">
-					<p><strong>Wednesday</strong></p>
-					</td>
-					<td colspan="2" style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:15px">
-					<p><strong>Thursday</strong></p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>&nbsp;</p>
-					</td>
-					<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>02-03-20</p>
-					</td>
-					<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>03-03-20</p>
-					</td>
-					<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>04-03-20</p>
-					</td>
-					<td colspan="2" style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>05-03-20</p>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="9" style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>Oasis Room</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>Occ1&amp;2</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>7</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 9500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>13</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 9500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>12</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 9500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>12</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 9500+ Tax</p>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="9" style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:16px">
-					<p>Royal Room</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>Occ1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 13500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 13500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 13500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 13500+ Tax</p>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="9" style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>Marriott Jaisalmer Suite</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p>Occ1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>1</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 15500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>2</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 15500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>2</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 15500+ Tax</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>2</p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p>INR 15500+ Tax</p>
-					</td>
-				</tr>
-				<tr>
-					<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>Total</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>9</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>&nbsp;</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>16</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>&nbsp;</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>15</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>&nbsp;</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>15</strong></p>
-					</td>
-					<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px">
-					<p><strong>&nbsp;</strong></p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
+		<!-- <form action="{{ route('tenant.admin.showPerposalTemplate.store') }}" method="post">
+			@csrf -->
+		
+		
 		<p>&nbsp;</p>
 
 		<p>&nbsp;</p>
@@ -1437,6 +1261,7 @@
 		<script src="{{ asset('js/tenant/jSignature/src/plugins/jSignature.CompressorBase30.js') }}"></script>
 		<script src="{{ asset('js/tenant/jSignature/src/plugins/jSignature.CompressorSVG.js') }}"></script>
 		<script src="{{ asset('js/tenant/jSignature/src/plugins/signhere/jSignature.SignHere.js') }}"></script> 
+		<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 		<script>
 		$(document).ready(function() {
 
@@ -1478,8 +1303,26 @@
 
 				 $(this).show();
 				 $('#content').show();
+			});
+
+			$(document).on('click' , '.heading' , function(){
+				$(this).parent().next('.content-section').toggle('slow');
+				$(this).find('strong').find('i').attr('class');
+				var icon = "fa fa-plus";
+				if($(this).find('strong').find('i').attr('class') === 'fa fa-plus')
+					icon = "fa fa-minus";
+				$(this).find('strong').find('i').attr('class' , icon);
 			});	
 		});
 	</script>
+	<script>
+        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace( 'editor2' );
+        CKEDITOR.replace( 'editor3' );
+        CKEDITOR.replace( 'editor4' );
+        // CKEDITOR.replace( 'editor5' );
+        // CKEDITOR.replace( 'editor6' );
+        // CKEDITOR.replace( 'editor7' );
+</script>
 </body>
 </html>

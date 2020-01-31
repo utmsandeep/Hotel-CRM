@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Tenant\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Tenant\Admin\PerposalTemplate;
 
 class PerposalController extends Controller
 {
     public function showPerposalTemplate(){
-    	return view('tenant.admin.perposal.perposal-template');
+        $template = PerposalTemplate::first();
+    	return view('tenant.admin.perposal.perposal-template' , compact('template'));
     }
     public function showPerposal(){
     	

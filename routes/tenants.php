@@ -227,6 +227,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 /* banquet */
 			 Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
 			 Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
+			 Route::post('hotel-setting/collection', [HotelSettingController::class, 'collection'])->name('tenant.admin.hotelSetting.collection');
 
 			  Route::get('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettings'])->name('tenant.admin.hotelSetting.importHotelSettings');
 			  Route::post('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettingsStore'])->name('tenant.admin.hotelSetting.importHotelSettingsStore');

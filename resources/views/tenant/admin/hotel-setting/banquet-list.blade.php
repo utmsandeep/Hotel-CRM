@@ -2,10 +2,11 @@
 @section('title', 'Banquet List')
 @section('parentPageTitle', 'Hotel Settings')
 @section('create-new')
-<a id="add-new" href="{{ route('tenant.admin.hotelSetting.create') }}"> <button style="min-width: 6.375rem;margin-right: 10px" class="btn btn-success btn-icon float-right" type="button">Create</button></a> 
+<a id="add-new" href="{{ route('tenant.admin.hotelSetting.create') }}">
+{{--    <button style="min-width: 6.375rem;margin-right: 10px" class="btn btn-success btn-icon float-right" type="button">Create</button></a> --}}
 @stop
 @section('page-style')
-<link rel="stylesheet" href=""/>
+    <link rel="stylesheet" href="{{asset('tenant-admin/plugins/summernote/dist/summernote.css')}}"/>
 @stop
 @section('content')
         <div class="row clearfix">
@@ -42,3 +43,4 @@
             </div>
         </div>
 @stop
+
