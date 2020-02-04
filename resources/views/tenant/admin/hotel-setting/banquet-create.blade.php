@@ -81,35 +81,36 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-4 col-md-4 col-sm-4" >
-                                                    <div class="form-group">
-                                                        <input type="text" name="seating_style" class="form-control" placeholder="Seating Style">
-                                                    </div>
-                                                </div>
+{{--	                                            <div id="production">--}}
+{{--		                                            <div class="col-lg-6 col-md-6 col-sm-6" style="float:left;">--}}
+{{--			                                            <div class="form-group">--}}
+{{--				                                            <input type="text" name="seating_style" class="form-control" placeholder="Seating Style">--}}
+{{--			                                            </div>--}}
+{{--		                                            </div>--}}
 
-                                                <div class="col-lg-4 col-md-4 col-sm-4" id="production">
-                                                    <div class="form-group">
-                                                        <input type="number" name="no_person" class="form-control" placeholder="Number of persons">
-                                                    </div>
-                                                </div>
+{{--		                                            <div class="col-lg-4 col-md-4 col-sm-4" style="float:left;">--}}
+{{--			                                            <div class="form-group">--}}
+{{--				                                            <input type="number" name="no_person" class="form-control" placeholder="Number of persons">--}}
+{{--			                                            </div>--}}
+{{--		                                            </div>--}}
+{{--	                                            </div>--}}
 {{--                                                <input type='button' value='Add' id='add_production'/>--}}
-                                                <div class="col-lg-4 col-md-4 col-sm-4" id="production">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20" id="add_production">Add field</button>
-                                                    </div>
-                                                </div>
+{{--                                                <div class="col-lg-4 col-md-4 col-sm-4">--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20" id="add_production">Add field</button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 
 
-
-                                                <div class="col-lg-4 col-md-4 col-sm-4 ">
-                                                    <div class="form-group">
-                                                        <label for="logo">Picture Of Banquet Hall</label>
-                                                        <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">
-                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field"> Remove</button>
-                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-more">Add field</button>
-                                                    </div>
-                                                </div>
+{{--                                                <div class="col-lg-4 col-md-4 col-sm-4 ">--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="logo">Picture Of Banquet Hall</label>--}}
+{{--                                                        <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">--}}
+{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field"> Remove</button>--}}
+{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-more">Add field</button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 
 

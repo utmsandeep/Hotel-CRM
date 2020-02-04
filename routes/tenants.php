@@ -244,6 +244,10 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			 Route::post('/perposal-template' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
 
+			 Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
+
+			 Route::get('/perposal-template/show/{booking_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
+
 			 Route::get('/test' , [HotelController::class , 'test']);
 
 
