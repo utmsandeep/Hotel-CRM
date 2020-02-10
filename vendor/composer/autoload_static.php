@@ -520,6 +520,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Model\\Tenant\\Admin\\HotelRoom' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelRoom.php',
         'App\\Model\\Tenant\\Admin\\HotelSetting' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelSetting.php',
         'App\\Model\\Tenant\\Admin\\Permission' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Permission.php',
+        'App\\Model\\Tenant\\Admin\\Perposal' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Perposal.php',
         'App\\Model\\Tenant\\Admin\\PerposalTemplate' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/PerposalTemplate.php',
         'App\\Model\\Tenant\\Admin\\Role' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Role.php',
         'App\\Model\\Tenant\\Consumer' => __DIR__ . '/../..' . '/app/Model/Tenant/Consumer.php',

@@ -78,6 +78,7 @@ return array(
     'App\\Model\\Tenant\\Admin\\HotelRoom' => $baseDir . '/app/Model/Tenant/Admin/HotelRoom.php',
     'App\\Model\\Tenant\\Admin\\HotelSetting' => $baseDir . '/app/Model/Tenant/Admin/HotelSetting.php',
     'App\\Model\\Tenant\\Admin\\Permission' => $baseDir . '/app/Model/Tenant/Admin/Permission.php',
+    'App\\Model\\Tenant\\Admin\\Perposal' => $baseDir . '/app/Model/Tenant/Admin/Perposal.php',
     'App\\Model\\Tenant\\Admin\\PerposalTemplate' => $baseDir . '/app/Model/Tenant/Admin/PerposalTemplate.php',
     'App\\Model\\Tenant\\Admin\\Role' => $baseDir . '/app/Model/Tenant/Admin/Role.php',
     'App\\Model\\Tenant\\Consumer' => $baseDir . '/app/Model/Tenant/Consumer.php',

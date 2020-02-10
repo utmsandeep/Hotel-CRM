@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Muli|Noto+Sans|Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Questrial&display=swap");
 body {
-  font-family: 'Noto Sans', sans-serif;
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Muli', sans-serif;
+  font-family: "Noto Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Muli", sans-serif;
 }
 
 .btn.btn-raised.btn-primary {
@@ -13,13 +13,13 @@ body {
 
 .navbar {
   -webkit-box-shadow: 0px 0px 3px 0.3px #dfdfdf !important;
-          box-shadow: 0px 0px 3px 0.3px #dfdfdf !important;
+  box-shadow: 0px 0px 3px 0.3px #dfdfdf !important;
   color: #073156 !important;
   position: fixed !important;
   width: 100%;
   top: 0;
   background-color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .navbar-nav .nav-link {
@@ -46,7 +46,7 @@ body {
   display: flex;
   margin-top: 66px;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   background-color: #fff;
 }
 
@@ -59,15 +59,15 @@ body {
 
 .bannersection .bannercontent {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .bannersection .bannercontent {
     max-width: 100%;
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -83,15 +83,15 @@ body {
 
 .bannersection .bannerimg {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .bannersection .bannerimg img {
   width: 100%;
   height: 550px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .typewriter {
@@ -101,10 +101,10 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   /* DEMO-SPECIFIC STYLES */
   /* The typing effect */
   /* The typewriter cursor effect */
@@ -120,16 +120,17 @@ body {
   color: #073156;
   overflow: hidden;
   /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid #073156;
+  border-right: 0.15em solid #073156;
   /* The typwriter cursor */
   white-space: nowrap;
   /* Keeps the content on a single line */
   margin: 0 auto;
   /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   /* Adjust as needed */
-  -webkit-animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
-          animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+  -webkit-animation: typing 3.5s steps(30, end),
+    blink-caret 0.5s step-end infinite;
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -157,7 +158,8 @@ body {
 }
 
 @-webkit-keyframes blink-caret {
-  from, to {
+  from,
+  to {
     border-color: transparent;
   }
   50% {
@@ -166,7 +168,8 @@ body {
 }
 
 @keyframes blink-caret {
-  from, to {
+  from,
+  to {
     border-color: transparent;
   }
   50% {
@@ -187,15 +190,18 @@ body {
 
 .sectionbanner .selector-for-some-widget {
   -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
 }
 
-.sectionbanner .custom-file-control, .sectionbanner .form-control, .sectionbanner .is-focused .custom-file-control, .sectionbanner .is-focused .form-control {
+.sectionbanner .custom-file-control,
+.sectionbanner .form-control,
+.sectionbanner .is-focused .custom-file-control,
+.sectionbanner .is-focused .form-control {
   background-image: none !important;
 }
 
 .sectiontwo {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: rgba(23, 119, 203, 0.1);
   padding: 50px;
 }
@@ -208,13 +214,13 @@ body {
 
 .sectiontwo .details {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .sectiontwo .details h3 {
   letter-spacing: 4px;
   text-transform: uppercase;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -228,18 +234,18 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin: 50px auto 10px;
 }
 
 .sectiontwo .cardflex .cards {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   margin: 10px 20px 40px;
-  -webkit-transition: margin .5s;
+  -webkit-transition: margin 0.5s;
   /* Safari prior 6.1 */
-  transition: margin .5s;
+  transition: margin 0.5s;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -255,21 +261,21 @@ body {
 .sectiontwo .cardflex .cards .card-img-top {
   height: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .sectiontwo .cardflex .cards .card-img-top {
     height: 150px;
     -ms-flex-preferred-size: 100% !important;
-        flex-basis: 100% !important;
+    flex-basis: 100% !important;
   }
 }
 
 .sectiontwo .cardflex .cards .card {
   border-radius: 5px;
   -webkit-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14);
-          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14);
 }
 
 .sectiontwo .cardflex .cards .card .card-title {
@@ -293,7 +299,7 @@ body {
 
 .globalsection {
   margin: 50px auto;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .globalsection h1 {
@@ -311,13 +317,13 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .flexpart .textpart {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding-right: 40px;
 }
 
@@ -344,14 +350,14 @@ body {
 
 .flexpart .imgpart {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .flexpart .imgpart {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -359,7 +365,7 @@ body {
   width: 100%;
   height: 400px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin: 10px 10px;
   border-radius: 5px;
 }
@@ -368,7 +374,7 @@ body {
   width: 100%;
   height: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin: 10px 10px;
   border-radius: 5px;
 }
@@ -377,7 +383,7 @@ body {
   width: 100%;
   height: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin: 10px 10px;
   border-radius: 5px;
 }
@@ -386,7 +392,7 @@ body {
   width: 100%;
   height: 400px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin: 10px 10px;
   border-radius: 5px;
 }
@@ -490,7 +496,7 @@ body {
 .explorecities .details h3 {
   letter-spacing: 6px;
   text-transform: uppercase;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 .explorecities .explore {
@@ -498,15 +504,15 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .explorecities .explore .city {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin: 40px 20px;
   height: 500px;
   overflow: hidden;
@@ -516,7 +522,7 @@ body {
   .explorecities .explore .city {
     margin: 20px 10px;
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
     height: 350px;
   }
 }
@@ -529,10 +535,10 @@ body {
   width: 100%;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-transition: all .5s ease-in-out;
+  object-fit: cover;
+  -webkit-transition: all 0.5s ease-in-out;
   /* Safari prior 6.1 */
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -543,7 +549,7 @@ body {
 
 .explorecities .explore .city img:hover {
   -webkit-transform: scale(1.2, 1.2);
-          transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -581,11 +587,11 @@ body {
 
 .spacebtn {
   margin-top: 15px;
-  background-color: #073156  !important;
+  background-color: #073156 !important;
   color: #fff !important;
   padding: 15px 25px !important;
   -webkit-box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1) !important;
-          box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1) !important;
+  box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1) !important;
 }
 
 .footer {
@@ -593,20 +599,20 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding: 20px;
 }
 
 .footer .part1 {
   -webkit-box-flex: 1.4;
-      -ms-flex: 1.4;
-          flex: 1.4;
+  -ms-flex: 1.4;
+  flex: 1.4;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .footer .part1 {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -641,14 +647,14 @@ body {
 
 .footer .part2 {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .footer .part2 {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -659,7 +665,7 @@ body {
 
 .footer h3 {
   font-size: 15px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-bottom: 20px;
   color: #073156;
@@ -721,7 +727,8 @@ body {
     -webkit-transition: 0.3s;
     transition: 0.3s;
   }
-  .mobmenupart .overlay a:hover, .mobmenupart .overlay a:focus {
+  .mobmenupart .overlay a:hover,
+  .mobmenupart .overlay a:focus {
     color: #f1f1f1;
   }
   .mobmenupart .overlay .closebtn {
@@ -752,7 +759,7 @@ body {
   position: relative;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .contactsection h2 {
@@ -765,7 +772,7 @@ body {
   text-transform: uppercase;
   font-size: 50px;
   letter-spacing: 4px;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 .col50 {
@@ -887,7 +894,7 @@ body {
   border-bottom-right-radius: 100% 30%;
   height: 230px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .modal-content .modal-header {
@@ -904,7 +911,7 @@ body {
 }
 
 .loginpage {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   padding: 0px 40px 0px;
 }
 
@@ -918,7 +925,7 @@ body {
   text-align: center;
   color: #073156;
   font-size: 26px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-bottom: 10px;
   font-weight: 600;
 }
@@ -928,8 +935,8 @@ body {
   text-transform: uppercase;
   color: #555;
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .loginpage .subbtn {
@@ -938,17 +945,21 @@ body {
   width: 90%;
   border: 2px solid #073156 !important;
   color: #fff !important;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .loginpage .subbtn:hover {
-  -webkit-box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.14), 0 6px 5px -2px rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.12);
-          box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.14), 0 6px 5px -2px rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.14),
+    0 6px 5px -2px rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.14), 0 6px 5px -2px rgba(0, 0, 0, 0.2),
+    0 4px 16px 0 rgba(0, 0, 0, 0.12);
 }
 
 .loginpage .forgetbtn {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   width: 50%;
   float: left;
   text-align: right;
@@ -974,8 +985,10 @@ body {
   border: 2px solid #073156 !important;
   color: #073156 !important;
   background-color: transparent !important;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .loginpage .regbtn:hover {
@@ -997,7 +1010,7 @@ body {
 .loginpage .remme {
   line-height: 22px;
   font-size: 14px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .modal-content .loginmodelbody {
@@ -1014,7 +1027,7 @@ body {
     -ms-flex-direction: row !important;
     -webkit-box-orient: horizontal !important;
     -webkit-box-direction: normal !important;
-            flex-direction: row !important;
+    flex-direction: row !important;
   }
   .navbar-nav .nav-link {
     font-size: 14px !important;
@@ -1035,7 +1048,7 @@ body {
   border-bottom-right-radius: 100% 30%;
   height: 270px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .subsignbtn {
@@ -1078,7 +1091,7 @@ body {
 }
 
 .platbanner h1 {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   width: 60%;
   text-align: center;
   margin: 50px 20%;
@@ -1106,7 +1119,7 @@ body {
   width: 100%;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
@@ -1127,7 +1140,7 @@ body {
   display: flex;
   margin: 100px auto;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 320px) and (max-width: 1024px) {
@@ -1138,14 +1151,14 @@ body {
 
 .alternatesection .flexsection .imgpart {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .alternatesection .flexsection .imgpart {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -1153,7 +1166,7 @@ body {
   width: 100%;
   height: 320px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 @media (min-width: 320px) and (max-width: 1024px) {
@@ -1164,15 +1177,15 @@ body {
 
 .alternatesection .flexsection .contentpart {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding: 40px 10px 40px 10px;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .alternatesection .flexsection .contentpart {
     -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    flex-basis: 100%;
     padding: 20px 10px 0px 10px;
   }
 }
@@ -1199,7 +1212,7 @@ body {
 }
 
 .alternatesection .flexsection .contentpart p {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .alternatesection .padleft {
@@ -1237,16 +1250,16 @@ body {
 .colrev {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
   .colrev {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
 }
 
@@ -1282,3 +1295,65 @@ body {
   margin-left: 20px;
 }
 /*# sourceMappingURL=style.css.map */
+
+/* shortlist page css */
+
+.top-menu1 {
+  margin-top: 65px;
+  position: relative !important;
+}
+input.form-control2 {
+    box-shadow: none;
+    border: 1px solid #d9e2ef;
+    border-radius: 6px;
+}
+.collapse2 button {
+    color: #073156 !important;
+    text-transform: capitalize !important;
+    font-size: 0.95rem !important;
+    border: 1px solid #d9e2ef !important;
+    border-radius: 5px !important;
+    font-weight: 600;
+}
+input.form-control2::placeholder {
+    color: #073156;
+}
+.collapse2 button:hover {
+    color: #fff !important;
+    background: #073156 !important;
+}
+.collapse2 button:after{
+	content: "\f107";
+    font-family: FontAwesome;
+	border:none;
+	display:inline;
+	vertical-align:middle;
+}
+.menu-below {
+    padding-top: 4rem;
+}
+body .menu-below .menu-below-head{
+	font-size: 1.3rem;
+    font-weight: 400 !important;
+    color: #073156;
+}
+.menu-below .map-side-lg {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+span.load-m {
+    background: #073156;
+    color: #fff;
+    padding-right: .75rem;
+    padding-left: .75rem;
+    border-radius: 10rem;
+    padding: .25rem .75rem;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+span.load-m i:before {
+    font-size: 11px;
+    padding-right: 3px;
+    vertical-align: middle;
+}

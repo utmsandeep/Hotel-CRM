@@ -17,6 +17,7 @@ class CreatePerposalsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('consumer_id')->nullable();
             $table->integer('hotel_id')->nullable();
+            $table->integer('lead_id')->nullable();
             $table->string('booking_id')->nullable();
             $table->longText('room_commitment_data')->nullable();
             $table->longText('greeting')->nullable();

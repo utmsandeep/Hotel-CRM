@@ -15,6 +15,10 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 		return view('tenant.index');
  	})->name('tenant.index');
 
+ 	Route::get("/search/hotels" , function(){
+ 		return view('tenant.search-hotels');
+ 	});
+
 	Route::group(['prefix'=>'consumer'] , function(){ 
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');
 	 	Route::post('/logout', [HomeController::class, 'ConsumerLogOut'])->name('tenant.logout.submit');
@@ -240,9 +244,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
 			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
 
-			 Route::get('/perposal-template' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
+			 Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
 
-			 Route::post('/perposal-template' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
+			 Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
 
 			 Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
 

@@ -81,41 +81,34 @@
                                                     </div>
                                                 </div>
 
-{{--	                                            <div id="production">--}}
-{{--		                                            <div class="col-lg-6 col-md-6 col-sm-6" style="float:left;">--}}
-{{--			                                            <div class="form-group">--}}
-{{--				                                            <input type="text" name="seating_style" class="form-control" placeholder="Seating Style">--}}
-{{--			                                            </div>--}}
-{{--		                                            </div>--}}
+                                                <div class="col-lg-4 col-md-4 col-sm-4 ">
+                                                    <div class="form-group">
+                                                        <label for="logo">Picture Of Banquet Hall</label>
+                                                        <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">
+                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field"> Remove</button>
+                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-more">Add field</button>
+                                                    </div>
+                                                </div>
 
-{{--		                                            <div class="col-lg-4 col-md-4 col-sm-4" style="float:left;">--}}
-{{--			                                            <div class="form-group">--}}
-{{--				                                            <input type="number" name="no_person" class="form-control" placeholder="Number of persons">--}}
-{{--			                                            </div>--}}
-{{--		                                            </div>--}}
-{{--	                                            </div>--}}
-{{--                                                <input type='button' value='Add' id='add_production'/>--}}
-{{--                                                <div class="col-lg-4 col-md-4 col-sm-4">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20" id="add_production">Add field</button>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-
-
-
-{{--                                                <div class="col-lg-4 col-md-4 col-sm-4 ">--}}
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label for="logo">Picture Of Banquet Hall</label>--}}
-{{--                                                        <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">--}}
-{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field"> Remove</button>--}}
-{{--                                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-more">Add field</button>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
+                                                <div class="form-group">
+                                                    <form name="add_name" id="add_name">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered" id="dynamic_field">
+                                                                <tr>
+                                                                    <td><input type="text" name="seating_style[]" placeholder="Seating Style" class="form-control name_list" /></td>
+                                                                     <td><input type="text" name="no_person[]" placeholder="Number of Persons" class="form-control name_list" /></td>
+                                                                    <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                                                                </tr>
+                                                            </table>
+                                                            <input type="button" name="submit" id="submit" class="btn btn-info" value="Sub" />
+                                                        </div>
+                                                    </form>
+                                                </div>
 
 
 
 
-                                        </div>
+                                            </div>
                                     </div>
                             </div>
                         </div>
@@ -137,12 +130,26 @@
     <script src="{{asset('tenant-admin/js/pages/forms/dropify.js')}}"></script>
     <script>
         $(document).ready(function(){
-            $('#add_production').click(function(){
-                $('#production').append('<div class="row clearfix multi-field"><div class="form-group">\n' +
-                    '                                                        <input type="text" name="seating_style" class="form-control" placeholder="Seating Style">\n' +
-                    '                                                    </div><div class="form-group">\n' +
-                    '                                                        <input type="number" name="no_person" class="form-control" placeholder="Number of persons">\n' +
-                    '                                                    </div></div>');
+            var i=1;
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="seating_style[]" placeholder="Seating Style" class="form-control name_list" /></td><td><input type="text" name="no_person[]" placeholder="Number of Persons" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+            $('#submit').click(function(){
+                $.ajax({
+                    url:"name.php",
+                    method:"POST",
+                    data:$('#add_name').serialize(),
+                    success:function(data)
+                    {
+                        alert(data);
+                        $('#add_name')[0].reset();
+                    }
+                });
             });
         });
     </script>

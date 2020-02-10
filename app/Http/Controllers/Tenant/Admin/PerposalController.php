@@ -6,12 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Tenant\Admin\PerposalTemplate;
 use App\Model\Tenant\Admin\Perposal;
+use App\Model\Tenant\Admin\Lead;
 
 class PerposalController extends Controller
 {
-    public function showPerposalTemplate(){
+    public function showPerposalTemplate($lead_id){
         $template = PerposalTemplate::first();
-    	return view('tenant.admin.perposal.perposal-template' , compact('template'));
+        $lead = Lead::find($lead_id);
+        if(!$lead)
+            return redirect()->back()->withErrors("Sorry , Lead not found.");
+
+    	return view('tenant.admin.perposal.perposal-template' , compact('template' , 'lead'));
     }
     public function editPerposal($booking_id){
     	$perposal = Perposal::where('booking_id' , $booking_id)->first();
@@ -29,7 +34,7 @@ class PerposalController extends Controller
     	return view('tenant.admin.perposal.show-perposal' , compact('perposal'));
     }
 
-    public function storePerposal(Request $request){
+    public function storePerposal(Request $request , $lead_id){
     	
     	
     	$room_data = array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price);
