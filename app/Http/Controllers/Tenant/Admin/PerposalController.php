@@ -10,21 +10,23 @@ use App\Model\Tenant\Admin\Lead;
 
 class PerposalController extends Controller
 {
-    public function showPerposalTemplate($lead_id){
+    public function showPerposalTemplate($hotel_code  , $lead_id){
         $template = PerposalTemplate::first();
         $lead = Lead::find($lead_id);
-        if(!$lead)
+        $hotel = hotelIdByCode($hotel_code);
+        if(!$lead){
             return redirect()->back()->withErrors("Sorry , Lead not found.");
-
-    	return view('tenant.admin.perposal.perposal-template' , compact('template' , 'lead'));
+        }
+        $request_data = json_decode($lead->request_data);
+    	return view('tenant.admin.perposal.perposal-template' , compact('template' , 'lead' , 'hotel' , 'request_data' , 'hotel_code'));
     }
-    public function editPerposal($booking_id){
+    public function editPerposal($hotel_code , $booking_id ){
     	$perposal = Perposal::where('booking_id' , $booking_id)->first();
     	if(empty($perposal))
     		die("Perposal not found.");
     	return view('tenant.admin.perposal.edit-perposal');
     }
-     public function showPerposal($booking_id){
+     public function showPerposal($hotel_code , $booking_id){
      	$perposal = Perposal::where('booking_id' , $booking_id)->first();
     	if(empty($perposal))
     		die("Perposal not found.");
@@ -34,7 +36,7 @@ class PerposalController extends Controller
     	return view('tenant.admin.perposal.show-perposal' , compact('perposal'));
     }
 
-    public function storePerposal(Request $request , $lead_id){
+    public function storePerposal(Request $request  , $hotel_code  , $lead_id){
     	
     	
     	$room_data = array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price);

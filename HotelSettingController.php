@@ -399,6 +399,8 @@ class HotelSettingController extends Controller
         return view('tenant.admin.hotel-setting.beverages-policy' , compact('hotel_code'));
     }
 
+    /*----------------------------------Banquet-Seating-Style--------------------------------*/
+
     public function listing($hotel_code){
 	    $banquets = HotelBanquet::paginate(10);
         return view('tenant.admin.hotel-setting.banquet-list' , compact('banquets' , 'hotel_code'));
@@ -430,5 +432,7 @@ class HotelSettingController extends Controller
             return back()->withSuccess('Banquet added successfully');
 
     }
+
+    /*------------------------------------------------------------------------*/
 
 }

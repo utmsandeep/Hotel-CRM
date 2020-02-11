@@ -17,7 +17,9 @@ class CreateHotelBanquetsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('hotel_id')->nullable();
             $table->decimal('width_ft' , 8 , 2)->nullable();
+	        $table->decimal('length_ft' , 8 , 2)->nullable();
             $table->decimal('height_ft' , 8 , 2)->nullable();
+	        $table->decimal('area_sq_ft' , 8 , 2)->nullable();
             $table->integer('no_of_entry_point')->nullable();
             $table->boolean('is_separate_entrance')->nullable();
             $table->text('pictures')->nullable();

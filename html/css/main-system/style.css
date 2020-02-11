@@ -1357,3 +1357,224 @@ span.load-m i:before {
     padding-right: 3px;
     vertical-align: middle;
 }
+.shadow-light-lg {
+    box-shadow: 0 1.5rem 4rem rgba(22,28,45,.05)!important;
+}
+.venueName {
+    font-size: 13px;
+    font-weight: 400 !important;
+    color: #1777cb !important;
+   
+}
+.venueCard a {
+    text-decoration: none;
+}
+.venueCard h5 {
+    color: #073156;
+    font-size: 1.0625rem;
+    font-weight: 500 !important;
+    line-height: 1.5;
+    margin-top: 4px;
+    margin-bottom: 5px !important;
+}
+.venueCard .cart-btn button {
+   
+    color: #fff;
+    background: #073156;
+    border-radius: .375rem;
+    border-top-left-radius: 0;
+    padding: 4px 11px !important;
+    border-bottom-right-radius: 0;
+    font-size: 12px;
+	text-transform:capitalize;
+}
+.venueCard .cart-btn button:active, .venueCard .cart-btn button:focus, .venueCard .cart-btn button:visited{
+	color: #fff;
+    background: #073156;
+	
+}
+.venueCard a:hover {
+    text-decoration: none;
+}
+.venueCard .cart-btn button i:before {
+    padding-right: 3px;
+}
+.dropdown-menu {
+    top: 100% !important;
+}
+.dropdown-submenu .custom-select2 {
+    border: 1px solid #ddd;
+    border-radius: 5px !important;
+   
+    height: 54px;
+    color: #073156;
+}
+.dropdown-submenu .custom-select2:focus{
+	border-color: #073156;
+	box-shadow:none;
+}
+.custom-select2 {
+    color: #073156;
+    padding: 6px 7px;
+    height: 55px;
+    border: 1px solid #ddd;
+    border-radius: 5px !important;
+    box-sizing: border-box;
+}
+.d-n {
+    display: none;
+}
+.custom-input-parent div {
+    padding-top: 0;
+}
+input.custominput2::placeholder {
+    /* height: 55px; */
+    color: #073156;
+}
+input.custominput2 {
+    height: 55px;
+    border: 1px solid #ddd;
+    padding: 6px 7px;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+body .custom-btn {
+    background: none;
+  border:unset !important;
+    padding: 0 19px !important;
+}
+body .custom-btn:after {
+    padding-left: 4px !important;
+}
+.custom-dropdawn {
+    display: none;
+    position: absolute;
+    background: #fff;
+    top: 100%;
+    box-sizing: border-box;
+}
+.custum-toggle {
+    padding: 7.7px 0.5rem !important;
+}
+.custom-drop {
+    position: fixed;
+    left: 0;
+}
+.custom-drop {
+    padding-top: 2rem;
+	color: #073156;
+}
+.btn-min {
+    border-radius: 50%;
+    box-shadow: none;
+    border: 1px solid;
+    line-height: 26px;
+    height: 26px;
+    padding: 0;
+    width: 26px;
+}
+.input-value input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    
+    padding: 0;
+}
+.btn-minus2 {
+    border-color: #ddd;
+    color: #ddd;
+}
+.btn-plus2 {
+    color: #073156;
+}
+.floated-right {
+    display: inline-block;
+    float: right;
+}
+body .cancel-btn {
+    background: #ddd;
+}
+body .apply-btn {
+    color: #fff !important;
+    background: #073156;
+}
+.floated-right {
+    padding-top: 3rem;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+    width: 14px;
+    left: 4px;
+    bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #073156;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.online {
+    padding-bottom: 1rem;
+}
+.custom-drop{
+	display:none;
+}
+.venue-head h5 {
+    font-weight: 500;
+    padding-bottom: 10px;
+	padding-top: 30px;
+}
+.venue-selection {
+    margin-bottom: 7px;
+}
+.btn-row-filter {
+    padding-bottom: 30px;
+}

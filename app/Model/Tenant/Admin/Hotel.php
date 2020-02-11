@@ -7,6 +7,7 @@ use Hyn\Tenancy\Traits\UsesTenantConnection;
 use App\Model\Tenant\Admin;
 use App\Model\Tenant\Admin\HotelAdmin;
 use Illuminate\Notifications\Notifiable;
+use App\Model\Tenant\Admin\HotelSetting;
 
 class Hotel extends Model
 {
@@ -38,5 +39,9 @@ class Hotel extends Model
 
     public function hotelAdmins(){
         return $this->hasMany(HotelAdmin::class , 'hotel_id' , 'id');
+    }
+
+    public function hotelSetting(){
+        return $this->hasOne(HotelSetting::class , 'hotel_id' , 'id');
     }
 }
