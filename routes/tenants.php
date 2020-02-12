@@ -18,6 +18,9 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
  	Route::get("/search/hotels" , function(){
  		return view('tenant.search-hotels');
  	});
+ 	Route::get("/show/hotel" , function(){
+ 		return view('tenant.show-hotel');
+ 	});
 
 	Route::group(['prefix'=>'consumer'] , function(){ 
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');

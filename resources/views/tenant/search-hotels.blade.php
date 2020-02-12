@@ -640,6 +640,12 @@
 </div>
      
 
+<!-- test slider -->
+<!-- <div class="test">
+  <img src="{{ asset('images/searcpage-img/sh-broadway-hotel-0.jpg') }}" />
+  <img src="{{ asset('images/searcpage-img/sh-broadway-hotel-0.jpg') }}" />
+  <img src="{{ asset('images/searcpage-img/sh-broadway-hotel-0.jpg') }}" />
+</div> -->
 
 
 
@@ -648,6 +654,7 @@
 
 @section('script')
 <script src="{{ asset('js/tenant/slick/slick.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $( document ).ready(function() {
     $('.custum-toggle').click(function(){
@@ -659,8 +666,14 @@ $( document ).ready(function() {
       
     });
     
-
-    
+// $('.test').slick({
+//    slidesToShow: 1,
+//    slidesToScroll: 1,
+//    arrows: false,
+//    fade: true,
+//    asNavFor: '.slider-nav'
+//  });
+  
 
 });
 </script>

@@ -357,6 +357,7 @@ class HotelSettingController extends Controller
     public function policy($hotel_code){
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        //dd($hotelsetting);
         return view('tenant.admin.hotel-setting.policy' , compact('hotel_code','hotelsetting'));
     }
 
@@ -365,12 +366,51 @@ class HotelSettingController extends Controller
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
 
-        if(!empty($hotelsetting)){
-        	$hotelsetting->update($request->all());
-        }else{
-        	HotelSetting::create(array_merge($request->all(),['hotel_id'=>$hotel->id]));
-        }
-        return back()->withSuccess('All Policies add successfully');
+	    $data = $request->all();
+
+	    $temarr = [];
+	    for($i = 0 ; $i<count($data['policy_name']) ; $i++){
+		    $temarr[] = [
+			    "policy_name"=>$data['policy_name'][$i],
+			    "default"=>isset($data['default'][$i]),
+			    "policy_detail"=>$data['policy_detail'][$i]
+		    ];
+	    }
+	    $tem = json_encode($temarr);
+
+	    if(!empty($hotelsetting)){
+		    $hotelsetting->update(['policies'=>$tem]);
+		    return back()->withSuccess('All Policies updated successfully');
+	    }
+	    else{
+		    HotelSetting::create(array_merge(['policies'=>$tem] , ['hotel_id'=>$hotel->id]));
+		    return back()->withSuccess('All Policies added successfully');
+	    }
+
+
+
+
+
+//	    $hotel = hotelIdByCode($hotel_code);
+//	    $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+//
+//	    $data = $request->all();
+//	    $temarr = [];
+//	    for($i = 0 ; $i<count($data['room_type']) ; $i++){
+//		    $temarr[] = [
+//			    "room_type"=>$data['room_type'][$i],
+//			    "numberroom"=>$data['numberroom'][$i]
+//		    ];
+//	    }
+//	    $tem = json_encode($temarr);
+//	    if(!empty($hotelsetting)){
+//		    $hotelsetting->update(['room_type'=>$tem]);
+//		    return back()->withSuccess('Room type detail updated successfully');
+//	    }
+//	    else{
+//		    HotelSetting::create(array_merge(['room_type'=>$tem] , ['hotel_id'=>$hotel->id]));
+//		    return back()->withSuccess('Room type detail added successfully');
+//	    }
     }
 
     /*------------------------------------------------------------------*/

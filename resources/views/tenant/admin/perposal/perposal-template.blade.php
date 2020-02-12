@@ -191,14 +191,69 @@
 		                    <br>
 		                    <table  cellspacing="0" style="">
 								<tbody id="rooms-table">
+									<tr><th>Room Type</th>
+										@foreach($request_data->bookings as $key => $bookings)
+											<th colspan='2'>
+												<input value="{{ $bookings->date }}" name='date[]' placeholder='Date' class='in-table' type='text'>
+											</th>
+										@endforeach
+									</tr>
+									<tr><td colspan="{{ count( (array) $request_data->bookings)*2+1 }}"><input name='room_type[]' placeholder='Room Type' class='in-table' type='text'></td></tr>
+									<tr><td><input name='room[]' placeholder='Room' class='in-table' type='text'></td>
+									@foreach($request_data->bookings as $key => $bookings)
+										<td>
+											<input name='total_room[]' value="{{ count( (array) $bookings->rooms) }}" placeholder='Total Room' class='in-table' type='text'>
+										</td>
+										<td>
+											<input name='price[]' placeholder='Price' class='in-table' type='text'>
+										</td>
+									@endforeach
+									</tr>
 								</tbody>
 							</table>
 							<a class="btn btn-info"  id="genrate-header-row">Redraw Table</a>
 							<a class="btn btn-info"  id="genrate-row">Insert Row</a>
-							<!-- <input type="number" name="nights" placeholder="Number of nights" value="5"> -->
-						<!-- 	<input type="number" name="room_types" placeholder="Total Room Types" value="2">  -->
-							<!-- <a class="btn btn-info"  id="">ReDraw Hotel Table</a> -->
 		                </div>
+		                 <div class="col-lg-12 col-md-12 col-sm-12">
+		                 	<h3>Food & Drinks</h3>
+		                 	@foreach($request_data->bookings as $key => $bookings)
+		                 		<h4>{{ $bookings->date }}</h4>
+		                 		@foreach($bookings->foods as $key2 => $food)
+		                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+		                 			@foreach($food as $key3 => $menus)
+		                 				
+		                 				@if($key3 === "extra")
+		                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+		                 					@foreach($menus as $key4 => $menu)
+		                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+		                 					@endforeach
+		                 					@continue
+		                 				@endif
+
+		                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
+		                 			@endforeach
+		                 		@endforeach
+		                 	@endforeach
+
+		                 	<h3>Equipments</h3>
+		                 	@foreach($request_data->bookings as $key => $bookings)
+		                 		<h4>{{ $bookings->date }}</h4>
+		                 		@foreach($bookings->rooms as $key2 => $room)
+		                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+		                 			@foreach($room->equipment as $key3 => $equipment)
+			                 			@if($key3 === "extra")
+			                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+			                 					@foreach($equipment as $key4 => $menu)
+			                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+			                 					@endforeach
+			                 					@continue
+			                 			@endif
+			                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
+		                 			@endforeach
+		                 		@endforeach
+		                 	@endforeach
+
+		                 </div>
 		            </div>
 		            <div class="header">
 		                <h3 class="heading"><strong><i class="fa fa-plus"></i>&nbsp;PACKAGES AND OTHER</strong></h3>
@@ -686,6 +741,16 @@
 		            </div>
 		            <div class="row clearfix content-section">
 		                <div class="col-lg-12 col-md-12 col-sm-12">
+		                	<div class="form-group">
+		                		<label>Policies</label>
+		                		<select class="form-control">
+		                			@foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
+		                				<option value="{{ $policy['policy_name'] }}">
+		                					{{ $policy['policy_name'] }}
+		                				</option>
+		                			@endforeach
+		                		</select>
+		                	</div>
 		                    <div class="card">
 		                        <div class="body">
 		                            <textarea rows="25" id="editor9" name="refunds_cancellation">
@@ -921,7 +986,20 @@
 	<script>
   //document.getElementById("myP").contentEditable = true;
   	$(document).ready(function(){
-  		var nights=2 , room_types;
+  		var nights={{ count( (array) $request_data->bookings) }} , room_types , policies = [];
+
+  		@php 
+  			foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
+  			{
+  				@endphp
+  					policies.push({
+  						"{{$policy['policy_name']}}":"{{$policy['policy_detail']}}"
+  					});
+  				@php
+  			}
+  		@endphp
+
+  		console.log(policies);
 
 	  $(document).on('click' , '#genrate-header-row' , function(){
 	  		if(confirm('Doing this , you will loss all the data inserted in the table.')){
@@ -936,19 +1014,11 @@
 	  });
 
 	  function genrateTable(){
-	  	//rowspan='2'
-	  	 //var head = "<tr><th>Room Type</th>";
-	  	 //var firstrow = "<tr>"
 	  	 var firstrow = '<tr><th>Room Type</th>';
 	  	 for (var i = 1; i <= nights ; i++) {
-	  	 	//head = head+"<th colspan='2'><input name='day[]' placeholder='Day' class='in-table' type='text'></th>";
 	  	 	firstrow = firstrow+"<th colspan='2'><input name='date[]' placeholder='Date' class='in-table' type='text'></th>";
 	  	 }
-	  	 //head = head+"</tr>";
 	  	 firstrow = firstrow+"</tr>";
-
-	  	 //$('#rooms-table').html(head);
-	  	 //$('#rooms-table').append(firstrow);
 	  	  $('#rooms-table').html(firstrow);
 	  	 $(this).hide();
 	  	 $("#genrate-row").show();
@@ -965,8 +1035,8 @@
 	  	 $('#rooms-table').append(room);
 	  	 $("#genrate-row").show();
 	  }
-	  genrateTable();
-	  generateRow();
+	  // genrateTable();
+	  // generateRow();
 	});
 </script>
 		
