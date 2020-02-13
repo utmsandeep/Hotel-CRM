@@ -743,9 +743,9 @@
 		                <div class="col-lg-12 col-md-12 col-sm-12">
 		                	<div class="form-group">
 		                		<label>Policies</label>
-		                		<select class="form-control">
+		                		<select class="form-control" multiple="" id="policies" onchange="showPolicies();">
 		                			@foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
-		                				<option value="{{ $policy['policy_name'] }}">
+		                				<option @if($policy['default']) selected @endif value="{{ strtolower(str_replace(' ' , '_' , $policy['policy_name'])) }}">
 		                					{{ $policy['policy_name'] }}
 		                				</option>
 		                			@endforeach
@@ -753,7 +753,7 @@
 		                	</div>
 		                    <div class="card">
 		                        <div class="body">
-		                            <textarea rows="25" id="editor9" name="refunds_cancellation">
+		                            <textarea rows="25" id="editor9" class="policies" name="refunds_cancellation">
 		                            	<p><strong>REFUNDS </strong></p>
 
 										<p>As per Reserve Bank of India regulations, refund of&nbsp;any excess deposit for the event can be processed against a recall request by the&nbsp;Organizer&rsquo;s&nbsp;Banker to&nbsp;Hotel&#39;s Bankers. Once authorization is received, the amount required to be refunded&nbsp;will be&nbsp;remitted to the Organizer&rsquo;s Bank Account within <strong>30 / 15 working days</strong>.</p>
@@ -985,21 +985,33 @@
 	</div>
 	<script>
   //document.getElementById("myP").contentEditable = true;
-  	$(document).ready(function(){
-  		var nights={{ count( (array) $request_data->bookings) }} , room_types , policies = [];
-
+  var policies = {};
   		@php 
   			foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
   			{
   				@endphp
-  					policies.push({
-  						"{{$policy['policy_name']}}":"{{$policy['policy_detail']}}"
-  					});
+  				policies.{{ strtolower(str_replace(' ' , '_' ,$policy['policy_name'])) }} = "{{ $policy['policy_detail'] }}"
   				@php
   			}
   		@endphp
 
-  		console.log(policies);
+   function showPolicies(){
+	  	$("#editor9").html('');
+	  	var plc = '';	
+	  	if($("#policies").val()){
+		  	$.each($("#policies").val(), function( index, value ) {
+		  		$("#editor9").append("<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>");
+		  		plc += "<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>";
+
+		  	});
+	  	}
+	  		CKEDITOR.instances['editor9'].setData(plc);
+	  }
+
+  	$(document).ready(function(){
+  		var nights={{ count( (array) $request_data->bookings) }} , room_types ;
+
+  		
 
 	  $(document).on('click' , '#genrate-header-row' , function(){
 	  		if(confirm('Doing this , you will loss all the data inserted in the table.')){
@@ -1035,6 +1047,9 @@
 	  	 $('#rooms-table').append(room);
 	  	 $("#genrate-row").show();
 	  }
+
+	 
+	  showPolicies();
 	  // genrateTable();
 	  // generateRow();
 	});

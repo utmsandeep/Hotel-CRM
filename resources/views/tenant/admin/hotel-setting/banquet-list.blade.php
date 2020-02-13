@@ -16,6 +16,7 @@
                         <table class="table table-hover c_table theme-color">
                             <thead>
                                 <tr>
+                                    <th>Name</th>
                                     <th>Length</th>
                                     <th>Width</th>
                                     <th>Height</th>
@@ -28,6 +29,7 @@
 
                             @foreach($banquets as $banquet)
                                 <tr>
+                                    <td>{{ $banquet->name}}</td>
                                     <td>{{ $banquet->length_ft}}</td>
                                     <td>{{ $banquet->width_ft}}</td>
                                     <td>{{ $banquet->height_ft}}</td>

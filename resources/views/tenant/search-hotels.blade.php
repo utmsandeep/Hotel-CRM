@@ -665,6 +665,13 @@ $( document ).ready(function() {
       $(this).siblings('div').children('.custom-drop').toggle();
       
     });
+    currLoc = $(location).attr('href'); 
+    var n = currLoc.includes("search/hotels");
+    console.log(n)
+    if(n){
+      $('.footer').parents('section').addClass('footer-shrink')
+      $('.footerbottom').addClass('footer-shrink2')
+    }
     
 // $('.test').slick({
 //    slidesToShow: 1,

@@ -40,11 +40,17 @@ class PerposalController extends Controller
     	
     	
     	$room_data = array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price);
-    	Perposal::create(array_merge($request->all() , ["room_commitment_data"=>json_encode($room_data)]));
+        $temarr = array();
+        foreach($request->all() as $key => $value){
+            if(!is_array($value))
+            $temarr = array_merge($temarr , [$key => html_entity_decode($value)]);
+        }
+        // Perposal::create(["payment_packages_other"=>$request->payment_packages_other]);
+    	Perposal::create(array_merge($temarr , ["room_commitment_data"=>json_encode($room_data)]));
 
     	dd(json_decode(json_encode ($room_data)) , true);
 
-
+        //html_entity_decode()
 
     	return json_encode (array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price));
     }

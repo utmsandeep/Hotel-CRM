@@ -21,7 +21,9 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
  	Route::get("/show/hotel" , function(){
  		return view('tenant.show-hotel');
  	});
-
+ 	Route::get("/hotel/query-form" , function(){
+ 		return view('tenant.query-form');
+ 	});
 	Route::group(['prefix'=>'consumer'] , function(){ 
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');
 	 	Route::post('/logout', [HomeController::class, 'ConsumerLogOut'])->name('tenant.logout.submit');

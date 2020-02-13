@@ -135,7 +135,17 @@ class HotelSettingController extends Controller
     public function detail(Request $request , $hotel_code){
         $request->validate([
             'account_name'      =>	'required|array|min:1',
-            'account_name.*'    =>	'required'
+            'account_name.*'    =>	'required',
+	        'account_number.*'    =>   'required',
+	        'bank_name.*'    =>	'required',
+	        'account_type.*'    =>   'required',
+	        'ifsc_code.*'    =>	'required',
+	        'micr_code.*'    =>   'required',
+	        'bsr_code.*'    =>	'required',
+	        'address.*'    =>   'required',
+	        'branch_code.*'    =>	'required',
+	        'branch_name.*'    =>   'required'
+
         ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
@@ -357,7 +367,6 @@ class HotelSettingController extends Controller
     public function policy($hotel_code){
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-        //dd($hotelsetting);
         return view('tenant.admin.hotel-setting.policy' , compact('hotel_code','hotelsetting'));
     }
 
@@ -386,31 +395,6 @@ class HotelSettingController extends Controller
 		    HotelSetting::create(array_merge(['policies'=>$tem] , ['hotel_id'=>$hotel->id]));
 		    return back()->withSuccess('All Policies added successfully');
 	    }
-
-
-
-
-
-//	    $hotel = hotelIdByCode($hotel_code);
-//	    $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
-//
-//	    $data = $request->all();
-//	    $temarr = [];
-//	    for($i = 0 ; $i<count($data['room_type']) ; $i++){
-//		    $temarr[] = [
-//			    "room_type"=>$data['room_type'][$i],
-//			    "numberroom"=>$data['numberroom'][$i]
-//		    ];
-//	    }
-//	    $tem = json_encode($temarr);
-//	    if(!empty($hotelsetting)){
-//		    $hotelsetting->update(['room_type'=>$tem]);
-//		    return back()->withSuccess('Room type detail updated successfully');
-//	    }
-//	    else{
-//		    HotelSetting::create(array_merge(['room_type'=>$tem] , ['hotel_id'=>$hotel->id]));
-//		    return back()->withSuccess('Room type detail added successfully');
-//	    }
     }
 
     /*------------------------------------------------------------------*/
@@ -439,18 +423,18 @@ class HotelSettingController extends Controller
         return view('tenant.admin.hotel-setting.beverages-policy' , compact('hotel_code'));
     }
 
+    /*-------------------------------------banquet Seating Style-------------------------------------*/
+
     public function listing($hotel_code){
 	    $banquets = HotelBanquet::paginate(10);
         return view('tenant.admin.hotel-setting.banquet-list' , compact('banquets' , 'hotel_code'));
     }
-
 
     public function create($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
         return view('tenant.admin.hotel-setting.banquet-create' , compact('hotel_code','hotelsetting'));
     }
-
 
     public function collection(Request $request , $hotel_code){
         $hotel = hotelIdByCode($hotel_code);
@@ -466,9 +450,10 @@ class HotelSettingController extends Controller
 	    $tem = json_encode($temarr);
 	    $num1 = (int)$data["separate_entrance"];
 
-            HotelBanquet::create(['width_ft'  => $data["width"] , 'length_ft' => $data["length"] ,'area_sq_ft' => $data["area"] , 'height_ft' => $data["height"] , 'seating_style' => $tem , 'no_of_entry_point' => $data["entry"] , 'is_separate_entrance' => $num1 , 'sort_description' => $data["short_des"] , 'long_description' => $data["long_des"]]);
+            HotelBanquet::create(['name'  => $data["name"] ,'width_ft'  => $data["width"] , 'length_ft' => $data["length"] ,'area_sq_ft' => $data["area"] , 'height_ft' => $data["height"] , 'seating_style' => $tem , 'no_of_entry_point' => $data["entry"] , 'is_separate_entrance' => $num1 , 'sort_description' => $data["short_des"] , 'long_description' => $data["long_des"]]);
             return back()->withSuccess('Banquet added successfully');
-
     }
+
+    /*----------------------------------------------------------------*/
 
 }

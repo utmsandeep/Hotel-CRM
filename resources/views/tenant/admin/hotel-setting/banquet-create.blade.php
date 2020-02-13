@@ -28,6 +28,12 @@
                                             <div class="row clearfix multi-field">
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
+                                                        <input type="text" name="name"  class="form-control"
+                                                               placeholder="Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="form-group">
                                                         <input type="number" name="length"  class="form-control"
                                                                placeholder="Length in Ft.">
                                                     </div>
@@ -60,14 +66,6 @@
                                                 </div>
 
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="Separate Entrance">Separate Entrance</label><br>
-                                                        <input type="radio" name="separate_entrance" value="1" checked> Yes
-                                                         <input type="radio" name="separate_entrance" value="0"> No<br>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-4 col-md-4 col-sm-4">
                                                         <div class="form-group">
                                                                 <textarea rows="8" name="short_des" class="form-control no-resize" placeholder="Short Description Banquet..."></textarea>
                                                         </div>
@@ -78,6 +76,14 @@
                                                         <div class="form-line">
                                                             <textarea rows="8" name="long_des" class="form-control no-resize" placeholder="Long Description Banquet   ..."></textarea>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="Separate Entrance">Separate Entrance</label><br>
+                                                        <input type="radio" name="separate_entrance" value="1" checked> Yes
+                                                        <input type="radio" name="separate_entrance" value="0"> No<br>
                                                     </div>
                                                 </div>
 

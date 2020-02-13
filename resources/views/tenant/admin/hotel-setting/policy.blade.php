@@ -16,7 +16,7 @@
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12">
 
-                <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.hotelSetting.savepolicy' , ['hotel_code'=>$hotel_code]) }}">
+            <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.hotelSetting.savepolicy' , ['hotel_code'=>$hotel_code]) }}">
                 @csrf
 
                 <div class="row clearfix">
@@ -97,14 +97,15 @@
     <script src="{{asset('tenant-admin/js/pages/forms/dropify.js')}}"></script>
     <script src="{{asset('tenant-admin/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('tenant-admin/js/pages/forms/editors.js')}}"></script>
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script>
-            CKEDITOR.replace( 'editor1' );
-            CKEDITOR.replace( 'editor2' );
-            CKEDITOR.replace( 'editor3' );
-            CKEDITOR.replace( 'editor4' );
-            CKEDITOR.replace( 'editor5' );
-            CKEDITOR.replace( 'editor6' );
-            CKEDITOR.replace( 'editor7' );
+        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace( 'editor2' );
+        CKEDITOR.replace( 'editor3' );
+        CKEDITOR.replace( 'editor4' );
+        CKEDITOR.replace( 'editor5' );
+        CKEDITOR.replace( 'editor6' );
+        CKEDITOR.replace( 'editor7' );
     </script>
 
 

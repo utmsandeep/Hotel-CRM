@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<!-- image gallery start -->
      <div class="show-hotel-parent">
       <div class="container">
         <div class="row">
@@ -14,6 +15,7 @@
                 <div
                   class="image-backgrounded lift positiom-relative"
                   style="background-image: url({{ asset('images/searcpage-img/pinforcowork-0.jpeg') }});"
+                  
                 ></div>
               </div>
               <div class="gellery-right">
@@ -43,7 +45,7 @@
       </div>
     </div>
 
-
+<!-- image gallery end -->
 
  <!-- image below section -->
     <div class="hotel-shortlisted-details">
@@ -206,19 +208,166 @@
               </div>
             </div>
           </div>
+         
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <!-- image below section end -->
+
+    <!-- opening time section -->
+
+    <div class="opening-time">
+      <div class="container">
+        <div class="row">
+          <div class="opening-time-inner">
+            <h1 class="op-head">Opening Times</h1>
+            <h5 class="op-time">Monday - Sunday (06:00 - 23:00)</h5>
+          </div>
         </div>
       </div>
     </div>
+    <!-- opening time section end -->
+<!-- vaune facilty -->
+    <div class="venue-facilities-section">
+      <div class="container">
+        <div class="row">
+          <div class="venue-facility-inner">
+            <h1 class="op-head">Opening Times</h1>
+            <div class="facilities-card">
+              <div class="facilities-card-inner">
+                <div class="f-card">
+                  <div class="f-card-inner">
+                    <img src="{{ asset('images/searcpage-img/business-centre.png') }}">
+                    <h4>Business centre</h4>
+                  </div>
+                </div>
+
+                <div class="f-card">
+                  <div class="f-card-inner">
+                    <img src="{{ asset('images/searcpage-img/parking.png') }}">
+                    <h4>Parking</h4>
+                  </div>
+                </div>
+
+                <div class="f-card">
+                  <div class="f-card-inner">
+                    <img src="{{ asset('images/searcpage-img/disabled-facilities.png') }}">
+                    <h4>Disabled facilities</h4>
+                  </div>
+                </div>
+
+                <div class="f-card">
+                  <div class="f-card-inner">
+                    <img src="{{ asset('images/searcpage-img/wifi.png') }}">
+                    <h4>WIFI</h4>
+                  </div>
+                </div>
+
+                <div class="f-card">
+                  <div class="f-card-inner">
+                    <img src="{{ asset('images/searcpage-img/av-technician.png') }}">
+                    <h4>AV Technician onsite</h4>
+                  </div>
+
+
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- vauue facility end -->
+
+    <!-- add review button -->
+    <div class="review-btn">
+      <div class="container">
+        <div class="row">
+          <div class="ad-re-cont">
+            <div class="add-review-btn">
+              <button class="btn"><a href="#">Add your review</a></button>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add review button end -->
+<!-- load map button -->
+<div class="review-btn">
+  <div class="container">
+    <div class="row">
+      <div class="ad-re-cont">
+        <div class="add-review-btn load-map">
+          <button class="btn"><a href="#">Load map</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- load map button end -->
+    
 
 @endsection
 
 @section('script')
 <script src="{{ asset('js/tenant/slick/slick.js') }}"></script>
+<!-- <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
 $( document ).ready(function() {
    
 
+  
+  $(function () {
+    var dateToday = new Date();
+    
+        $("#start-date").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            minDate: dateToday,
+            
+            //gotoCurrent: true,
+        });
+       
+        $("#start-date").on("change",function(){
+         selected = $(this).val();
+         
+        // return selected
+        
+       
+        
+    });
+  
+    
    
+        $("#end-date").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            
+           
+            // gotoCurrent: true,
+        });
+});
+
+
+            
+           
+        
 
 });
 </script>

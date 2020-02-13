@@ -15,6 +15,7 @@ class CreateHotelBanquetsTable extends Migration
     {
         Schema::create('hotel_banquets', function (Blueprint $table) {
             $table->bigIncrements('id');
+	        $table->string('name');
             $table->integer('hotel_id')->nullable();
             $table->decimal('width_ft' , 8 , 2)->nullable();
 	        $table->decimal('length_ft' , 8 , 2)->nullable();
