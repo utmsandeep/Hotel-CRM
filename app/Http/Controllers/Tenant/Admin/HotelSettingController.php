@@ -134,38 +134,37 @@ class HotelSettingController extends Controller
 
     public function detail(Request $request , $hotel_code){
         $request->validate([
-            'account_name'      =>	'required|array|min:1',
-            'account_name.*'    =>	'required',
-	        'account_number.*'    =>   'required',
-	        'bank_name.*'    =>	'required',
-	        'account_type.*'    =>   'required',
-	        'ifsc_code.*'    =>	'required',
-	        'micr_code.*'    =>   'required',
-	        'bsr_code.*'    =>	'required',
-	        'address.*'    =>   'required',
-	        'branch_code.*'    =>	'required',
-	        'branch_name.*'    =>   'required'
-
+            'account_name' => 'required|min:1',
+	        'account_name' => 'required',
+	        'account_number' => 'required',
+	        'bank_name' => 'required',
+	        'account_type' => 'required',
+	        'ifsc_code' => 'required',
+	        'micr_code' => 'required',
+	        'bsr_code' => 'required',
+	        'address' => 'required',
+	        'branch_code' => 'required',
+	        'branch_name' => 'required'
         ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
 
         $data = $request->all();
         $temarr = [];
-        for($i = 0 ; $i<count($data['account_name']) ; $i++){
+//        for($i = 0 ; $i<count($data['account_name']) ; $i++){
             $temarr[] = [
-                "account_name"    =>$data['account_name'][$i],
-                "account_number" =>$data['account_number'][$i],
-                "bank_name"        =>$data['bank_name'][$i],
-                "account_type"      =>$data['account_type'][$i],
-                "ifsc_code"            =>$data['ifsc_code'][$i],
-                "micr_code"          =>$data['micr_code'][$i],
-                "bsr_code"            =>$data['bsr_code'][$i],
-                "address"              =>$data['address'][$i],
-                "branch_code"       =>$data['branch_code'][$i],
-                "branch_name"      =>$data['branch_name'][$i]
+                "account_name"    =>$data['account_name'],
+                "account_number" =>$data['account_number'],
+                "bank_name"        =>$data['bank_name'],
+                "account_type"      =>$data['account_type'],
+                "ifsc_code"            =>$data['ifsc_code'],
+                "micr_code"          =>$data['micr_code'],
+                "bsr_code"            =>$data['bsr_code'],
+                "address"              =>$data['address'],
+                "branch_code"       =>$data['branch_code'],
+                "branch_name"      =>$data['branch_name']
             ];
-        }
+//        }
         $tem = json_encode($temarr);
         if(!empty($hotelsetting)){
             $hotelsetting->update(['bank_account_detail'=>$tem]);
@@ -371,6 +370,12 @@ class HotelSettingController extends Controller
     }
 
     public function savepolicy(Request $request, $hotel_code){
+	    $request->validate([
+		    'policy_name'        =>	'required|array|min:1',
+		    'policy_name.*'      =>	'required',
+		    'policy_detail'        =>	'required|array|min:1',
+		    'policy_detail.*'      =>	'required'
+	    ]);
 
     	$hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
@@ -455,5 +460,43 @@ class HotelSettingController extends Controller
     }
 
     /*----------------------------------------------------------------*/
+
+	/*----------------------hotel-seating-style---------------------*/
+
+	public function style($hotel_code){
+		$hotel = hotelIdByCode($hotel_code);
+		$hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+		return view('tenant.admin.hotel-setting.seating-style' , compact('hotel_code','hotelsetting'));
+	}
+
+	public function seatingstyle(Request $request , $hotel_code){
+		$request->validate([
+			'seat_style'      =>	'required|array|min:1',
+			'seat_style.*'      =>	'required'
+		]);
+		$hotel = hotelIdByCode($hotel_code);
+		$hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+		$data = $request->all();
+		$temarr = [];
+		for($i = 0 ; $i<count($data['seat_style']) ; $i++){
+			$temarr[] = [
+				"seat_style"=>$data['seat_style'][$i],
+				"numberperson"=>$data['numberperson'][$i]
+			];
+		}
+		$tem = json_encode($temarr);
+		if(!empty($hotelsetting)){
+			$hotelsetting->update(['seating_style'=>$tem]);
+			return back()->withSuccess('Seating style updated successfully');
+		}
+		else{
+			HotelSetting::create(array_merge(['seating_style'=>$tem] , ['hotel_id'=>$hotel->id]));
+			return back()->withSuccess('Seating style added successfully');
+		}
+	}
+
+
+	/*-----------------------------------------------------------------*/
 
 }

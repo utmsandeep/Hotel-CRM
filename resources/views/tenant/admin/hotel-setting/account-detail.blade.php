@@ -29,52 +29,52 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="account_name"><b>Account Name</b></label>
-                                                            <input type="text" value="{{ $item['account_name'] }}" name="account_name[]" class="form-control" placeholder="Account Name">
+                                                            <input type="text" value="{{ $item['account_name'] }}" name="account_name" class="form-control" placeholder="Account Name">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="account_number"><b>Account Number</b></label>
-                                                            <input type="text" value="{{ $item['account_number']}}" name="account_number[]" class="form-control" placeholder="Account Number">
+                                                            <input type="text" value="{{ $item['account_number']}}" name="account_number" class="form-control" placeholder="Account Number">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="bank_name"><b>Bank Name</b></label>
-                                                            <input type="text" value="{{ $item['bank_name'] }}" name="bank_name[]" class="form-control" placeholder="Bank Name">
+                                                            <input type="text" value="{{ $item['bank_name'] }}" name="bank_name" class="form-control" placeholder="Bank Name">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="account_type"><b>Account Type</b></label>
-                                                            <input type="text" value="{{ $item['account_type']}}" name="account_type[]" class="form-control" placeholder="Account Type">
+                                                            <input type="text" value="{{ $item['account_type']}}" name="account_type" class="form-control" placeholder="Account Type">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="ifsc_code"><b>IFSC Code</b></label>
-                                                            <input type="text" value="{{ $item['ifsc_code'] }}" name="ifsc_code[]" class="form-control" placeholder="IFSC Code">
+                                                            <input type="text" value="{{ $item['ifsc_code'] }}" name="ifsc_code" class="form-control" placeholder="IFSC Code">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="micr_code"><b>MICR Code</b></label>
-                                                            <input type="text" value="{{ $item['micr_code']}}" name="micr_code[]" class="form-control" placeholder="MICR Code">
+                                                            <input type="text" value="{{ $item['micr_code']}}" name="micr_code" class="form-control" placeholder="MICR Code">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="bsr_code"><b>BSR Code</b></label>
-                                                            <input type="text" value="{{ $item['bsr_code'] }}" name="bsr_code[]" class="form-control" placeholder="BSR Code">
+                                                            <input type="text" value="{{ $item['bsr_code'] }}" name="bsr_code" class="form-control" placeholder="BSR Code">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="address"><b>Address</b></label>
-                                                            <input type="text" value="{{ $item['address']}}" name="address[]" class="form-control" placeholder="Address">
+                                                            <input type="text" value="{{ $item['address']}}" name="address" class="form-control" placeholder="Address">
                                                         </div>
                                                     </div>
 
@@ -82,13 +82,13 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="branch_code"><b>Branch Code</b></label>
-                                                            <input type="text" value="{{ $item['branch_code'] }}" name="branch_code[]" class="form-control" placeholder="Branch Code">
+                                                            <input type="text" value="{{ $item['branch_code'] }}" name="branch_code" class="form-control" placeholder="Branch Code">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             <label for="branch_name"><b>Branch Name</b></label>
-                                                            <input type="text" value="{{ $item['branch_name']}}" name="branch_name[]" class="form-control" placeholder="Branch Name">
+                                                            <input type="text" value="{{ $item['branch_name']}}" name="branch_name" class="form-control" placeholder="Branch Name">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,65 +102,65 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account_name">Account Name</label>
-                                                        <input type="text" name="account_name[]" class="form-control" placeholder="Account Name">
+                                                        <input type="text" name="account_name" class="form-control" placeholder="Account Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account_number">Account Number</label>
-                                                        <input type="text" name="account_number[]" class="form-control" placeholder="Account Number">
+                                                        <input type="text" name="account_number" class="form-control" placeholder="Account Number">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="bank_name"><b>Bank Name</b></label>
-                                                        <input type="text"  name="bank_name[]" class="form-control" placeholder="Bank Name">
+                                                        <input type="text"  name="bank_name" class="form-control" placeholder="Bank Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account_type"><b>Account Type</b></label>
-                                                        <input type="text"  name="account_type[]" class="form-control" placeholder="Account Type">
+                                                        <input type="text"  name="account_type" class="form-control" placeholder="Account Type">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="ifsc_code"><b>IFSC Code</b></label>
-                                                        <input type="text"  name="ifsc_code[]" class="form-control" placeholder="IFSC Code">
+                                                        <input type="text"  name="ifsc_code" class="form-control" placeholder="IFSC Code">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="micr_code"><b>MICR Code</b></label>
-                                                        <input type="text" name="micr_code[]" class="form-control" placeholder="MICR Code">
+                                                        <input type="text" name="micr_code" class="form-control" placeholder="MICR Code">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="bsr_code"><b>BSR Code</b></label>
-                                                        <input type="text" name="bsr_code[]" class="form-control" placeholder="BSR Code">
+                                                        <input type="text" name="bsr_code" class="form-control" placeholder="BSR Code">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="address"><b>Address</b></label>
-                                                        <input type="text" name="address[]" class="form-control" placeholder="Address">
+                                                        <input type="text" name="address" class="form-control" placeholder="Address">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="branch_code"><b>Branch Code</b></label>
-                                                        <input type="text" name="branch_code[]" class="form-control" placeholder="Branch Code">
+                                                        <input type="text" name="branch_code" class="form-control" placeholder="Branch Code">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="branch_name"><b>Branch Name</b></label>
-                                                        <input type="text" name="branch_name[]" class="form-control" placeholder="Branch Name">
+                                                        <input type="text" name="branch_name" class="form-control" placeholder="Branch Name">
                                                     </div>
                                                 </div>
 
@@ -185,18 +185,18 @@
     <script src="{{asset('tenant-admin/plugins/dropify/js/dropify.min.js')}}"></script>
     <script src="{{asset('tenant-admin/js/pages/forms/dropify.js')}}"></script>
     <script>
-        var counter = 1;
-        $('.multi-field-wrapper').each(function() {
-            counter++;
-            var $wrapper = $('.multi-fields', this);
-            $(".add-field", $(this)).click(function(e) {
-                $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
-            });
-            $('.multi-field .remove-field', $wrapper).click(function() {
-                if ($('.multi-field', $wrapper).length > 1)
-                    $(this).parent('.multi-field').remove();
-            });
-        });
+        // var counter = 1;
+        // $('.multi-field-wrapper').each(function() {
+        //     counter++;
+        //     var $wrapper = $('.multi-fields', this);
+        //     $(".add-field", $(this)).click(function(e) {
+        //         $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
+        //     });
+        //     $('.multi-field .remove-field', $wrapper).click(function() {
+        //         if ($('.multi-field', $wrapper).length > 1)
+        //             $(this).parent('.multi-field').remove();
+        //     });
+        // });
 
         jQuery(document).on('keyup' , '.changeable' , function(){
             console.log($(this).parent().next('div div .total'));

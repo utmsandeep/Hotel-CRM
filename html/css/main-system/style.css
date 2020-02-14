@@ -2168,3 +2168,195 @@ form.full-form .bmd-form-group {
   clear: both;
   overflow: hidden;
 }
+.meeting-room-details {
+  padding-top: 10px;
+}
+a.date-cont {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  color: #073156;
+  clear: both;
+  overflow: hidden;
+}
+.date-text {
+  width: 95%;
+  float: left;
+  font-size: 18px;
+}
+.date-cont span.date-collapse-btn {
+  text-align: right;
+  display: block;
+  float: right;
+  width: 5%;
+}
+i.fas.fa-chevron-up {
+  display: none;
+}
+.date-text span {
+  padding-right: 17px;
+}
+.room-details-btn {
+  padding-top: 25px;
+}
+.meeting-room-btn {
+  width: 59%;
+  text-align: right;
+  float: left;
+}
+.room-details-btn span.date-collapse-btn {
+  display: block;
+  width: 3%;
+  float: left;
+  text-align: right;
+}
+span.date-collapse-btn {
+  color: #a9a9a9;
+}
+.meeting-room-btn {
+  width: 97%;
+  text-align: center;
+
+  float: left;
+}
+.meeting-room-form {
+  clear: both;
+  overflow: hidden;
+  padding-top: 40px;
+}
+.equipment-section {
+  padding-top: 42px;
+}
+.meeting-room-btn button {
+  color: #1777cb !important;
+  font-size: 15px;
+  border-radius: 40px;
+  font-weight: 600;
+  background-color: rgba(23, 119, 203, 0.1);
+  text-transform: capitalize;
+  padding: 6px 18px;
+}
+.equipment-inner h5 {
+  text-align: center;
+  color: #073156;
+  padding: 2px 0 32px;
+}
+.equipment-section-card {
+  overflow: hidden;
+}
+.equipment-section-card-left {
+  width: 60%;
+  float: left;
+}
+.equipment-section-card-right {
+  width: 40%;
+  float: left;
+}
+.input-group1 .input-group-n {
+  display: inline-block;
+}
+.input-group-in {
+  width: 40px;
+  height: 40px;
+  border: none;
+  /* background: none; */
+}
+input#increment {
+  background: #ddd;
+}
+.input-group1 {
+  text-align: right;
+}
+.equipment-section-card-left i {
+  color: #a9a9a9;
+
+  background: #0000;
+
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 30px;
+}
+.equipment-section-card-left {
+  font-size: 16px;
+  color: #073156;
+}
+.equipment-section-card {
+  padding: 19px 0;
+}
+.add-equipment {
+  padding-top: 40px;
+  text-align: center;
+}
+.add-equipment button {
+  background: #073156;
+  color: #fff;
+  padding: 4px 15px;
+  text-transform: capitalize;
+  border-radius: 50px;
+}
+.add-equipment button i {
+  font-size: 12px;
+  padding-right: 10px;
+}
+.add-room {
+  padding-top: 40px;
+}
+.add-room .btn {
+  font-size: 16px;
+  background: none;
+  text-transform: capitalize;
+  color: #073156;
+  border: 1px solid #073156;
+  border-radius: 5px;
+}
+.add-room .btn i {
+  padding-right: 10px;
+}
+.add-room .btn:hover {
+  background: #073156;
+  color: #fff;
+}
+.previous-b {
+  display: inline-block;
+  float: left;
+}
+.previous-b button {
+  text-transform: capitalize;
+  color: #a9a9a9;
+  font-size: 15px;
+}
+.previous-b button i {
+  padding-right: 10px;
+}
+.next-b {
+  display: inline-block;
+  float: right;
+  padding: unset;
+  clear: unset;
+}
+.prev-nex-btn {
+  padding-top: 40px;
+  clear: both;
+  overflow: hidden;
+}
+.equipment-section-card {
+  clear: both;
+}
+.flip {
+  transform: rotateX(180deg);
+}
+i.fas.fa-chevron-down {
+  transition: 0.8s;
+}
+.room-details-btn {
+  overflow: hidden;
+}
+.meeting-room-btn button i {
+  padding-right: 10px;
+}
+.collaps-bt .meetion-room-content-collapse {
+  display: none;
+}

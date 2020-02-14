@@ -215,6 +215,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 Route::post('hotel-setting/typeofroom', [HotelSettingController::class, 'typeofroom'])->name('tenant.admin.hotelSetting.typeofroom');
 			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 
+			 Route::post('hotel-setting/seatingstyle', [HotelSettingController::class, 'seatingstyle'])->name('tenant.admin.hotelSetting.seatingstyle');
+			 Route::get('hotel-setting/seating-style', [HotelSettingController::class, 'style'])->name('tenant.admin.hotelSetting.style');
+
               Route::post('hotel-setting/detail', [HotelSettingController::class, 'detail'])->name('tenant.admin.hotelSetting.detail');
               Route::get('hotel-setting/account-detail', [HotelSettingController::class, 'showdetail'])->name('tenant.admin.hotelSetting.showdetail');
 			 
@@ -251,7 +254,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			 Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
 
-			 Route::get('/perposal-template/show/{booking_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
+			 Route::get('/perposal-template/show/{lead_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
 
 			 });
 

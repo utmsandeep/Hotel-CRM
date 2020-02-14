@@ -29,7 +29,7 @@
                                 @if(!empty($hotelsetting))
                                     <div class="multi-field-wrapper">
                                         <div class="multi-fields">
-                                            @foreach(json_decode($hotelsetting->policies, true) as $item)
+                                            @foreach(json_decode($hotelsetting->policies, true) as $key =>  $item)
                                                 <div class="row clearfix multi-field">
                                                     <div class="col-lg-2 col-md-2 col-sm-2">
                                                         <div class="form-group">
@@ -43,7 +43,7 @@
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                                         <div class="form-group">
-                                                            <textarea id="editor1" name="policy_detail[]" placeholder="Policy Detail">{{$item['policy_detail']}}</textarea>
+                                                            <textarea id="editor{{$key}}" name="policy_detail[]" placeholder="Policy Detail">{{$item['policy_detail']}}</textarea>
                                                         </div>
                                                     </div>
 
@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                                     <div class="form-group">
-                                                        <textarea id="editor1" name="policy_detail[]" placeholder="Policy Detail"></textarea>
+                                                        <textarea id="editor0" name="policy_detail[]" placeholder="Policy Detail"></textarea>
                                                     </div>
                                                 </div>
 
@@ -99,6 +99,7 @@
     <script src="{{asset('tenant-admin/js/pages/forms/editors.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script>
+        CKEDITOR.replace( 'editor0' );
         CKEDITOR.replace( 'editor1' );
         CKEDITOR.replace( 'editor2' );
         CKEDITOR.replace( 'editor3' );
@@ -115,12 +116,32 @@
             counter++;
             var $wrapper = $('.multi-fields', this);
             $(".add-field", $(this)).click(function(e) {
-                $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
+                // $(wrapper).append(' <div class="row clearfix multi-field"><div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group"><input type="text" value="" name="policy_name[]" class="form-control" placeholder="Policy Name"></div></div><div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group"><input type="checkbox" name="default[]">Default</div></div> <div class="col-lg-8 col-md-8 col-sm-8"><div class="form-group"><textarea id="editor1" name="policy_detail[]" placeholder="Policy Detail"></textarea> </div></div><button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button></div>');
+                //$('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
             });
             $('.multi-field .remove-field', $wrapper).click(function() {
                 if ($('.multi-field', $wrapper).length > 1)
                     $(this).parent('.multi-field').remove();
             });
+        });
+
+          $(document).ready(function(){
+
+              $(document).on('click', '.add-field', function () {
+                  var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                  $(".multi-fields").append('<div class="row clearfix multi-field"><div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group">' +
+                      '<input type="text" value="" name="policy_name[]" class="form-control" placeholder="Policy Name"></div></div>' +
+                      '<div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group"><input type="checkbox" name="default[]" value="1" checked>Default</div></div> ' +
+                      '<div class="col-lg-8 col-md-8 col-sm-8"><div class="form-group"><textarea id="' + id + '" name="policy_detail[]" placeholder="Policy Detail">' +
+                      '</textarea> </div></div><button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 rem-field">Remove</button></div>');
+                  CKEDITOR.replace(id);
+              });
+              $(document).on('click', '.rem-field', function () {
+                  if ($('.multi-field').length > 1)
+                      $(this).parent('.multi-field').remove();
+              });
+
+
         });
     </script>
 @stop

@@ -57,6 +57,7 @@
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(5) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload' , ['hotel_code'=>$hotel_code]) }}">Hotel Pictures</a></li>
                     <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policies</a></li>
+                    <li class="{{ Request::segment(5) === 'seating-style' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.style' ,  ['hotel_code'=>$hotel_code]) }}">Seating Style</a></li>
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
 
                     <!-- <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li> -->

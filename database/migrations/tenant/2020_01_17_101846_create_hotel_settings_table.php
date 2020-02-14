@@ -19,6 +19,7 @@ class CreateHotelSettingsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('profile_picture')->nullable();
             $table->longText('policies')->nullable();
+	        $table->longText('seating_style')->nullable();
             $table->longText('room_type')->nullable();
             $table->longText('near_by')->nullable();
             $table->text('hotel_four_pictures')->nullable();

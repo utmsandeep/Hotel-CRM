@@ -111,7 +111,7 @@
 
 										<p>&nbsp;</p>
 
-										<p>Thank you for trusting us to give us an opportunity to organize an event for<strong>&nbsp;</strong><strong>Mr Sanjay Shivalkar</strong></p>
+										<p>Thank you for trusting us to give us an opportunity to organize an event for<strong>&nbsp;</strong><strong>{{ $request_data->user_details->group_contact }}</strong></p>
 
 										<p>&nbsp;</p>
 
@@ -184,7 +184,7 @@
 		                            <textarea rows="25" id="editor3" name="guest_room_commitment">
 		                            	<p><strong>GUEST ROOM COMMITMENT</strong></p>
 		                        		&nbsp;
-		                            	<p>The Hotel agrees that it will provide below listed rooms per night and following group rates for listed nights to the <strong>Mr</strong><strong> {{ $request_data->user_details->group_contact }}/ {{ $request_data->user_details->organization }}.</strong> to be utilized as follows:</p>
+		                            	<p>The Hotel agrees that it will provide below listed rooms per night and following group rates for listed nights to the <strong></strong><strong> {{ $request_data->user_details->group_contact }}/ {{ $request_data->user_details->organization }}.</strong> to be utilized as follows:</p>
 		                            </textarea>
 		                        </div>
 		                    </div>
@@ -465,6 +465,11 @@
 		                        <div class="body">
 		                            <textarea rows="25" id="editor5" name="current_applicable_taxes">
 		                            	<p><strong>CURRENT APPLICABLE TAXES</strong></p>
+		                          		@php 
+												$taxes = json_decode($hotel->hotelSetting->applicable_taxes , true);
+										@endphp
+												@if($taxes && is_array($taxes))  
+										
 		                            	<table cellspacing="0" style="border-collapse:collapse; width:575px">
 											<tbody>
 												<tr>
@@ -484,9 +489,7 @@
 													<p>TOTAL</p>
 													</td>
 												</tr>
-												@php 
-												$taxes = json_decode($hotel->hotelSetting->applicable_taxes , true);  
-												@endphp
+												
 												@foreach($taxes as $key => $value)
 												@php
 												$total = 0;
@@ -516,6 +519,7 @@
 												
 											</tbody>
 										</table>
+										@endif
 
 										<p>&nbsp;</p>
 

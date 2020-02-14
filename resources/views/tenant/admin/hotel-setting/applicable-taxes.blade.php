@@ -33,22 +33,22 @@
 						              </div>
 						              <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['vat']}}" name="vat[]" class="form-control changeable" placeholder="VAT in %">
+						                        <input type="text" value="{{ $item['vat']}}" name="vat[]" class="form-control" placeholder="VAT in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['cgst']}}" name="cgst[]" class="form-control changeable" placeholder="CGST in %">
+						                        <input type="text" value="{{ $item['cgst']}}" name="cgst[]" class="form-control" placeholder="CGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['sgst']}}" name="sgst[]" class="form-control changeable" placeholder="SGST in %">
+						                        <input type="text" value="{{ $item['sgst']}}" name="sgst[]" class="form-control" placeholder="SGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['total']}}" name="total[]"  class="form-control total" placeholder="Total in %">
+						                        <input type="text" value="{{ $item['total']}}" name="total[]"  class="form-control" placeholder="Total in %">
 						                    </div>
 						              </div>
 							          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
@@ -68,17 +68,17 @@
 					                </div>
 					                <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="vat[]"  class="form-control changeable" placeholder="VAT in %">
+					                        <input type="text"  name="vat[]"  class="form-control changeable1" placeholder="VAT in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="cgst[]"  class="form-control changeable" placeholder="CGST in %">
+					                        <input type="text"  name="cgst[]"  class="form-control changeable2" placeholder="CGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="sgst[]" class="form-control changeable" placeholder="SGST in %">
+					                        <input type="text"  name="sgst[]" class="form-control changeable3" placeholder="SGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
