@@ -6,6 +6,12 @@
           href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+
+    <style>
+        .dropify-wrapper{
+            width: 50%;
+        }
+    </style>
 @stop
 @section('content')
     <!-- Input -->
@@ -113,14 +119,24 @@
 {{--	                                            <div class="form-group">--}}
 {{--		                                            <label for="logo">Picture Of Banquet Hall</label>--}}
 {{--		                                            <div name="add_img" id="add_img">--}}
-{{--			                                            <div class="">--}}
+{{--			                                            <div class="col-lg-4 col-md-4 col-sm-4">--}}
 {{--				                                            <div class="" id="dynamic_fill">--}}
-{{--					                                            <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">--}}
+{{--					                                            <input type="file" data-allowed-file-extensions="jpg jpeg png">--}}
 {{--					                                            <button type="button" name="ad" id="ad" class="btn btn-success">Add More</button>--}}
 {{--				                                            </div>--}}
 {{--			                                            </div>--}}
 {{--		                                            </div>--}}
 {{--	                                            </div>--}}
+
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="card">
+                                                        <div class="body">
+                                                            <input type="file" name="hotel_four_pictures[]" class="dropify" data-allowed-file-extensions="pdf png jpg jpeg gif" data-max-file-size="5000K">
+                                                            <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 roof-field">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" name="ad" id="ad" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-more">Add More</button>
+                                                </div>
 
 
 
@@ -160,18 +176,27 @@
             });
         });
     </script>
+{{--    <script>--}}
+{{--	    $(document).ready(function(){--}}
+{{--		    var i=1;--}}
+{{--		    $('#ad').click(function(){--}}
+{{--			    i++;--}}
+{{--			    $('#dynamic_fill').append('<div id="row'+i+'"><input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">' +--}}
+{{--				    '<button type="button" name="rem" id="'+i+'" class="btn btn-danger btn_rem">X</button></div>');--}}
+{{--		    });--}}
+{{--		    $(document).on('click', '.btn_rem', function(){--}}
+{{--			    var button_id = $(this).attr("id");--}}
+{{--			    $('#row'+button_id+'').remove();--}}
+{{--		    });--}}
+{{--	    });--}}
+{{--    </script>--}}
     <script>
-	    $(document).ready(function(){
-		    var i=1;
-		    $('#ad').click(function(){
-			    i++;
-			    $('#dynamic_fill').append('<div id="row'+i+'"><input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png">' +
-				    '<button type="button" name="rem" id="'+i+'" class="btn btn-danger btn_rem">X</button></div>');
-		    });
-		    $(document).on('click', '.btn_rem', function(){
-			    var button_id = $(this).attr("id");
-			    $('#row'+button_id+'').remove();
-		    });
-	    });
+        $(document).ready(function () {
+            $('#ad').click(function () {
+                $('.card').append('<div class="body">' +
+                    ' <input type="file" name="hotel_four_pictures[]" class="dropify" data-allowed-file-extensions="pdf png jpg jpeg gif" data-max-file-size="5000K"> ' +
+                    '<button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 roof-field">Remove</button></div>');
+            });
+        });
     </script>
 @stop

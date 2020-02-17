@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+	<style>
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			margin: 0;
+		}</style>
+
 @stop
 @section('content')
 <!-- Input -->
@@ -33,22 +42,22 @@
 						              </div>
 						              <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['vat']}}" name="vat[]" class="form-control" placeholder="VAT in %">
+						                        <input type="number" value="{{ $item['vat']}}" name="vat[]" class="form-control changeable" min="0" placeholder="VAT in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['cgst']}}" name="cgst[]" class="form-control" placeholder="CGST in %">
+						                        <input type="number" value="{{ $item['cgst']}}" name="cgst[]" class="form-control changeable"  min="0"  placeholder="CGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['sgst']}}" name="sgst[]" class="form-control" placeholder="SGST in %">
+						                        <input type="number" value="{{ $item['sgst']}}" name="sgst[]" class="form-control changeable" min="0" placeholder="SGST in %">
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="text" value="{{ $item['total']}}" name="total[]"  class="form-control" placeholder="Total in %">
+						                        <input type="number" value="{{ $item['vat'] + $item['cgst'] + $item['sgst'] }}" name="total[]" class="form-control total" min="0"  placeholder="Total in %">
 						                    </div>
 						              </div>
 							          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
@@ -62,23 +71,24 @@
 						      <div class="multi-fields">
 						        <div class="row clearfix multi-field">
 						            <div class="col-lg-2 col-md-2 col-sm-2">
+
 				                    <div class="form-group">
 				                        <input type="text" name="tax_name[]" class="form-control" placeholder="Tax Name">
 				                    </div>
 					                </div>
 					                <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="vat[]"  class="form-control changeable1" placeholder="VAT in %">
+					                        <input type="number"  name="vat[]"   class="form-control changeable" min="0" placeholder="VAT in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="cgst[]"  class="form-control changeable2" placeholder="CGST in %">
+					                        <input type="number"  name="cgst[]"  class="form-control changeable" min="0"   placeholder="CGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="sgst[]" class="form-control changeable3" placeholder="SGST in %">
+					                        <input type="number"  name="sgst[]" class="form-control changeable" min="0"   placeholder="SGST in %">
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
@@ -86,6 +96,7 @@
 					                        <input type="text"  name="total[]"  class="form-control total" placeholder="Total in %" >
 					                    </div>
 					                </div>
+						            </div>
 
 						          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
 						        </div>
@@ -114,29 +125,38 @@
 	$('.multi-field-wrapper').each(function() {
 		counter++;
 	    var $wrapper = $('.multi-fields', this);
-
-	    console.log($wrapper);
-		// var i=1;
 	    $(".add-field", $(this)).click(function(e) {
-			// i++;
+		    e.preventDefault();
 	        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('');
 	    });
 	    $('.multi-field .remove-field', $wrapper).click(function() {
 	        if ($('.multi-field', $wrapper).length > 1)
-				// i--;
 	            $(this).parent('.multi-field').remove();
 	    });
 	});
+</script>
 
-	jQuery(document).on('keyup' , '.changeable' , function(){
-			console.log($(this).parent().next('div div .total'));
+<script type="text/javascript">
+	jQuery(document).ready(function () {
+		jQuery(document).on('keyup', '.changeable', function () {
+			if(isNaN(Number.parseInt($(this).parents(".multi-field").find('input[name="vat[]"]').val()))){
+				var num1 = 0;
+			}else{
+				var num1 = Number.parseInt($(this).parents(".multi-field").find('input[name="vat[]"]').val());
+			}
+			if(isNaN(Number.parseInt($(this).parents(".multi-field").find('input[name="cgst[]"]').val()))){
+				var num2 = 0;
+			}else{
+				var num2 = Number.parseInt($(this).parents(".multi-field").find('input[name="cgst[]"]').val());
+			}
+			if(isNaN(Number.parseInt($(this).parents(".multi-field").find('input[name="sgst[]"]').val()))){
+				var num3 = 0;
+			}else{
+				var num3 = Number.parseInt($(this).parents(".multi-field").find('input[name="sgst[]"]').val());
+			}
+			var add = num1 + num2 + num3;
+			Number.parseInt($(this).parents(".multi-field").find('input[name="total[]"]').val(add));
+		});
 	});
-
-	// document.getElementById("vat_['i']").onchange = function() {myFunction1()};
-
-	// function myFunction1() {
-	// var x = document.getElementById("vat_['i']");
-	// alert(x);
-	// }
 </script>
 @stop

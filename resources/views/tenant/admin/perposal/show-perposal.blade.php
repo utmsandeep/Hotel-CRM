@@ -16,6 +16,10 @@
   			border: none;
   			width: 100%;
   		}
+  		.price-input {
+			    width: 50%;
+    			padding-left: 2px;
+		}
   		table , th , td {
   			border-bottom: 1px solid
 			black;
@@ -27,7 +31,55 @@
 			black;
 			height: 17px;
 			vertical-align: bottom;
-  		}
+		  }
+		  table tr:nth-of-type(1) {
+    color: #fff;
+    background: #073156 !important;
+}
+table tr:nth-of-type(1) td {
+	background: #073156 !important;
+}
+table tbody#rooms-table tr th {
+    padding: 10px !important;
+}
+table tr td {
+    padding: 10px;
+}
+table {
+    
+    margin-bottom: 20px !important;
+}
+h3.f-head {
+    font-size: 19px;
+	font-weight: bold;
+	color: #073156;
+}
+.row.f-row h5 b {
+    color: #073156;
+    background: #e7f1fa;
+    padding: 10px;
+    
+}
+.row.f-row h5 {
+    margin-bottom: 21px;
+}
+.row.f-row {
+    padding-bottom: 20px;
+}
+.four-sectioned h4 {
+	font-size: 15px;
+	border-bottom: 1px solid #e7f1fa;
+   
+    padding-bottom: 10px;
+   
+}
+.row.f-row h6 {
+    margin-top: 16px !important;
+}
+.row.f-row h6 b {
+    font-weight: bold;
+	font-size: 14px;
+}
   	</style>
 </head>
 <body>
@@ -43,14 +95,16 @@
 	
 			<div class="col-md-12 content-holder">
 				<?= $perposal->guest_room_commitment; ?>
-				<form>
+				<form method="post"  action="{{ route('tenant.admin.updateRoomCommitmentData' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]) }}">
+					@csrf
+					@method('PUT')
 					<table  cellspacing="0" style="">
 						<tbody id="rooms-table">
 							<tr><th>Room Type</th>
 								@foreach(json_decode($perposal->room_commitment_data)->date as $key => $bookings)
 									<th colspan='2'>
 										{{ $bookings }}
-										<!-- <input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='text'> -->
+										<input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='hidden'>
 									</th>
 								@endforeach
 							</tr>
@@ -58,14 +112,14 @@
 								<tr>
 									<td colspan="{{ count(json_decode($perposal->room_commitment_data)->date)*2+1 }}">
 										{{ $room_type }}
-										<!-- <input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='text'> -->
+										<input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='hidden'>
 									</td>
 								</tr>
 
 								<tr>
 									<td>
 										{{ json_decode($perposal->room_commitment_data)->room[$key2] }}
-										<!-- <input name='room[]' placeholder='Room' class='in-table' type='text' value="{{ json_decode($perposal->room_commitment_data)->room[$key2] }}"> -->
+										<input name='room[]' placeholder='Room' class='in-table' type='hidden' value="{{ json_decode($perposal->room_commitment_data)->room[$key2] }}">
 									</td>
 									<?php
 									$j = count(json_decode($perposal->room_commitment_data)->date)*$key2;
@@ -74,11 +128,13 @@
 									@for($i=$j ; $i<$iterate ; $i++)
 								  	<td>
 								  		{{ json_decode($perposal->room_commitment_data)->total_room[$i] }}
-	                                	<!-- <input name='total_room[]' value="{{ json_decode($perposal->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='text'> -->
+	                                	<input name='total_room[]' value="{{ json_decode($perposal->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='hidden'>
 	                            	</td>
 
 		                            <td>
-		                                <input class="edditable" readonly="" name='price[]' value="{{ json_decode($perposal->room_commitment_data)->price[$i] }}" placeholder='Price' class='in-table' type='text'>
+		                            	<span>INR</span>
+		                                <input class="in-table edditable price-input" readonly="" name='price[]' value="{{ json_decode($perposal->room_commitment_data)->price[$i] }}" placeholder='Price' type='text'>
+		                                <span>+Taxes</span>
 		                            </td>
 		                            @endfor
 								
@@ -86,48 +142,56 @@
 							@endforeach
 						</tbody>
 					</table>
-					<input class="btn btn-info" type="submit" value="Edit Price" id="edit_price">
+					<input class="btn btn-info" type="button" value="Edit Price" id="edit_price">
 					<input disabled="" style="display: none;" class="btn btn-success" type="submit" value="Post Price" id="submit_request">
 				</form>
 			</div>
 
-			<div class="col-lg-12 col-md-12 col-sm-12">
-             	<h3>Food & Drinks</h3>
+			<div class="col-lg-12 col-md-12 col-sm-12 four-sectioned">
+             	<h3 class="f-head">Food & Drinks</h3>
              	@foreach($request_data->bookings as $key => $bookings)
              		<h4>{{ $bookings->date }}</h4>
-             		@foreach($bookings->foods as $key2 => $food)
-             			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
-             			@foreach($food as $key3 => $menus)
-             				
-             				@if($key3 === "extra")
-             					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
-             					@foreach($menus as $key4 => $menu)
-             						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
-             					@endforeach
-             					@continue
-             				@endif
+             		<div class="row f-row">
+	             		@foreach($bookings->foods as $key2 => $food)
+	             			<div class="col-md-4">
+		             			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+		             			@foreach($food as $key3 => $menus)
+		             				
+		             				@if($key3 === "extra")
+		             					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+		             					@foreach($menus as $key4 => $menu)
+		             						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+		             					@endforeach
+		             					@continue
+		             				@endif
 
-             			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
-             			@endforeach
-             		@endforeach
+		             			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
+		             			@endforeach
+	             			</div>
+	             		@endforeach
+             		</div>
              	@endforeach
 
-             	<h3>Equipments</h3>
+             	<h3 class="f-head">Equipments</h3>
              	@foreach($request_data->bookings as $key => $bookings)
              		<h4>{{ $bookings->date }}</h4>
-             		@foreach($bookings->rooms as $key2 => $room)
-             			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
-             			@foreach($room->equipment as $key3 => $equipment)
-                 			@if($key3 === "extra")
-                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
-                 					@foreach($equipment as $key4 => $menu)
-                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
-                 					@endforeach
-                 					@continue
-                 			@endif
-                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
-             			@endforeach
-             		@endforeach
+             		<div class="row f-row">
+	             		@foreach($bookings->rooms as $key2 => $room)
+	             			<div class="col-md-4">
+		             			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+		             			@foreach($room->equipment as $key3 => $equipment)
+		                 			@if($key3 === "extra")
+		                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+		                 					@foreach($equipment as $key4 => $menu)
+		                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+		                 					@endforeach
+		                 					@continue
+		                 			@endif
+		                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
+		             			@endforeach
+	             			</div>
+	             		@endforeach
+             		</div>
              	@endforeach
 
              </div>
@@ -199,7 +263,8 @@
 			jQuery('#submit_request').removeAttr('disabled');
 		});
 		jQuery(document).on('submit' , '#proposal_accept' , function(e){
-			e.preventDefault();
+			return false;
+			//e.preventDefault();
 			Swal.fire({
 			  // title: 'Are you sure?',
 			  text: "You Agree that , you will submit 50% amount of booking in advance.!",

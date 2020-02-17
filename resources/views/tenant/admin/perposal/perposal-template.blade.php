@@ -55,9 +55,55 @@
 		    padding-right: 20px;
 		    border-radius: 10px;
 		}
+		h3.heading {
+   
+    background-color: rgba(23, 119, 203, 0.1);
+	text-transform: capitalize !important;
+	font-size:15px !important;
+}
+.cke_top {
+   
+    background: #e7f1fa !important;
+}
+body h3.heading strong {
+    color: #1777cb !important;
+    font-size: 15px important;
+    text-transform: capitalize !important;
+    font-weight: 600;
+}
 		.content-section{
 			display: none;
 		}
+		.price-input {
+			    width: 50%;
+    			padding-left: 2px;
+		}
+		h3.f-head {
+    font-size: 19px;
+   
+}
+.f-box h4 {
+    font-size: 15px;
+    border-bottom: 1px solid #e7f1fa;
+    
+    padding-bottom: 10px;
+}
+.f-box h5 b {
+    background: #e7f1fa;
+    color: #1777cb !important;
+    padding: 10px;
+}
+.f-box h5 {
+    margin-bottom: 18px;
+    margin-top: 24px;
+}
+tbody#rooms-table tr th,
+ tbody#rooms-table tr td {
+    padding: 10px;
+}
+.btn-info{
+	margin-top:20px;
+}
   	</style>
 </head>
 <body>
@@ -205,7 +251,7 @@
 											<input name='total_room[]' value="{{ count( (array) $bookings->rooms) }}" placeholder='Total Room' class='in-table' type='text'>
 										</td>
 										<td>
-											<input name='price[]' placeholder='Price' class='in-table' type='text'>
+											<span>INR</span><input name='price[]' placeholder='Price' class='in-table price-input' type='text'><span>+Taxes</span>
 										</td>
 									@endforeach
 									</tr>
@@ -214,8 +260,8 @@
 							<a class="btn btn-info"  id="genrate-header-row">Redraw Table</a>
 							<a class="btn btn-info"  id="genrate-row">Insert Row</a>
 		                </div>
-		                 <div class="col-lg-12 col-md-12 col-sm-12">
-		                 	<h3>Food & Drinks</h3>
+		                 <div class="col-lg-12 col-md-12 col-sm-12 f-box">
+		                 	<h3 class="f-head">Food & Drinks</h3>
 		                 	@foreach($request_data->bookings as $key => $bookings)
 		                 		<h4>{{ $bookings->date }}</h4>
 		                 		@foreach($bookings->foods as $key2 => $food)
@@ -235,7 +281,7 @@
 		                 		@endforeach
 		                 	@endforeach
 
-		                 	<h3>Equipments</h3>
+		                 	<h3 class="f-head">Equipments</h3>
 		                 	@foreach($request_data->bookings as $key => $bookings)
 		                 		<h4>{{ $bookings->date }}</h4>
 		                 		@foreach($bookings->rooms as $key2 => $room)
@@ -316,7 +362,7 @@
 
 										<p>&nbsp;</p>
 
-										<p>Hotel is relying upon <strong>Mr</strong><strong> Sanjay Shivalkar</strong> to use all room nights totaling to <strong>67</strong> room nights. Should the number of rooms drop below 10 rooms per night, the company would still be charged for a minimum of 10 rooms per night as per the group rate.</p>
+										<p>Hotel is relying upon <strong>>{{ $request_data->user_details->group_contact }}</strong> to use all room nights totaling to <strong>67</strong> room nights. Should the number of rooms drop below 10 rooms per night, the company would still be charged for a minimum of 10 rooms per night as per the group rate.</p>
 
 										<p>&nbsp;</p>
 
@@ -653,7 +699,7 @@
 
 										<p><strong>FORCE MAJEURE</strong></p>
 
-										<p>The performance of this agreement is subject to termination without liability upon the occurrence of any circumstance beyond the control of either party such as acts of god, war, government regulations, disasters, civil disorder, strikes (except those involving the employees or agents of the parties seeking protection of this clause) or curtailment of transportation facilities-to the extent that such circumstance make it illegal or impossible to provide or use the hotel facilities. The ability to terminate this agreement without liability pursuant to this paragraph is conditional upon delivery of written notice to the other party setting forth the basis for such termination as soon as reasonably practical; but in no event later than ten (10) days after learning of such basis. Mr Sanjay Shivalkar agrees that if the event is cancelled due to FORCE MAJEURE they will rebook in future (within 3 months) as per availability in the hotel. The rates applicable for the re booking option will be as per the hotel strategy for that period.</p>
+										<p>The performance of this agreement is subject to termination without liability upon the occurrence of any circumstance beyond the control of either party such as acts of god, war, government regulations, disasters, civil disorder, strikes (except those involving the employees or agents of the parties seeking protection of this clause) or curtailment of transportation facilities-to the extent that such circumstance make it illegal or impossible to provide or use the hotel facilities. The ability to terminate this agreement without liability pursuant to this paragraph is conditional upon delivery of written notice to the other party setting forth the basis for such termination as soon as reasonably practical; but in no event later than ten (10) days after learning of such basis. >{{ $request_data->user_details->group_contact }} agrees that if the event is cancelled due to FORCE MAJEURE they will rebook in future (within 3 months) as per availability in the hotel. The rates applicable for the re booking option will be as per the hotel strategy for that period.</p>
 
 										<p>&nbsp;</p>
 
@@ -670,7 +716,7 @@
 										<ul>
 											<li>100% advance on the minimum guarantee prior to the function, the schedule of which is mentioned.</li>
 											<li>Bills will be presented at the end of the function for your review and signature.</li>
-											<li>Should&nbsp;<strong>Mr</strong><strong>&nbsp;Sanjay Shivalkar</strong>&nbsp;wish to pay by cash, kindly produce pan card for amounts over 25,000/-.</li>
+											<li>Should&nbsp;<strong>>{{ $request_data->user_details->group_contact }}</strong>&nbsp;wish to pay by cash, kindly produce pan card for amounts over 25,000/-.</li>
 											<li>The outstanding amount is to be cleared after the function by cash or credit card. Cheque as the mode of payment for the final settlement on the day of the event will not be acceptable</li>
 											<li>Should an outstation cheque be presented, the amount needs to be realized prior to conference checking in</li>
 											<li>In case of delay in the prescribed payment schedule, interest will be payable @ 3% (per month) from the due date till the payment is realized with Hotel.</li>
@@ -1044,7 +1090,7 @@
 	  	var room_type = "<tr><td colspan="+ nights+1+"><input name='room_type[]' placeholder='Room Type' class='in-table' type='text'></td></tr>";
 	  	 var room = "<tr><td><input name='room[]' placeholder='Room' class='in-table' type='text'></td>"
 	  	 for (var i = 1; i <= nights ; i++) {
-	  	 	room = room+"<td><input name='total_room[]' placeholder='Total Room' class='in-table' type='text'></td><td><input name='price[]' placeholder='Price' class='in-table' type='text'></td>";
+	  	 	room = room+"<td><input name='total_room[]' placeholder='Total Room' class='in-table' type='text'></td><td><span>INR</span><input name='price[]' placeholder='Price' class='in-table price-input' type='text'><span>+Taxes</span></td>";
 	  	 }
 	  	 room = room+"</tr>";
 	  	 $('#rooms-table').append(room_type);

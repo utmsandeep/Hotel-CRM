@@ -24,6 +24,9 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
  	Route::get("/hotel/query-form" , function(){
  		return view('tenant.query-form');
  	});
+ 	Route::get("/hotel/request-submitted/thankyou" , function(){
+ 		return view('tenant.thankyou');
+ 	});
 	Route::group(['prefix'=>'consumer'] , function(){ 
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');
 	 	Route::post('/logout', [HomeController::class, 'ConsumerLogOut'])->name('tenant.logout.submit');
@@ -231,37 +234,37 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
              Route::get('hotel-setting/menu-price', [HotelSettingController::class, 'pricemenu'])->name('tenant.admin.hotelSetting.pricemenu');
 
              Route::get('hotel-setting/cancel-policy', [HotelSettingController::class, 'cancel'])->name('tenant.admin.hotelSetting.cancel');
-			 Route::get('hotel-setting/no-show-policy', [HotelSettingController::class, 'none'])->name('tenant.admin.hotelSetting.none');
-			 Route::get('hotel-setting/kids-policy', [HotelSettingController::class, 'kids'])->name('tenant.admin.hotelSetting.kids');
-			 Route::get('hotel-setting/resident-policy', [HotelSettingController::class, 'resident'])->name('tenant.admin.hotelSetting.resident');
-			 Route::get('hotel-setting/beverages-policy', [HotelSettingController::class, 'beverages'])->name('tenant.admin.hotelSetting.beverages');
+			Route::get('hotel-setting/no-show-policy', [HotelSettingController::class, 'none'])->name('tenant.admin.hotelSetting.none');
+			Route::get('hotel-setting/kids-policy', [HotelSettingController::class, 'kids'])->name('tenant.admin.hotelSetting.kids');
+			Route::get('hotel-setting/resident-policy', [HotelSettingController::class, 'resident'])->name('tenant.admin.hotelSetting.resident');
+			Route::get('hotel-setting/beverages-policy', [HotelSettingController::class, 'beverages'])->name('tenant.admin.hotelSetting.beverages');
 			 
 			 
 			 /* banquet */
-			 Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
-			 Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
-			 Route::post('hotel-setting/collection', [HotelSettingController::class, 'collection'])->name('tenant.admin.hotelSetting.collection');
+			Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
+			Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
+			Route::post('hotel-setting/collection', [HotelSettingController::class, 'collection'])->name('tenant.admin.hotelSetting.collection');
 
-			  Route::get('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettings'])->name('tenant.admin.hotelSetting.importHotelSettings');
-			  Route::post('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettingsStore'])->name('tenant.admin.hotelSetting.importHotelSettingsStore');
+			Route::get('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettings'])->name('tenant.admin.hotelSetting.importHotelSettings');
+			Route::post('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettingsStore'])->name('tenant.admin.hotelSetting.importHotelSettingsStore');
 
-			 Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
+			Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
 			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
 			
-			 Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
+			Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
 
-			 Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
+			Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
 
-			 Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
+			Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
 
-			 Route::get('/perposal-template/show/{lead_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
+			Route::get('/perposal-template/show/{perposal_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
+			
+			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
 
 			 });
 
 			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
 			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
-
-			
 
 			 Route::get('/test' , [HotelController::class , 'test']);
 
@@ -269,4 +272,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			});
 	});
+	
+	Route::get("{hotel_code}/{booking_id}/proposal-login" , [PerposalController::class , 'perposalLoginPage'])->name('tenant.perposalLoginPage');
+
  });

@@ -38,8 +38,7 @@
 					                </div>
 					                <div class="col-lg-3 col-md-3 col-sm-3">
 					                    <div class="form-group">
-					                        <input type="text" value="{{ $item['time'] }}
-					                        "  name="time[]" min="0" class="form-control" placeholder="Time">
+					                        <input type="text" value="{{ $item['time'] }}" name="time[]"  class="form-control" placeholder="Time">
 					                    </div>
 					                </div>
 						          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
@@ -64,7 +63,7 @@
 					                </div>
 					                <div class="col-lg-3 col-md-3 col-sm-3">
 					                    <div class="form-group">
-					                        <input type="text"  name="time[]" min="0" class="form-control" placeholder="Time">
+					                        <input type="text"  name="time[]"  class="form-control" placeholder="Time">
 					                    </div>
 					                </div>
 						          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>

@@ -18,6 +18,9 @@ class CreateLeadsTable extends Migration
             $table->integer('consumer_id')->nullable();
             $table->integer('hotel_id')->nullable();
             $table->string('request_id')->nullable();
+            $table->string('group_contact')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
             $table->longText('request_data')->nullable();
             $table->timestamps();
         });
