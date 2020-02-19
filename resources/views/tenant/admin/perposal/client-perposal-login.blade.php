@@ -51,10 +51,11 @@ form.login-otp {
   </head>
   <body>
       <div class="got-otp">
-           <h5 class="confirmation">OTP has been send to registered Email</h5>
-    <form class="login-otp" action="#">
-      <input type="email" placeholder="Email" id="email" />
-      <input type="text" placeholder="OTP" id="otp" />
+           <h5 class="confirmation">An OTP has been send to your registered email.</h5>
+    <form class="login-otp" method="post" action="{{ route('tenant.perposalLogin' , ['hotel_code'=>$hotel_code , 'booking_id'=>$booking_id]) }}">
+      @csrf
+      <!-- <input type="email" placeholder="Email" id="email" /> -->
+      <input type="text" placeholder="OTP" id="otp" name="otp" required="" />
       <button type="submit" class="smt">Submit</button>
     </form>
 

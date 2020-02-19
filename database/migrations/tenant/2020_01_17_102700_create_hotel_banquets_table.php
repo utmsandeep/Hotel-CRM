@@ -27,6 +27,7 @@ class CreateHotelBanquetsTable extends Migration
             $table->longText('seating_style')->nullable();
             $table->longText('sort_description')->nullable();
             $table->longText('long_description')->nullable();
+	        $table->string('hotel_picture');
             $table->timestamps();
         });
     }

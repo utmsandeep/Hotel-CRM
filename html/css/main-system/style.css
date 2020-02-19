@@ -2498,3 +2498,131 @@ i.fas.fa-chevron-down {
 .activestep {
   display: block;
 }
+
+/* thank you page css */
+
+.thank-page {
+  padding-top: 105px;
+}
+.text-container {
+  padding: 80px 0;
+  text-align: center;
+  width: 65%;
+  margin: auto;
+  font-size: 47px;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+}
+.b-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+.banner-thank {
+  position: relative;
+}
+.login-card-section {
+  padding-top: 75px;
+}
+.login-cards-sec {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.indi-card {
+  text-align: center;
+}
+.indi-card {
+  flex-basis: 33%;
+}
+.indi-card {
+  border-right: 1px solid #ddd;
+}
+.login-cards-sec .indi-card:nth-of-type(3) {
+  border-right: unset;
+}
+.login.card-pading h4 {
+  color: #1777cb;
+  font-size: 18px;
+}
+.login.card-pading h4 i {
+  padding-right: 10px;
+}
+.login-cards-sec .indi-card p {
+  color: #999;
+  font-size: 17px;
+}
+.indi-card {
+  padding: 0 25px;
+}
+.login-card-section {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #ddd;
+}
+.let-hear-section {
+  padding-top: 60px;
+  text-align: center;
+}
+.let-us-inner {
+  width: 100%;
+}
+.let-us-inner h2 {
+  color: #073156;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.let-us-inner h4 {
+  color: #999;
+  font-size: 19px;
+  padding-bottom: 40px;
+}
+.let-us-card {
+  width: 33%;
+  float: left;
+}
+.let-us-card i:before {
+  font-size: 45px;
+}
+.let-us-card i {
+  color: #1777cb;
+}
+.let-us-card h3 {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.let-us-card p {
+  color: #999;
+  font-size: 15px;
+}
+.let-hear-section {
+  padding-bottom: 46px;
+}
+label.error {
+  color: red;
+  position: absolute;
+  left: 9px;
+  bottom: -9px;
+  margin: 0;
+  font-size: 13px;
+  z-index: 1;
+}
+.input-step-f .bmd-form-group {
+  position: unset !important;
+}
+.input-step-f {
+  position: relative;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

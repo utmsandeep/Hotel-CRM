@@ -8,6 +8,9 @@ use App\Model\Tenant\Admin\PerposalTemplate;
 use App\Model\Tenant\Admin\Perposal;
 use App\Model\Tenant\Admin\Lead;
 use Illuminate\Support\Str;
+use App\Mail\Tenant\Admin\PerposalOtpLogin;
+use App\Model\Tenant\Admin\LeadOtp;
+use Mail;
 
 class PerposalController extends Controller
 {
@@ -46,48 +49,24 @@ class PerposalController extends Controller
             if(!is_array($value))
             $temarr = array_merge($temarr , [$key => html_entity_decode($value)]);
         }
-        // Perposal::create(["payment_packages_other"=>$request->payment_packages_other]);
-    	$perposal = Perposal::create(array_merge($temarr , ["room_commitment_data"=>json_encode($room_data) , 'lead_id'=>$lead_id , 'hotel_id'=>hotelIdByCode($hotel_code)->id , 'booking_id'=>Str::random(15)]));
+    	$perposal = Perposal::create(array_merge($temarr , ["room_commitment_data"=>json_encode($room_data) , 'lead_id'=>$lead_id , 'hotel_id'=>hotelIdByCode($hotel_code)->id , 'booking_id'=>Str::random(15) , 'isAdminApproved'=>true , 'isClientApproved'=>false]));
         $perposal->perposalRoomHistory()->create(["room_commitment_data"=>json_encode($room_data) , "isActive"=>true , "modified_by"=>1]);
         return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
-
-    	// return json_encode (array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price));
     }
 
     public function updateRoomCommitmentData(Request $request , $hotel_code , $perposal_id){
         $perposal = Perposal::findOrFail($perposal_id);
         if($perposal){
              $room_data = array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price);
-            $perposal->update(array_merge($request->all() , ["room_commitment_data"=>json_encode($room_data)]));
+            $perposal->update(array_merge($request->all() , ["room_commitment_data"=>json_encode($room_data) , 'isAdminApproved'=>true , 'isClientApproved'=>false]));
             $perposal->perposalRoomHistory()->update(['isActive'=>false]);
 
-            $perposal->perposalRoomHistory()->create(["room_commitment_data"=>json_encode($room_data) , "isActive"=>true , "modified_by"=>1]);
+            $perposal->perposalRoomHistory()->create(["room_commitment_data"=>json_encode($room_data) , "isActive"=>true , "modified_by"=>1 ]);
             return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
         }
 
         return "Proposal not found.";
     }
 
-    public function perposalLoginPage(Request $request , $hotel_code ,  $booking_id){
 
-        return view('tenant.admin.perposal.client-perposal-login');                                                                                                                                                
-    }
-
-     public function perposalLogin(Request $request , $hotel_code , $booking_id){
-
-
-
-    }
-
-    public function showClientPerposal(Request $request , $hotel_code , $booking_id){
-
-
-
-    }
-
-    public function updateClientRoomCommitmentData(Request $request , $hotel_code , $booking_id){
-
-
-
-    }
 }

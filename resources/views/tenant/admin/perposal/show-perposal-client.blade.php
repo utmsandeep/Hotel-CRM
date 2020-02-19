@@ -95,7 +95,7 @@ h3.f-head {
 	
 			<div class="col-md-12 content-holder">
 				<?= $perposal->guest_room_commitment; ?>
-				<form method="post"  action="{{ route('tenant.admin.updateRoomCommitmentData' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]) }}">
+				<form method="post"  action="{{ route('tenant.updateRoomCommitmentData' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]) }}">
 					@csrf
 					@method('PUT')
 					<table  cellspacing="0" style="">
@@ -280,8 +280,9 @@ h3.f-head {
 				<?= $perposal->changes_acceptance; ?>
 			</div>
 
-			
-			<!-- <form id="proposal_accept"> -->
+			@if($perposal->isAdminApproved)
+			<form id="proposal_accept">
+			@endif
 				<div class="col-md-12 content-holder">
 					<p><strong>SIGNATURES</strong></p>
 
@@ -293,7 +294,12 @@ h3.f-head {
 
 					<p>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{ $request_data->user_details->group_contact }}</strong></p>
 
-					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- <input type="text" name="signature"></p> -->
+					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@if($perposal->isAdminApproved && !$perposal->isClientApproved) 
+						<input type="text" name="signature" required=""></p>
+					@else
+					
+					@endif
 
 
 				</div>
@@ -301,9 +307,11 @@ h3.f-head {
 				<div class="col-md-12 content-holder">
 					<?= $perposal->bottom_signature; ?>
 				</div>
-				<!-- <input class="btn btn-success" type="submit" value="Submit Proposal">
-			</form> -->
-			
+				@if($perposal->isAdminApproved)
+				<input class="btn btn-success" type="submit" value="Accept Proposal">
+				
+			</form>
+				@endif
 		</div>
 	</div>
 	<script type="text/javascript">

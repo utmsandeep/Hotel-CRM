@@ -31,6 +31,8 @@ class CreatePerposalsTable extends Migration
             $table->longText('refunds_cancellation')->nullable();
             $table->longText('changes_acceptance')->nullable();
             $table->longText('bottom_signature')->nullable();
+            $table->boolean('isAdminApproved')->default(false);
+            $table->boolean('isClientApproved')->default(false);
             $table->timestamps();
         });
     }

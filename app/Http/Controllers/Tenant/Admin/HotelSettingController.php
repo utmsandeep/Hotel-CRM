@@ -428,7 +428,7 @@ class HotelSettingController extends Controller
         return view('tenant.admin.hotel-setting.beverages-policy' , compact('hotel_code'));
     }
 
-    /*-------------------------------------banquet Seating Style-------------------------------------*/
+    /*-------------------------------------create banquet-------------------------------------*/
 
     public function listing($hotel_code){
 	    $banquets = HotelBanquet::paginate(10);
@@ -442,10 +442,29 @@ class HotelSettingController extends Controller
     }
 
     public function collection(Request $request , $hotel_code){
+        $request->validate([
+            'name'        => 'required|array|min:1',
+            'width_ft'    => 'required',
+            'length_ft'   => 'required|array|min:1'
+        ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
         $data = $request->all();
-        $temarr = [];
+	    if($request->hasFile('hotel_four_pictures')){
+		    $hotel_four_pictures = $request->file('hotel_four_pictures');
+		    $route = explode('/',request()->root());
+		    $subroute = explode('.',$route[2]);
+		    $names = [];
+		    foreach($request->file('hotel_four_pictures') as $hotel_four_pictures)
+		    {
+			    $destinationPath = storage_path('app/'.$subroute[0].'/hotelpic');
+			    $hotelpicname = 'hotelpicname'.uniqid().'.'.$hotel_four_pictures->getClientOriginalExtension();
+			    $hotel_four_pictures->move($destinationPath, $hotelpicname);
+			    array_push($names, $hotelpicname);
+		    }
+		    $hotelpic = json_encode($names);
+	    }
+	    $temarr = [];
         for($i = 0 ; $i<count($data['seating_style']) ; $i++){
             $temarr[] = [
                 "seating_style"=>$data['seating_style'][$i],
@@ -455,7 +474,7 @@ class HotelSettingController extends Controller
 	    $tem = json_encode($temarr);
 	    $num1 = (int)$data["separate_entrance"];
 
-            HotelBanquet::create(['name'  => $data["name"] ,'width_ft'  => $data["width"] , 'length_ft' => $data["length"] ,'area_sq_ft' => $data["area"] , 'height_ft' => $data["height"] , 'seating_style' => $tem , 'no_of_entry_point' => $data["entry"] , 'is_separate_entrance' => $num1 , 'sort_description' => $data["short_des"] , 'long_description' => $data["long_des"]]);
+            HotelBanquet::create(['name'  => $data["name"] ,'width_ft'  => $data["width"] , 'length_ft' => $data["length"] ,'area_sq_ft' => $data["area"] , 'height_ft' => $data["height"] , 'seating_style' => $tem , 'no_of_entry_point' => $data["entry"] , 'is_separate_entrance' => $num1 , 'sort_description' => $data["short_des"] , 'long_description' => $data["long_des"] , 'hotel_picture' =>$hotelpic]);
             return back()->withSuccess('Banquet added successfully');
     }
 

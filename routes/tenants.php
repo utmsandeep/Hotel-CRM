@@ -9,6 +9,7 @@ use App\Http\Controllers\Tenant\Admin\HotelController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingController;
 use App\Http\Controllers\Tenant\Admin\ContractController;
 use App\Http\Controllers\Tenant\Admin\PerposalController;
+use App\Http\Controllers\Tenant\Admin\ClientPerposalController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
 	Route::get('/' , function(){
@@ -273,6 +274,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			});
 	});
 	
-	Route::get("{hotel_code}/{booking_id}/proposal-login" , [PerposalController::class , 'perposalLoginPage'])->name('tenant.perposalLoginPage');
+	Route::get("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLoginPage'])->name('tenant.perposalLoginPage');
+	Route::post("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLogin'])->name('tenant.perposalLogin');
+	Route::get('{hotel_code}/show-proposal/{booking_id}' , [ClientPerposalController::class , 'showPerposal'])->name('tenant.showPerposal');		
+	Route::put('{hotel_code}/perposal/update-room-commitment/{booking_id}' , [ClientPerposalController::class , 'updateRoomCommitmentData'])->name('tenant.updateRoomCommitmentData');
 
  });

@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @stop
 @section('content')
     <!-- Input -->
@@ -50,12 +54,12 @@
 
                                                     <div class="col-lg-2 col-md-2 col-sm-2">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['start_date'] }}" name="start_date[]" class="form-control" placeholder="Start Date">
+                                                            <input type="text" value="{{ $item['start_date'] }}" name="start_date[]" class="form-control datepicker" placeholder="Start Date">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['end_date']}}" name="end_date[]" class="form-control" placeholder="End Date">
+                                                            <input type="text" value="{{ $item['end_date']}}" name="end_date[]" class="form-control datepicker" placeholder="End Date">
                                                         </div>
                                                     </div>
 
@@ -104,12 +108,12 @@
 
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text"  name="start_date[]" class="form-control" placeholder="Start Date">
+                                                        <input type="text"  name="start_date[]" class="form-control datepicker" placeholder="Start Date">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="end_date[]" class="form-control" placeholder="End Date">
+                                                        <input type="text" name="end_date[]" class="form-control datepicker" placeholder="End Date">
                                                     </div>
                                                 </div>
 
@@ -163,5 +167,9 @@
         jQuery(document).on('keyup' , '.changeable' , function(){
             console.log($(this).parent().next('div div .total'));
         });
+
+         $( function() {
+            $( ".datepicker" ).datepicker();
+          } );
     </script>
 @stop
