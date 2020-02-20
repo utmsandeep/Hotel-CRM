@@ -245,6 +245,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
 			Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
 			Route::post('hotel-setting/collection', [HotelSettingController::class, 'collection'])->name('tenant.admin.hotelSetting.collection');
+			Route::delete('hotel-setting/delete/{id}', [HotelSettingController::class, 'delete'])->name('tenant.admin.hotelSetting.delete');
 
 			Route::get('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettings'])->name('tenant.admin.hotelSetting.importHotelSettings');
 			Route::post('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettingsStore'])->name('tenant.admin.hotelSetting.importHotelSettingsStore');
@@ -261,6 +262,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('/perposal-template/show/{perposal_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
 			
 			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
+			Route::put('/perposal/approve-proposal/{perposal_id}' , [PerposalController::class , 'approvePerposal'])->name('tenant.admin.approvePerposal');
 
 			 });
 
@@ -278,5 +280,6 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 	Route::post("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLogin'])->name('tenant.perposalLogin');
 	Route::get('{hotel_code}/show-proposal/{booking_id}' , [ClientPerposalController::class , 'showPerposal'])->name('tenant.showPerposal');		
 	Route::put('{hotel_code}/perposal/update-room-commitment/{booking_id}' , [ClientPerposalController::class , 'updateRoomCommitmentData'])->name('tenant.updateRoomCommitmentData');
+	Route::put('{hotel_code}/approve-proposal/{booking_id}' , [ClientPerposalController::class , 'approvePerposal'])->name('tenant.approvePerposal');
 
  });

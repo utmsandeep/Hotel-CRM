@@ -75,4 +75,16 @@ class ClientPerposalController extends Controller
 
         return "Proposal not found.";
     }
+
+    public function approvePerposal(Request $request , $hotel_code , $booking_id){
+        $hotel = hotelIdByCode($hotel_code);
+        $perposal = Perposal::where('booking_id' , $booking_id)->where('hotel_id' , $hotel->id)->first();
+        if($perposal){
+            $perposal->update(['isClientApproved'=>true]);
+            $perposal->signature()->create(['text_signature'=>$request->text_signature]);
+            return redirect()->route('tenant.showPerposal' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]);
+        }
+
+        return "Proposal not found.";
+    }
 }

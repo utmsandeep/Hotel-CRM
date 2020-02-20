@@ -27,6 +27,7 @@ class CreateBusinessOwnersTable extends Migration
             $table->decimal('installation_cost', 8, 2)->default(0.00)->nullable();
             $table->decimal('customization_cost', 8, 2)->default(0.00)->nullable();
             $table->decimal('trainig_fees', 8, 2)->default(0.00)->nullable();
+            $table->decimal('total', 8, 2)->default(0.00)->nullable();
             $table->string('email');
             $table->string('gst_no')->nullable();
             $table->string('primary_mobile')->nullable();

@@ -281,7 +281,9 @@ h3.f-head {
 			</div>
 
 			@if($perposal->isAdminApproved)
-			<form id="proposal_accept">
+			<form id="proposal_accept" method="post" action="{{ route('tenant.approvePerposal' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]) }}">
+				@csrf
+				<input type="hidden" name="_method" value="put">
 			@endif
 				<div class="col-md-12 content-holder">
 					<p><strong>SIGNATURES</strong></p>
@@ -294,11 +296,11 @@ h3.f-head {
 
 					<p>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{ $request_data->user_details->group_contact }}</strong></p>
 
-					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					@if($perposal->isAdminApproved && !$perposal->isClientApproved) 
-						<input type="text" name="signature" required=""></p>
+					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					@if($perposal->isAdminApproved  && !$perposal->signature) 
+						<input type="text" name="text_signature" required=""></p>
 					@else
-					
+						{{ $perposal->signature ? $perposal->signature->text_signature : null }}
 					@endif
 
 
@@ -307,7 +309,7 @@ h3.f-head {
 				<div class="col-md-12 content-holder">
 					<?= $perposal->bottom_signature; ?>
 				</div>
-				@if($perposal->isAdminApproved)
+				@if($perposal->isAdminApproved  && !$perposal->signature)
 				<input class="btn btn-success" type="submit" value="Accept Proposal">
 				
 			</form>
@@ -327,30 +329,38 @@ h3.f-head {
 			jQuery('#submit_request').removeAttr('disabled');
 		});
 		jQuery(document).on('submit' , '#proposal_accept' , function(e){
-			return false;
-			//e.preventDefault();
-			Swal.fire({
-			  // title: 'Are you sure?',
-			  text: "You Agree that , you will submit 50% amount of booking in advance.!",
-			  icon: 'info',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: 'Yes, do it!'
-			}).then((result) => {
-			  if (result.value) {
-			    Swal.fire(
-			      'Accepted!',
-			      'Proposal has been accepted.',
-			      'success'
-			    )
-			    jQuery(this).submit();
+			// return false;
+			// //e.preventDefault();
+			// Swal.fire({
+			//   // title: 'Are you sure?',
+			//   text: "You Agree that , you will submit 50% amount of booking in advance.!",
+			//   icon: 'info',
+			//   showCancelButton: true,
+			//   confirmButtonColor: '#3085d6',
+			//   cancelButtonColor: '#d33',
+			//   confirmButtonText: 'Yes, do it!'
+			// }).then((result) => {
+			//   if (result.value) {
+			//     Swal.fire(
+			//       'Accepted!',
+			//       'Proposal has been accepted.',
+			//       'success'
+			//     )
+			//     jQuery(this).submit();
 
-			  }
-			  // else{
-			  // 	e.preventDefault();
-			  // }
-			});
+			//   }
+			//   // else{
+			//   // 	e.preventDefault();
+			//   // }
+			// });
+			if(confirm('You Agree that , you will submit 50% amount of booking in advance.!'))
+			{
+				return true;
+			}
+			else
+			{
+				e.preventDefault();
+			}
 		});
 	</script>
 </body>

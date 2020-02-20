@@ -145,8 +145,17 @@ h3.f-head {
 					@if(!$perposal->isAdminApproved || !$perposal->isClientApproved)
 					<input class="btn btn-info" type="button" value="Edit Price" id="edit_price">
 					<input disabled="" style="display: none;" class="btn btn-success" type="submit" value="Post Price" id="submit_request">
+					@if(!$perposal->isAdminApproved)
+					<a href="#" id="approve-btn" class="btn btn-success">Approve</a>
+					@endif
 					@endif
 				</form>
+				@if(!$perposal->isAdminApproved)
+					<form id="approve-price" method="post" action="{{ route('tenant.admin.approvePerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]) }}">
+						@csrf
+						<input type="hidden" name="_method" value="put">
+					</form>
+				@endif
 			</div>
 			@if($perposal->perposalRoomHistory->count() > 1)
 			<h3 style="text-align: center;"><b>History</b></h3>
@@ -293,8 +302,7 @@ h3.f-head {
 
 					<p>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{ $request_data->user_details->group_contact }}</strong></p>
 
-					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- <input type="text" name="signature"></p> -->
-
+					<p>Signature:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $perposal->signature ? $perposal->signature->text_signature : null }}
 
 				</div>
 
@@ -344,6 +352,16 @@ h3.f-head {
 			  // }
 			});
 		});
+
+		@if(!$perposal->isAdminApproved)
+			jQuery(document).on('click' , '#approve-btn' , function(){
+				if(confirm("Are you sure ?")){
+					jQuery("#approve-price").submit();
+				}
+
+				return false;
+			});
+		@endif
 	</script>
 </body>
 </html>

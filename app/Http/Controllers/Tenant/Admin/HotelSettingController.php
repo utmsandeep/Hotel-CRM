@@ -478,6 +478,14 @@ class HotelSettingController extends Controller
             return back()->withSuccess('Banquet added successfully');
     }
 
+    public function delete($hotel_code,$id){
+
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+        HotelBanquet::where('id', $id)->delete();
+        return back()->withSuccess('Banquet Deleted successfully');
+    }
+
     /*----------------------------------------------------------------*/
 
 	/*----------------------hotel-seating-style---------------------*/

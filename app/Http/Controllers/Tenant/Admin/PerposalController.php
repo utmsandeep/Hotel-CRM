@@ -68,5 +68,14 @@ class PerposalController extends Controller
         return "Proposal not found.";
     }
 
+    public function approvePerposal(Request $request , $hotel_code , $perposal_id){
+        $perposal = Perposal::findOrFail($perposal_id);
+        if($perposal){
+            $perposal->update(['isAdminApproved'=>true]);
+            return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
+        }
+        return "Proposal not found.";
+    }
+
 
 }

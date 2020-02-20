@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\Tenant\Admin\PerposalRoomHistory;
 use App\Model\Tenant\Admin\Lead;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
+use App\Model\Tenant\Admin\PerposalSignature;
 
 class Perposal extends Model
 {
@@ -15,12 +16,19 @@ class Perposal extends Model
 	];
     protected $table = "perposals";
 
+
+
     public function perposalRoomHistory(){
+        
     	return $this->hasMany(PerposalRoomHistory::class , 'perposal_id' , 'id')->orderBy('id' , 'desc');
     }
 
     public function lead(){
     	return $this->belongsTo(Lead::class);
+    }
+
+    public function signature(){
+        return $this->hasOne(PerposalSignature::class);
     }
 
 

@@ -161,7 +161,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Total :</label>
-                                                    <input type="text" class="form-control sum" name="total" value="{{ old('total') }}">
+                                                    <input type="text" class="form-control" name="total" value="{{ old('total') }}">
                                                 </div>
                                             </div>
                                     </div>
@@ -203,38 +203,36 @@
     jQuery(document).ready(function () {
         jQuery(document).on('keyup', '.rate', function () {
             num1 = jQuery(this).val();
+            if(isNaN(num1)){
+                num1 = 0;
+            }  
             total_sum(); 
         });
         jQuery(document).on('keyup', '.install', function () {
             num2 = jQuery(this).val();
+            if(isNaN(num2)){
+                num2 = 0;
+            }   
             total_sum();   
         });
         jQuery(document).on('keyup', '.custom', function () {
             num3 = jQuery(this).val();
+             if(isNaN(num3)){
+                num3 = 0;
+            } 
             total_sum();     
         });
         jQuery(document).on('keyup', '.fees', function () {
             num4 = jQuery(this).val();
+             if(isNaN(num4)){
+                num4 = 0;
+            } 
             total_sum();     
         });
     });
 
     function total_sum(){
-        if(isNaN(num1)){
-                num1 = 0;
-            } 
-        if(isNaN(num2)){
-                num2 = 0;
-            } 
-        if(isNaN(num3)){
-                num3 = 0;
-            } 
-        if(isNaN(num4)){
-                num4 = 0;
-            }             
         var add = parseInt(num1) + parseInt(num2) + parseInt(num3) + parseInt(num4);
-        Number.parseInt($(this).find('input[name="total"]').val(add));
-        $(".sum").val(add)
         console.log(add);
     }
 </script>
