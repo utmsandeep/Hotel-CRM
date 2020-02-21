@@ -9,6 +9,8 @@ use App\Model\Tenant\Admin\Perposal;
 use App\Model\Tenant\Admin\Lead;
 use Illuminate\Support\Str;
 use App\Mail\Tenant\Admin\PerposalOtpLogin;
+use App\Mail\Tenant\Admin\PerposalGeneratedMail;
+use App\Mail\Tenant\Admin\PerposalRoomPriceChangedAdminMail;
 use App\Model\Tenant\Admin\LeadOtp;
 use Mail;
 
@@ -42,7 +44,6 @@ class PerposalController extends Controller
 
     public function storePerposal(Request $request  , $hotel_code  , $lead_id){
     	
-    	
     	$room_data = array("date"=>$request->date , "room_type"=>$request->room_type , "room"=>$request->room , "total_room"=>$request->total_room , "price"=>$request->price);
         $temarr = array();
         foreach($request->all() as $key => $value){
@@ -51,6 +52,14 @@ class PerposalController extends Controller
         }
     	$perposal = Perposal::create(array_merge($temarr , ["room_commitment_data"=>json_encode($room_data) , 'lead_id'=>$lead_id , 'hotel_id'=>hotelIdByCode($hotel_code)->id , 'booking_id'=>Str::random(15) , 'isAdminApproved'=>true , 'isClientApproved'=>false]));
         $perposal->perposalRoomHistory()->create(["room_commitment_data"=>json_encode($room_data) , "isActive"=>true , "modified_by"=>1]);
+
+        $detail = [
+            "perposal"=>$perposal,
+            "url" => route('tenant.showPerposal' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]),
+            "to"  => $perposal->lead->email
+
+        ];
+        Mail::to($perposal->lead->email)->send(new PerposalGeneratedMail($detail));
         return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
     }
 
@@ -62,6 +71,14 @@ class PerposalController extends Controller
             $perposal->perposalRoomHistory()->update(['isActive'=>false]);
 
             $perposal->perposalRoomHistory()->create(["room_commitment_data"=>json_encode($room_data) , "isActive"=>true , "modified_by"=>1 ]);
+            
+             $detail = [
+            "perposal"=>$perposal,
+            "url" => route('tenant.showPerposal' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]),
+            "to"  => $perposal->lead->email
+
+        ];
+        Mail::to($perposal->lead->email)->send(new PerposalRoomPriceChangedAdminMail($detail));
             return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
         }
 
@@ -75,6 +92,22 @@ class PerposalController extends Controller
             return redirect()->route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]);
         }
         return "Proposal not found.";
+    }
+
+    public function fetchPolicies(Request $request , $hotel_code){
+        if(is_array($request->policy_names)){
+            $hotel = hotelIdByCode($hotel_code);
+            $policies = [];
+            foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
+                {   
+                    if(!in_array(strtolower(str_replace(' ' , '_' ,$policy['policy_name'])), $request->policy_names))
+                        continue;
+                    $policies = array_merge($policies , [strtolower(str_replace(' ' , '_' ,$policy['policy_name'])) => $policy['policy_detail']]);
+                }
+            return json_encode($policies);
+        }
+
+        return json_encode([]);
     }
 
 

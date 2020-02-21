@@ -31,7 +31,7 @@ class BusinessownerController extends Controller
     public function index()
     {
 		$data = BusinessOwner::where('isDeleted' , 0)->paginate(10);
-		return view('super_admin.pages.business-owner.businessowner-list',$data);
+		return view('super_admin.pages.business-owner.businessowner-list',compact('data'));
 	}
 
     /**
@@ -63,12 +63,11 @@ class BusinessownerController extends Controller
             'primary_mobile'    => 'unique:business_owners|digits:10|nullable',
             //'secondary_mobile'  => 'unique:business_owners|digits:10|nullable',
             'email'             => 'required|email|unique:business_owners',
-            //'password'          => 'required|confirmed|min:8',
-            // 'street'            => 'required',
-            // 'city'              => 'required',
-            // 'state'             => 'required',
-            // 'postal_code'       => 'required|digits:6',
-            // 'country'           => 'required|integer|min:1',
+            'price_per_year'    => 'required',
+            'installation_cost' => 'required',
+            'customization_cost'=> 'required',
+            'trainig_fees'      => 'required',
+            'total'             => 'required',
         ]);
 		unset($request['_token']);
 
@@ -96,7 +95,7 @@ class BusinessownerController extends Controller
         config(['database.default' => 'tenant']);
         DB::purge('mysql');
 
-        unset($request['businessname'] , $request['subdomain'] , $request['chain_code'] , $request['yearly_subscription']);
+        unset($request['businessname'] , $request['subdomain'] , $request['chain_code'] , $request['yearly_subscription'] , $request['price_per_year'], $request['installation_cost'], $request['customization_cost'], $request['trainig_fees'], $request['total']);
 
         Admin::create(array_merge($request->all() , ['role'=>4]));
         DB::table('admin_password_reset')->insert([

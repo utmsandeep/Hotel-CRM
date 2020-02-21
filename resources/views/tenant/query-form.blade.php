@@ -1347,55 +1347,34 @@ $('#flex-location').on('click', function(){
 
 
 
-
-
-// increment and decrement functions
-
-// var cntval = document.getElementById("counttter").value;
-// // var cntval = 0;
-
-// $('.increment').click(function(){
-  
- 
- 
-//   cntval++;
-//  var inp = $(this).parent('div').siblings('.input-group-n.2').children('span').children('#counttter');
-//  inp.val(cntval);
-// })
-
-// $('.decrement').click(function(){
-//   cntval--;
-//   var inpt = $(this).parent('div').siblings('.input-group-n.2').children('span').children('#counttter');
-//  inpt.val(cntval);
-  
-
-// })
-// increment and decrement functions end
-
-
-
-$('.input-group-in').click(function(){
-  var $button = $(this);
-  oldvalue = $button.parent('div').siblings('div.input-group-n.2').find('input').val();
-  return function(){
-
-     if($button.text()== '+'){
-    var newval = parseFloat(oldValue) + 1;
-  }else{
-    if(oldvalue > 0){
-      var newval = parseFloat(oldValue) - 1;
-    }else{
-      newval = 0;
-    }
-  }
-
-$button.parent('div').siblings('div.input-group-n.2').find('input').val(newval);
-console.log(newval);
-  }();
- 
-
-  
+var  increment = 0;
+$('.increment').click(function(){
+  var $button = $(this)
+    var  $input = $button.parent('div').siblings('.input-group-n.2').find('input');
+    var newval = parseInt($input.val())+1;
+    $input.val(newval);
+    increment += newval;
+    
+      
+      
 })
+$('.decrement').click(function(){
+ 
+  var $button = $(this)
+  var $input = $button.parent('div').siblings('.input-group-n.2').find('input')
+  var nowVal = parseInt($input.val())-1;
+  if(nowVal <= 0){
+    nowVal = 0;
+  }
+  $input.val(nowVal);
+  increment += nowVal;
+})
+
+
+ 
+
+  
+
 
 
 

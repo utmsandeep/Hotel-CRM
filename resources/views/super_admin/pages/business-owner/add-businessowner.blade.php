@@ -110,8 +110,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Yearly Subscription</label>
-                                                    <select class="form-control custom-select" name="yearly_subscription" required="">
-                                                        <option value="1">1 Year</option>
+                                                    <select class="form-control custom-select yearly" name="yearly_subscription" required="" onchange="handleValuesUpdated(this.value,'yearly')">
+                                                        <option value="1" selected>1 Year</option>
                                                         <option value="2">2 Year</option>
                                                         <option value="3">3 Year</option>
                                                         <option value="4">4 Year</option>
@@ -132,7 +132,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Price Per Year :</label>
-                                                     <input type="text" class="form-control rate" name="price_per_year" value="{{ old('price_per_year') }}" required>
+                                                     <input type="text" class="form-control" id= "rate" name="price_per_year" value="{{ old('price_per_year') }}" required onkeyup="handleValuesUpdated(this.value,'rate')">
                                                     <small class="form-control-feedback"></small> 
                                                 </div>
                                             </div>
@@ -140,14 +140,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Installation Cost :</label>
-                                                    <input type="text" class="form-control install" name="installation_cost" value="{{ old('installation_cost') }}">
+                                                    <input type="text" class="form-control" id="install" name="installation_cost" value="{{ old('installation_cost') }}" onkeyup="handleValuesUpdated(this.value,'install')">
                                                 </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Customization web page cost :</label>
-                                                     <input type="text" class="form-control custom" name="customization_cost" value="{{ old('customization_cost') }}" required>
+                                                     <input type="text" class="form-control" id="custom" name="customization_cost" value="{{ old('customization_cost') }}" required onkeyup="handleValuesUpdated(this.value,'custom')">
                                                     <small class="form-control-feedback"></small> 
                                                 </div>
                                             </div>
@@ -155,13 +155,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Training fees :</label>
-                                                    <input type="text" class="form-control fees" name="trainig_fees" value="{{ old('trainig_fees') }}">
+                                                    <input type="text" class="form-control" id="fees"name="trainig_fees" value="{{ old('trainig_fees') }}" onkeyup="handleValuesUpdated(this.value,'fees')">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Total :</label>
-                                                    <input type="text" class="form-control sum" name="total" value="{{ old('total') }}">
+                                                    <input type="text" class="form-control" id="sum" name="total" value="{{ old('total') }}">
                                                 </div>
                                             </div>
                                     </div>
@@ -195,47 +195,87 @@
        })
     });
 </script>
+<!-- <script type="text/javascript">
+     let values = {
+'yearly': 0,
+'rate': 0,
+'install': 0,
+'custom': 0,
+'fees': 0,
+};
+
+window.onload = () => {
+values = {
+'yearly': convert($('.yearly').val()),
+'rate': convert($('#rate').val()),
+'install': convert($('#install').val()),
+'custom': convert($('#custom').val()),
+'fees': convert($('#fees').val()),
+};
+};
+
+handleValuesUpdated = (value, field) => {
+values[field] = convert(value);
+const total = (values.yearly * values.rate) + (values.fees + values.custom + values.install);
+$('#sum').val(total);
+};
+
+convert = (value) => {
+if (isNaN(value) || typeof value === 'undefined' || value === null || value === '') return 0;
+else return Number.parseInt(value);
+};
+</script> -->
 <script type="text/javascript">
-    var num1;
-    var num2;
-    var num3;
-    var num4;
-    jQuery(document).ready(function () {
-        jQuery(document).on('keyup', '.rate', function () {
-            num1 = jQuery(this).val();
+jQuery(document).ready(function () {
+        jQuery(document).on('keyup', '#rate', function () {
+            var num1 = jQuery(this).val();
             total_sum(); 
         });
-        jQuery(document).on('keyup', '.install', function () {
-            num2 = jQuery(this).val();
+        jQuery(document).on('keyup', '#install', function () {
+            var num2 = jQuery(this).val();
             total_sum();   
         });
-        jQuery(document).on('keyup', '.custom', function () {
-            num3 = jQuery(this).val();
+        jQuery(document).on('keyup', '#custom', function () {
+            var num3 = jQuery(this).val();
             total_sum();     
         });
-        jQuery(document).on('keyup', '.fees', function () {
-            num4 = jQuery(this).val();
+        jQuery(document).on('keyup', '#fees', function () {
+            var num4 = jQuery(this).val();
             total_sum();     
+        });
+        jQuery(document).on('change', '#yearly', function () {
+            var num5 = $(".yearly option:selected").val();
+            total_sum(); 
         });
     });
 
     function total_sum(){
-        if(isNaN(num1)){
+
+        var num1 = $('#rate').val(); 
+        var num2 = $('#install').val(); 
+        var num3 = $('#custom').val(); 
+        var num4 = $('#fees').val(); 
+        var num5 = $('.yearly option:selected').val(); 
+
+        if(isNaN(num1) || typeof num1 === 'undefined' || num1 === null || num1 === ''){
                 num1 = 0;
             } 
-        if(isNaN(num2)){
+        if(isNaN(num2) || typeof num2 === 'undefined' || num2 === null || num2 === ''){
                 num2 = 0;
             } 
-        if(isNaN(num3)){
+        if(isNaN(num3) || typeof num3 === 'undefined' || num3 === null || num3 === ''){
                 num3 = 0;
             } 
-        if(isNaN(num4)){
+        if(isNaN(num4) || typeof num4 === 'undefined' || num4 === null || num4 === ''){
                 num4 = 0;
-            }             
-        var add = parseInt(num1) + parseInt(num2) + parseInt(num3) + parseInt(num4);
+            }  
+        if(isNaN(num5) || typeof num5 === 'undefined' || num5 === null || num5 === ''){
+                num5 = 1;
+            }   
+        var multi = parseInt(num1) * parseInt(num5);
+        var add = parseInt(multi)+ parseInt(num2) + parseInt(num3) + parseInt(num4);
         Number.parseInt($(this).find('input[name="total"]').val(add));
-        $(".sum").val(add)
-        console.log(add);
+        $("#sum").val(add);
     }
 </script>
 @endsection

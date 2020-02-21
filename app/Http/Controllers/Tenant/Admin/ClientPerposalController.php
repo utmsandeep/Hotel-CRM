@@ -10,6 +10,7 @@ use App\Model\Tenant\Admin\Lead;
 use Illuminate\Support\Str;
 use App\Mail\Tenant\Admin\PerposalOtpLogin;
 use App\Model\Tenant\Admin\LeadOtp;
+use App\Mail\Tenant\Admin\PerposalAcceptedMail;
 use Mail;
 
 class ClientPerposalController extends Controller
@@ -82,6 +83,14 @@ class ClientPerposalController extends Controller
         if($perposal){
             $perposal->update(['isClientApproved'=>true]);
             $perposal->signature()->create(['text_signature'=>$request->text_signature]);
+
+            $detail = [
+            "perposal"=>$perposal,
+            "url" => route('tenant.admin.showPerposal' , ['hotel_code'=>$hotel_code , 'perposal_id'=>$perposal->id]),
+            "to"  => $perposal->lead->hotel->hotelAdmins->first()->email
+
+        ];
+        Mail::to($perposal->lead->email)->send(new PerposalAcceptedMail($detail));
             return redirect()->route('tenant.showPerposal' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]);
         }
 

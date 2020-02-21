@@ -263,6 +263,8 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			
 			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
 			Route::put('/perposal/approve-proposal/{perposal_id}' , [PerposalController::class , 'approvePerposal'])->name('tenant.admin.approvePerposal');
+			Route::get('/hotel-policies', [PerposalController::class, 'fetchPolicies'])->name('tenant.admin.hotel.policies');
+
 
 			 });
 

@@ -2062,7 +2062,7 @@ table.ui-datepicker-calendar tbody tr td a {
   color: #fff;
   display: none;
   /* width: 20%; */
-  background: green;
+  background: #1777cb;
   font-size: 12px;
 }
 .active-bar {
@@ -2625,4 +2625,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.progress3 {
+  background-color: #f1f4f8;
+  box-shadow: inset 0 0.1rem 0.1rem rgba(22, 28, 45, 0.1);
 }

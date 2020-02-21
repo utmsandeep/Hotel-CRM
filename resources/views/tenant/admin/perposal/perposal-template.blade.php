@@ -7,6 +7,7 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   	<style type="text/css">
   		.in-table{
   			border: none;
@@ -103,6 +104,13 @@ tbody#rooms-table tr th,
 }
 .btn-info{
 	margin-top:20px;
+}
+.f-box {
+    padding-top: 10px;
+}
+.f-box h4 {
+    padding-top: 10px;
+    font-weight: 600;
 }
   	</style>
 </head>
@@ -264,39 +272,47 @@ tbody#rooms-table tr th,
 		                 	<h3 class="f-head">Food & Drinks</h3>
 		                 	@foreach($request_data->bookings as $key => $bookings)
 		                 		<h4>{{ $bookings->date }}</h4>
-		                 		@foreach($bookings->foods as $key2 => $food)
-		                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
-		                 			@foreach($food as $key3 => $menus)
-		                 				
-		                 				@if($key3 === "extra")
-		                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
-		                 					@foreach($menus as $key4 => $menu)
-		                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
-		                 					@endforeach
-		                 					@continue
-		                 				@endif
+		                 		<div class="row f-row">
+			                 		@foreach($bookings->foods as $key2 => $food)
+				                 		<div class="col-md-4">
+				                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+				                 			@foreach($food as $key3 => $menus)
+				                 				
+				                 				@if($key3 === "extra")
+				                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+				                 					@foreach($menus as $key4 => $menu)
+				                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+				                 					@endforeach
+				                 					@continue
+				                 				@endif
 
-		                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
-		                 			@endforeach
-		                 		@endforeach
+				                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
+				                 			@endforeach
+				                 		</div>
+			                 		@endforeach
+		                 		</div>
 		                 	@endforeach
 
 		                 	<h3 class="f-head">Equipments</h3>
 		                 	@foreach($request_data->bookings as $key => $bookings)
 		                 		<h4>{{ $bookings->date }}</h4>
-		                 		@foreach($bookings->rooms as $key2 => $room)
-		                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
-		                 			@foreach($room->equipment as $key3 => $equipment)
-			                 			@if($key3 === "extra")
-			                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
-			                 					@foreach($equipment as $key4 => $menu)
-			                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
-			                 					@endforeach
-			                 					@continue
-			                 			@endif
-			                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
-		                 			@endforeach
-		                 		@endforeach
+		                 		<div class="row f-row">
+			                 		@foreach($bookings->rooms as $key2 => $room)
+				                 		<div class="col-md-4">
+				                 			<h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+				                 			@foreach($room->equipment as $key3 => $equipment)
+					                 			@if($key3 === "extra")
+					                 					<h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+					                 					@foreach($equipment as $key4 => $menu)
+					                 						<p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+					                 					@endforeach
+					                 					@continue
+					                 			@endif
+					                 			<p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
+				                 			@endforeach
+				                 		</div>
+			                 		@endforeach
+		                 		</div>
 		                 	@endforeach
 
 		                 </div>
@@ -1036,26 +1052,43 @@ tbody#rooms-table tr th,
 	<script>
   //document.getElementById("myP").contentEditable = true;
   var policies = {};
-  		@php 
-  			foreach(json_decode($hotel->hotelSetting->policies , true) as $key => $policy)
-  			{
-  				@endphp
-  				policies.{{ strtolower(str_replace(' ' , '_' ,$policy['policy_name'])) }} = "{{ $policy['policy_detail'] }}"
-  				@php
-  			}
-  		@endphp
+  		
 
    function showPolicies(){
-	  	$("#editor9").html('');
-	  	var plc = '';	
-	  	if($("#policies").val()){
-		  	$.each($("#policies").val(), function( index, value ) {
-		  		$("#editor9").append("<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>");
-		  		plc += "<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>";
+   		var policy_names = jQuery("#policies").val();
+   		axios.get("{{ route('tenant.admin.hotel.policies' , ['hotel_code'=>$hotel_code]) }}", {
+		    params: {
+		      policy_names
+		    }
+	  	})
+		  	.then(function (response) {
+		  		var obj = response.data;
+		  		$("#editor9").html('');
+	  			var plc = '';
+			    for(var key in obj){
+			    	if( obj.hasOwnProperty(key) ) {
+			    		console.log(obj[key]);
+	  					$("#editor9").append("<p><strong>"+(key.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+obj[key]+"<br>");
+		  				plc += "<p><strong>"+(key.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+obj[key]+"<br>";
+			    	}
+			    }
+			    CKEDITOR.instances['editor9'].setData(plc);
+	  	})
+		  	.catch(function (error) {
+		    console.log(error);
+	  	})
+	  		.then(function () {
+	  	});
+	  	// $("#editor9").html('');
+	  	// var plc = '';	
+	  	// if($("#policies").val()){
+		  // 	$.each($("#policies").val(), function( index, value ) {
+		  // 		$("#editor9").append("<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>");
+		  // 		plc += "<p><strong>"+(value.toUpperCase()).replace(/_/g , ' ')+"</strong></p>"+policies[value]+"<br>";
 
-		  	});
-	  	}
-	  		CKEDITOR.instances['editor9'].setData(plc);
+		  // 	});
+	  	// }
+	  	// 	CKEDITOR.instances['editor9'].setData(plc);
 	  }
 
   	$(document).ready(function(){
