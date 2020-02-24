@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use App\Model\Tenant\Admin\AdminPasswordReset;
 use App\Model\Tenant\Admin\ContractSignature;
 use App\Model\Tenant\Admin\ContractContent;
+use App\super_admin\BusinessOwner;
 
 class HotelController extends Controller
 {
@@ -105,6 +106,8 @@ class HotelController extends Controller
     public function showContract($hotel_code){
         $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
         $hotel_admin = HotelAdmin::where('hotel_id' , $hotel->id)->where('admin_id' , auth('admin')->user()->id)->first();
+        $owner = BusinessOwner::where('subdomain' , explode('.' , request()->getHttpHost())[0])->first();
+        //dd($owner);
 
         // $hotelAdmins = HotelAdmin::where('hotel_id' , $hotel->id)->get();
         // $hotelAdmins = $hotelAdmins->map(function ($admin) {
@@ -120,7 +123,7 @@ class HotelController extends Controller
         });
         //if (!$admins->contains('name', $service->name))
         $content = ContractContent::first();
-        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins' , 'signatures' , 'content', 'hotel_code'));
+        return view('tenant.admin.hotels.hotel-contract' , compact('hotel' , 'admins' , 'signatures' , 'content', 'hotel_code' , 'owner'));
         }
         return "Unauthorized Person";
     }

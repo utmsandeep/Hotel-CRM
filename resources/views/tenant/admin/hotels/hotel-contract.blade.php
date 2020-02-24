@@ -90,11 +90,12 @@
 			    	<p>Pan Card :  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" value="{{ $hotel->pan_card }}" required=""> @else {{ $hotel->pan_card }} @endif</p>
 			    </div>
 			    <div class="col-sm-6">
-			    	<p>Yearly Subscribation  : 1 Year</p>
-			    	<p>Price Per Year : 11000</p>
-			    	<p>Installation Cost : 1000</p>
-			    	<p>Training fees : 1000</p>
-			    	<p>Total : 13000</p>
+			    	<p>Yearly Subscribation  : {{ $owner->yearly_subscription }}</p>
+			    	<p>Price Per Year : {{ $owner->price_per_year }}</p>
+			    	<p>Installation Cost : {{ $owner->installation_cost }}</p>
+			    	<p>Customization Cost : {{ $owner->customization_cost }}</p>
+			    	<p>Training fees : {{ $owner->trainig_fees }}</p>
+			    	<p>Total : {{ ( $owner->price_per_year*$owner->yearly_subscription)+$owner->installation_cost+$owner->customization_cost+$owner->trainig_fees }}</p>
 			    </div>
 		  	</div>
 		  	<div class="row">

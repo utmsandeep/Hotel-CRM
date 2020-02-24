@@ -343,7 +343,7 @@
                         </div>
                         
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -432,7 +432,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
                   
@@ -473,7 +473,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -517,7 +517,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -564,7 +564,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -611,7 +611,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -661,7 +661,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -1076,6 +1076,59 @@
   </div>
 </div>
 <!-- multistep-form-page end -->
+
+
+<div class="popup-cont" style="display: none;">
+  <div class="popup-box">
+    <div class="popup-content">
+      <div class="popup-body">
+        <!-- close button -->
+        <button type="button" class="popup-close">X</button>
+        <!-- close button end -->
+        <h3 class="popup-head">New Equipment Item</h3>
+        <form class="popup-form">
+          <textarea name="popuo-in" id="popup-in" class="popup-in" placeholder="Description"></textarea>
+          <div class=" input-group1 incremental-btns">
+            <div class="input-group-n 1">
+              <input
+                type="button"
+                value="-"
+                id="decrement"
+                class="input-group-in decrement"
+                name="decrement"
+              />
+            </div>
+            <div class="input-group-n 2">
+              <span class="bmd-form-group is-filled"
+                ><input
+                  type="number"
+                  min="0"
+                  id="counttter"
+                  class="input-group-in"
+                  value="0"
+                  name="counttter"
+              /></span>
+            </div>
+            <div class="input-group-n 3">
+              <input
+                type="button"
+                value="+"
+                id="increment"
+                class="input-group-in increment"
+                name="increment"
+              />
+            </div>
+          </div>
+
+          <div class="create-btn">
+            <button type="submit">Create Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 
@@ -1348,7 +1401,8 @@ $('#flex-location').on('click', function(){
 
 
 var  increment = 0;
-$('.increment').click(function(){
+
+$(document).on('click', '.increment', function(){
   var $button = $(this)
     var  $input = $button.parent('div').siblings('.input-group-n.2').find('input');
     var newval = parseInt($input.val())+1;
@@ -1358,7 +1412,8 @@ $('.increment').click(function(){
       
       
 })
-$('.decrement').click(function(){
+
+$(document).on('click', '.decrement', function(){
  
   var $button = $(this)
   var $input = $button.parent('div').siblings('.input-group-n.2').find('input')
@@ -1371,9 +1426,53 @@ $('.decrement').click(function(){
 })
 
 
- 
 
-  
+
+ $('.add-more').click(function(){
+   $addbtn = $(this)
+   var eqsection = $addbtn.parent().parent();
+
+   $('.popup-cont').fadeIn();
+   console.log(eqsection);
+   
+   $('.create-btn').click(function(e){
+     e.preventDefault();
+     
+     var inval = $(this).siblings('span').find('textarea').val();
+     var htmlto = `<div class="equipment-section-card">
+                          <div class="equipment-section-card-left">
+                            <i class="fas fa-plug" aria-hidden="true"></i>${inval}
+
+                          </div>
+                          <div class="equipment-section-card-right">
+                            <div class="input-group1">
+                              <div class="input-group-n 1">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
+                              </div>
+                              <div class="input-group-n 2">
+                                <span class="bmd-form-group is-filled"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
+                              </div>
+                              <div class="input-group-n 3">
+                                <input type="button" value="+" id="increment" class="input-group-in increment" name="increment">
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
+    //  eqsection.append(htmlto);
+     $( htmlto ).insertBefore( ".add-equipment" );
+   })
+ })
+
+
+
+
+  $('.popup-close').click(function(){
+    $(this).parent().parent().parent().parent().fadeOut();
+  })
+  $('.create-btn').click(function(){
+    $(this).parent().parent().parent().parent().parent().fadeOut();
+
+  })
 
 
 
@@ -1389,6 +1488,7 @@ $('.decrement').click(function(){
 
 
 });
+
 </script>
 @endsection
 

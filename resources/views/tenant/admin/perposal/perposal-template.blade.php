@@ -5,7 +5,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+	<link href="https://fonts.googleapis.com/css?family=Questrial|Roboto&display=swap" rel="stylesheet">
   	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
   	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   	<style type="text/css">
@@ -115,6 +117,7 @@ tbody#rooms-table tr th,
   	</style>
 </head>
 <body>
+	
 	<div class="container" id="myP">
 		<div class="row clearfix">
     		<div class="col-lg-12 col-md-12 col-sm-12">
@@ -197,7 +200,7 @@ tbody#rooms-table tr th,
 										<p>The following agreement between the&nbsp;<strong>{{ $hotel->name }}</strong>&nbsp;and&nbsp;<strong>{{ $request_data->user_details->organization }}</strong><strong>&nbsp;</strong>outlines specific conditions and services to be provided.</p>
 
 	                            		<p>&nbsp;</p>
-
+                                    
 										<table cellspacing="0" style="border-collapse:collapse; width:616px">
 											<tbody>
 												<tr>
@@ -222,6 +225,7 @@ tbody#rooms-table tr th,
 												</tr>
 											</tbody>
 										</table>
+                                
 		                            </textarea>
 		                        </div>
 		                    </div>

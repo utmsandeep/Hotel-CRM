@@ -2631,3 +2631,62 @@ input[type="number"] {
   background-color: #f1f4f8;
   box-shadow: inset 0 0.1rem 0.1rem rgba(22, 28, 45, 0.1);
 }
+.popup-cont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+}
+.popup-box {
+  width: 40%;
+  margin: auto;
+}
+.popup-content {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+}
+.popup-box {
+  margin-top: 35px;
+}
+button.popup-close {
+  border: unset;
+  background: unset;
+  float: right;
+  clear: both;
+}
+h3.popup-head {
+  clear: both;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #073156;
+}
+form.popup-form textarea {
+  width: 100%;
+  border: unset;
+  border-bottom: 1px solid #e3edf6;
+}
+.incremental-btns {
+  text-align: center;
+  margin-top: 25px;
+}
+.create-btn {
+  margin-top: 20px;
+}
+.create-btn button {
+  width: 100%;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  background: #1777cb;
+}
+input#counttter {
+  text-align: center;
+}
+form.popup-form textarea:focus {
+  outline: none;
+}

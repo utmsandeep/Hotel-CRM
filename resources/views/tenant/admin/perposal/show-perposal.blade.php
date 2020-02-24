@@ -3,8 +3,11 @@
 <head>
 	<title>Perposal</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Questrial|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
   	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -80,9 +83,51 @@ h3.f-head {
     font-weight: bold;
 	font-size: 14px;
 }
+hr {
+
+	border: 1 !important;
+} 
+.logo-prop img {
+    width: 13%;
+}
+.logo-prop {
+    text-align: left;
+}
+.logo-prop {
+    
+    padding-bottom: 13px;
+}
+.logo-prop .container {
+    border-bottom: 1px solid #e3edf6;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.room-history {
+    padding-top: 30px;
+	clear: both;
+}
+.room-history h3 {
+    border-bottom: 1px solid #e7f1fa;
+    
+    padding-bottom: 10px;
+    clear: both;
+    
+    text-align: left !important;
+    font-size: 20px;
+    margin-left: 15px;
+}
   	</style>
 </head>
 <body>
+	<div class="logo-prop">
+		<div class="container">
+			<div class="row">
+				<img src="{{ asset('images/main-system/logo.png') }}"></img>
+
+			</div>
+		</div>
+		
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 content-holder">
@@ -157,60 +202,7 @@ h3.f-head {
 					</form>
 				@endif
 			</div>
-			@if($perposal->perposalRoomHistory->count() > 1)
-			<h3 style="text-align: center;"><b>History</b></h3>
-			@endif
-			@foreach($perposal->perposalRoomHistory as $perposal_h)
-				@if($perposal_h->isActive)
-					@continue
-				@endif
-				<div class="col-md-12 content-holder">
-					<table  cellspacing="0" style="">
-						<tbody id="rooms-table">
-							<tr><th>Room Type</th>
-								@foreach(json_decode($perposal_h->room_commitment_data)->date as $key => $bookings)
-									<th colspan='2'>
-										{{ $bookings }}
-										<input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='hidden'>
-									</th>
-								@endforeach
-							</tr>
-							@foreach(json_decode($perposal_h->room_commitment_data)->room_type as $key2 => $room_type)
-								<tr>
-									<td colspan="{{ count(json_decode($perposal_h->room_commitment_data)->date)*2+1 }}">
-										{{ $room_type }}
-										<input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='hidden'>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}
-										<input name='room[]' placeholder='Room' class='in-table' type='hidden' value="{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}">
-									</td>
-									<?php
-									$j = count(json_decode($perposal_h->room_commitment_data)->date)*$key2;
-									$iterate = $j+count(json_decode($perposal_h->room_commitment_data)->date); 
-									?>
-									@for($i=$j ; $i<$iterate ; $i++)
-								  	<td>
-								  		{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}
-	                                	<input name='total_room[]' value="{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='hidden'>
-	                            	</td>
-
-		                            <td>
-		                            	<span>INR</span>
-		                                <input class="in-table edditable price-input" readonly="" name='price[]' value="{{ json_decode($perposal_h->room_commitment_data)->price[$i] }}" placeholder='Price' type='text'>
-		                                <span>+Taxes</span>
-		                            </td>
-		                            @endfor
-								
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-			@endforeach
+			
 
 			<div class="col-lg-12 col-md-12 col-sm-12 four-sectioned">
              	<h3 class="f-head">Food & Drinks</h3>
@@ -311,6 +303,62 @@ h3.f-head {
 				</div>
 				<!-- <input class="btn btn-success" type="submit" value="Submit Proposal">
 			</form> -->
+			<hr>
+			@if($perposal->perposalRoomHistory->count() > 1)
+			<div class="room-history"><h3 style="text-align: center;"><b>Room Commitment History</b></h3></div>
+			
+			@endif
+			@foreach($perposal->perposalRoomHistory as $perposal_h)
+				@if($perposal_h->isActive)
+					@continue
+				@endif
+				<div class="col-md-12 content-holder">
+					<table  cellspacing="0" style="">
+						<tbody id="rooms-table">
+							<tr><th>Room Type</th>
+								@foreach(json_decode($perposal_h->room_commitment_data)->date as $key => $bookings)
+									<th colspan='2'>
+										{{ $bookings }}
+										<input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='hidden'>
+									</th>
+								@endforeach
+							</tr>
+							@foreach(json_decode($perposal_h->room_commitment_data)->room_type as $key2 => $room_type)
+								<tr>
+									<td colspan="{{ count(json_decode($perposal_h->room_commitment_data)->date)*2+1 }}">
+										{{ $room_type }}
+										<input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='hidden'>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}
+										<input name='room[]' placeholder='Room' class='in-table' type='hidden' value="{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}">
+									</td>
+									<?php
+									$j = count(json_decode($perposal_h->room_commitment_data)->date)*$key2;
+									$iterate = $j+count(json_decode($perposal_h->room_commitment_data)->date); 
+									?>
+									@for($i=$j ; $i<$iterate ; $i++)
+								  	<td>
+								  		{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}
+	                                	<input name='total_room[]' value="{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='hidden'>
+	                            	</td>
+
+		                            <td>
+		                            	<span>INR</span>
+		                                <input class="in-table edditable price-input" readonly="" name='price[]' value="{{ json_decode($perposal_h->room_commitment_data)->price[$i] }}" placeholder='Price' type='text'>
+		                                <span>+Taxes</span>
+		                            </td>
+		                            @endfor
+								
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			@endforeach
 			
 		</div>
 	</div>

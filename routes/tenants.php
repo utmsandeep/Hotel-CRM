@@ -280,8 +280,11 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 	
 	Route::get("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLoginPage'])->name('tenant.perposalLoginPage');
 	Route::post("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLogin'])->name('tenant.perposalLogin');
+	
+	Route::group(['middleware'=>['perposalauthclient']] , function(){
 	Route::get('{hotel_code}/show-proposal/{booking_id}' , [ClientPerposalController::class , 'showPerposal'])->name('tenant.showPerposal');		
 	Route::put('{hotel_code}/perposal/update-room-commitment/{booking_id}' , [ClientPerposalController::class , 'updateRoomCommitmentData'])->name('tenant.updateRoomCommitmentData');
 	Route::put('{hotel_code}/approve-proposal/{booking_id}' , [ClientPerposalController::class , 'approvePerposal'])->name('tenant.approvePerposal');
+	});
 
  });

@@ -61,6 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 		'lookfortenant' => \App\Http\Middleware\LookForTenant::class,
+        'perposalauthclient' => \App\Http\Middleware\PerposalAuthClient::class,
     ];
 
     /**
@@ -74,6 +75,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 		\App\Http\Middleware\LookForTenant::class,
+        \App\Http\Middleware\PerposalAuthClient::class,
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,

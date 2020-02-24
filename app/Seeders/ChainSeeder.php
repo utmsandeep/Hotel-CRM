@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Model\Tenant\Admin\Role;
 use Seeder\Tenant\RoleSeederClass;
 use Seeder\Tenant\StaffSeeder;
+use Seeder\Tenant\FoodSeeder;
+use Seeder\Tenant\EquipmentSeeder;
 
 class ChainSeeder extends Seeder
 {
@@ -14,13 +16,15 @@ class ChainSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+   public function run()
+   {
        $this->call([
 
-        //RoleSeederClass::class,
-        StaffSeeder::class
+//            //RoleSeederClass::class,
+            StaffSeeder::class,
+            FoodSeeder::class,
+            EquipmentSeeder::class
 
-    	]);
-    }
+       ]);
+   }
 }
