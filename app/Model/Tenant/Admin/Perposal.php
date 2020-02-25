@@ -4,6 +4,7 @@ namespace App\Model\Tenant\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Tenant\Admin\PerposalRoomHistory;
+use App\Model\Tenant\Admin\PerposalConversationHistory;
 use App\Model\Tenant\Admin\Lead;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use App\Model\Tenant\Admin\PerposalSignature;
@@ -21,6 +22,11 @@ class Perposal extends Model
     public function perposalRoomHistory(){
         
     	return $this->hasMany(PerposalRoomHistory::class , 'perposal_id' , 'id')->orderBy('id' , 'desc');
+    }
+
+    public function perposalConversationHistory(){
+        
+        return $this->hasMany(PerposalConversationHistory::class , 'perposal_id' , 'id')->orderBy('id' , 'asc');
     }
 
     public function lead(){

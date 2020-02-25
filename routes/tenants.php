@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Tenant\HotelMenuController;
 use App\Http\Controllers\Tenant\ConsumerController;
 use App\Http\Controllers\Tenant\Admin\AdminController;
 use App\Http\Controllers\Tenant\Admin\HomeController;
@@ -10,8 +11,9 @@ use App\Http\Controllers\Tenant\Admin\HotelSettingController;
 use App\Http\Controllers\Tenant\Admin\ContractController;
 use App\Http\Controllers\Tenant\Admin\PerposalController;
 use App\Http\Controllers\Tenant\Admin\ClientPerposalController;
+use App\Http\Controllers\Tenant\Admin\PerposalConversationController;
 
-Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){ 
+Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 	Route::get('/' , function(){
 		return view('tenant.index');
  	})->name('tenant.index');
@@ -22,31 +24,32 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
  	Route::get("/show/hotel" , function(){
  		return view('tenant.show-hotel');
  	});
- 	Route::get("/hotel/query-form" , function(){
- 		return view('tenant.query-form');
- 	});
+// 	Route::get("/hotel/query-form" , function(){
+// 		return view('tenant.query-form');
+// 	});
+    Route::get('/hotel/query-form', [HotelMenuController::class, 'index'])->name('tenant.hotelMenu.index');
  	Route::get("/hotel/request-submitted/thankyou" , function(){
- 		return view('tenant.thankyou');
- 	});
-	Route::group(['prefix'=>'consumer'] , function(){ 
+        return view('tenant.thankyou');
+    });
+	Route::group(['prefix'=>'consumer'] , function(){
 	 	Route::post('/login', [ConsumerController::class, 'Login'])->name('tenant.login.submit');
 	 	Route::post('/logout', [HomeController::class, 'ConsumerLogOut'])->name('tenant.logout.submit');
 	 	Route::get('/register', [ConsumerController::class, 'RegisterForm'])->name('tenant.register');
 	 	Route::post('/register', [ConsumerController::class, 'Store'])->name('tenant.register.submit');
-	 	
-		Route::group(['middleware'=>['auth:consumer']] , function(){ 
+
+		Route::group(['middleware'=>['auth:consumer']] , function(){
 			Route::get('/' , function(){
 			 return redirect()->route('tenant.index');
 	 		})->name('tenant.consumer.home');
 		});
 	});
 
-	Route::group(['prefix'=>'admin'] , function(){ 
+	Route::group(['prefix'=>'admin'] , function(){
 		Route::get('/login', [AdminController::class, 'LoginForm'])->name('tenant.admin.login');
 		Route::post('/login', [AdminController::class, 'Login'])->name('tenant.admin.login.submit');
 		Route::get('/password/reset/{token}', [AdminController::class, 'passwordResetForm'])->name('tenant.admin.password.reset');
 		Route::post('/password/reset/{token}', [AdminController::class, 'passwordResetStore'])->name('tenant.admin.password.reset.store');
-		
+
 
 		 //Route::get('/', function () { return redirect('dashboard/index'); });
 
@@ -177,8 +180,8 @@ Route::get('pages/timeline', 'PagesController@timeline')->name('pages.timeline')
 Route::get('map', function () { return redirect('map/google'); });
 Route::get('map/yandex', 'MapController@yandex')->name('map.yandex');
 Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
-		
-		Route::group(['middleware'=>['auth:admin']] , function(){ 
+
+		Route::group(['middleware'=>['auth:admin']] , function(){
 			Route::post('/logout', [HomeController::class, 'AdminLogOut'])->name('tenant.admin.logout.submit');
 			// Route::get('/' , function(){
 			// 	return redirect('admin/dashboard/index');
@@ -196,13 +199,13 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotels/hotel-list', [HotelController::class, 'index'])->name('tenant.admin.hotel.list');
 			Route::get('hotels/hotel-create', [HotelController::class, 'create'])->name('tenant.admin.hotel.create');
 			Route::post('hotels/hotel-create', [HotelController::class, 'store'])->name('tenant.admin.hotel.store');
-			
+
 			// Route::get('hotels/hotel-edit', [RoleController::class, 'index'])->name('tenant.admin.hotel.edit');
 			Route::get('/hotels/show-form' , function(){
 			 return view('tenant.admin.hotels.show-form');
 			 })->name('tenant.admin.hotel.show-form');
-			 
-			 
+
+
 			 Route::group(["prefix"=>"/hotel/{hotel_code}"] , function(){
 			 	Route::get('/' , [HotelController::class , 'hotelDashboard'])->name('tenant.admin.hotel.dashboard');
 
@@ -224,7 +227,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
               Route::post('hotel-setting/detail', [HotelSettingController::class, 'detail'])->name('tenant.admin.hotelSetting.detail');
               Route::get('hotel-setting/account-detail', [HotelSettingController::class, 'showdetail'])->name('tenant.admin.hotelSetting.showdetail');
-			 
+
 			 Route::post('hotel-setting/taxes', [HotelSettingController::class, 'taxes'])->name('tenant.admin.hotelSetting.taxes');
 			 Route::get('hotel-setting/applicable-taxes', [HotelSettingController::class, 'showtaxes'])->name('tenant.admin.hotelSetting.showtaxes');
              Route::post('hotel-setting/listed', [HotelSettingController::class, 'listed'])->name('tenant.admin.hotelSetting.listed');
@@ -239,8 +242,8 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('hotel-setting/kids-policy', [HotelSettingController::class, 'kids'])->name('tenant.admin.hotelSetting.kids');
 			Route::get('hotel-setting/resident-policy', [HotelSettingController::class, 'resident'])->name('tenant.admin.hotelSetting.resident');
 			Route::get('hotel-setting/beverages-policy', [HotelSettingController::class, 'beverages'])->name('tenant.admin.hotelSetting.beverages');
-			 
-			 
+
+
 			 /* banquet */
 			Route::get('hotel-setting/banquet-list', [HotelSettingController::class, 'listing'])->name('tenant.admin.hotelSetting.listing');
 			Route::get('hotel-setting/banquet-create', [HotelSettingController::class, 'create'])->name('tenant.admin.hotelSetting.create');
@@ -252,7 +255,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
 			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
-			
+
 			Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
 
 			Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
@@ -260,7 +263,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
 
 			Route::get('/perposal-template/show/{perposal_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
-			
+
+			Route::post('/perposal/store-message/{perposal_id}' , [PerposalConversationController::class , 'storeAdminConversation'])->name('tenant.admin.storeAdminConversation');
+
 			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
 			Route::put('/perposal/approve-proposal/{perposal_id}' , [PerposalController::class , 'approvePerposal'])->name('tenant.admin.approvePerposal');
 			Route::get('/hotel-policies', [PerposalController::class, 'fetchPolicies'])->name('tenant.admin.hotel.policies');
@@ -277,14 +282,15 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			});
 	});
-	
+
 	Route::get("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLoginPage'])->name('tenant.perposalLoginPage');
 	Route::post("{hotel_code}/{booking_id}/proposal-login" , [ClientPerposalController::class , 'perposalLogin'])->name('tenant.perposalLogin');
-	
+
 	Route::group(['middleware'=>['perposalauthclient']] , function(){
-	Route::get('{hotel_code}/show-proposal/{booking_id}' , [ClientPerposalController::class , 'showPerposal'])->name('tenant.showPerposal');		
+	Route::get('{hotel_code}/show-proposal/{booking_id}' , [ClientPerposalController::class , 'showPerposal'])->name('tenant.showPerposal');
 	Route::put('{hotel_code}/perposal/update-room-commitment/{booking_id}' , [ClientPerposalController::class , 'updateRoomCommitmentData'])->name('tenant.updateRoomCommitmentData');
 	Route::put('{hotel_code}/approve-proposal/{booking_id}' , [ClientPerposalController::class , 'approvePerposal'])->name('tenant.approvePerposal');
+	Route::post('{hotel_code}/store-message/{booking_id}' , [PerposalConversationController::class , 'storeClientConversation'])->name('tenant.storeClientConversation');
 	});
 
  });

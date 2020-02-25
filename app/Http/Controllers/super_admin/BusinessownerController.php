@@ -67,7 +67,6 @@ class BusinessownerController extends Controller
             'installation_cost' => 'required',
             'customization_cost'=> 'required',
             'trainig_fees'      => 'required',
-            'total'             => 'required',
         ]);
 		unset($request['_token']);
 
@@ -76,7 +75,7 @@ class BusinessownerController extends Controller
         $request['subdomain'] = strtolower(($request['subdomain']));
         $owner = BusinessOwner::create(array_merge($request->all() , ['created_by'=>Auth::user()->id]));
 
-        
+
         $token = Str::random(60);
         $url = $request['subdomain'].".".request()->getHttpHost()."/admin/password/reset/$token";
         event(new NewBrandAddedEvent($owner , $url , $request['subdomain']));
@@ -107,8 +106,8 @@ class BusinessownerController extends Controller
         config(['database.connections.tenant.database' => 'tenancy']);
         config(['database.default' => 'system']);
         DB::purge('mysql');
-       
-        return redirect()->route('businessownerList')->with('success','Add Successfully.');  
+
+        return redirect()->route('businessownerList')->with('success','Add Successfully.');
     }
 
     /**
@@ -147,7 +146,7 @@ class BusinessownerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
 			$request->validate([
             'firstname'         => 'string|required',
             'lastname'          => 'string|required',
@@ -170,12 +169,12 @@ class BusinessownerController extends Controller
                 unset($request['password']);
             else
             $request['password'] = Hash::make($request['password']);
-    		$businessowner->update($request->all());	
-    		return redirect()->route('businessownerList')->with('success','Updated Successfully.'); 
+    		$businessowner->update($request->all());
+    		return redirect()->route('businessownerList')->with('success','Updated Successfully.');
         }
 
         return redirect()->back()->withErrors('Record Not Found.');
-		
+
     }
 
     /**

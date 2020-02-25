@@ -8,7 +8,7 @@
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
   	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  	<style type="text/css">
+  		<style type="text/css">
   		.content-holder{
   			margin-top: 20px;
   		}
@@ -80,9 +80,146 @@ h3.f-head {
     font-weight: bold;
 	font-size: 14px;
 }
+hr {
+
+	border: 1 !important;
+} 
+
+
+/* logo css */
+.logo-prop img {
+    width: 13%;
+}
+.logo-prop {
+    text-align: left;
+}
+.logo-prop {
+    
+    padding-bottom: 13px;
+}
+.logo-prop .container {
+    border-bottom: 1px solid #e3edf6;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+/* logo css end */
+
+/* room history and chat history heading */
+.room-history {
+    padding-top: 30px;
+	clear: both;
+}
+.room-history h3 {
+    border-bottom: 1px solid #e7f1fa;
+    
+    padding-bottom: 10px;
+    clear: both;
+    
+    text-align: left !important;
+    font-size: 20px;
+    margin-left: 15px;
+}
+/* room history and chat history heading end */
+
+
+
+
+/* chat history */
+
+.inner-chat-b {
+    border: 1px solid #e7f1fa;
+    padding: 20px;
+	margin-bottom: 30px;
+}
+.bubbleWrapper {
+    padding: 10px 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-self: flex-end;
+    color: #fff;
+}
+.inlineContainer {
+    display: inline-flex;
+	align-items: center;
+}
+.inlineContainer.own {
+    flex-direction: row-reverse;
+}
+.ownBubble {
+    min-width: 60px;
+    max-width: 700px;
+    padding: 14px 18px;
+    margin: 6px 8px;
+    background-color: #5b5377;
+    border-radius: 16px 16px 0 16px;
+    border: 1px solid #443f56;
+}
+.otherBubble {
+    min-width: 60px;
+    max-width: 700px;
+    padding: 14px 18px;
+    margin: 6px 8px;
+    background-color: #6C8EA4;
+    border-radius: 16px 16px 16px 0;
+    border: 1px solid #54788e;
+}
+.own {
+	align-self: flex-end;
+}
+.other {
+	align-self: flex-start;
+}
+span.own,
+span.other{
+  font-size: 14px;
+  color: grey;
+}
+.inlineContainer i {
+    color: #ddd;
+    
+    vertical-align: middle;
+}
+.typing-box input {
+    width: 100%;
+    
+    border: 1px solid #e7f1fa;
+    border-radius: 5px;
+    padding: 15px;
+}
+.typing-box input:placeholder{
+	color:#ddd;
+}
+.typing-box {
+    position: relative;
+}
+.typing-box button {
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translate(0, -50%);
+    color: #615757;
+    font-size: 50px;
+    border: unset;
+    background: unset;
+}
+/* chat history end */
+
+
+
+
   	</style>
 </head>
 <body>
+	<div class="logo-prop">
+		<div class="container">
+			<div class="row">
+				<img src="{{ asset('images/main-system/logo.png') }}"></img>
+
+			</div>
+		</div>
+		
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 content-holder">
@@ -148,60 +285,6 @@ h3.f-head {
 					@endif
 				</form>
 			</div>
-			@if($perposal->perposalRoomHistory->count() > 1)
-			<h3 style="text-align: center;"><b>History</b></h3>
-			@endif
-			@foreach($perposal->perposalRoomHistory as $perposal_h)
-				@if($perposal_h->isActive)
-					@continue
-				@endif
-				<div class="col-md-12 content-holder">
-					<table  cellspacing="0" style="">
-						<tbody id="rooms-table">
-							<tr><th>Room Type</th>
-								@foreach(json_decode($perposal_h->room_commitment_data)->date as $key => $bookings)
-									<th colspan='2'>
-										{{ $bookings }}
-										<input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='hidden'>
-									</th>
-								@endforeach
-							</tr>
-							@foreach(json_decode($perposal_h->room_commitment_data)->room_type as $key2 => $room_type)
-								<tr>
-									<td colspan="{{ count(json_decode($perposal_h->room_commitment_data)->date)*2+1 }}">
-										{{ $room_type }}
-										<input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='hidden'>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}
-										<input name='room[]' placeholder='Room' class='in-table' type='hidden' value="{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}">
-									</td>
-									<?php
-									$j = count(json_decode($perposal_h->room_commitment_data)->date)*$key2;
-									$iterate = $j+count(json_decode($perposal_h->room_commitment_data)->date); 
-									?>
-									@for($i=$j ; $i<$iterate ; $i++)
-								  	<td>
-								  		{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}
-	                                	<input name='total_room[]' value="{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='hidden'>
-	                            	</td>
-
-		                            <td>
-		                            	<span>INR</span>
-		                                <input class="in-table edditable price-input" readonly="" name='price[]' value="{{ json_decode($perposal_h->room_commitment_data)->price[$i] }}" placeholder='Price' type='text'>
-		                                <span>+Taxes</span>
-		                            </td>
-		                            @endfor
-								
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-			@endforeach
 
 			<div class="col-lg-12 col-md-12 col-sm-12 four-sectioned">
              	<h3 class="f-head">Food & Drinks</h3>
@@ -315,8 +398,127 @@ h3.f-head {
 			</form>
 				@endif
 		</div>
-	</div>
+	
+			<div class="row">
+				@if($perposal->perposalRoomHistory->count() > 1)
+				<div class="room-history"><h3 style="text-align: center;"><b>Room Commitment History</b></h3></div>
+				
+				@endif
+				@foreach($perposal->perposalRoomHistory as $perposal_h)
+					@if($perposal_h->isActive)
+						@continue
+					@endif
+					<div class="col-md-12 content-holder">
+						<table  cellspacing="0" style="">
+							<tbody id="rooms-table">
+								<tr><th>Room Type</th>
+									@foreach(json_decode($perposal_h->room_commitment_data)->date as $key => $bookings)
+										<th colspan='2'>
+											{{ $bookings }}
+											<input value="{{ $bookings }}" name='date[]' placeholder='Date' class='in-table' type='hidden'>
+										</th>
+									@endforeach
+								</tr>
+								@foreach(json_decode($perposal_h->room_commitment_data)->room_type as $key2 => $room_type)
+									<tr>
+										<td colspan="{{ count(json_decode($perposal_h->room_commitment_data)->date)*2+1 }}">
+											{{ $room_type }}
+											<input value="{{ $room_type }}" name='room_type[]' placeholder='Room Type' class='in-table' type='hidden'>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}
+											<input name='room[]' placeholder='Room' class='in-table' type='hidden' value="{{ json_decode($perposal_h->room_commitment_data)->room[$key2] }}">
+										</td>
+										<?php
+										$j = count(json_decode($perposal_h->room_commitment_data)->date)*$key2;
+										$iterate = $j+count(json_decode($perposal_h->room_commitment_data)->date); 
+										?>
+										@for($i=$j ; $i<$iterate ; $i++)
+									  	<td>
+									  		{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}
+		                                	<input name='total_room[]' value="{{ json_decode($perposal_h->room_commitment_data)->total_room[$i] }}" placeholder='Total Room' class='in-table' type='hidden'>
+		                            	</td>
+
+			                            <td>
+			                            	<span>INR</span>
+			                                <input class="in-table edditable price-input" readonly="" name='price[]' value="{{ json_decode($perposal_h->room_commitment_data)->price[$i] }}" placeholder='Price' type='text'>
+			                                <span>+Taxes</span>
+			                            </td>
+			                            @endfor
+									
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+				@endforeach
+			</div>
+			
+		</div>
+	
+
+	 <!-- chat box -->
+   <!--  <div class="chatbox">
+      <div class="container">
+        <div class="row">
+          <div class="room-history">
+            <h3 style="text-align: center;"><b>Chat History</b></h3>
+          </div>
+          <div class="inner-chat-b">
+            <div class="chat-cont">
+               	@if($perposal->perposalConversationHistory)
+	            	@foreach($perposal->perposalConversationHistory as $messege)
+	            		
+		              <div class="bubbleWrapper">
+		                <div class="inlineContainer @if($messege->messeged_by == 2) own @endif">
+		                  <i class="fa fa-user" aria-hidden="true"></i>
+		                  <div class="@if($messege->messeged_by == 2)ownBubble own @else otherBubble other @endif">
+		                    {{ $messege->message }}
+		                  </div>
+		                </div>
+		                <span class="@if($messege->messeged_by == 2) own @else other @endif">{{ $messege->created_at }}</span>
+		              </div>
+		              
+	            	@endforeach
+            	@endif
+            </div>
+           <form></form>
+          
+	            <div class="typing-box">
+		            <form id="msg-form" method="post" action="{{ route('tenant.storeClientConversation' , ['hotel_code'=>$hotel_code , 'booking_id'=>$perposal->booking_id]) }}" autocomplete="off">
+	            	@csrf
+					<button id="msg-btn" type="submit" disabled=""><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+		              <input
+		                type="text"
+		                name="message"
+		                id="typing"
+		                placeholder="Type your message here"
+		              />
+		            </form>
+	            </div>
+        	
+          </div>
+        </div>
+      </div>
+    </div> -->
 	<script type="text/javascript">
+		jQuery(document).on('keydown' , '#typing' , function(e){
+			jQuery('#msg-btn').attr('disabled' , 'disabled');
+			if(jQuery.trim(jQuery(this).val()) != '')
+			{
+				jQuery('#msg-btn').removeAttr('disabled');
+			}
+		});
+
+		jQuery(document).on('submit' , '#msg-form' , function(e){
+			if(jQuery.trim(jQuery('#typing').val()) == '')
+			{
+				e.preventDefault();
+			}
+		});
 
 		jQuery(document).on('click' , '#edit_price' , function(e){
 			e.preventDefault();
