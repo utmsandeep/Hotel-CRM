@@ -10,6 +10,7 @@ use App\Http\Controllers\Tenant\Admin\HotelController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingController;
 use App\Http\Controllers\Tenant\Admin\ContractController;
 use App\Http\Controllers\Tenant\Admin\PerposalController;
+use App\Http\Controllers\Tenant\Admin\LeadController;
 use App\Http\Controllers\Tenant\Admin\ClientPerposalController;
 use App\Http\Controllers\Tenant\Admin\PerposalConversationController;
 
@@ -256,20 +257,22 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
 			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');
 
+			Route::get('/proposal/index', [PerposalController::class, 'index'])->name('tenant.admin.perposal.listing');
+			Route::delete('/perposal/delete/{perposal_id}', [PerposalController::class, 'delete'])->name('tenant.admin.perposal.delete');
 			Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
-
 			Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
-
 			Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
-
 			Route::get('/perposal-template/show/{perposal_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
-
-			Route::post('/perposal/store-message/{perposal_id}' , [PerposalConversationController::class , 'storeAdminConversation'])->name('tenant.admin.storeAdminConversation');
-
 			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
 			Route::put('/perposal/approve-proposal/{perposal_id}' , [PerposalController::class , 'approvePerposal'])->name('tenant.admin.approvePerposal');
 			Route::get('/hotel-policies', [PerposalController::class, 'fetchPolicies'])->name('tenant.admin.hotel.policies');
+			Route::post('/perposal/store-message/{perposal_id}' , [PerposalConversationController::class , 'storeAdminConversation'])->name('tenant.admin.storeAdminConversation');
 
+			/*************************lead***********************/
+
+			Route::get('/lead/index', [LeadController::class, 'index'])->name('tenant.admin.lead.listing');
+			Route::get('/lead/show/{lead_id}', [LeadController::class, 'show'])->name('tenant.admin.lead.show');
+			
 
 			 });
 

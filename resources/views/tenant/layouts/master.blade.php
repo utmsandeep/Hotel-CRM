@@ -101,7 +101,7 @@
     </header>
 
     <div class="mobmenupart">
-    <h2>HotelCRM</h2>
+    <a href="{{ route('tenant.index') }}"><img src="http://hoteleventcrm.buzz/images/main-system/logo.png"></a>
       <div id="mobmenu" class="overlay">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div class="overlay-content">
@@ -157,7 +157,7 @@
 
     
 
-        <section class="container">
+        <section class="container foo-ter">
           <div class="footer">
             <div class="part1">
         

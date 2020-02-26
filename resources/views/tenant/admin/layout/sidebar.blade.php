@@ -78,6 +78,8 @@
 
                 </ul>
             </li>
+             <li class="{{ Request::segment(4) === 'lead' ? 'active open' : null }}"><a href="{{route('tenant.admin.lead.listing', ['hotel_code'=>$hotel_code])}}"><i class="zmdi zmdi-account"></i><span>Leads</span></a></li>
+            <li class="{{ Request::segment(4) === 'proposal' ? 'active open' : null }}"><a href="{{route('tenant.admin.perposal.listing', ['hotel_code'=>$hotel_code])}}"><i class="zmdi zmdi-account"></i><span>Proposals</span></a></li>
             @endif
            
             <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}"><a href="{{route('tenant.admin.hotel.contract.content.store')}}"><i class="zmdi zmdi-account"></i><span>Contract</span></a></li>

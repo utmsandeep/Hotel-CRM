@@ -16,6 +16,10 @@ use Mail;
 
 class PerposalController extends Controller
 {
+    public function index($hotel_code){
+        $perposals = Perposal::where('hotel_id' , hotelIdByCode($hotel_code)->id)->orderBy('id' , 'desc')->paginate(10);
+        return view('tenant.admin.perposal.perposal_listing' , compact('perposals' , 'hotel_code'));
+    }
     public function showPerposalTemplate($hotel_code  , $lead_id){
         $template = PerposalTemplate::first();
         $lead = Lead::find($lead_id);
@@ -108,6 +112,12 @@ class PerposalController extends Controller
         }
 
         return json_encode([]);
+    }
+
+    public function delete($hotel_code , $perposal_id){
+        
+        $perposal = Perposal::where('hotel_id' , hotelIdByCode($hotel_code)->id)->where('id' , $perposal_id)->delete();
+        return redirect()->route('tenant.admin.perposal.listing' , ['hotel_code'=>$hotel_code])->withSuccess('Proposal Deleted!');
     }
 
 

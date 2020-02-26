@@ -9,6 +9,7 @@ use App\Model\Tenant\Admin\HotelAdmin;
 use Illuminate\Notifications\Notifiable;
 use App\Model\Tenant\Admin\HotelSetting;
 use App\Model\Tenant\Admin\Perposal;
+use App\Model\Tenant\Admin\Lead;
 
 class Hotel extends Model
 {
@@ -48,5 +49,8 @@ class Hotel extends Model
 
     public function perposals(){
         return $this->hasMany(Perposal::class);
+    }
+    public function leads(){
+        return $this->hasMany(Lead::class);
     }
 }

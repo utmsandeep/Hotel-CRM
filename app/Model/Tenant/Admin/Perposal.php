@@ -8,7 +8,7 @@ use App\Model\Tenant\Admin\PerposalConversationHistory;
 use App\Model\Tenant\Admin\Lead;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use App\Model\Tenant\Admin\PerposalSignature;
-
+use Carbon\Carbon;
 class Perposal extends Model
 {
     use UsesTenantConnection;
@@ -35,6 +35,9 @@ class Perposal extends Model
 
     public function signature(){
         return $this->hasOne(PerposalSignature::class);
+    }
+    public function getCreatedAtAttribute($value){
+        return  Carbon::parse($value)->format('M d Y H:i');
     }
 
 

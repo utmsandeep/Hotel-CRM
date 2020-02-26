@@ -400,7 +400,7 @@
                         <div class="collaps-bt">
                             <div class="room-details-btn">
                                 <div class="meeting-room-btn">
-                                    <button type="button" class="btn"><i class="fas fa-utensils"></i>
+                                    <button type="button" class="btn"><i class="fas fa-utensils"></i><?= $breakfast[0]->type; ?>
                                     </button>
                                 </div>
                                 <span class="date-collapse-btn">
@@ -412,29 +412,29 @@
                             <div class="meetion-room-content-collapse">
 
                                 @foreach($breakfast as $break)
-                                <div class="equipment-section-card">
-                                    <div class="equipment-section-card-left">
-                                        <i class="fas fa-plug" aria-hidden="true"></i><?= $break->name; ?>
+                                    <div class="equipment-section-card">
+                                        <div class="equipment-section-card-left">
+                                            <i class="fas fa-plug" aria-hidden="true"></i><?= $break->name; ?>
 
-                                    </div>
-                                    <div class="equipment-section-card-right">
-                                        <div class="input-group1">
-                                            <div class="input-group-n 1">
-                                                <input type="button" value="-" id="decrement"
-                                                       class="input-group-in decrement" name="decrement">
-                                            </div>
-                                            <div class="input-group-n 2">
+                                        </div>
+                                        <div class="equipment-section-card-right">
+                                            <div class="input-group1">
+                                                <div class="input-group-n 1">
+                                                    <input type="button" value="-" id="decrement"
+                                                           class="input-group-in decrement" name="decrement">
+                                                </div>
+                                                <div class="input-group-n 2">
                                                 <span class="bmd-form-group"><input type="number" min="0" id="counttter"
                                                                                     class="input-group-in" value="0"
                                                                                     name="counttter"></span>
-                                            </div>
-                                            <div class="input-group-n 3">
-                                                <input type="button" value="+" id="increment"
-                                                       class="input-group-in increment" name="increment">
+                                                </div>
+                                                <div class="input-group-n 3">
+                                                    <input type="button" value="+" id="increment"
+                                                           class="input-group-in increment" name="increment">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
 
                                 <div class="add-equipment">
