@@ -41,7 +41,7 @@
                                     <td>
                                        <!--  <a href="#" class="btn btn-danger btn-xs">Delete</a>
                                         <a href="#" class="btn btn-info btn-xs">Block</a> -->
-                                        <a target="_blank" href="{{ route('tenant.admin.showPerposalTemplate' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead->id]) }}" class="btn btn-success btn-xs">Make Proposal</a>
+                                        <a target="_blank" href="{{ route('tenant.admin.showPerposalTemplate' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead->id]) }}" class="btn btn-success btn-xs make-perposal">Make Proposal</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -65,6 +65,10 @@
 
 @section('page-script')
 <script type="text/javascript">
+    jQuery(document).on('click' , '.make-perposal' , function(e){
+          window.location.href = jQuery(this).attr('href');
+       return false;
+    });
     jQuery(document).on('click' , '.anchor-tr' , function(){
         window.location.href = jQuery(this).attr('href');
     });

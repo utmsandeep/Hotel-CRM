@@ -286,7 +286,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement" />
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement" /> 
                               </div>
                               <div class="input-group-n 2">
                                 <input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter" />
@@ -303,7 +303,7 @@
                         <div class="equipment-section-card">
                           <div class="equipment-section-card-left">
                             <i class="fas fa-plug"></i>Projection Screen
-
+                        
                           </div>
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
@@ -325,7 +325,7 @@
                         <div class="equipment-section-card">
                           <div class="equipment-section-card-left">
                             <i class="fas fa-plug"></i>Flipchart
-
+                        
                           </div>
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
@@ -341,13 +341,13 @@
                             </div>
                           </div>
                         </div>
-
+                        
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
-
+                        
                       </div>
                     </div>
 
@@ -392,60 +392,52 @@
                   <span class="date-collapse-btn">
                     <i class="fas fa-chevron-down"></i>
                     <i class="fas fa-chevron-up"></i>
-
+                
                   </span>
                 </a>
 
                 <div class="date-collapse-content">
-                        <div class="collaps-bt">
-                            <div class="room-details-btn">
-                                <div class="meeting-room-btn">
-                                    <button type="button" class="btn"><i class="fas fa-utensils"></i><?= $breakfast[0]->type; ?>
-                                    </button>
-                                </div>
-                                <span class="date-collapse-btn">
+                <div class="collaps-bt">
+                  <div class="room-details-btn">
+                    <div class="meeting-room-btn">
+                      <button type="button" class="btn"><i class="fas fa-utensils"></i></i>Breakfast</button>
+                    </div>
+                    <span class="date-collapse-btn">
                       <i class="fas fa-chevron-down"></i>
                       <i class="fas fa-chevron-up"></i>
                     </span>
+                  </div>
+
+                  <div class="meetion-room-content-collapse">
+
+
+                  <div class="equipment-section-card">
+                          <div class="equipment-section-card-left">
+                            <i class="fas fa-plug" aria-hidden="true"></i>Hot Breakfast Rolls
+
+                          </div>
+                          <div class="equipment-section-card-right">
+                            <div class="input-group1">
+                              <div class="input-group-n 1">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
+                              </div>
+                              <div class="input-group-n 2">
+                                <span class="bmd-form-group"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter" ></span>
+                              </div>
+                              <div class="input-group-n 3">
+                                <input type="button" value="+" id="increment" class="input-group-in increment" name="increment">
+                              </div>
                             </div>
-
-                            <div class="meetion-room-content-collapse">
-
-                                @foreach($breakfast as $break)
-                                    <div class="equipment-section-card">
-                                        <div class="equipment-section-card-left">
-                                            <i class="fas fa-plug" aria-hidden="true"></i><?= $break->name; ?>
-
-                                        </div>
-                                        <div class="equipment-section-card-right">
-                                            <div class="input-group1">
-                                                <div class="input-group-n 1">
-                                                    <input type="button" value="-" id="decrement"
-                                                           class="input-group-in decrement" name="decrement">
-                                                </div>
-                                                <div class="input-group-n 2">
-                                                <span class="bmd-form-group"><input type="number" min="0" id="counttter"
-                                                                                    class="input-group-in" value="0"
-                                                                                    name="counttter"></span>
-                                                </div>
-                                                <div class="input-group-n 3">
-                                                    <input type="button" value="+" id="increment"
-                                                           class="input-group-in increment" name="increment">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                                <div class="add-equipment">
-                                    <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add
-                                        extra equipment
-                                    </button>
-                                </div>
-
-
-                            </div>
+                          </div>
                         </div>
+
+                        <div class="add-equipment">
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                        </div>
+
+                  
+                  </div>
+                </div>
 
                 <div class="collaps-bt">
                   <div class="room-details-btn">
@@ -468,7 +460,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="increment">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="increment"> 
                               </div>
                               <div class="input-group-n 2">
                                 <span class="bmd-form-group"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
@@ -481,7 +473,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -491,7 +483,7 @@
 
                   </div>
                 </div>
-
+                  
                 <div class="collaps-bt">
                   <div class="room-details-btn">
                     <div class="meeting-room-btn">
@@ -512,7 +504,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
                               </div>
                               <div class="input-group-n 2">
                                 <span class="bmd-form-group"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
@@ -525,7 +517,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -536,7 +528,7 @@
 
                   </div>
                 </div>
-
+                  
 
                 <div class="collaps-bt">
                   <div class="room-details-btn">
@@ -559,7 +551,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
                               </div>
                               <div class="input-group-n 2">
                                 <span class="bmd-form-group"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
@@ -572,7 +564,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -581,7 +573,7 @@
 
                   </div>
                 </div>
-
+                  
 
                 <div class="collaps-bt">
                   <div class="room-details-btn">
@@ -606,7 +598,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
                               </div>
                               <div class="input-group-n 2">
                                 <span class="bmd-form-group"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
@@ -619,7 +611,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -631,7 +623,7 @@
 
                   </div>
                 </div>
-
+                  
 
 
                 <div class="collaps-bt">
@@ -656,7 +648,7 @@
                           <div class="equipment-section-card-right">
                             <div class="input-group1">
                               <div class="input-group-n 1">
-                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
                               </div>
                               <div class="input-group-n 2">
                                 <span class="bmd-form-group"><input type="number" min = "0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
@@ -669,7 +661,7 @@
                         </div>
 
                         <div class="add-equipment">
-                          <button type="button" class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
+                          <button type="button" class="btn add-more"><i class="fa fa-plus" aria-hidden="true"></i>Add extra equipment</button>
                         </div>
 
 
@@ -678,7 +670,7 @@
 
                   </div>
                 </div>
-
+                  
 
 
 
@@ -688,11 +680,11 @@
 
           </div>
           <div class="prev-nex-btn">
-
+          
             <div class="previous-b" id="meet-f-p">
               <button class="btn"><i class="fas fa-chevron-left"></i>Back</button>
             </div>
-
+          
             <div class="next-b" id="meet-f-n">
               <button class="btn">Next</button>
             </div>
@@ -742,7 +734,7 @@
                       <span class="date-collapse-btn">
                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                         <i class="fas fa-chevron-up" aria-hidden="true"></i>
-
+                    
                       </span>
                     </a>
                     <div class="date-wise-room-details-collapse">
@@ -750,7 +742,7 @@
                       <div class="equipment-section-card">
                         <div class="equipment-section-card-left">
                           <i class="fa fa-bed" aria-hidden="true"></i>Double room
-
+                      
                         </div>
                         <div class="equipment-section-card-right">
                           <div class="input-group1">
@@ -772,7 +764,7 @@
                       <div class="equipment-section-card">
                         <div class="equipment-section-card-left">
                           <i class="fa fa-bed" aria-hidden="true"></i>Single room
-
+                      
                         </div>
                         <div class="equipment-section-card-right">
                           <div class="input-group1">
@@ -800,17 +792,17 @@
 
                     </div>
                   </div>
-
+                  
                 </div>
-
+                
               </div>
             </div>
             <div class="prev-nex-btn">
-
+            
               <div class="previous-b" id="meet-f-p">
                 <button class="btn"><i class="fas fa-chevron-left"></i>Back</button>
               </div>
-
+            
               <div class="next-b" id="meet-f-n">
                 <button class="btn">Next</button>
               </div>
@@ -970,11 +962,11 @@
 
 
               <div class="prev-nex-btn">
-
+              
                 <div class="previous-b" id="meet-f-p">
                   <button class="btn"><i class="fas fa-chevron-left"></i>Back</button>
                 </div>
-
+              
                 <div class="next-b" id="meet-f-n">
                   <button class="btn">Submit Enquiry</button>
                 </div>
@@ -986,7 +978,7 @@
 
 
 
-
+         
 
 
 
@@ -997,7 +989,7 @@
 
           <!-- sixth step -->
 
-
+          
           <!-- sixth step end -->
 
 
@@ -1025,7 +1017,7 @@
               <span class="date-collapse-btn">
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 <i class="fas fa-chevron-up" aria-hidden="true"></i>
-
+            
               </span>
             </a>
             <div class="side-summary-collapse">
@@ -1046,7 +1038,7 @@
                   <h4>Class Room</h4>
                 </div>
               </div>
-
+              
             </div>
           </div>
 
@@ -1058,7 +1050,7 @@
               <span class="date-collapse-btn">
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 <i class="fas fa-chevron-up" aria-hidden="true"></i>
-
+            
               </span>
             </a>
 
@@ -1084,6 +1076,59 @@
   </div>
 </div>
 <!-- multistep-form-page end -->
+
+
+<div class="popup-cont" style="display: none;">
+  <div class="popup-box">
+    <div class="popup-content">
+      <div class="popup-body">
+        <!-- close button -->
+        <button type="button" class="popup-close">X</button>
+        <!-- close button end -->
+        <h3 class="popup-head">New Equipment Item</h3>
+        <form class="popup-form">
+          <textarea name="popuo-in" id="popup-in" class="popup-in" placeholder="Description"></textarea>
+          <div class=" input-group1 incremental-btns">
+            <div class="input-group-n 1">
+              <input
+                type="button"
+                value="-"
+                id="decrement"
+                class="input-group-in decrement"
+                name="decrement"
+              />
+            </div>
+            <div class="input-group-n 2">
+              <span class="bmd-form-group is-filled"
+                ><input
+                  type="number"
+                  min="0"
+                  id="counttter"
+                  class="input-group-in"
+                  value="0"
+                  name="counttter"
+              /></span>
+            </div>
+            <div class="input-group-n 3">
+              <input
+                type="button"
+                value="+"
+                id="increment"
+                class="input-group-in increment"
+                name="increment"
+              />
+            </div>
+          </div>
+
+          <div class="create-btn">
+            <button type="submit">Create Item</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 
@@ -1101,7 +1146,7 @@
 $( document ).ready(function() {
 
   // accordian
-
+    
   $('.date-cont').click(function(){
     $(this).siblings('div').slideToggle("slow", function(){});
     $(this).children('.date-collapse-btn').children('.fa-chevron-down').toggleClass('flip');
@@ -1112,7 +1157,7 @@ $( document ).ready(function() {
     $(this).children('.date-collapse-btn').children('.fa-chevron-down').toggleClass('flip');
     $(this).parents('.collaps-bt').siblings('.collaps-bt').children('.meetion-room-content-collapse').slideUp();
 
-
+    
   })
 // accordian
 
@@ -1123,7 +1168,7 @@ $( document ).ready(function() {
 
     $(function () {
     var dateToday = new Date();
-
+    
         $("#arrival-d").datepicker({
             dateFormat: "mm/dd/yy",
             showOtherMonths: true,
@@ -1132,7 +1177,7 @@ $( document ).ready(function() {
             changeMonth: true,
             changeYear: true,
             minDate: dateToday,
-
+            
             //gotoCurrent: true,
         });
 
@@ -1143,8 +1188,8 @@ $( document ).ready(function() {
             autoclose: true,
             changeMonth: true,
             changeYear: true,
-
-
+            
+            
             //gotoCurrent: true,
         });
 
@@ -1157,7 +1202,7 @@ $( document ).ready(function() {
             changeMonth: true,
             changeYear: true,
             minDate: dateToday,
-
+            
             //gotoCurrent: true,
         });
 
@@ -1170,10 +1215,10 @@ $( document ).ready(function() {
             changeMonth: true,
             changeYear: true,
             minDate: dateToday,
-
+            
             //gotoCurrent: true,
         });
-
+       
        $("#end-d").datepicker({
             dateFormat: "mm/dd/yy",
             showOtherMonths: true,
@@ -1181,21 +1226,21 @@ $( document ).ready(function() {
             autoclose: true,
             changeMonth: true,
             changeYear: true,
-
-
+            
+            
             //gotoCurrent: true,
         });
-
-
+        
+         
         // return selected
-
-
-
-
-
-
-
-
+        
+       
+        
+   
+  
+    
+   
+        
 });
 
 
@@ -1224,11 +1269,11 @@ form.validate({
     },
     startdate:{
       required:true,
-
+      
     },
     enddate:{
       required:true,
-
+      
 
     },
     location:{
@@ -1243,7 +1288,7 @@ form.validate({
     endtime:{
       required:true,
     },
-
+    
     arrivaldate:{
       required:true
     }
@@ -1278,7 +1323,7 @@ form.validate({
     arrivaldate:{
       required: "This field is required"
     }
-
+    
   }
 })
 
@@ -1292,7 +1337,7 @@ if(form.valid() == true){
 
 }
 
-
+   
 })
 
 
@@ -1309,7 +1354,7 @@ $('.previous-b').click(function(e){
   $('.progress3 div').eq(pindx).addClass('active-bar');
   $('.progress3 div').eq(pindx).siblings('div').removeClass('active-bar');
   $("html, body").animate({ scrollTop: 0 }, "slow");
-
+  
 
 })
 
@@ -1324,7 +1369,7 @@ $('#event-purpose').change(function(e){
  var selval = $("#event-purpose option:selected").val();
  if(selval == 'Other'){
    $('#custum-event').css('display', 'block');
-
+   
  }else{
    $('#custum-event').css('display', 'none');
  }
@@ -1335,7 +1380,7 @@ $('#event-purpose').change(function(e){
 $('#flex-date').on('click', function(){
   if($(this).is(':checked')){
     $('.custom-date-event').css('display', 'block');
-
+    
   }else{
     $('.custom-date-event').css('display', 'none');
 
@@ -1345,7 +1390,7 @@ $('#flex-date').on('click', function(){
 $('#flex-location').on('click', function(){
   if($(this).is(':checked')){
     $('.custom-location-event').css('display', 'block');
-
+    
   }else{
     $('.custom-location-event').css('display', 'none');
 
@@ -1356,18 +1401,20 @@ $('#flex-location').on('click', function(){
 
 
 var  increment = 0;
-$('.increment').click(function(){
+
+$(document).on('click', '.increment', function(){
   var $button = $(this)
     var  $input = $button.parent('div').siblings('.input-group-n.2').find('input');
     var newval = parseInt($input.val())+1;
     $input.val(newval);
     increment += newval;
-
-
-
+    
+      
+      
 })
-$('.decrement').click(function(){
 
+$(document).on('click', '.decrement', function(){
+ 
   var $button = $(this)
   var $input = $button.parent('div').siblings('.input-group-n.2').find('input')
   var nowVal = parseInt($input.val())-1;
@@ -1381,7 +1428,52 @@ $('.decrement').click(function(){
 
 
 
+ $('.add-more').click(function(){
+   $addbtn = $(this)
+   var eqsection = $addbtn.parent().parent();
 
+   $('.popup-cont').fadeIn();
+   console.log(eqsection);
+   
+   $('.create-btn').click(function(e){
+     e.preventDefault();
+     
+     var inval = $(this).siblings('span').find('textarea').val();
+     var htmlto = `<div class="equipment-section-card">
+                          <div class="equipment-section-card-left">
+                            <i class="fas fa-plug" aria-hidden="true"></i>${inval}
+
+                          </div>
+                          <div class="equipment-section-card-right">
+                            <div class="input-group1">
+                              <div class="input-group-n 1">
+                                <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
+                              </div>
+                              <div class="input-group-n 2">
+                                <span class="bmd-form-group is-filled"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
+                              </div>
+                              <div class="input-group-n 3">
+                                <input type="button" value="+" id="increment" class="input-group-in increment" name="increment">
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
+    //  eqsection.append(htmlto);
+     $( htmlto ).insertBefore( ".add-equipment" );
+     
+   })
+ })
+
+
+
+
+  $('.popup-close').click(function(){
+    $(this).parent().parent().parent().parent().fadeOut();
+  })
+  $('.create-btn').click(function(){
+    $(this).parent().parent().parent().parent().parent().fadeOut();
+
+  })
 
 
 
@@ -1397,7 +1489,9 @@ $('.decrement').click(function(){
 
 
 });
+
 </script>
 @endsection
 
-
+  
+  

@@ -25,6 +25,12 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
  	Route::get("/show/hotel" , function(){
  		return view('tenant.show-hotel');
  	});
+ 	Route::get("/resource/not-found" , function(){
+ 		return view('tenant.not-found');
+ 	});
+ 	Route::get("/forbidden" , function(){
+ 		return view('tenant.forbidden');
+ 	});
 // 	Route::get("/hotel/query-form" , function(){
 // 		return view('tenant.query-form');
 // 	});

@@ -17,7 +17,7 @@ class CreateLeadConversationsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('lead_id')->nullable();
             $table->integer('admin_id')->nullable();
-            $table->integer('text')->nullable();
+            $table->longText('text')->nullable();
             $table->integer('parent')->nullable();
             $table->timestamps();
         });

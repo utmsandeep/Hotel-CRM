@@ -2880,3 +2880,27 @@ form.popup-form textarea:focus {
   }
 }
 /* show hotel media query end here */
+
+/* query form media query */
+@media screen and (max-width: 667px) {
+  .multi-step-form-page {
+    padding-top: 10px;
+  }
+  .next-b button {
+    padding: 3px 43px;
+
+    font-size: 17px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .multi-step-form-page i.fas.fa-chevron-down {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .popup-box {
+    width: 90%;
+    margin: auto;
+  }
+}
+/* query form media query end here */
