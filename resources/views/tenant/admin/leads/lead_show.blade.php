@@ -165,6 +165,9 @@ h5.notes-h {
 .edit-text {
     display: none;
 }
+.delete-ic{
+  cursor: pointer;
+}
 @media screen and (max-width:767px){
   .chat-box {
     width: 100%;
@@ -218,147 +221,171 @@ h5.notes-h {
               </div>
             </div> -->
 
-<!-- notes section  -->
-<div class="notes-section">
-  <div class="notes-section-inner">
-    <div class="notes-head">
-      <h5 class="notes-h">Notes</h5>
-      <div class="chat-box-cont">
-        <div class="chat-box">
-          <table>
-            @if($lead->leadConversations)
-              @foreach($lead->leadConversations as $key => $conversation)
-                <tr>
-                  <td class="icon">
-                    <span
-                      ><i class="fa fa-user-circle" aria-hidden="true"></i
-                    ></span>
-                  </td>
-                  <td class="chat">
-                    <div class="chat-text">
-                      <p>{{ $conversation->text }}</p>
+                <!-- notes section  -->
+                <div class="notes-section">
+                  <div class="notes-section-inner">
+                    <div class="notes-head">
+                      <h5 class="notes-h">Notes</h5>
+                      <div class="chat-box-cont">
+                        <div class="chat-box">
+                          <table>
+                            @if($lead->leadConversations)
+                              @foreach($lead->leadConversations as $key => $conversation)
+                                <tr>
+                                  <td class="icon">
+                                    <span
+                                      ><i class="fa fa-user-circle" aria-hidden="true"></i
+                                    ></span>
+                                  </td>
+                                  <td class="chat">
+                                    <div class="chat-text">
+                                      <p>{{ $conversation->text }}</p>
+                                    </div>
+                                    <div class="chat-details">
+                                      <span class="lead-name"
+                                        >Lead - <a href="javascript:void(0);">{{ $lead->group_contact }}</a></span
+                                      >
+                                      <span class="dot">.</span>
+                                    <!--   <span><a href="#">Add Notes</a></span> -->
+                                      <span class="dot">.</span>
+                                      <span class="ago">
+                                        <i class="fa fa-clock-o"></i>{{ $conversation->created_at }}<!-- 17 hrs. ago -->
+                                      </span>
+                                      <span class="by">by</span>
+                                      <span class="person">{{ $conversation->admin->firstname }} {{ $conversation->admin->lastname }}</span>
+                                      @if($conversation->admin_id == auth('admin')->user()->id)
+                                        <span class="edit-delete">
+                                          <span class="edit"
+                                            ><i class="fa fa-pencil" aria-hidden="true"></i
+                                          ></span>
+                                          <span class="delete delete-ic" href="{{ route('tenant.admin.lead.deleteConversation' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead->id , 'conversation_id'=>$conversation->id])}}"
+                                            ><i class="fa fa-trash"  aria-hidden="true"></i
+                                          ></span>
+                                        </span>
+                                        <div class="chat-type" style="display:none;">
+                                        <form method="post" class=".update-form" action="{{ route('tenant.admin.lead.updateConversation' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead->id , 'conversation_id'=>$conversation->id])}}">
+                                          @csrf
+                                          <input type="hidden" name="_method" value="put">                              
+                                          <div class="chat-type-inner">
+                                            <div class="text-area">
+                                              <textarea name="text"  class="chat-text-area" placeholder="Add a note..." style="height: 50px;">{{ $conversation->text }}</textarea>
+                                            </div>
+                                            <div class="edit-text" style="display: block;">
+                                              <div class="al-l">
+                                              </div>
+                                              <div class="al-r">
+                                                <span><button type="button" class="cancel cancel-update">Cancel</button></span>
+                                                <span><button type="submit" class="save">Save</button></span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      @endif
+                                    </div>
+                                  </td>
+                                </tr>
+                              @endforeach
+                            @endif
+
+                           <!--  <tr>
+                              <td class="icon">
+                                <span
+                                  ><i class="fa fa-user-circle" aria-hidden="true"></i
+                                ></span>
+                              </td>
+                              <td class="chat">
+                                <div class="chat-text">
+                                  <p>Lorem ipsum dummy text</p>
+                                </div>
+                                <div class="chat-details">
+                                  <span class="lead-name"
+                                    >Lead - <a href="#">Christopher</a></span
+                                  >
+                                  <span class="dot">.</span>
+                                  <span><a href="#">Add Notes</a></span>
+                                  <span class="dot">.</span>
+                                  <span class="ago">
+                                    <i class="fa fa-clock-o"></i>17 hrs. ago
+                                  </span>
+                                  <span class="by">by</span>
+                                  <span class="person">John</span>
+                                  <span class="edit-delete">
+                                    <span class="edit"
+                                      ><i class="fa fa-pencil" aria-hidden="true"></i
+                                    ></span>
+                                    <span class="delete"
+                                      ><i class="fa fa-trash" aria-hidden="true"></i
+                                    ></span>
+                                  </span>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="icon">
+                                <span
+                                  ><i class="fa fa-user-circle" aria-hidden="true"></i
+                                ></span>
+                              </td>
+                              <td class="chat">
+                                <div class="chat-text">
+                                  <p>Lorem ipsum dummy text</p>
+                                </div>
+                                <div class="chat-details">
+                                  <span class="lead-name"
+                                    >Lead - <a href="#">Christopher</a></span
+                                  >
+                                  <span class="dot">.</span>
+                                  <span><a href="#">Add Notes</a></span>
+                                  <span class="dot">.</span>
+                                  <span class="ago">
+                                    <i class="fa fa-clock-o"></i>17 hrs. ago
+                                  </span>
+                                  <span class="by">by</span>
+                                  <span class="person">Allen</span>
+                                  <span class="edit-delete">
+                                    <span class="edit"
+                                      ><i class="fa fa-pencil" aria-hidden="true"></i
+                                    ></span>
+                                    <span class="delete"
+                                      ><i class="fa fa-trash" aria-hidden="true"></i
+                                    ></span>
+                                  </span>
+                                </div>
+                              </td>
+                            </tr> -->
+                          </table>
+
+                          <div class="chat-type">
+                            <form method="post" id="store-form" action="{{ route('tenant.admin.lead.storeConversation' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead->id]) }}">
+                              @csrf
+                              <div class="chat-type-inner">
+                                <div class="text-area">
+                                  <textarea name="text" id="text" class="chat-text-area" placeholder="Add a note..."></textarea>
+                                </div>
+                                <div class="edit-text">
+                                  <div class="al-l">
+                                   <!--  <span
+                                      ><i class="fa fa-paperclip" aria-hidden="true"></i> Attatch
+                                      file</span
+                                    >
+                                    <span>Add a title</span> -->
+                                  </div>
+                                  <div class="al-r">
+                                    <span><button type="button"  class="cancel">Cancel</button></span>
+                                    <span><button type="submit" class="save">Save</button></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="chat-details">
-                      <span class="lead-name"
-                        >Lead - <a href="javascript:void(0);">{{ $lead->group_contact }}</a></span
-                      >
-                      <span class="dot">.</span>
-                    <!--   <span><a href="#">Add Notes</a></span> -->
-                      <span class="dot">.</span>
-                      <span class="ago">
-                        <i class="fa fa-clock-o"></i>{{ $conversation->created_at }}<!-- 17 hrs. ago -->
-                      </span>
-                      <span class="by">by</span>
-                      <span class="person">{{ $conversation->admin->firstname }} {{ $conversation->admin->lastname }}</span>
-                      <span class="edit-delete">
-                        <span class="edit"
-                          ><i class="fa fa-pencil" aria-hidden="true"></i
-                        ></span>
-                        <span class="delete"
-                          ><i class="fa fa-trash" aria-hidden="true"></i
-                        ></span>
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              @endforeach
-            @endif
-
-           <!--  <tr>
-              <td class="icon">
-                <span
-                  ><i class="fa fa-user-circle" aria-hidden="true"></i
-                ></span>
-              </td>
-              <td class="chat">
-                <div class="chat-text">
-                  <p>Lorem ipsum dummy text</p>
+                  </div>
                 </div>
-                <div class="chat-details">
-                  <span class="lead-name"
-                    >Lead - <a href="#">Christopher</a></span
-                  >
-                  <span class="dot">.</span>
-                  <span><a href="#">Add Notes</a></span>
-                  <span class="dot">.</span>
-                  <span class="ago">
-                    <i class="fa fa-clock-o"></i>17 hrs. ago
-                  </span>
-                  <span class="by">by</span>
-                  <span class="person">John</span>
-                  <span class="edit-delete">
-                    <span class="edit"
-                      ><i class="fa fa-pencil" aria-hidden="true"></i
-                    ></span>
-                    <span class="delete"
-                      ><i class="fa fa-trash" aria-hidden="true"></i
-                    ></span>
-                  </span>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td class="icon">
-                <span
-                  ><i class="fa fa-user-circle" aria-hidden="true"></i
-                ></span>
-              </td>
-              <td class="chat">
-                <div class="chat-text">
-                  <p>Lorem ipsum dummy text</p>
-                </div>
-                <div class="chat-details">
-                  <span class="lead-name"
-                    >Lead - <a href="#">Christopher</a></span
-                  >
-                  <span class="dot">.</span>
-                  <span><a href="#">Add Notes</a></span>
-                  <span class="dot">.</span>
-                  <span class="ago">
-                    <i class="fa fa-clock-o"></i>17 hrs. ago
-                  </span>
-                  <span class="by">by</span>
-                  <span class="person">Allen</span>
-                  <span class="edit-delete">
-                    <span class="edit"
-                      ><i class="fa fa-pencil" aria-hidden="true"></i
-                    ></span>
-                    <span class="delete"
-                      ><i class="fa fa-trash" aria-hidden="true"></i
-                    ></span>
-                  </span>
-                </div>
-              </td>
-            </tr> -->
-          </table>
-
-          <div class="chat-type">
-            <div class="chat-type-inner">
-              <div class="text-area">
-                <textarea class="chat-text-area" placeholder="Add a note..."></textarea>
-              </div>
-              <div class="edit-text">
-                <div class="al-l">
-                 <!--  <span
-                    ><i class="fa fa-paperclip" aria-hidden="true"></i> Attatch
-                    file</span
-                  >
-                  <span>Add a title</span> -->
-                </div>
-                <div class="al-r">
-                  <span><button class="cancel">Cancel</button></span>
-                  <span><button class="save">Save</button></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- notes section end here -->
+                <!-- notes section end here -->
 
 
 
@@ -366,6 +393,10 @@ h5.notes-h {
         </div>
       </div>
       <!-- name and details -->
+      <form id="delete-form" method="post" action="">
+        @csrf
+        <input type="hidden" name="_method" value="delete">
+      </form>
     </div>
 
         
@@ -383,8 +414,35 @@ h5.notes-h {
       $(this).css('height', '50px')
       $(this).parent().siblings('div').css('display', 'block')
     })
+
+    $(document).on('submit' , "#store-form" , function(e){
+      if(jQuery.trim(jQuery('#text').val()) == '')
+      {
+        e.preventDefault();
+      }
+    });
+
+    $(document).on('click' , '.delete-ic' , function(){
+    if(confirm("Are you sure ?")){
+      var form = $("#delete-form").attr('action' , $(this).attr('href'));
+      $(form).submit();
+    }
+    });
+
+    $(document).on('click' , '.edit' , function(e){
+        $(this).parent().next('div').show();
+    });
+    $(document).on('click' , '.cancel-update' , function(e){
+        $(this).parents('.chat-type').hide();
+    });
+
     
 });
+  $(window).load(function() {
+    $("html, body").animate({ scrollDown: $(document).height()-$(window).height() });
+  //$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+});
+  
 </script>
 
 

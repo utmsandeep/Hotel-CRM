@@ -13,6 +13,7 @@ use App\Http\Controllers\Tenant\Admin\PerposalController;
 use App\Http\Controllers\Tenant\Admin\LeadController;
 use App\Http\Controllers\Tenant\Admin\ClientPerposalController;
 use App\Http\Controllers\Tenant\Admin\PerposalConversationController;
+use App\Http\Controllers\Tenant\Admin\LeadConversationController;
 
 Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 	Route::get('/' , function(){
@@ -278,6 +279,9 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			Route::get('/lead/index', [LeadController::class, 'index'])->name('tenant.admin.lead.listing');
 			Route::get('/lead/show/{lead_id}', [LeadController::class, 'show'])->name('tenant.admin.lead.show');
+			Route::post('/lead/{lead_id}/conversation/store' , [LeadConversationController::class , 'storeConversation'])->name('tenant.admin.lead.storeConversation');
+			Route::put('/lead/{lead_id}/conversation/update/{conversation_id}' , [LeadConversationController::class , 'updateConversation'])->name('tenant.admin.lead.updateConversation');
+			Route::delete('/lead/{lead_id}/conversation/delete/{conversation_id}' , [LeadConversationController::class , 'deleteConversation'])->name('tenant.admin.lead.deleteConversation');
 			
 
 			 });

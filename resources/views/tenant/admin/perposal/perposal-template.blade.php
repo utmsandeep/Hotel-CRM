@@ -114,6 +114,43 @@ tbody#rooms-table tr th,
     padding-top: 10px;
     font-weight: 600;
 }
+.preview-popup{
+	display:none;
+}
+.preview-popup {
+    position: absolute;
+    top: 20px;
+    z-index: 9;
+    background: #fff;
+    width: 97.5%;
+    border-radius: 10px;
+    border: 1px solid #f2f2f2;
+	height: 100%;
+}
+.close-btn {
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    color: #1777cb;
+    font-weight: bold;
+    font-size: 13px;
+	cursor: pointer;
+}
+.ok-cancel {
+    text-align: center;
+}
+.ok-cancel span button {
+    background: #1777cb;
+    border: 1px solid #1777cb;
+    color: #fff;
+    width: 73px;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+button.cancel {
+    background: #fff !important;
+    color: #1777cb !important;
+}
   	</style>
 </head>
 <body>
@@ -1011,9 +1048,28 @@ tbody#rooms-table tr th,
 		                </div>
 		            </div>
 		            <div class="text-center">
-		            	<input type="submit" value="Submit" class="btn btn-success btn-lg">
+		            	<!-- <input type="submit" value="Submit" class="btn btn-success btn-lg"> -->
+						<input  id="popup-btn" type="btn" value="Preview" class="btn btn-success btn-lg">
 		            </div>
 		        </form>
+				<!-- preview popup start -->
+<div class="preview-popup">
+  <div class="preview-popup-inner">
+    <div class="popup-container">
+      <div class="popup-row">
+        <div class="close-btn">X</div>
+        <div class="content">
+          <h5>This is popup</h5>
+          <div class="ok-cancel">
+            <span><button type="btn" class="ok">OK</button></span>
+            <span><button type="btn" class="cancel">Cancel</button></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- preview popup end -->
     		</div>
 		</div>
 
@@ -1238,6 +1294,16 @@ tbody#rooms-table tr th,
 					icon = "fa fa-minus";
 				$(this).find('strong').find('i').attr('class' , icon);
 			});	
+
+
+			$('#popup-btn').click(function(){
+				$('.preview-popup').css('display', 'block')
+
+			})
+			$('.close-btn').click(function(){
+				$(this).parent().parent().parent().parent().css('display', 'none');
+			})
+			
 		});
 	</script>
 	<script>
