@@ -125,7 +125,9 @@ tbody#rooms-table tr th,
     width: 97.5%;
     border-radius: 10px;
     border: 1px solid #f2f2f2;
-	height: 100%;
+	padding: 24px 37px;
+    overflow: auto;
+	box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 .close-btn {
     display: inline-block;
@@ -136,6 +138,7 @@ tbody#rooms-table tr th,
     font-size: 13px;
 	cursor: pointer;
 }
+
 .ok-cancel {
     text-align: center;
 }
@@ -146,6 +149,9 @@ tbody#rooms-table tr th,
     width: 73px;
     padding: 5px 0;
     border-radius: 5px;
+}
+#popup-btn {
+    margin-bottom: 10px;
 }
 button.cancel {
     background: #fff !important;
@@ -159,7 +165,7 @@ button.cancel {
 		<div class="row clearfix">
     		<div class="col-lg-12 col-md-12 col-sm-12">
        
-		        <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.showPerposalTemplate.store' , ['lead_id'=>$lead->id , 'hotel_code'=>$hotel_code]) }}">
+		        <form method="post" enctype="multipart/form-data" action="{{ route('tenant.admin.showPerposalTemplate.store' , ['lead_id'=>$lead->id , 'hotel_code'=>$hotel_code]) }}" id="perposal-form">
 		            @csrf
 		            <div class="header">
 		                <h3 class="heading"><strong><i class="fa fa-plus"></i>&nbsp;GREETING</strong></h3>
@@ -284,7 +290,7 @@ button.cancel {
 		                        </div>
 		                    </div>
 		                    <br>
-		                    <table  cellspacing="0" style="">
+		                    <table  cellspacing="0" style="" id="room-commitment-table">
 								<tbody id="rooms-table">
 									<tr><th>Room Type</th>
 										@foreach($request_data->bookings as $key => $bookings)
@@ -838,6 +844,107 @@ button.cancel {
 											</tbody>
 										</table>
 
+										<p>&nbsp;</p>
+
+											<p><strong>Bank Detail</strong></p>
+
+											<table cellspacing="0" style="border-collapse:collapse; width:607px">
+												<tbody>
+													<tr>
+														<td style="background-color:black; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; height:15px; vertical-align:top; width:282px">
+														<p><strong>PARTICULARS</strong></p>
+														</td>
+														<td style="background-color:black; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; height:15px; vertical-align:top; width:325px">
+														<p><strong>DETAILS</strong></p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom; width:282px">
+														<p>Account Name</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:17px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['account_name'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:282px">
+														<p>Account Number</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['account_number'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:282px">
+														<p>Bank Name</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['bank_name'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:19px; vertical-align:bottom; width:282px">
+														<p>Account Type</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:19px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['account_type'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:18px; vertical-align:bottom; width:282px">
+														<p>IFSC Code</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:18px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['ifsc_code'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:18px; vertical-align:bottom; width:282px">
+														<p>MICR Code</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:18px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['micr_code'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:282px">
+														<p>BSR Code</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['bsr_code'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:282px">
+														<p>Address</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['address'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:282px">
+														<p>Branch Code</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:15px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['branch_code'] }}</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:13px; vertical-align:bottom; width:282px">
+														<p>Branch Name</p>
+														</td>
+														<td style="border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; height:13px; vertical-align:bottom; width:325px">
+														<p>{{ $bank_detail[0]['branch_name'] }}</p>
+														</td>
+													</tr>
+													
+												</tbody>
+											</table>
+
+											<p>&nbsp;</p>
+
+
 		                            </textarea>
 		                        </div>
 		                    </div>
@@ -1058,13 +1165,13 @@ button.cancel {
     <div class="popup-container">
       <div class="popup-row">
         <div class="close-btn">X</div>
-        <div class="content">
-          <h5>This is popup</h5>
+        <div id="content-to-show" class="content">
+        </div>
+          <!-- <h5>This is popup</h5> -->
           <div class="ok-cancel">
-            <span><button type="btn" class="ok">OK</button></span>
+            <span><button type="btn" id="perposal-btn" class="ok">OK</button></span>
             <span><button type="btn" class="cancel">Cancel</button></span>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1297,11 +1404,32 @@ button.cancel {
 
 
 			$('#popup-btn').click(function(){
+				$("#content-to-show").html('');
+				$("#content-to-show").append($("#editor1").text())
+				$("#content-to-show").append($("#editor2").text())
+				$("#content-to-show").append($("#editor3").text())
+				$("#content-to-show").append($("#room-commitment-table").html())
+				$("#content-to-show").append($("#editor4").text())
+				$("#content-to-show").append($("#editor5").text())
+				$("#content-to-show").append($("#editor6").text())
+				$("#content-to-show").append($("#editor7").text())
+				$("#content-to-show").append($("#editor8").text())
+				$("#content-to-show").append($("#editor9").html())
+				$("#content-to-show").append($("#editor10").text())
+				$("#content-to-show").append($("#editor11").text())
 				$('.preview-popup').css('display', 'block')
 
 			})
 			$('.close-btn').click(function(){
+				$("#content-to-show").html('');
 				$(this).parent().parent().parent().parent().css('display', 'none');
+			})
+
+			$(document).on('click' , '#perposal-btn' , function(){
+				$("#perposal-form").submit()
+			})
+			$('.cancel').on('click', function(){
+				$('.preview-popup').css('display', 'none');
 			})
 			
 		});

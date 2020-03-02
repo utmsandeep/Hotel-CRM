@@ -28,7 +28,9 @@ class PerposalController extends Controller
             return redirect()->back()->withErrors("Sorry , Lead not found.");
         }
         $request_data = json_decode($lead->request_data);
-    	return view('tenant.admin.perposal.perposal-template' , compact('template' , 'lead' , 'hotel' , 'request_data' , 'hotel_code'));
+        $bank_detail = json_decode($hotel->hotelSetting->bank_account_detail , true);
+        //dd($bank_detail);
+    	return view('tenant.admin.perposal.perposal-template' , compact('template' , 'lead' , 'hotel' , 'request_data' , 'bank_detail', 'hotel_code'));
     }
     public function editPerposal($hotel_code , $booking_id ){
     	$perposal = Perposal::where('booking_id' , $booking_id)->first();

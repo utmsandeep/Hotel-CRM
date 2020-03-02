@@ -168,6 +168,33 @@ h5.notes-h {
 .delete-ic{
   cursor: pointer;
 }
+
+.fullname .dropdown-menu.show {
+    min-height: 40px !important;
+    overflow: unset !important;
+}
+.fullname.bootstrap-select>.dropdown-toggle:after {
+    right: 4px;
+}
+.fullname.dropup .dropdown-menu {
+    
+    bottom: 0%;
+}
+.fullname .dropdown-menu{
+  top:0;
+}
+
+.fullname button.btn.dropdown-toggle.btn-simple {
+    display: none;
+}
+.fullname .dropdown-menu {
+    display: none;
+}
+.fullname{
+  padding: 10px 6px;
+    border-radius: 5px;
+
+}
 @media screen and (max-width:767px){
   .chat-box {
     width: 100%;
@@ -193,7 +220,21 @@ h5.notes-h {
                 <table>
                   <tr class="tabdiv">
                     <td class="al-rgt"><span>Lead Owner</span></td>
-                    <td><span>{{ $lead->leadOwners->first()->admin->firstname }} {{ $lead->leadOwners->first()->admin->lastname }}</span></td>
+                    <td><span>
+                    <form id="assign-form" method="post" action="{{ route('tenant.admin.lead.assign.changeLeadOwner' , ['hotel_code' => $hotel_code , 'lead_id'=>$lead->id]) }}">
+                      @csrf
+                      <select name="admin_id" class="fullname" id="fullname">
+                        @foreach($hotel->hotelAdmins as $key => $admins)
+
+                         <option @if($lead->leadOwners->first()->admin->id == $admins->admin->id) selected @endif value="{{ $admins->admin->id }}">{{ $admins->admin->firstname }} {{ $admins->admin->lastname }}</option>
+
+                        @endforeach
+                        <!-- <option value="1">{{ $lead->leadOwners->first()->admin->firstname }} {{ $lead->leadOwners->first()->admin->lastname }}</option>
+                        <option value="2">Second name</option>
+                        <option value="3">Third</option> -->
+                      </select>
+                      </form>
+                    </span></td>
                   </tr>
                   
                   @foreach($request_data->user_details as $key => $value)
@@ -222,7 +263,7 @@ h5.notes-h {
             </div> -->
 
                 <!-- notes section  -->
-                <div class="notes-section">
+                <div class="notes-section" id="notes">
                   <div class="notes-section-inner">
                     <div class="notes-head">
                       <h5 class="notes-h">Notes</h5>
@@ -435,13 +476,25 @@ h5.notes-h {
     $(document).on('click' , '.cancel-update' , function(e){
         $(this).parents('.chat-type').hide();
     });
+$("html, body").animate({ 
+      scrollTop : $('#notes').offset().top
+     }, 1000);
 
+
+
+     $('#fullname').on('change', function() {
+      var user = $(this).children(':selected').text()
+      if(confirm(`do you really want to assign this lead to ${user}.`)){
+        $("#assign-form").submit();
+      }
+    });
     
 });
-  $(window).load(function() {
-    $("html, body").animate({ scrollDown: $(document).height()-$(window).height() });
+ 
+    
+    
   //$("html, body").animate({ scrollTop: $(document).height() }, 1000);
-});
+
   
 </script>
 

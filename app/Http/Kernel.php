@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 		'lookfortenant' => \App\Http\Middleware\LookForTenant::class,
         'perposalauthclient' => \App\Http\Middleware\PerposalAuthClient::class,
+        'leadowner' => \App\Http\Middleware\LeadOwner::class,
     ];
 
     /**
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 		\App\Http\Middleware\LookForTenant::class,
         \App\Http\Middleware\PerposalAuthClient::class,
+        \App\Http\Middleware\LeadOwner::class,
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,

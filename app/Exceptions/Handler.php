@@ -49,6 +49,9 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \App\Exceptions\ResourceNotFoundException)  {
             return $exception->render($request);
         }
+        elseif ($exception instanceof \App\Exceptions\UnauthorizedException)  {
+            return $exception->render($request);
+        }
 
         return parent::render($request, $exception);
     }

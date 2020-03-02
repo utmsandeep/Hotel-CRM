@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Tenant\Admin\Lead;
+use Log;
 
 class LeadConversationController extends Controller
 {
@@ -17,6 +18,7 @@ class LeadConversationController extends Controller
 	   		$lead->leadConversations()->create(['text'=>$request->text , "admin_id"=>auth('admin')->user()->id]);
 	   		return redirect(route('tenant.admin.lead.show' , ['hotel_code'=>$hotel_code , 'lead_id'=>$lead_id])."?changed_content=1");
    		}catch(\Exception $e){
+            Log::error($e);
    			throw new \App\Exceptions\ResourceNotFoundException($e);
    		}
    }

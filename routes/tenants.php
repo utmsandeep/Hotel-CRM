@@ -266,8 +266,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			Route::get('/proposal/index', [PerposalController::class, 'index'])->name('tenant.admin.perposal.listing');
 			Route::delete('/perposal/delete/{perposal_id}', [PerposalController::class, 'delete'])->name('tenant.admin.perposal.delete');
-			Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
-			Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
+			
 			Route::get('/perposal-template/edit/{booking_id}' , [PerposalController::class , 'editPerposal'])->name('tenant.admin.editPerposal');
 			Route::get('/perposal-template/show/{perposal_id}' , [PerposalController::class , 'showPerposal'])->name('tenant.admin.showPerposal');
 			Route::put('/perposal/update-room-commitment/{perposal_id}' , [PerposalController::class , 'updateRoomCommitmentData'])->name('tenant.admin.updateRoomCommitmentData');
@@ -278,10 +277,17 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			/*************************lead***********************/
 
 			Route::get('/lead/index', [LeadController::class, 'index'])->name('tenant.admin.lead.listing');
-			Route::get('/lead/show/{lead_id}', [LeadController::class, 'show'])->name('tenant.admin.lead.show');
-			Route::post('/lead/{lead_id}/conversation/store' , [LeadConversationController::class , 'storeConversation'])->name('tenant.admin.lead.storeConversation');
-			Route::put('/lead/{lead_id}/conversation/update/{conversation_id}' , [LeadConversationController::class , 'updateConversation'])->name('tenant.admin.lead.updateConversation');
-			Route::delete('/lead/{lead_id}/conversation/delete/{conversation_id}' , [LeadConversationController::class , 'deleteConversation'])->name('tenant.admin.lead.deleteConversation');
+			Route::group(['middleware'=>['leadowner']] , function(){
+				Route::get('/lead/show/{lead_id}', [LeadController::class, 'show'])->name('tenant.admin.lead.show');
+				Route::post('/lead/{lead_id}/assign' , [LeadController::class , 'changeLeadOwner'])->name('tenant.admin.lead.assign.changeLeadOwner');
+				Route::post('/lead/{lead_id}/conversation/store' , [LeadConversationController::class , 'storeConversation'])->name('tenant.admin.lead.storeConversation');
+				Route::put('/lead/{lead_id}/conversation/update/{conversation_id}' , [LeadConversationController::class , 'updateConversation'])->name('tenant.admin.lead.updateConversation');
+				Route::delete('/lead/{lead_id}/conversation/delete/{conversation_id}' , [LeadConversationController::class , 'deleteConversation'])->name('tenant.admin.lead.deleteConversation');
+				// proposal protected routes
+				Route::get('/perposal-template/{lead_id}' , [PerposalController::class , 'showPerposalTemplate'])->name('tenant.admin.showPerposalTemplate');
+				Route::post('/perposal-template/{lead_id}' , [PerposalController::class , 'storePerposal'])->name('tenant.admin.showPerposalTemplate.store');
+
+			});
 			
 
 			 });

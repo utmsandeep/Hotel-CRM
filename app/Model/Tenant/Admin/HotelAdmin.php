@@ -14,11 +14,11 @@ class HotelAdmin extends Model
 
     public function admin(){
 
-    	return $this->hasOne(Admin::class , 'id' , 'admin_id');
+    	return $this->belongsTo(Admin::class);
     }
 
     public function Hotel(){
 
-    	return $this->hasOne(Hotel::class , 'id' , 'hotel_id');
+    	return $this->belongsTo(Hotel::class);
     }
 }
