@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Tenant\Admin\PerposalTemplate;
 use App\Model\Tenant\Admin\Perposal;
 use App\Model\Tenant\Admin\Lead;
+use App\Model\Tenant\Admin\LeadOwner;
 use Illuminate\Support\Str;
 use App\Mail\Tenant\Admin\PerposalOtpLogin;
 use App\Mail\Tenant\Admin\PerposalGeneratedMail;
@@ -17,7 +18,14 @@ use Mail;
 class PerposalController extends Controller
 {
     public function index($hotel_code){
-        $perposals = Perposal::where('hotel_id' , hotelIdByCode($hotel_code)->id)->orderBy('id' , 'desc')->paginate(10);
+        $hotel = hotelIdByCode($hotel_code);
+        if(auth('admin')->user()->role == 4){
+            $perposals = Perposal::where('hotel_id' , $hotel->id)->orderBy('id' , 'desc')->paginate(10);
+        }
+        else{
+            $lead_owner = LeadOwner::where('admin_id' , auth('admin')->user()->id)->pluck('lead_id');
+            $perposals = Perposal::where('hotel_id' , $hotel->id)->whereIn('lead_id' , $lead_owner)->orderBy('id' , 'desc')->paginate(10);
+        }
         return view('tenant.admin.perposal.perposal_listing' , compact('perposals' , 'hotel_code'));
     }
     public function showPerposalTemplate($hotel_code  , $lead_id){

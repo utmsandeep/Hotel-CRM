@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Tenant\Admin\Lead;
+use App\Model\Tenant\Admin\LeadOwner;
 
 class LeadController extends Controller
 {
     public function index($hotel_code){
-
-    	$leads = Lead::where('hotel_id' , hotelIdByCode($hotel_code)->id)->orderBy('id' , 'desc')->paginate(10);
+        $hotel = hotelIdByCode($hotel_code);
+    	
+        if(auth('admin')->user()->role == 4){
+            $leads = Lead::where('hotel_id' , $hotel->id)->orderBy('id' , 'desc')->paginate(10);
+        }
+        else{
+            $lead_owner = LeadOwner::where('admin_id' , auth('admin')->user()->id)->pluck('lead_id');
+            $leads = Lead::where('hotel_id' , $hotel->id)->whereIn('id' , $lead_owner)->orderBy('id' , 'desc')->paginate(10);
+        }
     	return view('tenant.admin.leads.lead_listing' , compact('leads' , 'hotel_code'));
 
     }
@@ -30,16 +38,16 @@ class LeadController extends Controller
     }
 
     public function changeLeadOwner(Request $request , $hotel_code , $lead_id ){
-        //try{
+        try{
 
             $hotel = hotelIdByCode($hotel_code);
             $lead  = Lead::where('hotel_id' , $hotel->id)->where('id' , $lead_id)->first();
             $lead->leadOwners()->first()->update(["admin_id"=> $request->admin_id]);
             return redirect()->route('tenant.admin.lead.listing' , ["hotel_code"=>$hotel_code])->withSuccess("Lead assigned to specified manager.");
 
-        // }catch(\Exception $exception){
-        //      \Log::error($exception);
-        //      throw new \App\Exceptions\ResourceNotFoundException($exception);
-        // }
+        }catch(\Exception $exception){
+             \Log::error($exception);
+             throw new \App\Exceptions\ResourceNotFoundException($exception);
+        }
     }
 }

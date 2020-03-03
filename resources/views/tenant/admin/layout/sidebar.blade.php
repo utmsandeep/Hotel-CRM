@@ -27,16 +27,18 @@
                 </ul>
             </li>
             
-
+            @if(!isset($hotel_code))
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('profile.my-profile')}}"><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
 
+            @if(auth('admin')->user()->role == 4)
             <li class="{{ Request::segment(2) === 'staff' || Request::segment(2) === 'roles' ? 'active open' : null }}">
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Staff & Roles</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(3) === 'staff-list' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.index')}}">Staff</a></li>
                 </ul>
             </li>
+            @endif
 
             <!-- <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Messages</span></a>
@@ -51,6 +53,17 @@
                     <li class="{{ Request::segment(3) === 'hotel-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotel.list') }}">Hotel List</a></li>
                 </ul>
             </li>
+            <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}">
+                <a href="{{route('tenant.admin.hotel.contract.content.store')}}"><i class="zmdi zmdi-account"></i><span>Contract Content</span>
+                </a>
+            </li>
+            <li class="{{ Request::segment(1) === 'pages' ? 'active open open_top' : null }}">
+                <a href="#Pages" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Hotel Pages</span></a>
+                <ul class="ml-menu">
+                </ul>
+            </li>
+            @endif
+
             @if(isset($hotel_code))
             <li class="{{ Request::segment(4) === 'hotel-setting' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotel Settings</span></a>
@@ -82,7 +95,7 @@
             <li class="{{ Request::segment(4) === 'proposal' ? 'active open' : null }}"><a href="{{route('tenant.admin.perposal.listing', ['hotel_code'=>$hotel_code])}}"><i class="zmdi zmdi-account"></i><span>Proposals</span></a></li>
             @endif
            
-            <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}"><a href="{{route('tenant.admin.hotel.contract.content.store')}}"><i class="zmdi zmdi-account"></i><span>Contract</span></a></li>
+           
 
             <!-- <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
                 <a href="#FileManager" class="menu-toggle"><i class="zmdi zmdi-folder"></i> <span>File Manager</span></a>
@@ -98,11 +111,7 @@
                 </ul>
             </li> -->
 
-            <li class="{{ Request::segment(1) === 'pages' ? 'active open open_top' : null }}">
-                <a href="#Pages" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Hotel Pages</span></a>
-                <ul class="ml-menu">
-                </ul>
-            </li>
+            
 
             <li class=""><a href="{{route('tenant.admin.logout.submit')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="zmdi zmdi-account"></i><span>LogOut</span></a>
             </li>

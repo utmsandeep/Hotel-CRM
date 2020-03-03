@@ -8,6 +8,7 @@
 @section('page-style')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     h3.name-h {
     font-size: 21px;
@@ -195,6 +196,16 @@ h5.notes-h {
     border-radius: 5px;
 
 }
+button.btn.dropdown-toggle.btn-simple {
+    display: none;
+}
+.dropdown-menu {
+    display: none;
+}
+.autosuggest .select2-container {
+    
+    width: 200px !important;
+}
 @media screen and (max-width:767px){
   .chat-box {
     width: 100%;
@@ -221,17 +232,16 @@ h5.notes-h {
                   <tr class="tabdiv">
                     <td class="al-rgt"><span>Lead Owner</span></td>
                     <td><span>
-                    <form id="assign-form" method="post" action="{{ route('tenant.admin.lead.assign.changeLeadOwner' , ['hotel_code' => $hotel_code , 'lead_id'=>$lead->id]) }}">
-                      @csrf
-                      <select name="admin_id" class="fullname" id="fullname">
+                    
+                      <form class="autosuggest" id="assign-form" method="post" action="{{ route('tenant.admin.lead.assign.changeLeadOwner' , ['hotel_code' => $hotel_code , 'lead_id'=>$lead->id]) }}">
+                        @csrf
+                      <select name="admin_id" class="autosuggest" id="autosuggest">
                         @foreach($hotel->hotelAdmins as $key => $admins)
 
                          <option @if($lead->leadOwners->first()->admin->id == $admins->admin->id) selected @endif value="{{ $admins->admin->id }}">{{ $admins->admin->firstname }} {{ $admins->admin->lastname }}</option>
 
                         @endforeach
-                        <!-- <option value="1">{{ $lead->leadOwners->first()->admin->firstname }} {{ $lead->leadOwners->first()->admin->lastname }}</option>
-                        <option value="2">Second name</option>
-                        <option value="3">Third</option> -->
+                      
                       </select>
                       </form>
                     </span></td>
@@ -250,17 +260,7 @@ h5.notes-h {
               <div class="best-time"></div>
             </div>
 
-            <!-- <div class="hide-details">
-              <div class="hide-details-inner">
-                <h4 class="hide-btn">
-                  <span>Show details</span
-                  ><span><i class="fa fa-angle-down colla-pse"></i></span>
-                </h4>
-                <div class="to-be-collapse">
-                  to be show on hide
-                </div>
-              </div>
-            </div> -->
+           
 
                 <!-- notes section  -->
                 <div class="notes-section" id="notes">
@@ -329,73 +329,6 @@ h5.notes-h {
                               @endforeach
                             @endif
 
-                           <!--  <tr>
-                              <td class="icon">
-                                <span
-                                  ><i class="fa fa-user-circle" aria-hidden="true"></i
-                                ></span>
-                              </td>
-                              <td class="chat">
-                                <div class="chat-text">
-                                  <p>Lorem ipsum dummy text</p>
-                                </div>
-                                <div class="chat-details">
-                                  <span class="lead-name"
-                                    >Lead - <a href="#">Christopher</a></span
-                                  >
-                                  <span class="dot">.</span>
-                                  <span><a href="#">Add Notes</a></span>
-                                  <span class="dot">.</span>
-                                  <span class="ago">
-                                    <i class="fa fa-clock-o"></i>17 hrs. ago
-                                  </span>
-                                  <span class="by">by</span>
-                                  <span class="person">John</span>
-                                  <span class="edit-delete">
-                                    <span class="edit"
-                                      ><i class="fa fa-pencil" aria-hidden="true"></i
-                                    ></span>
-                                    <span class="delete"
-                                      ><i class="fa fa-trash" aria-hidden="true"></i
-                                    ></span>
-                                  </span>
-                                </div>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td class="icon">
-                                <span
-                                  ><i class="fa fa-user-circle" aria-hidden="true"></i
-                                ></span>
-                              </td>
-                              <td class="chat">
-                                <div class="chat-text">
-                                  <p>Lorem ipsum dummy text</p>
-                                </div>
-                                <div class="chat-details">
-                                  <span class="lead-name"
-                                    >Lead - <a href="#">Christopher</a></span
-                                  >
-                                  <span class="dot">.</span>
-                                  <span><a href="#">Add Notes</a></span>
-                                  <span class="dot">.</span>
-                                  <span class="ago">
-                                    <i class="fa fa-clock-o"></i>17 hrs. ago
-                                  </span>
-                                  <span class="by">by</span>
-                                  <span class="person">Allen</span>
-                                  <span class="edit-delete">
-                                    <span class="edit"
-                                      ><i class="fa fa-pencil" aria-hidden="true"></i
-                                    ></span>
-                                    <span class="delete"
-                                      ><i class="fa fa-trash" aria-hidden="true"></i
-                                    ></span>
-                                  </span>
-                                </div>
-                              </td>
-                            </tr> -->
                           </table>
 
                           <div class="chat-type">
@@ -444,6 +377,7 @@ h5.notes-h {
 @stop
 
 @section('page-script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
     $( document ).ready(function() {
     $('.hide-btn').click(function(){
@@ -488,14 +422,51 @@ $("html, body").animate({
         $("#assign-form").submit();
       }
     });
+
+    
+
+    $('#autosuggest').on('change', function(){
+       var user = $(this).children(':selected').text()
+      swal.fire({
+            title: `Do you really want to assign this lead to ${user}.`,
+           
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm!'
+        }).then((result) => {
+              if (result.value) {
+  
+
+            Swal.fire(
+                  'Assigned',
+
+                  'success'
+            )
+            $("#assign-form").submit();
+        }
+      })
+
+       
+      
+      
+    })
     
 });
+
  
     
     
-  //$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+ 
 
   
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#autosuggest').select2();
+});
 </script>
 
 
