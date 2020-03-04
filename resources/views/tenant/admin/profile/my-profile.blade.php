@@ -1,7 +1,20 @@
 @extends('tenant.admin.layout.master')
 @section('title', 'My Profile')
 @section('page-style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://amit-hotel-version-2.hoteleventcrm.buzz/tenant-admin/plugins/dropify/css/dropify.min.css"/>
 <style>
+  .col-xl-4.col-lg-12.col-md-12 .mcard_3 {
+    
+    box-shadow: 0 0 4px #00000012;
+    
+}
+.upper-section-profile {
+   
+    padding: 20px;
+    background: #e6e6e694;
+    
+}
     .profile-desc {
     width: 100%;
 }
@@ -38,14 +51,91 @@ h5.card-head {
 .profile-cards p {
     color: #999;
 }
-.upper-section-profile {
-    background: #f5ccd994;
-    padding: 20px;
+ul.social-links.list-unstyled li a {
+    color: #e47297;
+}
+.upper-section-profile .editbtn {
+    border: 1px solid;
+    padding: 6px 0px;
+    margin-top: 10px;
+    display: block;
+    width: 50%;
+    margin: auto;
+    border-radius: 5px;
+}
+.upper-section-profile .editbtn i {
+    padding-right: 8px;
+}
+.profile-edit-section{
+  display:none;
+}
+.form-edit label {
+    display: block;
+   color: #e47297;
+}
+.dp-label{
+  display: block;
+   color: #e47297;
+
+}
+h5.edit-profile-head {
+    font-weight: bold;
+    border-bottom: 2px solid #f2f2f2;
+    padding-bottom: 7px;
+}
+.form-edit {
+    margin: 28px 0;
+    width: 50%;
+    float: left;
+    padding: 0 15px;
+}
+.edit-form-container {
+    overflow: auto;
+}
+.form-edit input {
+    height: 40px;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    padding: 3px 7px;
+}
+span.backto-profile {
+    float: right;
+   cursor: pointer;
+    font-size: 13px;
+    color: #0c7ce6;
+}
+.dropify-wrapper {
+    width: 21%;
+}
+.submit-edit:hover {
+    background: #e47297;
+    color: #fff;
+}
+.submit-edit {
+    background: unset;
+    border: 1px solid #e47297;
+    color: #e47297;
+    padding: 6px 25px;
+    border-radius: 5px;
+    float: right;
+    margin-right: 15px;
+}
+@media screen and (max-width:414px){
+  .profile-cards {
+    flex-basis: 100%;
+  }
+}
+@media screen and (max-width:667px){
+  .form-edit{
+    width:100%;
+  }
 }
 </style>
 @endsection
 @section('content')
-<div class="row clearfix">
+<div class="row clearfix profile-section">
     <!-- left section start -->
   <div class="col-xl-4 col-lg-12 col-md-12">
     <div class="card mcard_3">
@@ -59,6 +149,7 @@ h5.card-head {
 
             <h4 class="m-t-10">WrapTheme</h4>
             <h5 class="role">Security Lead</h5>
+            <a href="#" id="edit-btn" class="editbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Profile</a>
          </div>
       <div class="body">
          
@@ -282,4 +373,94 @@ h5.card-head {
   <!-- right section -->
 </div>
 
+
+
+<!-- edit section start here -->
+<div class="row clearfix profile-edit-section">
+  <div class="edit-section-inner">
+    <div class="card">
+      <div class="body">
+        <h5 class="edit-profile-head">
+          Edit your profile
+          <span class="backto-profile"><a>Back to your profile</a></span>
+        </h5>
+        <div class="edit-form-container">
+          <form>
+            <!-- profile picture edit -->
+
+           <label class="dp-label">Profile picture</label>
+            <input type="file" class="dropify" name="display-picture" />
+        
+
+
+
+
+
+
+            <!-- profile picture edit end here -->
+            <div class="form-edit f_name">
+              <label>First Name</label>
+              <input type="text" name="Firstname" id="Firstname" />
+            </div>
+
+            <div class="form-edit l_name">
+              <label>Last Name</label>
+              <input type="text" name="Lastname" id="Lastname" />
+            </div>
+
+            <div class="form-edit pswd">
+              <label>Password</label>
+              <input type="text" name="Password" id="Password" />
+            </div>
+
+            <div class="form-edit email">
+              <label>Email</label>
+              <input type="email" name="email" id="email" />
+            </div>
+
+            <div class="form-edit phone_no.">
+              <label>Phone No</label>
+              <input type="text" name="phone" id="phone" />
+            </div>
+
+            <div class="form-edit role">
+              <label>Role</label>
+              <input type="text" name="role" id="role" />
+            </div>
+
+            <button type="submit" class="submit-edit" id="submit-edit">Submit</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit section ends here -->
+
+@stop
+
+
+@section('page-script')
+<script src="http://amit-hotel-version-2.hoteleventcrm.buzz/tenant-admin/plugins/dropify/js/dropify.min.js"></script>
+<script>
+  $( document ).ready(function(){
+   $('.editbtn').click(function(){
+    $(this).parents('.profile-section').fadeOut(1000);
+    $(this).parents('.profile-section').siblings('.profile-edit-section').fadeIn(1000);
+     return false
+
+   })
+
+   $('.dropify').dropify();
+
+
+   $('.backto-profile').click(function(){
+     $(this).parents('.profile-edit-section').fadeOut(1000);
+     $(this).parents('.profile-edit-section').siblings('.profile-section').fadeIn(1000);
+   })
+
+
+  })
+</script>
 @stop

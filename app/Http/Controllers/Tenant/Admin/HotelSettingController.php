@@ -526,4 +526,23 @@ class HotelSettingController extends Controller
 
 	/*-----------------------------------------------------------------*/
 
+    /*---------------------------Event booker type---------------------*/
+    public function eventBookerType(Request $request , $hotel_code){
+        try{
+            $hotel_setting = hotelIdByCode($hotel_code)->hotelSettings;
+            return view('tenant.admin.hotel-setting.event-booker-type' , compact('hotel-setting' , 'hotel_code'));
+        }catch(\Exception $e){
+            \Log::error($e);
+            return $e->getMessage();
+        }
+    }
+    public function storeEventBookerType(Request $request , $hotel_code){
+        try{
+            hotelIdByCode($hotel_code)->hotelSettings()->update($request->all());
+        }catch (\Exception $e) {
+            \Log::error($e);
+            return $e->getMessage();
+        }
+    }
+
 }

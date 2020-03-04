@@ -35,7 +35,7 @@
                                     <td>{{ $stf->email }}</td>
                                     <td>{{ $stf->primary_mobile }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                                        <a  href="{{ route('tenant.admin.staff.delete' , ['admin_id'=>$stf->id]) }}" class="btn btn-danger btn-xs delete-anchor">Delete</a>
                                         <a href="#" class="btn btn-info btn-xs">Block</a>
                                         <a href="#" class="btn btn-success btn-xs">Edit</a>
                                     </td>
@@ -45,6 +45,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{ $staff->links() }}
                     <!-- <ul class="pagination pagination-primary mt-4">
                         <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
                         <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
@@ -55,4 +56,11 @@
                 </div>
             </div>
         </div>
+        <form method="post" id="delete-form" action="">
+            @csrf
+            <input type="hidden" name="_method" value="delete">
+        </form>
+        @section('page-script')
+        <script type="text/javascript" src="{{ asset('js/custom-scripts.js') }}"></script>
+        @stop
 @stop

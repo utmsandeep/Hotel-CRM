@@ -18,6 +18,26 @@
         @endif
         <!-- Custom Css -->
         <link rel="stylesheet" href="{{asset('tenant-admin/css/style.min.css')}}">
+        <style>
+            .hotel-show-cont-in-h {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.hotel-show-card-h {
+    flex-basis: 20%;
+}
+.hotel-show-card-h a {
+    display: block;
+    padding: 0 12px;
+}
+.below-thumb-details h5 {
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    color: #999;
+}
+        </style>
         @stack('after-styles')
     </head>
     <?php 
@@ -56,55 +76,146 @@
         @include('tenant.admin.layout.sidebar')
         <!-- @include('tenant.admin.layout.rightsidebar') -->
         <section class="content">
-            <div class="block-header">
-                <div class="row">
-                    <div class="col-lg-7 col-md-6 col-sm-12">
-                        <h2>@yield('title')</h2>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i> Hotel </a></li>
-                            @if (trim($__env->yieldContent('parentPageTitle')))
-                                <li class="breadcrumb-item">@yield('parentPageTitle')</li>
-                            @endif
-                            @if (trim($__env->yieldContent('title')))
-                                <li class="breadcrumb-item active">@yield('title')</li>
-                            @endif
-                        </ul>
-                        <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
-                    </div>            
-                    <div class="col-lg-5 col-md-6 col-sm-12">
-                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
-                        @yield('create-new')
-                    </div>
-
+  <div class="block-header">
+    <div class="row">
+      <!-- hotel list section -->
+<div class="col-lg-12 col-md-12">
+  <div class="inner-hotel-show-h">
+    <div class="hotel-show-cont-h">
+      <div class="card">
+        <div class="body">
+          <h5 class="search-hotel-head-h">Switch Hotel</h5>
+          <div class="hotel-show-cont-in-h">
+            <div class="hotel-show-card-h">
+              <a class="thumb-link" href="#">
+              <div class="thumb-image">
+                <img src="{{ asset('images/searcpage-img/lemeridiennewdelhi-18.jpg') }}"></img>
+              </div>
+              <div class="below-thumb-details">
+                <h5 class="hotel-name">The Claridges,</h5>
+                <h5 class="hotel-location">New Delhi</h5>
+              </div>
+            </a>
+            </div>
+            <div class="hotel-show-card-h">
+              <a class="thumb-link" href="#">
+                <div class="thumb-image">
+                  <img src="{{ asset('images/searcpage-img/nparbitrationin-3.jpg') }}"></img>
                 </div>
-                @if(session()->get('success'))
-                    <div class="alert alert-success" role="alert">
-                        <strong>{{ session()->get('success') }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
-                        </button>
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger" role="alert">
-                        @foreach ($errors->all() as $error)
-                        <strong>{{ $error }}</strong><br>
-                        @endforeach
+                <div class="below-thumb-details">
+                  <h5 class="hotel-name">The Taj Hotel,</h5>
+                  <h5 class="hotel-location">New Delhi</h5>
+                </div>
+              </a>
+            </div>
+            <div class="hotel-show-card-h">
+              <a class="thumb-link" href="#">
+                <div class="thumb-image">
+                  <img src="{{ asset('images/searcpage-img/shangrilahotelnewdelhi-6.jpg') }}"></img>
+                </div>
+                <div class="below-thumb-details">
+                  <h5 class="hotel-name">La Maridian,</h5>
+                  <h5 class="hotel-location">New Delhi</h5>
+                </div>
+              </a>
+            </div>
+            <div class="hotel-show-card-h">
+              <a class="thumb-link" href="#">
+                <div class="thumb-image">
+                  <img src="{{ asset('images/searcpage-img/theimperialnewdelhi-0.jpg') }}"></img>
+                </div>
+                <div class="below-thumb-details">
+                  <h5 class="hotel-name">The Imperial,</h5>
+                  <h5 class="hotel-location">New Delhi</h5>
+                </div>
+              </a>
+            </div>
+            <div class="hotel-show-card-h">
+              <a class="thumb-link" href="#">
+                <div class="thumb-image">
+                  <img src="{{ asset('images/searcpage-img/Vivanta-by-Taj---Ambassador-0.png') }}"></img>
+                </div>
+                <div class="below-thumb-details">
+                  <h5 class="hotel-name">Regent Continental Hotel,</h5>
+                  <h5 class="hotel-location">New Delhi</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- hotel list section end -->
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>@yield('title')</h2>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{{route('dashboard.index')}}"
+              ><i class="zmdi zmdi-home"></i> Hotel
+            </a>
+          </li>
+          @if (trim($__env->yieldContent('parentPageTitle')))
+          <li class="breadcrumb-item">@yield('parentPageTitle')</li>
+          @endif @if (trim($__env->yieldContent('title')))
+          <li class="breadcrumb-item active">@yield('title')</li>
+          @endif
+        </ul>
+        <button class="btn btn-primary btn-icon mobile_menu" type="button">
+          <i class="zmdi zmdi-sort-amount-desc"></i>
+        </button>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <button
+          class="btn btn-primary btn-icon float-right right_icon_toggle_btn"
+          type="button"
+        >
+          <i class="zmdi zmdi-arrow-right"></i>
+        </button>
+        @yield('create-new')
+      </div>
+      
+    </div>
+    @if(session()->get('success'))
+    <div class="alert alert-success" role="alert">
+      <strong>{{ session()->get('success') }}</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
+      </button>
+    </div>
+    @endif @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+      @foreach ($errors->all() as $error)
+      <strong>{{ $error }}</strong><br />
+      @endforeach
 
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
-                        </button>
-                    </div>
-                
-                @endif
-            </div>
-            <div class="container-fluid">                
-                @yield('content')
-            </div>
-        </section>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true"><i class="zmdi zmdi-close"></i></span>
+      </button>
+    </div>
+
+    @endif
+  </div>
+  <div class="container-fluid">
+    @yield('content')
+  </div>
+</section>
+
         @yield('modal')
         <!-- Scripts -->
         @stack('before-scripts')
+        <!-- <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> -->
         <script src="{{ asset('tenant-admin/bundles/libscripts.bundle.js') }}"></script>    
         <script src="{{ asset('tenant-admin/bundles/vendorscripts.bundle.js') }}"></script>
 

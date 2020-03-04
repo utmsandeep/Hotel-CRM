@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use App\Model\super_admin\Role;
+use App\Model\Tenant\Admin\HotelAdmin;
 
 class Admin extends Authenticatable
 {
@@ -20,5 +21,8 @@ class Admin extends Authenticatable
 
     	return $this->hasOne(Role::class , 'id' , 'role');
 
+    }
+    public function adminHotels(){
+    	return $this->hasMany(HotelAdmin::class);
     }
 }

@@ -1433,7 +1433,7 @@ $(document).on('click', '.decrement', function(){
    var eqsection = $addbtn.parent().parent();
 
    $('.popup-cont').fadeIn();
-   console.log(eqsection);
+   
    
    $('.create-btn').click(function(e){
      e.preventDefault();
@@ -1458,8 +1458,12 @@ $(document).on('click', '.decrement', function(){
                             </div>
                           </div>
                         </div>`
+        
     //  eqsection.append(htmlto);
-     $( htmlto ).insertBefore( ".add-equipment" );
+    //  $( htmlto ).insertBefore( ".add-equipment" );
+    var add = eqsection.find('.add-equipment');
+        $( htmlto ).insertBefore( add );
+   
      
    })
  })

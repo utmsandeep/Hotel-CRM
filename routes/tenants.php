@@ -200,6 +200,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('staff/staff-list', [StaffController::class, 'index'])->name('tenant.admin.staff.index');
 			Route::get('staff/create-staff', [StaffController::class, 'create'])->name('tenant.admin.staff.create');
 			Route::post('staff/create-staff', [StaffController::class, 'store'])->name('tenant.admin.staff.store');
+			Route::delete('staff/delete-staff/{admin_id}', [StaffController::class, 'delete'])->name('tenant.admin.staff.delete');
 			Route::get('roles/role-list', [RoleController::class, 'index'])->name('tenant.admin.role.index');
 			Route::get('roles/create-role', [RoleController::class, 'create'])->name('tenant.admin.role.create');
 			Route::post('roles/create-role', [RoleController::class, 'store'])->name('tenant.admin.role.store');
@@ -260,6 +261,10 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			Route::get('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettings'])->name('tenant.admin.hotelSetting.importHotelSettings');
 			Route::post('hotel-setting/import-hotel-settings', [HotelSettingController::class, 'importHotelSettingsStore'])->name('tenant.admin.hotelSetting.importHotelSettingsStore');
+			Route::get('hotel-setting/event-booker-type', [HotelSettingController::class, 'eventBookerType'])->name('tenant.admin.hotelSetting.eventBookerType');
+			Route::post('hotel-setting/event-booker-type', [HotelSettingController::class, 'storeEventBookerType'])->name('tenant.admin.hotelSetting.storeEventBookerType');
+
+			/******************************end hotel setting***********************/
 
 			Route::get('/hotel-contract', [HotelController::class, 'showContract'])->name('tenant.admin.hotel.contract');
 			Route::post('/hotel-contract', [HotelController::class, 'storeContract'])->name('tenant.admin.hotel.contract.store');

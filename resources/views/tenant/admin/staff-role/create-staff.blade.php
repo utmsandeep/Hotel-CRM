@@ -4,6 +4,11 @@
 @section('page-style')
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<style type="text/css">
+    .req{
+        color: red;
+    }
+</style>
 @stop
 @section('content')
 <!-- Input -->
@@ -17,13 +22,13 @@
                     <div class="row clearfix">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="firstname">First Name</label>                             
+                                <label for="firstname">First Name<span class="req">*</span></label>                             
                                 <input type="text" class="form-control" placeholder="" id="firstname" name="firstname" value="{{ old('firstname') }}" />                                   
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">  
-                                <label for="lastname">Last Name</label>                                 
+                                <label for="lastname">Last Name<span class="req">*</span></label>                                 
                                 <input type="text" class="form-control" placeholder="" id="lastname" name="lastname" value="{{ old('lastname') }}" />                                    
                             </div>
                         </div>
@@ -31,7 +36,7 @@
                     <div class="row clearfix">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Gender</label>
+                                <label class="control-label">Gender<span class="req">*</span></label>
                                 <select class="form-control custom-select" name="gender" required="">
                                     <option value=1>Male</option>
                                     <option value=2>Female</option>
@@ -40,7 +45,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="control-label">Email</label>
+                                <label class="control-label">Email<span class="req">*</span></label>
                                  <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                             </div>
                         </div>
@@ -60,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
+                   <!--  <div class="row clearfix">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Password</label>
@@ -75,8 +80,8 @@
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
+                    </div> -->
+                    <!-- <div class="row clearfix">
                         <div class="col-md-12 ">
                             <div class="form-group">
                                 <label>Street</label>
@@ -97,8 +102,8 @@
                                 <input type="text" class="form-control" name="state" value="{{ old('state') }}">
                             </div>
                         </div>
-                    </div>                  
-                    <div class="row clearfix">
+                    </div> -->                  
+                    <!-- <div class="row clearfix">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Post Code</label>
@@ -116,15 +121,27 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row clearfix">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Role</label>
+                                <label>Role<span class="req">*</span></label>
                                 <select class="form-control custom-select" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Assign Hotels</label>
+                                <select class="form-control custom-select" name="hotels[]" multiple="">
+                                    <option value="">--Select Hotels--</option>
+                                    @foreach($hotels as $hotel)
+                                    <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
