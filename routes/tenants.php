@@ -200,7 +200,10 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			Route::get('staff/staff-list', [StaffController::class, 'index'])->name('tenant.admin.staff.index');
 			Route::get('staff/create-staff', [StaffController::class, 'create'])->name('tenant.admin.staff.create');
 			Route::post('staff/create-staff', [StaffController::class, 'store'])->name('tenant.admin.staff.store');
+			Route::get('staff/edit-staff/{admin_id}', [StaffController::class, 'edit'])->name('tenant.admin.staff.edit');
+			Route::put('staff/edit-staff/{admin_id}', [StaffController::class, 'update'])->name('tenant.admin.staff.update');
 			Route::delete('staff/delete-staff/{admin_id}', [StaffController::class, 'delete'])->name('tenant.admin.staff.delete');
+			Route::patch('staff/{admin_id}/{action}', [StaffController::class, 'block'])->name('tenant.admin.staff.block');
 			Route::get('roles/role-list', [RoleController::class, 'index'])->name('tenant.admin.role.index');
 			Route::get('roles/create-role', [RoleController::class, 'create'])->name('tenant.admin.role.create');
 			Route::post('roles/create-role', [RoleController::class, 'store'])->name('tenant.admin.role.store');
@@ -219,29 +222,29 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 	Route::get('/' , [HotelController::class , 'hotelDashboard'])->name('tenant.admin.hotel.dashboard');
 
 			 	/* Hotel Setting*/
-			 Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
-			 Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
-			 Route::get('hotel-setting/policy', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
-			 Route::post('hotel-setting/save-policy', [HotelSettingController::class, 'savepolicy'])->name('tenant.admin.hotelSetting.savepolicy');
-			 Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
-			 Route::get('hotel-setting/hotel-near', [HotelSettingController::class, 'nearby'])->name('tenant.admin.hotelSetting.nearby');
-			 Route::post('hotel-setting/storenearby', [HotelSettingController::class, 'storenearby'])->name('tenant.admin.hotelSetting.storenearby');
+			 	Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
+				Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
+				Route::get('hotel-setting/policy', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
+			 	Route::post('hotel-setting/save-policy', [HotelSettingController::class, 'savepolicy'])->name('tenant.admin.hotelSetting.savepolicy');
+			 	Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');
+			 	Route::get('hotel-setting/hotel-near', [HotelSettingController::class, 'nearby'])->name('tenant.admin.hotelSetting.nearby');
+			 	Route::post('hotel-setting/storenearby', [HotelSettingController::class, 'storenearby'])->name('tenant.admin.hotelSetting.storenearby');
 
 			 //Route::get('hotel-setting/deposite-refund', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
-			 Route::post('hotel-setting/typeofroom', [HotelSettingController::class, 'typeofroom'])->name('tenant.admin.hotelSetting.typeofroom');
-			 Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
+			 	Route::post('hotel-setting/typeofroom', [HotelSettingController::class, 'typeofroom'])->name('tenant.admin.hotelSetting.typeofroom');
+			 	Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
 
-			 Route::post('hotel-setting/seatingstyle', [HotelSettingController::class, 'seatingstyle'])->name('tenant.admin.hotelSetting.seatingstyle');
-			 Route::get('hotel-setting/seating-style', [HotelSettingController::class, 'style'])->name('tenant.admin.hotelSetting.style');
+			 	Route::post('hotel-setting/seatingstyle', [HotelSettingController::class, 'seatingstyle'])->name('tenant.admin.hotelSetting.seatingstyle');
+			 	Route::get('hotel-setting/seating-style', [HotelSettingController::class, 'style'])->name('tenant.admin.hotelSetting.style');
 
-              Route::post('hotel-setting/detail', [HotelSettingController::class, 'detail'])->name('tenant.admin.hotelSetting.detail');
-              Route::get('hotel-setting/account-detail', [HotelSettingController::class, 'showdetail'])->name('tenant.admin.hotelSetting.showdetail');
+              	Route::post('hotel-setting/detail', [HotelSettingController::class, 'detail'])->name('tenant.admin.hotelSetting.detail');
+              	Route::get('hotel-setting/account-detail', [HotelSettingController::class, 'showdetail'])->name('tenant.admin.hotelSetting.showdetail');
 
-			 Route::post('hotel-setting/taxes', [HotelSettingController::class, 'taxes'])->name('tenant.admin.hotelSetting.taxes');
-			 Route::get('hotel-setting/applicable-taxes', [HotelSettingController::class, 'showtaxes'])->name('tenant.admin.hotelSetting.showtaxes');
-             Route::post('hotel-setting/listed', [HotelSettingController::class, 'listed'])->name('tenant.admin.hotelSetting.listed');
-             Route::get('hotel-setting/menu-list', [HotelSettingController::class, 'showlist'])->name('tenant.admin.hotelSetting.showlist');
-             Route::post('hotel-setting/variety', [HotelSettingController::class, 'variety'])->name('tenant.admin.hotelSetting.variety');
+			 	Route::post('hotel-setting/taxes', [HotelSettingController::class, 'taxes'])->name('tenant.admin.hotelSetting.taxes');
+			 	Route::get('hotel-setting/applicable-taxes', [HotelSettingController::class, 'showtaxes'])->name('tenant.admin.hotelSetting.showtaxes');
+             	Route::post('hotel-setting/listed', [HotelSettingController::class, 'listed'])->name('tenant.admin.hotelSetting.listed');
+             	Route::get('hotel-setting/menu-list', [HotelSettingController::class, 'showlist'])->name('tenant.admin.hotelSetting.showlist');
+             	Route::post('hotel-setting/variety', [HotelSettingController::class, 'variety'])->name('tenant.admin.hotelSetting.variety');
              Route::get('hotel-setting/menu-type', [HotelSettingController::class, 'showmenu'])->name('tenant.admin.hotelSetting.showmenu');
              Route::post('hotel-setting/prices', [HotelSettingController::class, 'prices'])->name('tenant.admin.hotelSetting.prices');
              Route::get('hotel-setting/menu-price', [HotelSettingController::class, 'pricemenu'])->name('tenant.admin.hotelSetting.pricemenu');
@@ -297,8 +300,10 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 			 });
 
+			 
 			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
 			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
+			 Route::get('/contract-content/index' , [ContractController::class , 'index'])->name('tenant.admin.hotel.contract.index');
 
 			 Route::get('/test' , [HotelController::class , 'test']);
 

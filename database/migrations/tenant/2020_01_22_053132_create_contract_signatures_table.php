@@ -16,6 +16,7 @@ class CreateContractSignaturesTable extends Migration
         Schema::create('contract_signatures', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('hotel_id')->nullable();
+            $table->longText('hotel_contract_id')->nullable();
             $table->integer('admin_id')->nullable();
             $table->integer('role')->nullable();
             $table->longText('signature')->nullable();

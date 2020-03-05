@@ -15,17 +15,7 @@
                     </div>
                 </div>
             </li>
-           @php
-            $utm_hotels = adminAsignedHotels();
-           @endphp
-            <li class="">
-                <a href="#App" class="menu-toggle"> <i class="zmdi zmdi-home"></i> <span>Switch Hotel</span></a>
-                <ul class="ml-menu">
-                    @foreach($utm_hotels as  $utm_hotel)
-                    <li class=@if(isset($hotel_code) && $hotel_code == $utm_hotel->Hotel->hotel_code) active @endif><a href="{{ route('tenant.admin.hotel.dashboard' , ['hotel_code'=>$utm_hotel->Hotel->hotel_code]) }}"> {{ $utm_hotel->Hotel->name }} </a></li>
-                    @endforeach
-                </ul>
-            </li>
+           
             
             @if(!isset($hotel_code))
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>

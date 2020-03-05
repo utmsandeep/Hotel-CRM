@@ -19,24 +19,62 @@
         <!-- Custom Css -->
         <link rel="stylesheet" href="{{asset('tenant-admin/css/style.min.css')}}">
         <style>
-            .hotel-show-cont-in-h {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.hotel-show-card-h {
-    flex-basis: 20%;
-}
-.hotel-show-card-h a {
-    display: block;
-    padding: 0 12px;
-}
-.below-thumb-details h5 {
-    font-size: 12px;
-    margin-bottom: 2px;
-    font-weight: bold;
-    color: #999;
-}
+          .search-hotel-list-left, .search-hotel-list-right {
+                width: 50%;
+                float: left;
+            }
+            .search-hotel-list {
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+              }
+              ul.search-hotel-menu {
+                  margin: 0;
+                  list-style-type: none;
+                  padding: 6px 14px;
+              }
+              ul.search-hotel-menu li ul {
+                  list-style-type: none;
+                  display: none;
+                  padding: 5px 14px;
+                  box-shadow: 0 0 4px #00000012;
+              }
+              .search-hotel-list {
+                  background: #fff;
+                  box-shadow: 0 0 4px #00000012;
+                  margin-bottom: 25px;
+                  align-items: center;
+              }
+              .search-hotel-list-right p {
+                    margin: 0;
+                }   
+              .search-hotel-list ul.ml-menu {
+                  position: absolute;
+                  /* top: 100%; */
+                  background: #fff;
+                  left: 0;
+                  z-index: 9;
+              } 
+              ul.search-hotel-menu li {
+                  position: relative;
+                  padding: 4px 0;
+                
+              }
+              .search-hotel-list-right p {
+                    color: #999;
+                    padding: 6px 14px;
+                }
+                .search-hotel-list-right p span {
+                      color: #000;
+                      font-weight: bold;
+                  }
+                .search-hotel-list-right {
+                    text-align: right;
+                }
+                ul.search-hotel-menu li.active a {
+    
+                    color: #000000bf;
+                }
         </style>
         @stack('after-styles')
     </head>
@@ -78,76 +116,36 @@
         <section class="content">
   <div class="block-header">
     <div class="row">
-      <!-- hotel list section -->
-<div class="col-lg-12 col-md-12">
-  <div class="inner-hotel-show-h">
-    <div class="hotel-show-cont-h">
-      <div class="card">
-        <div class="body">
-          <h5 class="search-hotel-head-h">Switch Hotel</h5>
-          <div class="hotel-show-cont-in-h">
-            <div class="hotel-show-card-h">
-              <a class="thumb-link" href="#">
-              <div class="thumb-image">
-                <img src="{{ asset('images/searcpage-img/lemeridiennewdelhi-18.jpg') }}"></img>
-              </div>
-              <div class="below-thumb-details">
-                <h5 class="hotel-name">The Claridges,</h5>
-                <h5 class="hotel-location">New Delhi</h5>
-              </div>
-            </a>
-            </div>
-            <div class="hotel-show-card-h">
-              <a class="thumb-link" href="#">
-                <div class="thumb-image">
-                  <img src="{{ asset('images/searcpage-img/nparbitrationin-3.jpg') }}"></img>
-                </div>
-                <div class="below-thumb-details">
-                  <h5 class="hotel-name">The Taj Hotel,</h5>
-                  <h5 class="hotel-location">New Delhi</h5>
-                </div>
-              </a>
-            </div>
-            <div class="hotel-show-card-h">
-              <a class="thumb-link" href="#">
-                <div class="thumb-image">
-                  <img src="{{ asset('images/searcpage-img/shangrilahotelnewdelhi-6.jpg') }}"></img>
-                </div>
-                <div class="below-thumb-details">
-                  <h5 class="hotel-name">La Maridian,</h5>
-                  <h5 class="hotel-location">New Delhi</h5>
-                </div>
-              </a>
-            </div>
-            <div class="hotel-show-card-h">
-              <a class="thumb-link" href="#">
-                <div class="thumb-image">
-                  <img src="{{ asset('images/searcpage-img/theimperialnewdelhi-0.jpg') }}"></img>
-                </div>
-                <div class="below-thumb-details">
-                  <h5 class="hotel-name">The Imperial,</h5>
-                  <h5 class="hotel-location">New Delhi</h5>
-                </div>
-              </a>
-            </div>
-            <div class="hotel-show-card-h">
-              <a class="thumb-link" href="#">
-                <div class="thumb-image">
-                  <img src="{{ asset('images/searcpage-img/Vivanta-by-Taj---Ambassador-0.png') }}"></img>
-                </div>
-                <div class="below-thumb-details">
-                  <h5 class="hotel-name">Regent Continental Hotel,</h5>
-                  <h5 class="hotel-location">New Delhi</h5>
-                </div>
-              </a>
-            </div>
+
+      <!-- hotel search dropdawn start -->
+      <div class = "col-lg-12 col-md-12">
+        <div class="search-hotel-list">
+          <div class="search-hotel-list-left">
+            <ul class="search-hotel-menu">
+              @php
+            $utm_hotels = adminAsignedHotels();
+           @endphp
+            <li class="">
+                <a href="#App" class="menu-toggle"> <i class="zmdi zmdi-home"></i> <span>Switch Hotel</span></a>
+                <ul class="ml-menu">
+                    @foreach($utm_hotels as  $utm_hotel)
+                    <li class=@if(isset($hotel_code) && $hotel_code == $utm_hotel->Hotel->hotel_code) active @endif><a href="{{ route('tenant.admin.hotel.dashboard' , ['hotel_code'=>$utm_hotel->Hotel->hotel_code]) }}"> {{ $utm_hotel->Hotel->name }} </a></li>
+                    @endforeach
+                </ul>
+            </li>
+
+            </ul>
+          </div>
+          <div class="search-hotel-list-right">
+            <p class="switched-hotel">Currently you are in <span id="Switched-hotel-name">Demo Hotel</span></p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<!-- hotel list section end -->
+
+      <!-- hotel search dropdawn end here -->
+
+
+      
       <div class="col-lg-7 col-md-6 col-sm-12">
         <h2>@yield('title')</h2>
         <ul class="breadcrumb">
@@ -220,6 +218,18 @@
         <script src="{{ asset('tenant-admin/bundles/vendorscripts.bundle.js') }}"></script>
 
         <script src="{{ asset('tenant-admin/bundles/mainscripts.bundle.js') }}"></script>
+        <script>
+          $( document ).ready(function(){
+          var activehotel =  $('.search-hotel-menu').find('li.active').text();
+          if(activehotel == ''){
+            $('.search-hotel-list-right').children('p').css('display', 'none')
+          }
+          $('.search-hotel-list-right').children('p').children('#Switched-hotel-name').text(activehotel);
+          
+         
+          
+          })
+        </script>
         @stack('after-scripts')
         @if (trim($__env->yieldContent('page-script')))
             @yield('page-script')

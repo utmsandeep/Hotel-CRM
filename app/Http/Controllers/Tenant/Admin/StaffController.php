@@ -14,8 +14,7 @@ use App\Model\Tenant\Admin\HotelAdmin;
 class StaffController extends Controller
 {
     public function index(){
-    	//where('role' , '!=' , 1)->
-    	$staff = Admin::paginate(10);
+    	$staff = Admin::orderBy('id' , 'desc')->paginate(10);
     	return view('tenant.admin.staff-role.staff-list' , compact('staff'));
     }
 
@@ -64,7 +63,7 @@ class StaffController extends Controller
             $admin  = Admin::find($admin_id);
             if(!$admin)
                  throw  new \App\Exceptions\ResourceNotFoundException();
-             $admin->adminHotels->delete();
+             $admin->adminHotels()->delete();
              $admin->delete();
             return redirect()->route('tenant.admin.staff.index')->withSuccess('Staff Deleted Successfully.');
         }catch(\App\Exceptions\ResourceNotFoundException $e){
@@ -76,6 +75,82 @@ class StaffController extends Controller
             return $e->getMessage();
         }
        
+    }
+
+    public function block($admin_id , $action){
+        try{
+            $actions = ['block'=>1 , 'unblock'=>0];
+            $admin  = Admin::find($admin_id);
+            if(!$admin)
+                 throw  new \App\Exceptions\ResourceNotFoundException();
+            if(!array_key_exists($action, $actions))
+                return redirect()->back()->withError('Invalid Action!');
+            $admin->update(['isBlocked'=>$actions[$action]]);
+            return redirect()->back()->withSuccess('Staff status changed.');
+        }catch(\App\Exceptions\ResourceNotFoundException $e){
+            \Log::error($e);
+            throw  new \App\Exceptions\ResourceNotFoundException($e);
+               
+        }catch(\Exception $e){
+            \Log::error($e);
+            return $e->getMessage();
+        }
+       
+    }
+    public function edit($admin_id){
+        try{
+           
+            $admin  = Admin::find($admin_id);
+            if(!$admin)
+                throw  new \App\Exceptions\ResourceNotFoundException();
+                $roles = Role::where('is_super' , 0)->get();
+                $hotels = Hotel::all();
+                return view('tenant.admin.staff-role.edit-staff' , compact('roles' , 'hotels' , 'admin'));
+         }catch(\App\Exceptions\ResourceNotFoundException $e){
+            \Log::error($e);
+            throw  new \App\Exceptions\ResourceNotFoundException($e);
+               
+        }catch(\Exception $e){
+            \Log::error($e);
+            return $e->getMessage();
+        }
+    }
+
+    public function update(Request $request , $admin_id){
+        $validatedData = $request->validate([
+                'firstname'         => 'bail|required|string',
+                'lastname'          => 'bail|required|string',
+                'gender'            => 'bail|required|integer|min:1',
+                'primary_mobile'    => 'bail|digits:10|nullable|unique:tenant.admins,email,'.$admin_id,
+                'secondary_mobile'  => 'bail|digits:10|nullable|unique:tenant.admins,email,'.$admin_id,
+                'email'             => 'bail|required|email|unique:tenant.admins,email,'.$admin_id,
+                'hotels'            => 'bail|nullable|array',
+                'role'              => 'bail|required|integer|min:1',
+            ]);
+
+        try{
+            $admin  = Admin::find($admin_id);
+            if(!$admin)
+                throw  new \App\Exceptions\ResourceNotFoundException();
+            unset($validatedData['hotels']);
+            $admin->update($validatedData);
+            $hotels = [];
+            if(isset($request['hotels'])){
+               $hotels = $request['hotels'];
+             }
+            $admin->adminHotels()->whereNotIn('hotel_id' , $hotels)->delete();
+            foreach ($hotels as $key => $value) {
+               HotelAdmin::firstOrCreate(['admin_id'=>$admin->id , 'hotel_id'=>$value]);
+            }
+            return redirect()->route('tenant.admin.staff.index')->withSuccess('Staff Updated Successfully.');
+         }catch(\App\Exceptions\ResourceNotFoundException $e){
+            \Log::error($e);
+            throw  new \App\Exceptions\ResourceNotFoundException($e);
+               
+        }catch(\Exception $e){
+            \Log::error($e);
+            return $e->getMessage();
+        }
     }
 
 }

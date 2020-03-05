@@ -51,6 +51,7 @@ class HotelController extends Controller
     	]);
 
     	$hotel = Hotel::create($request->all());
+        $hotel->hotelContract()->create();
 
         $finance_manager = Admin::where('email' , $request->f_email)
                             ->first();
@@ -164,7 +165,7 @@ class HotelController extends Controller
             $cm->notify(new ContractConfirmationNotification($hotel , $url));
         }
 
-        ContractSignature::create(['hotel_id'=>$hotel->id , 'admin_id'=>auth('admin')->user()->id , 'signature'=>$request->signature , 'role'=>$role]);
+        ContractSignature::create(['hotel_id'=>$hotel->id , 'hotel_contract_id'=>$hotel->hotelContract->id , 'admin_id'=>auth('admin')->user()->id , 'signature'=>$request->signature , 'role'=>$role]);
         return redirect()->route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel_code]);   
 
     }

@@ -32,4 +32,7 @@ class ContractController extends Controller
         return redirect()->route('tenant.admin.hotel.contract.content')->withSuccess("Content $msg.");
         // return $request;
     }
+    public function index(){
+        
+    }
 }

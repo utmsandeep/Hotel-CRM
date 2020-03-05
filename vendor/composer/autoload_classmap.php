@@ -87,6 +87,7 @@ return array(
     'App\\Model\\Tenant\\Admin\\Hotel' => $baseDir . '/app/Model/Tenant/Admin/Hotel.php',
     'App\\Model\\Tenant\\Admin\\HotelAdmin' => $baseDir . '/app/Model/Tenant/Admin/HotelAdmin.php',
     'App\\Model\\Tenant\\Admin\\HotelBanquet' => $baseDir . '/app/Model/Tenant/Admin/HotelBanquet.php',
+    'App\\Model\\Tenant\\Admin\\HotelContract' => $baseDir . '/app/Model/Tenant/Admin/HotelContract.php',
     'App\\Model\\Tenant\\Admin\\HotelNearby' => $baseDir . '/app/Model/Tenant/Admin/HotelNearby.php',
     'App\\Model\\Tenant\\Admin\\HotelPicture' => $baseDir . '/app/Model/Tenant/Admin/HotelPicture.php',
     'App\\Model\\Tenant\\Admin\\HotelRoom' => $baseDir . '/app/Model/Tenant/Admin/HotelRoom.php',

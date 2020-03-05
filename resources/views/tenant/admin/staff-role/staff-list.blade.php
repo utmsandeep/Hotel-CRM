@@ -19,6 +19,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Is Blocked</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,10 +35,11 @@
                                     </td>
                                     <td>{{ $stf->email }}</td>
                                     <td>{{ $stf->primary_mobile }}</td>
+                                     <td>{{ $stf->isBlocked ? 'Yes' : 'No' }}</td>
                                     <td>
                                         <a  href="{{ route('tenant.admin.staff.delete' , ['admin_id'=>$stf->id]) }}" class="btn btn-danger btn-xs delete-anchor">Delete</a>
-                                        <a href="#" class="btn btn-info btn-xs">Block</a>
-                                        <a href="#" class="btn btn-success btn-xs">Edit</a>
+                                        <a href="{{ route('tenant.admin.staff.block' , ['admin_id'=>$stf->id , 'action'=>$stf->isBlocked ? 'unblock' : 'block']) }}" class="btn btn-info btn-xs block-anchor">{{ $stf->isBlocked ? 'Unblock' : 'Block' }}</a>
+                                        <a href="{{ route('tenant.admin.staff.edit' , ['admin_id'=>$stf->id]) }}" class="btn btn-success btn-xs">Edit</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -60,7 +62,12 @@
             @csrf
             <input type="hidden" name="_method" value="delete">
         </form>
+         <form method="post" id="block-form" action="">
+            @csrf
+            <input type="hidden" name="_method" value="patch">
+        </form>
         @section('page-script')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script type="text/javascript" src="{{ asset('js/custom-scripts.js') }}"></script>
         @stop
 @stop

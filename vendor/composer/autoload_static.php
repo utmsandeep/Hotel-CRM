@@ -524,6 +524,7 @@ class ComposerStaticInite982c52d14b30baaf29f0779b821c9c1
         'App\\Model\\Tenant\\Admin\\Hotel' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/Hotel.php',
         'App\\Model\\Tenant\\Admin\\HotelAdmin' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelAdmin.php',
         'App\\Model\\Tenant\\Admin\\HotelBanquet' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelBanquet.php',
+        'App\\Model\\Tenant\\Admin\\HotelContract' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelContract.php',
         'App\\Model\\Tenant\\Admin\\HotelNearby' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelNearby.php',
         'App\\Model\\Tenant\\Admin\\HotelPicture' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelPicture.php',
         'App\\Model\\Tenant\\Admin\\HotelRoom' => __DIR__ . '/../..' . '/app/Model/Tenant/Admin/HotelRoom.php',

@@ -1435,8 +1435,10 @@ $(document).on('click', '.decrement', function(){
    $('.popup-cont').fadeIn();
    
    
-   $('.create-btn').click(function(e){
+   $('.create-btn').off().on('click', function(e){
      e.preventDefault();
+     var inputvalpopup = $(this).siblings('.input-group1').find('.input-group-n.2').find('input').val();
+     console.log(inputvalpopup);
      
      var inval = $(this).siblings('span').find('textarea').val();
      var htmlto = `<div class="equipment-section-card">
@@ -1450,7 +1452,7 @@ $(document).on('click', '.decrement', function(){
                                 <input type="button" value="-" id="decrement" class="input-group-in decrement" name="decrement"> 
                               </div>
                               <div class="input-group-n 2">
-                                <span class="bmd-form-group is-filled"><input type="number" min="0" id="counttter" class="input-group-in" value="0" name="counttter"></span>
+                                <span class="bmd-form-group is-filled"><input type="number" min="0" id="counttter" class="input-group-in" value=${inputvalpopup} name="counttter"></span>
                               </div>
                               <div class="input-group-n 3">
                                 <input type="button" value="+" id="increment" class="input-group-in increment" name="increment">
@@ -1462,7 +1464,10 @@ $(document).on('click', '.decrement', function(){
     //  eqsection.append(htmlto);
     //  $( htmlto ).insertBefore( ".add-equipment" );
     var add = eqsection.find('.add-equipment');
-        $( htmlto ).insertBefore( add );
+    
+     $( htmlto ).insertBefore( add );
+    $(this).parent().parent().parent().parent().parent().fadeOut();
+        
    
      
    })
@@ -1474,10 +1479,7 @@ $(document).on('click', '.decrement', function(){
   $('.popup-close').click(function(){
     $(this).parent().parent().parent().parent().fadeOut();
   })
-  $('.create-btn').click(function(){
-    $(this).parent().parent().parent().parent().parent().fadeOut();
-
-  })
+  
 
 
 
