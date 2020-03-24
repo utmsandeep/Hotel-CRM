@@ -1,0 +1,44 @@
+.custom-add {
+  margin: 23px 0 14px 0 !important;
+
+  background: #084d8e !important;
+}
+.policy-input,
+.default-checkbox {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.custom-textarea {
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+.default-checkbox {
+  text-align: right;
+}
+.multi-field {
+  margin: 15px 0 30px 0;
+}
+input.form-control {
+  color: #0c7ce6;
+
+  border: 1px solid #0c7ce66b;
+}
+body .non-margined {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+td.action-td form {
+  display: inline-block;
+}
+@media screen and (max-width: 767px) {
+  body .fourth {
+    max-width: 50% !important;
+    flex: 0 0 50%;
+  }
+}
+@media screen and (max-width: 568px) {
+  body .fourth {
+    max-width: 100% !important;
+    flex: 0 0 100%;
+  }
+}

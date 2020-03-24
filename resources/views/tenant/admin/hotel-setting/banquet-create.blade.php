@@ -35,52 +35,52 @@
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="text" name="name"  class="form-control"
-                                                               placeholder="Name">
+                                                               placeholder="Name" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="number" name="length"  class="form-control" min="0"
-                                                               placeholder="Length in Ft.">
+                                                               placeholder="Length in Ft." required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="number" name="width"  class="form-control" min="0"
-                                                               placeholder="Width in Ft.">
+                                                               placeholder="Width in Ft." required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="number" name="area"  class="form-control" min="0"
-                                                               placeholder="Area in Sq. Ft.">
+                                                               placeholder="Area in Sq. Ft." required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="number" name="height"  class="form-control" min="0"
-                                                               placeholder="Height in Ft.">
+                                                               placeholder="Height in Ft." required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <input type="number" name="entry" class="form-control" min="0"
-                                                               placeholder="Number Of Entry Point">
+                                                               placeholder="Number Of Entry Point" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                         <div class="form-group">
-                                                                <textarea rows="8" name="short_des" class="form-control no-resize" placeholder="Short Description Banquet..."></textarea>
+                                                                <textarea rows="8" name="short_des" class="form-control no-resize" placeholder="Short Description Banquet..." required></textarea>
                                                         </div>
                                                 </div>
 
                                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <textarea rows="8" name="long_des" class="form-control no-resize" placeholder="Long Description Banquet   ..."></textarea>
+                                                            <textarea rows="8" name="long_des" class="form-control no-resize" placeholder="Long Description Banquet   ..." required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

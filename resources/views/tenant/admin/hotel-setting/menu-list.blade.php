@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('tenant-admin/css/hotelsetting.css')}}"/>
 @stop
 @section('content')
     <!-- Input -->
@@ -18,7 +19,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="header">
-                                <h2><strong>Applicable</strong> Taxes</h2>
+                                <h2><strong>Menu</strong> List</h2>
                             </div>
                             <div class="body">
                                 @if(!empty($hotelsetting) && !is_null($hotelsetting->menu_list))
@@ -28,20 +29,20 @@
                                                 <div class="row clearfix multi-field">
                                                     <div class="col-lg-3 col-md-3 col-sm-3">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['food_name'] }}" name="food_name[]" class="form-control" placeholder="Food">
+                                                            <input type="text" value="{{ $item['food_name'] }}" name="food_name[]" class="form-control" placeholder="Food" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-sm-3">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['type']}}" name="type[]" class="form-control changeable" placeholder="Meal Type">
+                                                            <input type="text" value="{{ $item['type']}}" name="type[]" class="form-control changeable" placeholder="Meal Type" required>
                                                         </div>
                                                     </div>
 
-                                                    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
+                                                    <button type="button" class="non-margined btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+                                        <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
                                     </div>
                                 @else
                                     <div class="multi-field-wrapper">
@@ -49,18 +50,18 @@
                                             <div class="row clearfix multi-field">
                                                 <div class="col-lg-3 col-md-3 col-sm-3">
                                                     <div class="form-group">
-                                                        <input type="text" name="food_name[]" class="form-control" placeholder="Food">
+                                                        <input type="text" name="food_name[]" class="form-control" placeholder="Food" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3">
                                                     <div class="form-group">
-                                                        <input type="text"  name="type[]"  class="form-control changeable" placeholder="Meal Type">
+                                                        <input type="text"  name="type[]"  class="form-control changeable" placeholder="Meal Type" required>
                                                     </div>
                                                 </div>
-                                                <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
+                                                <button type="button" class="non-margined btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+                                        <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
                                     </div>
                                 @endif
                             </div>

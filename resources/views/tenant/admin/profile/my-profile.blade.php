@@ -147,8 +147,8 @@ span.backto-profile {
                     alt="profile-image"
              /></a>
 
-            <h4 class="m-t-10">WrapTheme</h4>
-            <h5 class="role">Security Lead</h5>
+            <h4 class="m-t-10">{{ $profile->firstname }}</h4>
+            <h5 class="role">{{ $profile->adminRole->name }}</h5>
             <a href="#" id="edit-btn" class="editbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Profile</a>
          </div>
       <div class="body">
@@ -322,7 +322,7 @@ span.backto-profile {
               <div class="card">
                 <div class="body">
                   <h5 class="card-head">Email</h5>
-                  <p>example@gmail.com</p>
+                  <p>{{ $profile->email }}</p>
                 </div>
               </div>
             </div>
@@ -330,8 +330,8 @@ span.backto-profile {
             <div class="profile-cards">
               <div class="card">
                 <div class="body">
-                  <h5 class="card-head">Mobile No.</h5>
-                  <p>9876543210</p>
+                  <h5 class="card-head">Primary Mobile No.</h5>
+                  <p>{{ $profile->primary_mobile }}</p>
                 </div>
               </div>
             </div>
@@ -339,8 +339,8 @@ span.backto-profile {
             <div class="profile-cards">
               <div class="card">
                 <div class="body">
-                  <h5 class="card-head">Mobile No.</h5>
-                  <p>9876543210</p>
+                  <h5 class="card-head">Secondary Mobile No.</h5>
+                  <p>{{ $profile->secondary_mobile }}</p>
                 </div>
               </div>
             </div>
@@ -348,16 +348,8 @@ span.backto-profile {
             <div class="profile-cards">
               <div class="card">
                 <div class="body">
-                  <h5 class="card-head">Mobile No.</h5>
-                  <p>9876543210</p>
-                </div>
-              </div>
-            </div>
-            <div class="profile-cards">
-              <div class="card">
-                <div class="body">
-                  <h5 class="card-head">Mobile No.</h5>
-                  <p>9876543210</p>
+                  <h5 class="card-head">Assigned Hotel</h5>
+                  <p>Amit Hotel</p>
                 </div>
               </div>
             </div>
@@ -411,6 +403,11 @@ span.backto-profile {
             <div class="form-edit pswd">
               <label>Password</label>
               <input type="text" name="Password" id="Password" />
+            </div>
+
+            <div class="form-edit pswd">
+              <label>Confirm Password</label>
+              <input type="text" name="confirm_password" id="confirm_password" />
             </div>
 
             <div class="form-edit email">

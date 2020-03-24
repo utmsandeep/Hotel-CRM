@@ -75,6 +75,15 @@
     
                     color: #000000bf;
                 }
+                @media screen and (max-width:667px){
+                  .search-hotel-list-left, .search-hotel-list-right {
+                      width: 100%;
+                      float: unset;
+                  }
+                  .search-hotel-list-right {
+                      text-align: left;
+                  }
+                }
         </style>
         @stack('after-styles')
     </head>

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('tenant-admin/css/hotelsetting.css')}}"/>
 	<style>
 		input[type=number]::-webkit-inner-spin-button,
 		input[type=number]::-webkit-outer-spin-button {
@@ -37,34 +38,34 @@
 							        <div class="row clearfix multi-field">
 							          <div class="col-lg-2 col-md-2 col-sm-2">
                                             <div class="form-group">
-                                                <input type="text" value="{{ $item['tax_name'] }}" name="tax_name[]" class="form-control" placeholder="Tax Name">
+                                                <input type="text" value="{{ $item['tax_name'] }}" name="tax_name[]" class="form-control" placeholder="Tax Name" required>
                                             </div>
 						              </div>
 						              <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="number" value="{{ $item['vat']}}" name="vat[]" class="form-control changeable" min="0" placeholder="VAT in %">
+						                        <input type="number" value="{{ $item['vat']}}" name="vat[]" class="form-control changeable" min="0" placeholder="VAT in %" required>
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="number" value="{{ $item['cgst']}}" name="cgst[]" class="form-control changeable"  min="0"  placeholder="CGST in %">
+						                        <input type="number" value="{{ $item['cgst']}}" name="cgst[]" class="form-control changeable"  min="0"  placeholder="CGST in %" required>
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="number" value="{{ $item['sgst']}}" name="sgst[]" class="form-control changeable" min="0" placeholder="SGST in %">
+						                        <input type="number" value="{{ $item['sgst']}}" name="sgst[]" class="form-control changeable" min="0" placeholder="SGST in %" required>
 						                    </div>
 						              </div>
                                       <div class="col-lg-2 col-md-2 col-sm-2">
 						                    <div class="form-group">
-						                        <input type="number" value="{{ $item['vat'] + $item['cgst'] + $item['sgst'] }}" name="total[]" class="form-control total" min="0"  placeholder="Total in %">
+						                        <input type="number" value="{{ $item['vat'] + $item['cgst'] + $item['sgst'] }}" name="total[]" class="form-control total" min="0"  placeholder="Total in %" required>
 						                    </div>
 						              </div>
-							          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
+							          <button type="button" class="non-margined btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
 							        </div>
 								  @endforeach
 								  </div>
-							    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+							    <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
 							  </div>
 							  @else
 							  <div class="multi-field-wrapper">
@@ -73,35 +74,35 @@
 						            <div class="col-lg-2 col-md-2 col-sm-2">
 
 				                    <div class="form-group">
-				                        <input type="text" name="tax_name[]" class="form-control" placeholder="Tax Name">
+				                        <input type="text" name="tax_name[]" class="form-control" placeholder="Tax Name" required>
 				                    </div>
 					                </div>
 					                <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="vat[]"   class="form-control changeable" min="0" placeholder="VAT in %">
+					                        <input type="number"  name="vat[]"   class="form-control changeable" min="0" placeholder="VAT in %" required>
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="cgst[]"  class="form-control changeable" min="0"   placeholder="CGST in %">
+					                        <input type="number"  name="cgst[]"  class="form-control changeable" min="0"   placeholder="CGST in %" required>
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="number"  name="sgst[]" class="form-control changeable" min="0"   placeholder="SGST in %">
+					                        <input type="number"  name="sgst[]" class="form-control changeable" min="0"   placeholder="SGST in %" required>
 					                    </div>
 					                </div>
                                     <div class="col-lg-2 col-md-2 col-sm-2">
 					                    <div class="form-group">
-					                        <input type="text"  name="total[]"  class="form-control total" placeholder="Total in %" >
+					                        <input type="text"  name="total[]"  class="form-control total" placeholder="Total in %" required>
 					                    </div>
 					                </div>
 						            </div>
 
-						          <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
+						          <button type="button" class="non-margined btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
 						        </div>
 						      </div>
-						    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+						    <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
 						  </div>
 						  @endif
 						</div>

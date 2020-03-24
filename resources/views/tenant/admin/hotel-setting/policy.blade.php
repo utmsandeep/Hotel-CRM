@@ -5,10 +5,12 @@
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('tenant-admin/css/hotelsetting.css')}}"/>
     <style>
         #cke_1_contents{
             height: 150px !important;
         }
+        
     </style>
 @stop
 @section('content')
@@ -31,17 +33,17 @@
                                         <div class="multi-fields">
                                             @foreach(json_decode($hotelsetting->policies, true) as $key =>  $item)
                                                 <div class="row clearfix multi-field">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 policy-input">
                                                         <div class="form-group">
                                                             <input type="text" value="{{ $item['policy_name'] }}" name="policy_name[]" class="form-control" placeholder="Policy Name">
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 default-checkbox">
                                                         <div class="form-group">
                                                             <input type="checkbox" name="default[]"  {{$item['default']=="true" ? 'checked' : ' '}} >Default
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 custom-textarea">
                                                         <div class="form-group">
                                                             <textarea id="editor{{$key}}" name="policy_detail[]" placeholder="Policy Detail">{{$item['policy_detail']}}</textarea>
                                                         </div>
@@ -51,23 +53,23 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+                                        <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
                                     </div>
                                 @else
                                     <div class="multi-field-wrapper">
                                         <div class="multi-fields">
                                             <div class="row clearfix multi-field">
-                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 policy-input">
                                                     <div class="form-group">
                                                         <input type="text" name="policy_name[]" class="form-control" placeholder="Policy Name">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 default-checkbox">
                                                     <div class="form-group">
                                                         <input type="checkbox" name="default[]"  value="1" checked>Default
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                                <div class="col-lg-8 col-md-8 col-sm-8 custom-textarea">
                                                     <div class="form-group">
                                                         <textarea id="editor0" name="policy_detail[]" placeholder="Policy Detail"></textarea>
                                                     </div>
@@ -76,7 +78,7 @@
                                                 <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 remove-field">Remove</button>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
+                                        <button type="button" class="custom-add btn btn-raised btn-primary btn-round waves-effect m-l-20 add-field">Add field</button>
                                     </div>
                                 @endif
                             </div>
@@ -126,13 +128,15 @@
         });
 
           $(document).ready(function(){
+              
 
               $(document).on('click', '.add-field', function () {
+                  
                   var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-                  $(".multi-fields").append('<div class="row clearfix multi-field"><div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group">' +
+                  $(".multi-fields").append('<div class="row clearfix multi-field"><div class="col-lg-2 col-md-2 col-sm-2 policy-input"><div class="form-group">' +
                       '<input type="text" value="" name="policy_name[]" class="form-control" placeholder="Policy Name"></div></div>' +
-                      '<div class="col-lg-2 col-md-2 col-sm-2"><div class="form-group"><input type="checkbox" name="default[]" value="1" checked>Default</div></div> ' +
-                      '<div class="col-lg-8 col-md-8 col-sm-8"><div class="form-group"><textarea id="' + id + '" name="policy_detail[]" placeholder="Policy Detail">' +
+                      '<div class="col-lg-2 col-md-2 col-sm-2 default-checkbox"><div class="form-group"><input type="checkbox" name="default[]" value="1" checked>Default</div></div> ' +
+                      '<div class="col-lg-8 col-md-8 col-sm-8 custom-textarea"><div class="form-group"><textarea id="' + id + '" name="policy_detail[]" placeholder="Policy Detail">' +
                       '</textarea> </div></div><button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20 rem-field">Remove</button></div>');
                   CKEDITOR.replace(id);
               });

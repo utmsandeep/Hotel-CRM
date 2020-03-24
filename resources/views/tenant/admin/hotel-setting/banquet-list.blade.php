@@ -7,6 +7,7 @@
 @stop
 @section('page-style')
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/summernote/dist/summernote.css')}}"/>
+    <link rel="stylesheet" href="{{asset('tenant-admin/css/hotelsetting.css')}}"/>
 @stop
 @section('content')
         <div class="row clearfix">
@@ -35,7 +36,7 @@
                                     <td>{{ $banquet->height_ft}}</td>
                                     <td>{{ $banquet->area_sq_ft}}</td>
                                     <td>{{ $banquet->no_of_entry_point}}</td>
-                                    <td>
+                                    <td class="action-td">
                                         <form action="{{ route('tenant.admin.hotelSetting.delete', ['hotel_code' => $hotel_code , 'id' => $banquet->id] ) }}" method="post">
                                             <button type="submit" class="btn btn-danger btn-xs" onclick="if (!confirm('Are you sure?')) { return false }"><span>Delete</span></button>
                                             <!-- <input class="btn btn-danger btn-xs" type="submit" value="Delete" /> -->

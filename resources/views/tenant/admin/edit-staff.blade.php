@@ -15,7 +15,7 @@
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12">
        
-        <form  id="staff-edit-form" method="post" action="{{ route('tenant.admin.staff.update' , ['admin_id'=>$admin->id]) }}">
+        <form method="post" action="{{ route('tenant.admin.staff.update' , ['admin_id'=>$admin->id]) }}">
             @csrf
             <input type="hidden" name="_method" value="put">
             <div class="card">
@@ -106,38 +106,12 @@
 <script src="{{asset('tenant-admin/plugins/momentjs/moment.js')}}"></script>
 <script src="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
 <script src="{{asset('tenant-admin/js/pages/forms/basic-form-elements.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $(function(){
-            $('#staff-edit-form').validate({
-                rules:{
-                    firstname:"required",
-                    lastname:"required",
-                    gender:"required",
-                    email: {
-                        required:true,
-                        email:true,
-                    },
-                    role: "required",
-                    primary_mobile: {
-                        minlength:10,
-                        maxlength:10,
-                        number:true
-                    }
+$(document).ready(function(){
+    alert('a')
+})
 
-                },
-                messages:{
-                    firstname:"Please enter first name",
-                    lastname:"Please enter last name",
-                    gender: "Please enter gender",
-                    email: "Please enter a valid email",
-                    primary_mobile: "Please enter valid mobile number"
-
-                }
-            })
-        })
-    })
-    </script>
-
+</script>
 @stop

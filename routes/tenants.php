@@ -5,6 +5,7 @@ use App\Http\Controllers\Tenant\ConsumerController;
 use App\Http\Controllers\Tenant\Admin\AdminController;
 use App\Http\Controllers\Tenant\Admin\HomeController;
 use App\Http\Controllers\Tenant\Admin\StaffController;
+use App\Http\Controllers\Tenant\Admin\ProfileController;
 use App\Http\Controllers\Tenant\Admin\RoleController;
 use App\Http\Controllers\Tenant\Admin\HotelController;
 use App\Http\Controllers\Tenant\Admin\HotelSettingController;
@@ -65,8 +66,7 @@ Route::group(['middleware'=>['web' , 'lookfortenant']] , function(){
 
 
 /* Profile */
-Route::get('profile', function () { return redirect('profile/my-profile'); });
-Route::get('profile/my-profile', function () { return view('tenant.admin.profile.my-profile');})->name('profile.my-profile');
+
 
 /* App */
 Route::get('app', function () { return redirect('app/inbox'); });
@@ -195,6 +195,13 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			// 	return redirect('admin/dashboard/index');
 	 	// 	})->name('tenant.admin.home');
 
+
+			// Route::get('profile', function () { return redirect('profile/my-profile'); });
+			// Route::get('profile/my-profile', function () { return view('tenant.admin.profile.my-profile');})->name('profile.my-profile');
+
+
+			Route::get('profile/my-profile', [ProfileController::class, 'index'])->name('tenant.admin.profile.index');
+
 	 		Route::get('dashboard', function () { return redirect('dashboard/index'); });
 			Route::get('/', [HomeController::class, 'Index'])->name('dashboard.index');
 			Route::get('staff/staff-list', [StaffController::class, 'index'])->name('tenant.admin.staff.index');
@@ -233,6 +240,12 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 //Route::get('hotel-setting/deposite-refund', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
 			 	Route::post('hotel-setting/typeofroom', [HotelSettingController::class, 'typeofroom'])->name('tenant.admin.hotelSetting.typeofroom');
 			 	Route::get('hotel-setting/room-type', [HotelSettingController::class, 'type'])->name('tenant.admin.hotelSetting.type');
+
+                Route::post('hotel-setting/eventbooker', [HotelSettingController::class, 'eventbooker'])->name('tenant.admin.hotelSetting.eventbooker');
+                Route::get('hotel-setting/event-booker', [HotelSettingController::class, 'eventbookerview'])->name('tenant.admin.hotelSetting.eventbookerview');
+
+                 Route::post('hotel-setting/eventtype', [HotelSettingController::class, 'eventtype'])->name('tenant.admin.hotelSetting.eventtype');
+                 Route::get('hotel-setting/event-view', [HotelSettingController::class, 'eventview'])->name('tenant.admin.hotelSetting.eventview');
 
 			 	Route::post('hotel-setting/seatingstyle', [HotelSettingController::class, 'seatingstyle'])->name('tenant.admin.hotelSetting.seatingstyle');
 			 	Route::get('hotel-setting/seating-style', [HotelSettingController::class, 'style'])->name('tenant.admin.hotelSetting.style');
@@ -303,7 +316,7 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 
 			 Route::get('/contract-content' , [ContractController::class , 'showForm'])->name('tenant.admin.hotel.contract.content');
 			 Route::post('/contract-content' , [ContractController::class , 'store'])->name('tenant.admin.hotel.contract.content.store');
-			 Route::get('/contract-content/index' , [ContractController::class , 'index'])->name('tenant.admin.hotel.contract.index');
+			 Route::get('hotels/contract-index' , [ContractController::class , 'index'])->name('tenant.admin.hotel.contract.index');
 
 			 Route::get('/test' , [HotelController::class , 'test']);
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Tenant\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Tenant\Admin\ContractContent;
-
+use App\Model\Tenant\Admin\HotelContract;
 
 
 class ContractController extends Controller
@@ -33,6 +33,7 @@ class ContractController extends Controller
         // return $request;
     }
     public function index(){
-        
+        $contracts =  HotelContract::orderBy('id' ,'desc')->paginate(10);
+        return view('tenant.admin.hotels.hotel-contract-index' , compact('contracts'));
     }
 }

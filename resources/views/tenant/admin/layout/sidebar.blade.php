@@ -19,7 +19,8 @@
             
             @if(!isset($hotel_code))
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('profile.my-profile')}}"><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
+
+            <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('tenant.admin.profile.index')}}"><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
 
             @if(auth('admin')->user()->role == 4)
             <li class="{{ Request::segment(2) === 'staff' || Request::segment(2) === 'roles' ? 'active open' : null }}">
@@ -28,19 +29,11 @@
                     <li class="{{ Request::segment(3) === 'staff-list' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.index')}}">Staff</a></li>
                 </ul>
             </li>
-            @endif
-
-            <!-- <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
-                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Messages</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('app.inbox')}}">Inbox</a></li>
-                </ul>
-            </li> -->
-
             <li class="{{ Request::segment(2) === 'hotels' ? 'active open' : null }}">
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotels</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(3) === 'hotel-list' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotel.list') }}">Hotel List</a></li>
+                    <li class="{{ Request::segment(3) === 'contract-index' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotel.contract.index') }}">Hotel Contracts</a></li>
                 </ul>
             </li>
             <li class="{{ Request::segment(1) === 'contract-content' ? 'active open' : null }}">
@@ -52,6 +45,15 @@
                 <ul class="ml-menu">
                 </ul>
             </li>
+            
+            @endif
+
+            <!-- <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
+                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Messages</span></a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('app.inbox')}}">Inbox</a></li>
+                </ul>
+            </li> -->
             @endif
 
             @if(isset($hotel_code))
@@ -62,6 +64,8 @@
                     <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policies</a></li>
                     <li class="{{ Request::segment(5) === 'seating-style' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.style' ,  ['hotel_code'=>$hotel_code]) }}">Seating Style</a></li>
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
+                    <li class="{{ Request::segment(5) === 'event-booker' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.eventbookerview' ,  ['hotel_code'=>$hotel_code]) }}">Event Booker Type</a></li>
+                    <li class="{{ Request::segment(5) === 'event-view' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.eventview' ,  ['hotel_code'=>$hotel_code]) }}">Event Type</a></li>
 
                     <!-- <li class="{{ Request::segment(5) === 'profile-pic' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.picture' , ['hotel_code'=>$hotel_code]) }}">Hotel Profile Picture</a></li> -->
                     <li class="{{ Request::segment(5) === 'hotel-near' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.nearby' , ['hotel_code'=>$hotel_code]) }}">Hotel Near By</a></li>

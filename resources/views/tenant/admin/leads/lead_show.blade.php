@@ -259,7 +259,55 @@ button.btn.dropdown-toggle.btn-simple {
 
               <div class="best-time"></div>
             </div>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 four-sectioned">
+              <h3 class="f-head">Food & Drinks</h3>
+              @foreach($request_data->bookings as $key => $bookings)
+                <h4>{{ $bookings->date }}</h4>
+                <div class="row f-row">
+                  @foreach($bookings->foods as $key2 => $food)
+                    <div class="col-md-4">
+                      <h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+                      @foreach($food as $key3 => $menus)
+                        
+                        @if($key3 === "extra")
+                          <h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+                          @foreach($menus as $key4 => $menu)
+                            <p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+                          @endforeach
+                          @continue
+                        @endif
 
+                      <p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $menus }}</p>
+                      @endforeach
+                    </div>
+                  @endforeach
+                </div>
+              @endforeach
+
+              <h3 class="f-head">Equipments</h3>
+              @foreach($request_data->bookings as $key => $bookings)
+                <h4>{{ $bookings->date }}</h4>
+                <div class="row f-row">
+                  @foreach($bookings->rooms as $key2 => $room)
+                    <div class="col-md-4">
+                      <h5><b>{{ ucfirst(str_replace('_' , ' ' , $key2)) }}</b></h5>
+                      @foreach($room->equipment as $key3 => $equipment)
+                          @if($key3 === "extra")
+                              <h6><b>{{ ucfirst(str_replace('_' , ' ' , $key3)) }}</b></h6>
+                              @foreach($equipment as $key4 => $menu)
+                                <p>{{ ucfirst(str_replace('_' , ' ' , $key4)) }} : {{ $menu }}</p>
+                              @endforeach
+                              @continue
+                          @endif
+                          <p>{{ ucfirst(str_replace('_' , ' ' , $key3)) }} : {{ $equipment }}</p>
+                      @endforeach
+                    </div>
+                  @endforeach
+                </div>
+              @endforeach
+
+             </div>
            
 
                 <!-- notes section  -->

@@ -126,7 +126,6 @@ span.closing-tab {
     color: #000;
     font-size: 12px;
     font-weight: 900;
-    cursor: pointer;
 }
 .popup-content div {
     margin: 47px 0;
@@ -168,12 +167,8 @@ span.closing-tab {
     margin: 7px 0;
     /* display: inherit; */
     border-radius: 50%;
-    width: 14px;
-    height: 14px;
-    font-size: 11px;
-    font-weight: bold;
-    color: #fff;
-    clear: none;
+    width: 10px;
+    height: 10px;
 }
 </style>
 @stop
@@ -300,8 +295,7 @@ function renderCalendar(startDay, totalDays, currentDate) {
     $day.text(i);
     if(events.hasOwnProperty(i)){
       for( var event in events[i]){
-        $day.append(`<div class="${event}">${events[i][event].urls.length}</div>`);
-        console.log(events[i][event].urls.length);
+        $day.append("<div class='"+event+"'></div>");
       }
       $day.addClass('something');
     }
@@ -409,14 +403,14 @@ $(document).ready(function() {
   myCalendar();
 });
  
-// $('.table tr').each(function(){
-//   console.log(this)
+$('.table tr').each(function(){
+  console.log(this)
   
-//   // $(this).find('td').each(function(){
-//   //   console.log(this);
-//   //     //do your stuff, you can use $(this) to get current cell
-//   // })
-// })
+  // $(this).find('td').each(function(){
+  //   console.log(this);
+  //     //do your stuff, you can use $(this) to get current cell
+  // })
+})
 
 });
 
@@ -445,10 +439,6 @@ $(document).ready(function() {
 jQuery(document).on('click' , '.something' , function(){
  $(this).parents('.calender-container').siblings('.event-popup').css('display', 'block');
 });
-
-$('.closing-tab').click(function(){
-  $(this).parents('.event-popup').css('display','none');
-})
 
 </script>
 @stop

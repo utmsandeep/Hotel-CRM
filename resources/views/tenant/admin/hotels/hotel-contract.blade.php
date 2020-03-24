@@ -55,7 +55,72 @@
 	html.borderradius #scrollgrabber {
 		border-radius: 1em;
 	}
-	 
+	h4.text-center.e-aggrement-head {
+    color: #073156;
+    font-size: 29px;
+}
+.row.top-details {
+    margin-top: 55px;
+}
+.input-editable-sections p {
+    font-size: 15px;
+}
+.input-editable-sections p span.right {
+    font-weight: bold;
+    /* width: 200px; */
+    color: #073156;
+}
+span.left {
+    width: 111px;
+    display: block;
+    float: left;
+}
+.detail-section p span.left {
+    width: 170px;
+}
+.col-sm-6.detail-section p span.right {
+    color: #073156;
+    font-weight: bold;
+}
+.col-sm-6.input-editable-sections p input {
+	color: #073156;
+    font-weight: bold;
+    margin: 0;
+    padding: 3px 6px;
+    font-size: 15px;
+    border: 1px solid #e7f1fa;
+    border-bottom: 1px solid #e7f1fa;
+    /* border: none; */
+}
+.detail-section p {
+    font-size: 15px;
+}
+.row.delivery-terms {
+    border: 4px solid #e7f1fa;
+}
+.row.admin-role-name {
+    margin-top: 35px;
+}
+.row.admin-role-name p {
+    font-size: 15px;
+	margin: 15px 0;
+}
+.row.admin-role-name p .right {
+    color: #073156;
+    font-weight: bold;
+}
+@media screen and (max-width:767px){
+
+
+.col-sm-6.input-editable-sections, .col-sm-6.detail-section  {
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+}
+.row.admin-role-name .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+}
 </style>
 </head>
 <body>
@@ -65,64 +130,64 @@
 	<form method="post" action="{{ route('tenant.admin.hotel.contract.store' , ['hotel_code'=>$hotel_code]) }}">
 		@csrf
 		<div class="container">
-			<div class="row">
+			<div class="row e-aggrememt-details-top">
 				<div class="col-sm-6 text-left"><img style="width: 200px" src="{{ asset('images/main-system/logo.png') }}"></div>
 				<div class="col-sm-6 text-right"><button id="prnt-btn" class="btn btn-success">DownLoad</button></div>
 			</div>
-			<h4 class="text-center">E-Agreement</h4>
-		  	<div class="row">
-			    <div class="col-sm-6">
-			    	<p>Hotel Name : {{ $hotel->name }}</p>
-			    	<p>Hotel Code : {{ $hotel->hotel_code }}</p>
-			    	<p>Hotel Region : @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
-			    			<input type="text" name="region" value="{{ $hotel->region }}"> 
+			<h4 class="text-center e-aggrement-head">E-Agreement</h4>
+		  	<div class="row top-details">
+			    <div class="col-sm-6 input-editable-sections">
+			    	<p><span class="left">Hotel Name :</span> <span class="right">{{ $hotel->name }}</span></p>
+			    	<p><span class="left">Hotel Code : </span><span class="right">{{ $hotel->hotel_code }}</span></p>
+			    	<p><span class="left">Hotel Region :</span> @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
+			    			<input type="text" class="author-input" name="region" value="{{ $hotel->region }}"> 
 			    		@else  
-			    			{{ $hotel->region }} 
+			    			<span class="right">{{ $hotel->region }}</span> 
 			    		@endif
 			    	</p>
-			    	<p>Adress : @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
-				    		<input type="text" name="address" value="{{ $hotel->address }}" required=""> 
+			    	<p><span class="left">Adress :</span> @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
+				    		<input type="text" class="author-input" name="address" value="{{ $hotel->address }}" required=""> 
 				    	@else 
-				    	{{ $hotel->address }}
+				    	<span class="right">{{ $hotel->address }}</span>
 				    	@endif
 			    	</p>
-			    	<p>GST Number :  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="gst_no" value="{{ $hotel->gst_no }}" required=""> @else {{ $hotel->gst_no }} @endif</p>
-			    	<p>Pan Card :  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" value="{{ $hotel->pan_card }}" required=""> @else {{ $hotel->pan_card }} @endif</p>
+			    	<p><span class="left">GST Number :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="gst_no" class="author-input" value="{{ $hotel->gst_no }}" required=""> @else <span class="right">{{ $hotel->gst_no }}</span> @endif</p>
+			    	<p><span class="left">Pan Card :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" class="author-input" value="{{ $hotel->pan_card }}" required=""> @else <span class="right">{{ $hotel->pan_card }}</span> @endif</p>
 			    </div>
-			    <div class="col-sm-6">
-			    	<p>Yearly Subscribation  : {{ $owner->yearly_subscription }}</p>
-			    	<p>Price Per Year : {{ $owner->price_per_year }}</p>
-			    	<p>Installation Cost : {{ $owner->installation_cost }}</p>
-			    	<p>Customization Cost : {{ $owner->customization_cost }}</p>
-			    	<p>Training fees : {{ $owner->trainig_fees }}</p>
-			    	<p>Total : {{ ( $owner->price_per_year*$owner->yearly_subscription)+$owner->installation_cost+$owner->customization_cost+$owner->trainig_fees }}</p>
+			    <div class="col-sm-6 detail-section">
+			    	<p><span class="left">Yearly Subscribation  :</span><span class="right"> {{ $owner->yearly_subscription }}</span></p>
+			    	<p><span class="left">Price Per Year : </span><span class="right">{{ $owner->price_per_year }}</span></p>
+			    	<p><span class="left">Installation Cost :</span> <span class="right">{{ $owner->installation_cost }}</span></p>
+			    	<p><span class="left">Customization Cost :</span> <span class="right">{{ $owner->customization_cost }}</span></p>
+			    	<p><span class="left">Training fees : </span><span class="right">{{ $owner->trainig_fees }}</span></p>
+			    	<p><span class="left">Total : </span><span class="right">{{ ( $owner->price_per_year*$owner->yearly_subscription)+$owner->installation_cost+$owner->customization_cost+$owner->trainig_fees }}</span></p>
 			    </div>
 		  	</div>
-		  	<div class="row">
+		  	<div class="row delivery-terms">
 		  		<div class="col-sm-12">
 		  			@if(!empty($content)) <?php echo $content->content; ?> @else General Delivery Terms Will go here...................... @endif
 		  		</div>
 		  	</div>
-		  	<div class="row">
+		  	<div class="row admin-role-name">
 		  		@foreach($admins as $admin)
 		  		<div class="col-sm-6">
 		  			<b class="text-center">{{ $admin->admin->adminRole->name }}</b><br>
-		  			<p>Name : {{ $admin->admin->firstname }} {{ $admin->admin->lastname }}</p>
-		  			<p>Email : {{ $admin->admin->email }}</p>
-		  			<p>Mobile : {{ $admin->admin->primary_mobile }}</p>
-		  			<p>Signature:<img style="width: 300px;" id="@if(auth('admin')->user()->role == $admin->admin->role){{ $cur_class }}@endif" src="@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->signature }}@endif" /></p>
+		  			<p><span class="left">Name : </span><span class="right">{{ $admin->admin->firstname }} {{ $admin->admin->lastname }}</span></p>
+		  			<p><span class="left">Email : </span><span class="right">{{ $admin->admin->email }}</span></p>
+		  			<p><span class="left">Mobile : </span><span class="right">{{ $admin->admin->primary_mobile }}</span></p>
+		  			<p><span class="left">Signature:</span><img style="width: 300px;" id="@if(auth('admin')->user()->role == $admin->admin->role){{ $cur_class }}@endif" src="@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->signature }}@endif" /></p>
 		  		</div>
 		  		@endforeach
 		  	</div>
 		</div>
 
 	@if(auth('admin')->user()->role != 4 && !$signatures->contains('admin_id', auth('admin')->user()->id))
-		<div id="content">
+		<!-- <div id="content">
 			<hr>
 			<h4 class="text-center">Signature Area ( {{ auth('admin')->user()->adminRole->name }} )</h4>
 			<div id="signature"></div>
 			<div id="tools"></div>
-		</div>
+		</div> -->
 		
 		
 		<script src="{{ asset('js/tenant/jSignature/libs/jquery.js') }}"></script>

@@ -325,6 +325,91 @@ class HotelSettingController extends Controller
             }
     }
 
+    /*-----------------------------Event Booker Type-----------------------------------*/
+
+    public function eventbookerview($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.event-booker' , compact('hotel_code','hotelsetting'));
+    }
+
+    public function eventbooker(Request $request , $hotel_code){
+        $request->validate([
+            'direct_guest'      =>	'required|array|min:1',
+            'direct_guest.*'      =>	'required'
+        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['direct_guest']) ; $i++){
+            $temarr[] = [
+                "direct_guest"=>$data['direct_guest'][$i],
+                "travel_agent"=>$data['travel_agent'][$i],
+                "corporate_booker"=>$data['corporate_booker'][$i],
+                "walk_inn"=>$data['walk_inn'][$i],
+                "event_organizer"=>$data['event_organizer'][$i]
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['event_booker_type'=>$tem]);
+            return back()->withSuccess('Event Booker Type detail updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['event_booker_type'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Event Booker Type detail added successfully');
+        }
+    }
+
+    /*-----------------------------Event Type-----------------------------------*/
+
+    public function eventview($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.event-view' , compact('hotel_code','hotelsetting'));
+    }
+
+    public function eventtype(Request $request , $hotel_code){
+        $request->validate([
+            'adviser_board'      =>	'required|array|min:1',
+            'adviser_board.*'      =>	'required'
+        ]);
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
+
+        $data = $request->all();
+        $temarr = [];
+        for($i = 0 ; $i<count($data['adviser_board']) ; $i++){
+            $temarr[] = [
+                "adviser_board"=>$data['adviser_board'][$i],
+                "conference"=>$data['conference'][$i],
+                "corporate_event"=>$data['corporate_event'][$i],
+                "customer_training"=>$data['customer_training'][$i],
+                "dinner"=>$data['dinner'][$i],
+                "exhibition"=>$data['exhibition'][$i],
+                "meeting"=>$data['meeting'][$i],
+                "recruiting"=>$data['recruiting'][$i],
+                "team_meeting"=>$data['team_meeting'][$i],
+                "social"=>$data['social'][$i],
+                "wedding"=>$data['wedding'][$i],
+                "lunch"=>$data['lunch'][$i],
+                "training"=>$data['training'][$i],
+                "class"=>$data['class'][$i]
+            ];
+        }
+        $tem = json_encode($temarr);
+        if(!empty($hotelsetting)){
+            $hotelsetting->update(['event_type'=>$tem]);
+            return back()->withSuccess('Event Type detail updated successfully');
+        }
+        else{
+            HotelSetting::create(array_merge(['event_type'=>$tem] , ['hotel_id'=>$hotel->id]));
+            return back()->withSuccess('Event Type detail added successfully');
+        }
+    }
+
     /* ----------------------------Near By-------------------------------*/
 
     public function nearby($hotel_code){
