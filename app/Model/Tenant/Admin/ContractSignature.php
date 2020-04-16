@@ -11,7 +11,7 @@ class ContractSignature extends Model
 {
 	use UsesTenantConnection;
     protected $table = 'contract_signatures';
-    protected $fillable = ['hotel_id' , 'hotel_contract_id' , 'admin_id' , 'role' , 'signature'];
+    protected $fillable = ['hotel_id' , 'hotel_contract_id' , 'admin_id' ,'sign' ,'role' , 'signature'];
 
     public function hotelContract(){
 

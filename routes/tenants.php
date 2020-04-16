@@ -201,9 +201,23 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 
 
 			Route::get('profile/my-profile', [ProfileController::class, 'index'])->name('tenant.admin.profile.index');
+			Route::put('profile/my-profile', [ProfileController::class, 'update'])->name('tenant.admin.profile.update');
+
+
+
 
 	 		Route::get('dashboard', function () { return redirect('dashboard/index'); });
 			Route::get('/', [HomeController::class, 'Index'])->name('dashboard.index');
+
+			Route::get('staff/staff-import', [StaffController::class, 'import'])->name('tenant.admin.staff.import');
+			// Route::put('staff/staff-import', [StaffController::class, 'convert'])->name('tenant.admin.staff.convert');
+
+
+			Route::post('staff/staff-import', [StaffController::class, 'convert'])->name('tenant.admin.staff.convert');
+
+
+
+			
 			Route::get('staff/staff-list', [StaffController::class, 'index'])->name('tenant.admin.staff.index');
 			Route::get('staff/create-staff', [StaffController::class, 'create'])->name('tenant.admin.staff.create');
 			Route::post('staff/create-staff', [StaffController::class, 'store'])->name('tenant.admin.staff.store');

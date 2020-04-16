@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="{{asset('tenant-admin/plugins/dropify/css/dropify.min.css')}}"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <link rel="stylesheet" href="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.themes.min.css')}}">
+    <link rel="stylesheet" href="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.themes.css')}}">
+    <link rel="stylesheet" href="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.min.css')}}">
+    <link rel="stylesheet" href="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.css')}}">
+
+
+
+  <!--      <script src="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.themes.min.css')}}"></script>
+    <script src="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.themes.css')}}"></script>
+    <script src="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.min.css')}}"></script>
+    <script src="{{asset('tenant-admin/plugins/autocomplete/easy-autocomplete.css')}}"></script>
+ -->
+
+
+
+
      <link rel="stylesheet" href="{{asset('tenant-admin/css/hotelsetting.css')}}"/>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -95,45 +112,45 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
                                                 <div class="row clearfix multi-field">
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input  type="text" value="{{ $item['menu_name'] }}" name="menu_name[]" class="form-control menu_name required" placeholder="Menu Name">
+                                                            <input  type="text" value="{{ $item['menu_name'] }}" name="menu_name[]" class="form-control menu_name" placeholder="Menu Name" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['price']}}" name="price[]" class="form-control required" placeholder="Price Per Person">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 fourth">
-                                                        <div class="form-group">
-                                                            <input type="text" value="{{ $item['res'] }}" name="res[]" class="form-control required" placeholder="Non-Res">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 fourth">
-                                                        <div class="form-group">
-                                                            <input type="text" value="{{ $item['kids']}}" name="kids[]" class="form-control required" placeholder="Kids Above 10">
+                                                            <input type="text" value="{{ $item['price']}}" name="price[]" class="form-control" placeholder="Price Per Person" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['start_date'] }}" name="start_date[]" class="form-control datepicker required" placeholder="Start Date">
+                                                            <input type="text" value="{{ $item['res'] }}" name="res[]" class="form-control" placeholder="Non-Res" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['end_date']}}" name="end_date[]" class="form-control datepicker required" placeholder="End Date">
+                                                            <input type="text" value="{{ $item['kids']}}" name="kids[]" class="form-control" placeholder="Kids Above 10" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['tax'] }}" name="tax[]" class="form-control required" placeholder="Tax Included">
+                                                            <input type="text" value="{{ $item['start_date'] }}" name="start_date[]" class="form-control datepicker" placeholder="Start Date" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 fourth">
                                                         <div class="form-group">
-                                                            <input type="text" value="{{ $item['override']}}" name="override[]" class="form-control required" placeholder="Override">
+                                                            <input type="text" value="{{ $item['end_date']}}" name="end_date[]" class="form-control datepicker" placeholder="End Date" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 fourth">
+                                                        <div class="form-group">
+                                                            <input type="text" value="{{ $item['tax'] }}" name="tax[]" class="form-control" placeholder="Tax Included" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 fourth">
+                                                        <div class="form-group">
+                                                            <input type="text" value="{{ $item['override']}}" name="override[]" class="form-control" placeholder="Override" required>
                                                         </div>
                                                     </div>
 
@@ -149,45 +166,45 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
                                             <div class="row clearfix multi-field">
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="menu_name[]" class="menu_name form-control" placeholder="Menu Name">
+                                                        <input type="text" name="menu_name[]" class="menu_name form-control" placeholder="Menu Name" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="price[]" class="form-control required" placeholder="Price Per Person">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-2 col-md-2 col-sm-2">
-                                                    <div class="form-group">
-                                                        <input type="text"  name="res[]" class="form-control required" placeholder="Non-Res">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2">
-                                                    <div class="form-group">
-                                                        <input type="text"  name="kids[]" class="form-control required" placeholder="Kids Above 10">
+                                                        <input type="text" name="price[]" class="form-control" placeholder="Price Per Person" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text"  name="start_date[]" class="form-control datepicker required" placeholder="Start Date">
+                                                        <input type="text"  name="res[]" class="form-control" placeholder="Non-Res" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="end_date[]" class="form-control datepicker required" placeholder="End Date">
+                                                        <input type="text"  name="kids[]" class="form-control" placeholder="Kids Above 10" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="tax[]" class="form-control required" placeholder="Tax Included">
+                                                        <input type="text"  name="start_date[]" class="form-control datepicker" placeholder="Start Date" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="override[]" class="form-control required" placeholder="Override">
+                                                        <input type="text" name="end_date[]" class="form-control datepicker" placeholder="End Date" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                    <div class="form-group">
+                                                        <input type="text" name="tax[]" class="form-control" placeholder="Tax Included" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                    <div class="form-group">
+                                                        <input type="text" name="override[]" class="form-control" placeholder="Override" required>
                                                     </div>
                                                 </div>
 
@@ -209,6 +226,13 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
 @stop
 @section('page-script')
     <script src="{{asset('tenant-admin/plugins/momentjs/moment.js')}}"></script>
+    <script src="{{asset('tenant-admin/plugins/autocomplete/jquery.easy-autocomplete.js')}}"></script>
+    <script src="{{asset('tenant-admin/plugins/autocomplete/jquery.easy-autocomplete.min.js')}}"></script>
+ 
+    
+    
+
+
     <!-- <script src="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script> -->
     <script src="{{asset('tenant-admin/js/pages/forms/basic-form-elements.js')}}"></script>
     <script src="{{asset('tenant-admin/plugins/dropify/js/dropify.min.js')}}"></script>
@@ -247,9 +271,9 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
 
 
 
-          $( document ).ready(function(){
+          // $( document ).ready(function(){
              
-            $("#menupriceform").validate();
+          //   $("#menupriceform").validate();
             // $("[name='menu_name[]']").each(function(){
             //     $(this).rules("add", {
             //     required: true,
@@ -277,36 +301,61 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
             //     //   })
 
 
-                  $(".menu_name").each(function(e){
+                  // $(".menu_name").each(function(e){
                      
 
-                      console.log(this)
+                  //     console.log(this)
                     
-                      $(this).rules('add',{
-                          required:true,
-                          messages: {
-                              required: 'Name is required',
-                          }
-                      })
-                  })
+                  //     $(this).rules('add',{
+                  //         required:true,
+                  //         messages: {
+                  //             required: 'Name is required',
+                  //         }
+                  //     })
+                  // })
 
                  
 
-                  if($('#menupriceform').validate().form()) {
-                        console.log("validates");
-                        $(this).submit();
-                    } else {
-                        console.log("does not validate");
-                    }
+                  // if($('#menupriceform').validate().form()) {
+                  //       console.log("validates");
+                  //       $(this).submit();
+                  //   } else {
+                  //       console.log("does not validate");
+                  //   }
 
                 
 
 
-              })
-           
+              // })
+        
 
-         
 
+
+
+// var cont = '<?= $data1; ?>';
+
+    
+var options = {
+
+    url: "{{asset('tenant-admin/plugins/autocomplete/people.json')}}",
+//     url: function(path){
+// return cont;
+// },
+getValue: "name",
+    // template: {
+    //     type: "description",
+    //     fields: {
+    //         description: "email"
+    //     }
+    // },
+
+    list: {
+        match: {
+            enabled: true
+        }
+    },
+};
+$(".menu_name").easyAutocomplete(options);
 
 
 

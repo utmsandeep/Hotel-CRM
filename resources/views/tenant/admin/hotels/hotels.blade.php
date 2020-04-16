@@ -16,6 +16,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Hotel Code</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -23,6 +24,7 @@
                                 @foreach($hotels as $hotel)
                                 <tr>
                                     <td>{{ $hotel->name }}</td>
+                                    <td>{{ $hotel->hotel_code }}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger btn-xs">Delete</a>
                                         <a href="#" class="btn btn-info btn-xs">Block</a>

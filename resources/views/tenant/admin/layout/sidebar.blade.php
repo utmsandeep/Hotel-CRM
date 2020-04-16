@@ -27,6 +27,7 @@
                 <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>Staff & Roles</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(3) === 'staff-list' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.index')}}">Staff</a></li>
+                    <li class="{{ Request::segment(3) === 'staff-import' ? 'active' : null }}"><a href="{{route('tenant.admin.staff.import')}}">Import Staff</a></li>
                 </ul>
             </li>
             <li class="{{ Request::segment(2) === 'hotels' ? 'active open' : null }}">

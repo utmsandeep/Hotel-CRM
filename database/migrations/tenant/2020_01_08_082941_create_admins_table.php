@@ -23,7 +23,9 @@ class CreateAdminsTable extends Migration
             $table->string('gst_no')->nullable();
             $table->string('primary_mobile')->nullable();
             $table->string('secondary_mobile')->nullable();
+            $table->string('image')->nullable();
             $table->string('password')->nullable();
+            $table->string('confirm_password')->nullable();
             $table->text('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

@@ -11,6 +11,7 @@ use App\Model\super_admin\Role;
 use App\Model\Tenant\Admin\Hotel;
 use App\Events\Tenant\Admin\NewStaffAddedEvent;
 use App\Model\Tenant\Admin\HotelAdmin;
+use App\Notifications\Tenant\Admin\NewHotelNotification;
 class StaffController extends Controller
 {
     public function index(){
@@ -152,5 +153,65 @@ class StaffController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function import(){
+        return view('tenant.admin.staff-role.staff-import');
+    }
+
+
+
+
+    public function convert(Request $request){
+       
+        $this->validate($request, [
+            'content' => 'required'
+        ]);
+        if($request->hasFile('content')){
+            $content = $request->file('content')->get();
+            $xml = simplexml_load_string($content);
+            $xml = $this->xml2array($xml);
+            
+            for($i=0; $i < count($xml["email"]); $i++){ 
+                $hotels = Hotel::where('hotel_code', $xml["hotel_code"][$i])->first();
+                if(!empty($hotels)){
+                    $admins = Admin::where('email', $xml["email"][$i])->first();
+                    if(empty($admins)){
+                         $admin = Admin::create(['firstname'=>$xml["firstname"][$i] , 'lastname'=>$xml["lastname"][$i],'email'=>$xml["email"][$i]]);//create new user
+                         event(new NewStaffAddedEvent($admin->load('adminRole')));
+                         $detail = Admin::where('email',$xml["email"][$i])->first();
+                         HotelAdmin::create(['hotel_id'=>$hotels["id"] , 'admin_id'=>$detail['id']]);
+                         $url = route('tenant.admin.hotel.dashboard' , ['hotel_code'=>$hotels->hotel_code]);
+                        // $admin->notify(new NewHotelNotification($hotels , $url));
+                         //assign hotel
+                         //echo "new user created send mail of reset password and subdomain link(2 mail)";
+                    }else{
+                        $assigned = HotelAdmin::where('hotel_id', $hotels["id"])->get();
+                        foreach($assigned as $assign){
+                            if($assign["admin_id"] == $admins["id"]){
+                                continue;
+                            }else{
+                                HotelAdmin::create(['hotel_id'=>$hotels["id"] , 'admin_id'=>$admins["id"]]);//assign
+                                $url = route('tenant.admin.hotel.dashboard' , ['hotel_code'=>$hotels->hotel_code]);
+                                // $admin->notify(new NewHotelNotification($hotels , $url));
+                                //echo "send link of subdomain(1 mail)";
+                            }
+                        }
+                    }
+                }else{
+                    continue;
+                }  
+            } 
+              return redirect()->route('tenant.admin.staff.index');
+        }
+        return view('tenant.admin.staff-role.staff-import');
+    }
+
+     function xml2array ( $xmlObject, $out = array () )
+     {
+                    foreach ( (array) $xmlObject as $index => $node )
+                        $out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
+
+                    return $out;
+     }
 
 }

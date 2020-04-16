@@ -134,13 +134,14 @@ class HotelController extends Controller
         $hotel = Hotel::where('hotel_code' , $hotel_code)->first();
         $hotelAdmins = HotelAdmin::where('hotel_id' , $hotel->id)->get();
         $hotelAdmins = $hotelAdmins->map(function ($admin) {
-            return collect($admin->admin);
+            return collect($admin->admin);  
         });
         $url = route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel->hotel_code]);
 
         if($role === 9){
             $request->validate([
-                'signature'     => 'bail|required',
+                'sign'     => 'bail|required',
+                // 'signature'     => 'bail|required',
                 'address'       => 'bail|required' , 
                 'gst_no'        => 'bail|required',
                 'pan_card'      => 'bail|required'
@@ -157,15 +158,15 @@ class HotelController extends Controller
         else{
 
              $request->validate([
-             'signature'     => "bail|required",
+             'sign'     => "bail|required",   
+             // 'signature'     => "bail|required",
          ]);
 
 
             $cm = Admin::find($hotelAdmins->where('role' , 4)->first()->get('id'));
             $cm->notify(new ContractConfirmationNotification($hotel , $url));
         }
-
-        ContractSignature::create(['hotel_id'=>$hotel->id , 'hotel_contract_id'=>$hotel->hotelContract->id , 'admin_id'=>auth('admin')->user()->id , 'signature'=>$request->signature , 'role'=>$role]);
+        ContractSignature::create(['hotel_id'=>$hotel->id , 'hotel_contract_id'=>$hotel->hotelContract->id , 'admin_id'=>auth('admin')->user()->id , 'sign'=>$request->sign , 'role'=>$role]);
         return redirect()->route('tenant.admin.hotel.contract' , ['hotel_code'=>$hotel_code]);   
 
     }

@@ -20,6 +20,7 @@ class CreateContractSignaturesTable extends Migration
             $table->integer('admin_id')->nullable();
             $table->integer('role')->nullable();
             $table->longText('signature')->nullable();
+            $table->string('sign')->nullable();
             $table->timestamps();
         });
     }

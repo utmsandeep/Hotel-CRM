@@ -66,9 +66,11 @@ Route::get('/plateform' , function(){
 Route::get('/solutions' , function(){
 	return view('main-system.solutions');
 })->name('solutions');
+Route::get('/home',  function(){
+	return redirect(route('home'));
+	})->name('home-index');
 
 Route::group(['middleware'=>['auth'] , 'prefix'=>'super'] , function(){
-
 	Route::get('/', 'HomeController@index')->name('home');
 
 	// website route

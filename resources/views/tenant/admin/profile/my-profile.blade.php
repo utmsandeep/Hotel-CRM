@@ -140,17 +140,39 @@ span.backto-profile {
   <div class="col-xl-4 col-lg-12 col-md-12">
     <div class="card mcard_3">
         <div class="upper-section-profile">
-             <a href="javascript:void(0);"
+             <!-- <a href="javascript:void(0);"
                   ><img
                      src="{{asset('tenant-admin/images/profile_av.jpg')}}"
                      class="rounded-circle"
                     alt="profile-image"
-             /></a>
-
+             /></a> -->
+              @if($profile->image == "no_image.jpg" || $profile->image == null)
+              <img src="{{ asset('storage/'.'no_image.jpg') }}" class="rounded-circle" alt="profile-image">
+              @else
+              <img src="{{ asset('storage/'.$subroute[0].'/profile/'.$profile->image) }}" class="rounded-circle" alt="profile-image">
+              @endif
             <h4 class="m-t-10">{{ $profile->firstname }}</h4>
             <h5 class="role">{{ $profile->adminRole->name }}</h5>
-            <a href="#" id="edit-btn" class="editbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Profile</a>
+            <a href="#" id="edit-btn" class="editbtn"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Profile</a><br>
+            <ul class="list-unstyled">
+              <li>
+                <p>Profile Percentage : {{ $num."%" }} </p>
+                <div class="progress m-b-20">
+                  <div
+                    class="progress-bar l-blush"
+                    role="progressbar"
+                    aria-valuenow="89"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="width: {{ $num.='%' }}";
+                  >
+                    <span class="sr-only">56% Complete</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
          </div>
+          
       <div class="body">
          
         <div class="row">
@@ -195,7 +217,7 @@ span.backto-profile {
               <small>Hourly Rate</small>
               <h5>18$</h5>
             </div>
-            <div class="profile-desc-inner">
+            <!-- <div class="profile-desc-inner">
               <small>Team</small>
               <h5>25+</h5>
             </div>
@@ -206,12 +228,20 @@ span.backto-profile {
             <div class="profile-desc-inner">
               <small>File</small>
               <h5>25+</h5>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
     <div class="card">
+    <div class="body">
+                  <h5 class="card-head">Assigned Hotel</h5>
+                   @foreach($hotels as $hotel)
+                                    <p @if($profile->adminHotels->contains('hotel_id' , $hotel->id)) @endif value="{{ $hotel->id }}">{{ $hotel->name }}</p>
+                                    @endforeach
+    </div>
+    </div>
+    <!-- <div class="card">
       <div class="body">
         <small class="text-muted">Reviews: </small>
         <p>
@@ -308,7 +338,7 @@ span.backto-profile {
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
   <!-- left section end here -->
   <!-- right section -->
@@ -326,7 +356,7 @@ span.backto-profile {
                 </div>
               </div>
             </div>
-
+          @if($profile->primary_mobile != null)
             <div class="profile-cards">
               <div class="card">
                 <div class="body">
@@ -335,24 +365,28 @@ span.backto-profile {
                 </div>
               </div>
             </div>
+          @endif  
 
+          @if($profile->secondary_mobile != null)
             <div class="profile-cards">
               <div class="card">
-                <div class="body">
+                <div class="body" >
                   <h5 class="card-head">Secondary Mobile No.</h5>
                   <p>{{ $profile->secondary_mobile }}</p>
                 </div>
               </div>
             </div>
-
+          @endif
+          @if($profile->role != null)
             <div class="profile-cards">
               <div class="card">
-                <div class="body">
-                  <h5 class="card-head">Assigned Hotel</h5>
-                  <p>Amit Hotel</p>
+                <div class="body" >
+                  <h5 class="card-head">Role</h5>
+                  <p>{{ $profile->adminRole->name }}</p>
                 </div>
               </div>
             </div>
+          @endif  
           </div>
         </div>
       </div>
@@ -377,32 +411,42 @@ span.backto-profile {
           <span class="backto-profile"><a>Back to your profile</a></span>
         </h5>
         <div class="edit-form-container">
-          <form>
+          <form  id="profile-edit-form" enctype="multipart/form-data" method="post" action="{{ route('tenant.admin.profile.update') }}">
             <!-- profile picture edit -->
+             @csrf
+            <input type="hidden" name="_method" value="put">
 
            <label class="dp-label">Profile picture</label>
-            <input type="file" class="dropify" name="display-picture" />
+            @if($profile->image == "no_image.jpg" || $profile->image == null) 
+             <input type="file" class="dropify" name="image" />
+            @else
+             <input type="file" class="dropify" name="image" data-default-file="{{ asset('storage/'.$subroute[0].'/profile/'.$profile->image) }}"/>
+            @endif
         
-
-
-
-
-
-
             <!-- profile picture edit end here -->
             <div class="form-edit f_name">
               <label>First Name</label>
-              <input type="text" name="Firstname" id="Firstname" />
+              <input type="text" name="firstname" id="firstname" value="{{ $admin->firstname }}"/>
             </div>
 
             <div class="form-edit l_name">
               <label>Last Name</label>
-              <input type="text" name="Lastname" id="Lastname" />
+              <input type="text" name="lastname" id="lastname" value="{{ $admin->lastname }}"/>
+            </div>
+
+            <div class="form-edit p_mobile">
+              <label>Primary Mobile Number</label>
+              <input type="text" name="primary_mobile" id="primary_mobile" value="{{ $admin->primary_mobile }}"/>
+            </div>
+
+            <div class="form-edit s_mobile">
+              <label>Secondary Mobile Number</label>
+              <input type="text" name="secondary_mobile" id="secondary_mobile" value="{{ $admin->secondary_mobile }}"/>
             </div>
 
             <div class="form-edit pswd">
               <label>Password</label>
-              <input type="text" name="Password" id="Password" />
+              <input type="text" name="password" id="password" />
             </div>
 
             <div class="form-edit pswd">
@@ -412,20 +456,15 @@ span.backto-profile {
 
             <div class="form-edit email">
               <label>Email</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" value="{{ $admin->email }}"/>
             </div>
 
-            <div class="form-edit phone_no.">
-              <label>Phone No</label>
-              <input type="text" name="phone" id="phone" />
+            <!-- <button type="submit" class="submit-edit" id="submit-edit">Submit</button> -->
+            <div class="form-edit">
+                <div class="card-body">
+                    <button type="submit" class="submit-edit" id="submit-edit">Submit</button>
+                </div>
             </div>
-
-            <div class="form-edit role">
-              <label>Role</label>
-              <input type="text" name="role" id="role" />
-            </div>
-
-            <button type="submit" class="submit-edit" id="submit-edit">Submit</button>
 
           </form>
         </div>
@@ -460,4 +499,40 @@ span.backto-profile {
 
   })
 </script>
+@stop
+@section('page-script')
+<script src="{{asset('tenant-admin/plugins/momentjs/moment.js')}}"></script>
+<script src="{{asset('tenant-admin/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+<script src="{{asset('tenant-admin/js/pages/forms/basic-form-elements.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script>
+     $(document).ready(function(){
+        $(function(){
+            $('#profile-edit-form').validate({
+                rules:{
+                    firstname:"required",
+                    lastname:"required",
+                    email: {
+                        required:true,
+                        email:true,
+                    },
+                    primary_mobile: {
+                        minlength:10,
+                        maxlength:10,
+                        number:true
+                    }
+
+                },
+                messages:{
+                    firstname:"Please enter first name",
+                    lastname:"Please enter last name",
+                    email: "Please enter a valid email",
+                    primary_mobile: "Please enter valid mobile number"
+
+                }
+            })
+        })
+    })
+    </script> 
+
 @stop

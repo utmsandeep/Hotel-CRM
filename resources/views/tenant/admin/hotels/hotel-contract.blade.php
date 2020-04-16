@@ -12,7 +12,6 @@
 <meta name="viewport" content="initial-scale=1.0, width=device-height">
 <script src="{{ asset('js/tenant/jSignature/libs/modernizr.js') }}"></script>
 <style type="text/css">
-
 	div {
 		margin-top:1em;
 		margin-bottom:1em;
@@ -148,11 +147,11 @@ span.left {
 			    	<p><span class="left">Adress :</span> @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) 
 				    		<input type="text" class="author-input" name="address" value="{{ $hotel->address }}" required=""> 
 				    	@else 
-				    	<span class="right">{{ $hotel->address }}</span>
+				    	<span class="right d-inline-flex">{{ $hotel->address }}</span>
 				    	@endif
 			    	</p>
-			    	<p><span class="left">GST Number :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="gst_no" class="author-input" value="{{ $hotel->gst_no }}" required=""> @else <span class="right">{{ $hotel->gst_no }}</span> @endif</p>
-			    	<p><span class="left">Pan Card :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" class="author-input" value="{{ $hotel->pan_card }}" required=""> @else <span class="right">{{ $hotel->pan_card }}</span> @endif</p>
+			    	<p><span class="left">GST Number :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="gst_no" class="author-input" value="{{ $hotel->gst_no }}" required=""> @else <span class="right d-inline-flex">{{ $hotel->gst_no }}</span> @endif</p>
+			    	<p><span class="left">Pan Card :</span>  @if(auth('admin')->user()->role == 9 && !$signatures->contains('admin_id', auth('admin')->user()->id)) <input type="text" name="pan_card" class="author-input" value="{{ $hotel->pan_card }}" required=""> @else <span class="right d-inline-flex">{{ $hotel->pan_card }}</span> @endif</p>
 			    </div>
 			    <div class="col-sm-6 detail-section">
 			    	<p><span class="left">Yearly Subscribation  :</span><span class="right"> {{ $owner->yearly_subscription }}</span></p>
@@ -175,7 +174,15 @@ span.left {
 		  			<p><span class="left">Name : </span><span class="right">{{ $admin->admin->firstname }} {{ $admin->admin->lastname }}</span></p>
 		  			<p><span class="left">Email : </span><span class="right">{{ $admin->admin->email }}</span></p>
 		  			<p><span class="left">Mobile : </span><span class="right">{{ $admin->admin->primary_mobile }}</span></p>
-		  			<p><span class="left">Signature:</span><img style="width: 300px;" id="@if(auth('admin')->user()->role == $admin->admin->role){{ $cur_class }}@endif" src="@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->signature }}@endif" /></p>
+		  			<p><span class="left">Signature:</span>
+		  				@if(auth('admin')->user()->role != $admin->admin->role || (auth('admin')->user()->role == 4 || $signatures->contains('admin_id', auth('admin')->user()->id)))
+
+		  				<span class="right d-inline-flex">@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->sign }}@endif</span>
+		  				
+		  				@else 
+		  				<input type="text" name="sign" id="@if(auth('admin')->user()->role == $admin->admin->role){{ $cur_class }}@endif" value="@if($signatures->contains('admin_id', $admin->admin->id)){{ $signatures->where('admin_id' , $admin->admin->id)->first()->sign }}@endif" /> </p>
+
+		  				@endif
 		  		</div>
 		  		@endforeach
 		  	</div>

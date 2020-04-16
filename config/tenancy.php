@@ -83,7 +83,7 @@ return [
          * @info If set to false will disable all tenant specific filesystem auto magic
          *       like the config, vendor overrides.
          */
-        'disk' => 'local',
+        'disk' => 'localcopy',
 
         /**
          * Automatically generate a tenant directory based on the random id of the

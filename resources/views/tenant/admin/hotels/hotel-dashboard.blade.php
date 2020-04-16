@@ -96,7 +96,8 @@ td:nth-of-type(1) {
     
     vertical-align: middle;
     text-align: center;
-    height: 70px;
+    height: 100px;
+    position:relative;
 }
 .today {
     background: unset;
@@ -128,9 +129,12 @@ span.closing-tab {
     font-weight: 900;
     cursor: pointer;
 }
-.popup-content div {
-    margin: 47px 0;
+.event-popup {
+    min-height: 610px;
 }
+/* .popup-content div {
+    margin: 47px 0;
+} */
 .event-details {
     color: red;
 }
@@ -141,7 +145,7 @@ span.closing-tab {
     color: blue;
 }
 .query-details{
-  color:yellow;
+  color:orange;
 }
 .event-popup {
     display: none;
@@ -164,8 +168,14 @@ span.closing-tab {
   background-color: pink;
   
 }
+.green-box {
+    background: green;
+}
+.yellow-box {
+    background: orange;
+}
 .something div {
-    margin: 7px 0;
+    margin: 1px 0;
     /* display: inherit; */
     border-radius: 50%;
     width: 14px;
@@ -174,6 +184,53 @@ span.closing-tab {
     font-weight: bold;
     color: #fff;
     clear: none;
+}
+body .event-dots {
+    width: auto;
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    height: auto;
+}
+.voilet-box {
+    background: violet;
+}
+.pink-box2, .red-box2, .blue-box2, .green-box2, .yellow-box2, .voilet-box2{
+    
+    padding: 10px 22px;
+    
+    margin: 21px 0;
+    border:1px solid;
+    border-radius:5px;
+}
+.title-of-event {
+    font-size: 17px;
+    font-weight: 900;
+}
+.url-of-event {
+    font-size: 15px;
+    margin-top: 5px;
+}
+.url-of-event p {
+    margin: 0 0 4px 0;
+}
+.pink-box2{
+color:pink;
+}
+.red-box2{
+  color:red;
+}
+.blue-box2{
+  color:blue;
+}
+.green-box2{
+  color:green;
+}
+.voilet-box2{
+  color:violet;
+}
+.yellow-box2{
+  color:orange;
 }
 </style>
 @stop
@@ -211,12 +268,8 @@ span.closing-tab {
         <span class="closing-tab">X</span>
             
                     <div class="popup-content">
-                        <div class="event-details">Lorem ipsum dummy text</div>
-                        <div class="booking-details">Lorem ipsum dummy text</div>
-                        <div class="proposal-details">Lorem ipsum dummy text</div>
-                        <div class="query-details">Lorem ipsum dummy text</div>
-                        <div class="booking-details">Lorem ipsum dummy text</div>
-                        <div class="lead-details">Lorem ipsum dummy text</div>
+                      this is the popup content.
+                        
 
                     </div>
             
@@ -267,8 +320,84 @@ var events = {
       "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz" , "http://amit-hotel-version-2.hoteleventcrm.buzz"],
       "title": "Leads"
     }
-  }
+  },
+ "18":{
+   "pink-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Proposals"
+   },
+   "red-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Queries"
+   },
+   "blue-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz" , "http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Leads"
+   },
+   "green-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz" , "http://amit-hotel-version-2.hoteleventcrm.buzz", "http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Booking"
+   },
+  
+   "yellow-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz" , "http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Booking2"
+   },
+   "voilet-box":{
+    "urls": ["http://amit-hotel-version-2.hoteleventcrm.buzz" , "http://amit-hotel-version-2.hoteleventcrm.buzz"],
+    "title": "Booking3"
+   },
+ }
+
+
 };
+// code for show data inpopup
+var objlength = Object.keys(events).length;
+$('.table').click(function(event) {
+    var text = $(event.target).attr('id');
+    var datenumber = text.slice(4, 6);
+
+
+    for (var x in events) {
+  
+  if(x==datenumber){
+    var dateobject = events[x]
+    $('.popup-content').empty();
+  for (var y in dateobject){
+    
+    var colorobject = dateobject[y]
+    var urlcontainer = '';
+     for(var k=0; k< colorobject.urls.length; k++){
+        urlcontainer += `<p><a href="${colorobject.urls[k]}">${colorobject.urls[k]}</a></p>`
+     }
+       console.log(urlcontainer)
+     
+    
+    var popupeppend = `<div class="${y}2">
+                          <div class="title-of-event">${colorobject.title}</div>
+                          <div class="url-of-event">
+                          
+                          
+                          
+                          ${urlcontainer}
+                          </div>
+                          
+                      </div>`
+                      
+                      $('.popup-content').append(popupeppend);
+                      
+    
+  }
+  }
+  
+}
+    
+});
+
+
+
+
+// code for show data in popup
 var content = "January February March April May June July August September October November December".split(
   " "
 );
@@ -299,9 +428,10 @@ function renderCalendar(startDay, totalDays, currentDate) {
 
     $day.text(i);
     if(events.hasOwnProperty(i)){
+      $day.append(`<div class="event-dots" id="event${i}"></div>`)
       for( var event in events[i]){
-        $day.append(`<div class="${event}">${events[i][event].urls.length}</div>`);
-        console.log(events[i][event].urls.length);
+        $(`#event${i}`).append(`<div class="${event}">${events[i][event].urls.length}</div>`);
+        
       }
       $day.addClass('something');
     }
@@ -449,6 +579,8 @@ jQuery(document).on('click' , '.something' , function(){
 $('.closing-tab').click(function(){
   $(this).parents('.event-popup').css('display','none');
 })
+
+
 
 </script>
 @stop

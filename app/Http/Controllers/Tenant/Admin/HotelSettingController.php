@@ -74,7 +74,7 @@ class HotelSettingController extends Controller
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
         return view('tenant.admin.hotel-setting.import-hotel-setting' , compact('hotel_code' , 'hotelsetting'));
 
-    }
+     }
 
     public function importHotelSettingsStore(Request $request , $hotel_code){
 
@@ -87,14 +87,16 @@ class HotelSettingController extends Controller
     public function pricemenu($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-        return view('tenant.admin.hotel-setting.menu-price' , compact('hotel_code','hotelsetting'));
+        $data = json_decode($hotelsetting["menu_type"],true); 
+        $data1 =  json_encode(array_column($data , "int_name"));
+        return view('tenant.admin.hotel-setting.menu-price' , compact('hotel_code','hotelsetting','data1'));
     }
 
-
+ 
     public function prices(Request $request , $hotel_code){
         $request->validate([
     	 	   'menu_name'      =>	'required|array|min:1',
-               'menu_name.*'      =>	'required'
+               'menu_name.*'    =>	'required'
     	 ]);
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id' , $hotel->id)->first();
