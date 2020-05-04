@@ -55,7 +55,7 @@ class ProfileController extends Controller
         if($admin["country"] != null){
             $no++;
         }
-        if($admin["image"] == "no_image.jpg"){
+        if($admin["image"] == "no_image.jpg" || $admin["image"] == null){
             $no++;
         }
         $num = floor($no  * 7.69);
@@ -93,7 +93,6 @@ class ProfileController extends Controller
                 'secondary_mobile'  => 'bail|digits:10|nullable|unique:tenant.admins,email,'.auth()->user()->id,
                 'email'             => 'bail|email|unique:tenant.admins,email,'.auth()->user()->id,
                 'password'          => 'min:6|nullable|required_with:confirm_password|same:confirm_password',
-                'confirm_password'  => 'nullable',
             ]);
         $admin  = Admin::find(auth()->user()->id);
         if($validatedData["password"] == null){
@@ -102,14 +101,13 @@ class ProfileController extends Controller
             $admin->update($validatedData);
         }else{
             $data =array(
-                'image'             => $input['imagename'],
+                // 'image'             => $input['imagename'],
                 'firstname'         => $validatedData["firstname"],
                 'lastname'          => $validatedData["lastname"],
                 'primary_mobile'    => $validatedData["primary_mobile"],
                 'secondary_mobile'  => $validatedData["secondary_mobile"],
                 'email'             => $validatedData["email"],
                 'password'          => Hash::make($validatedData["password"]),
-                'confirm_password'  => Hash::make($validatedData["confirm_password"]),
             );
             $admin->update($data);
         }

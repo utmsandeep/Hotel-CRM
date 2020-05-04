@@ -332,8 +332,6 @@ a.ui-datepicker-prev.ui-corner-all:hover, a.ui-datepicker-next.ui-corner-all:hov
 
 
 
-// var cont = '<?= $data1; ?>';
-
     
 var options = {
 

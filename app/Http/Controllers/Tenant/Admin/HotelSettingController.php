@@ -12,6 +12,17 @@ class HotelSettingController extends Controller
 
     /*-----------------------Upload-logo-----------------------------*/
 
+
+    public function import($hotel_code){
+        $hotel = hotelIdByCode($hotel_code);
+        $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
+        return view('tenant.admin.hotel-setting.hotel-import' , compact('hotel_code'));
+    }
+
+    public function storeImport(Request $request , $hotel_code){
+        
+
+    }
     public function upload($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
@@ -87,9 +98,9 @@ class HotelSettingController extends Controller
     public function pricemenu($hotel_code){
         $hotel = hotelIdByCode($hotel_code);
         $hotelsetting = HotelSetting::where('hotel_id', $hotel->id)->first();
-        $data = json_decode($hotelsetting["menu_type"],true); 
-        $data1 =  json_encode(array_column($data , "int_name"));
-        return view('tenant.admin.hotel-setting.menu-price' , compact('hotel_code','hotelsetting','data1'));
+        // $data = json_decode($hotelsetting["menu_type"],true); 
+        // $data1 =  json_encode(array_column($data , "int_name"));
+        return view('tenant.admin.hotel-setting.menu-price' , compact('hotel_code','hotelsetting'));
     }
 
  

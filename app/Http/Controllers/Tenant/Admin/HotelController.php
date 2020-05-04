@@ -171,12 +171,11 @@ class HotelController extends Controller
 
     }
 
-    public function hotelDashboard($hotel_code){
+    public function hotelDashboard($hotel_code){  
         return view('tenant.admin.hotels.hotel-dashboard' , compact('hotel_code'));
     }
 
     public function test(){
-
          $hotels = HotelAdmin::where('admin_id' , auth('admin')->user()->id)->get();
          $hotels = $hotels->unique('hotel_id'); 
          dd($hotels);
@@ -186,3 +185,4 @@ class HotelController extends Controller
         return $hotels->Hotel->name;
     }
 }
+                                                                                                                                                        

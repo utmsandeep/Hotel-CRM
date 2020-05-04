@@ -245,6 +245,8 @@ Route::get('map/jvector', 'MapController@jvector')->name('map.jvector');
 			 	/* Hotel Setting*/
 			 	Route::get('hotel-setting/upload-logo', [HotelSettingController::class, 'upload'])->name('tenant.admin.hotelSetting.upload');
 				Route::post('hotel-setting/storeupload', [HotelSettingController::class, 'storeupload'])->name('tenant.admin.hotelSetting.storeupload');
+				Route::get('hotel-setting/hotel-import', [HotelSettingController::class, 'import'])->name('tenant.admin.hotelSetting.import');
+				Route::post('hotel-setting/storeImport', [HotelSettingController::class, 'storeImport'])->name('tenant.admin.hotelSetting.storeImport');
 				Route::get('hotel-setting/policy', [HotelSettingController::class, 'policy'])->name('tenant.admin.hotelSetting.policy');
 			 	Route::post('hotel-setting/save-policy', [HotelSettingController::class, 'savepolicy'])->name('tenant.admin.hotelSetting.savepolicy');
 			 	Route::get('hotel-setting/profile-pic', [HotelSettingController::class, 'picture'])->name('tenant.admin.hotelSetting.picture');

@@ -8,7 +8,16 @@
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <div class="image"><a href="#"><img src="{{ asset('tenant-admin/images/profile_av.jpg') }}" alt="User"></a></div>
+                    @php 
+                    $route = explode('/',request()->root());
+                    $subroute = explode('.',$route[2]);
+                    @endphp
+                    @if(auth('admin')->user()->image == null)
+                        <div class="image"><a href="#"><img src="{{ asset('storage/'.'no_image.jpg') }}"  alt="User"></a></div>
+                    @else
+                        <div class="image"><a href="#"><img src="{{ asset('storage/'.$subroute[0].'/profile/'.auth('admin')->user()->image) }}"  alt="User"></a></div>
+                    @endif
+                    
                     <div class="detail">
                         <h4>{{ auth('admin')->user()->firstname }}</h4>
                         <small>{{ auth('admin')->user()->adminRole->name }}</small>
@@ -62,6 +71,10 @@
                 <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Hotel Settings</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(5) === 'upload-logo' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.upload' , ['hotel_code'=>$hotel_code]) }}">Hotel Pictures</a></li>
+
+                    <li class="{{ Request::segment(5) === 'hotel-import' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.import' , ['hotel_code'=>$hotel_code]) }}">Hotel Import</a></li>
+
+
                     <li class="{{ Request::segment(5) === 'policy' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.policy' ,  ['hotel_code'=>$hotel_code]) }}">Policies</a></li>
                     <li class="{{ Request::segment(5) === 'seating-style' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.style' ,  ['hotel_code'=>$hotel_code]) }}">Seating Style</a></li>
                     <li class="{{ Request::segment(5) === 'room-type' ? 'active' : null }}"><a href="{{ route('tenant.admin.hotelSetting.type' ,  ['hotel_code'=>$hotel_code]) }}">Types of Rooms</a></li>
